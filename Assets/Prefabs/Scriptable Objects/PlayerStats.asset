@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 10
   movementSpeed: 5
-  mouseSensitivity: 100
+  mouseSensitivity: 1000
   gravity: -9.81
   groundDistance: 0.4
   groundMask:

@@ -20,10 +20,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        movement();
+        Movement();
     }
 
-    private void movement()
+    private void Movement()
     {
         Vector3 move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
         Vector3 groundVec = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - gameObject.transform.localScale.y, gameObject.transform.position.z);

@@ -1896,6 +1896,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 43b0f26349d3314418aedf871701de1e, type: 2}
   currentHealth: 0
+  spriteRend: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!4 &1504703052
 Transform:
   m_ObjectHideFlags: 0
@@ -2141,6 +2143,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: aa1c67ef0b01c1b47aac91e5aa8abd51, type: 2}
   currentHealth: 0
+  spriteRend: {fileID: 0}
+  rb: {fileID: 0}
+  animator: {fileID: 0}
+  utilityAI: {fileID: 0}
 --- !u!136 &1957610558
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2168,8 +2174,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 7fe646de7fff3ec409abfd7e175647c8, type: 2}
-  target: {fileID: 0}
-  targetUnit: {fileID: 0}
   rb: {fileID: 0}
   unit: {fileID: 0}
   navAgent: {fileID: 0}

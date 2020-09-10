@@ -15,6 +15,7 @@ MonoBehaviour:
   health: 3
   moveSpeed: 2
   maxRange: 3
+  stoppingDistance: 2.5
   mouseSensitivity: 500
   gravity: -9.81
   groundDistance: 0.4

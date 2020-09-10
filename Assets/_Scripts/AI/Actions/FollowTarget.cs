@@ -8,7 +8,8 @@ public class FollowTarget : ActionAI
 {
     public override void use(UtilityAIHandler controller)
     {
-       /* if (controller.navAgent.remainingDistance != controller.unit.stats.stoppingDistance)*/ controller.navAgent.SetDestination(PlayerController.Instance.transform.position); 
-        
+        if (Vector3.Distance(controller.gameObject.transform.position, PlayerController.Instance.gameObject.transform.position) < controller.unit.stats.stoppingDistance) return;
+
+        controller.navAgent.SetDestination(PlayerController.Instance.transform.position);
     }
 }

@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    // Singleton Instance
+    public static PlayerController Instance { get; private set; }
+
     [HideInInspector] public PlayerUnit unit;
     [HideInInspector] public CharacterController controller;
 
@@ -18,8 +21,8 @@ public class PlayerController : MonoBehaviour
     {
         unit = GetComponent<PlayerUnit>();
         controller = GetComponent<CharacterController>();
-        baseSpeed = unit.stats.movementSpeed;
-        sprintSpeed = unit.stats.movementSpeed * 2f;
+        baseSpeed = unit.stats.moveSpeed;
+        sprintSpeed = unit.stats.moveSpeed * 2f;
     }
 
     private void Update()
@@ -34,10 +37,7 @@ public class PlayerController : MonoBehaviour
 
         bool isGrounded = Physics.CheckSphere(groundVec, unit.stats.groundDistance, unit.stats.groundMask);      
 
-        controller.Move(move * unit.stats.movementSpeed * Time.deltaTime);
-
-        Debug.Log(isGrounded);
-        
+        controller.Move(move * unit.stats.moveSpeed * Time.deltaTime);
 
         // Ground Check
         if (isGrounded && velocity.y < 0){
@@ -50,18 +50,26 @@ public class PlayerController : MonoBehaviour
         }
 
         if (Input.GetButton("Sprint")) {
-            unit.stats.movementSpeed = sprintSpeed;
+            unit.stats.moveSpeed = sprintSpeed;
         }
         else {
-            unit.stats.movementSpeed = baseSpeed;
+            unit.stats.moveSpeed = baseSpeed;
         }
 
         velocity.y += unit.stats.gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
 
-    private void OnDrawGizmos()
+    private void Awake()
     {
-        Gizmos.DrawSphere(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - gameObject.transform.localScale.y, gameObject.transform.position.z), 0.4f);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

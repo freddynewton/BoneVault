@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         sprintSpeed = unit.stats.moveSpeed * 2f;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         Movement();
     }
@@ -63,7 +63,11 @@ public class PlayerController : MonoBehaviour
         }
 
         if (Input.GetButtonDown("Fire2")) {
-            Animator.SetTrigger("block");
+            Animator.SetBool("block", true);
+        }
+
+        if (Input.GetButtonUp("Fire2")) {
+            Animator.SetBool("block", false);
         }
 
         if (move != Vector3.zero) {

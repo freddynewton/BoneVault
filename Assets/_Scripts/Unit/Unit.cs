@@ -16,9 +16,11 @@ public class Unit : MonoBehaviour
 
     public virtual void Start()
     {
-        spriteRend = GetComponent<SpriteRenderer>();
-        baseMat = spriteRend.material;
-        rb = GetComponent<Rigidbody>();
+        if(transform.name != "Player") {
+            spriteRend = GetComponent<SpriteRenderer>();
+            baseMat = spriteRend.material;
+            rb = GetComponent<Rigidbody>();
+        }
     }
 
     public virtual void Update()

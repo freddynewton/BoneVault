@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector] public PlayerUnit unit;
     [HideInInspector] public CharacterController controller;
+    [HideInInspector] public Animator Animator;
 
     private Vector3 velocity;
     private float baseSpeed;
@@ -19,13 +20,14 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        Animator = GameObject.Find("Canvas/Hands").GetComponent<Animator>();
         unit = GetComponent<PlayerUnit>();
         controller = GetComponent<CharacterController>();
         baseSpeed = unit.stats.moveSpeed;
         sprintSpeed = unit.stats.moveSpeed * 2f;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Movement();
     }
@@ -33,20 +35,20 @@ public class PlayerController : MonoBehaviour
     private void Movement()
     {
         Vector3 move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
-        Vector3 groundVec = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - gameObject.transform.localScale.y, gameObject.transform.position.z);
-
-        bool isGrounded = Physics.CheckSphere(groundVec, unit.stats.groundDistance, unit.stats.groundMask);      
+        bool isGrounded = controller.isGrounded;      
 
         controller.Move(move * unit.stats.moveSpeed * Time.deltaTime);
+        Debug.Log(isGrounded);
 
         // Ground Check
         if (isGrounded && velocity.y < 0){
-            velocity.y = -2f;
+            velocity.y = -unit.stats.gravity * Time.deltaTime; ;
         }
+        else velocity.y += unit.stats.gravity * Time.deltaTime;
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            velocity.y = Mathf.Sqrt(unit.stats.jumpHeight * -2f * unit.stats.gravity);
+            velocity.y = Mathf.Sqrt(unit.stats.jumpHeight * -3f * unit.stats.gravity);
         }
 
         if (Input.GetButton("Sprint")) {
@@ -56,7 +58,20 @@ public class PlayerController : MonoBehaviour
             unit.stats.moveSpeed = baseSpeed;
         }
 
-        velocity.y += unit.stats.gravity * Time.deltaTime;
+        if(Input.GetButtonDown("Fire1")) {
+            Animator.SetTrigger("hit");
+        }
+
+        if (Input.GetButtonDown("Fire2")) {
+            Animator.SetTrigger("block");
+        }
+
+        if (move != Vector3.zero) {
+            Animator.SetBool("walking", true);
+        }
+        else Animator.SetBool("walking", false);
+
+        
         controller.Move(velocity * Time.deltaTime);
     }
 

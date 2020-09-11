@@ -22,5 +22,5 @@ public class Stats : ScriptableObject
 
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
-    public float jumpHeight = 2f;
+    public float jumpHeight = 1f;
 }

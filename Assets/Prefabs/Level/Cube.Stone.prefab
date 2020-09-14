@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 882700639153624745}
   - component: {fileID: 882700639153624746}
   m_Layer: 0
-  m_Name: BrickWall
+  m_Name: Cube.Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     // Singleton Instance
     public static PlayerController Instance { get; private set; }
+    public GameObject Hands;
 
     [HideInInspector] public PlayerUnit unit;
     [HideInInspector] public CharacterController controller;
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        Animator = GameObject.Find("Canvas/Hands").GetComponent<Animator>();
+        Animator = Hands.GetComponent<Animator>();
         unit = GetComponent<PlayerUnit>();
         controller = GetComponent<CharacterController>();
         baseSpeed = unit.stats.moveSpeed;

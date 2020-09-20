@@ -9,9 +9,10 @@ public class PlayerController : MonoBehaviour
     // Singleton Instance
     public static PlayerController Instance { get; private set; }
     public GameObject Hands;
+    public GameObject HitDetection;
 
-    [HideInInspector] public PlayerUnit unit;
-    [HideInInspector] public CharacterController controller;
+    [HideInInspector] public PlayerUnit Unit;
+    [HideInInspector] public CharacterController Controller;
     [HideInInspector] public Animator Animator;
 
     private Vector3 velocity;
@@ -22,10 +23,10 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Animator = Hands.GetComponent<Animator>();
-        unit = GetComponent<PlayerUnit>();
-        controller = GetComponent<CharacterController>();
-        baseSpeed = unit.stats.moveSpeed;
-        sprintSpeed = unit.stats.moveSpeed * 2f;
+        Unit = GetComponent<PlayerUnit>();
+        Controller = GetComponent<CharacterController>();
+        baseSpeed = Unit.stats.moveSpeed;
+        sprintSpeed = Unit.stats.moveSpeed * 2f;
     }
 
     private void Update()
@@ -36,31 +37,37 @@ public class PlayerController : MonoBehaviour
     private void Movement()
     {
         Vector3 move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
-        bool isGrounded = controller.isGrounded;      
+        bool isGrounded = Controller.isGrounded;      
 
-        controller.Move(move * unit.stats.moveSpeed * Time.deltaTime);
-        Debug.Log(isGrounded);
+        Controller.Move(move * Unit.stats.moveSpeed * Time.deltaTime);
+        //Debug.Log(isGrounded);
 
         // Ground Check
         if (isGrounded && velocity.y < 0){
-            velocity.y = -unit.stats.gravity * Time.deltaTime; ;
+            velocity.y = -Unit.stats.gravity * Time.deltaTime; ;
         }
-        else velocity.y += unit.stats.gravity * Time.deltaTime;
+        else velocity.y += Unit.stats.gravity * Time.deltaTime;
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            velocity.y = Mathf.Sqrt(unit.stats.jumpHeight * -3f * unit.stats.gravity);
+            velocity.y = Mathf.Sqrt(Unit.stats.jumpHeight * -3f * Unit.stats.gravity);
         }
 
         if (Input.GetButton("Sprint")) {
-            unit.stats.moveSpeed = sprintSpeed;
+            Unit.stats.moveSpeed = sprintSpeed;
         }
         else {
-            unit.stats.moveSpeed = baseSpeed;
+            Unit.stats.moveSpeed = baseSpeed;
         }
 
         if(Input.GetButtonDown("Fire1")) {
             Animator.SetTrigger("hit");
+
+            HitDetection.GetComponent<HitDetection>().enabled = true;
+
+            //var currentClipInfo = Animator.GetCurrentAnimatorClipInfo(0);
+            //var currentClipLength = currentClipInfo [0].clip.length;
+            //var clipName = currentClipInfo [0].clip.name;
         }
 
         if (Input.GetButtonDown("Fire2")) {
@@ -77,7 +84,7 @@ public class PlayerController : MonoBehaviour
         else Animator.SetBool("walking", false);
 
         
-        controller.Move(velocity * Time.deltaTime);
+        Controller.Move(velocity * Time.deltaTime);
     }
 
     private void Awake()

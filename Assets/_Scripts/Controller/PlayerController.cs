@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         }
 
         if(Input.GetButtonDown("Fire1")) {
-            Animator.SetTrigger("hit");
+            Animator.SetTrigger("attack");
 
             HitDetection.GetComponent<HitDetection>().enabled = true;
 

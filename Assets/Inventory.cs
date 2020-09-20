@@ -32,5 +32,14 @@ public class Inventory : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        StartCoroutine(startWeapon());
+    }
+
+    private IEnumerator startWeapon()
+    {
+        yield return new WaitForEndOfFrame();
+        
+        if (currWeapon == null) equipWeapon(Resources.Load<GameObject>("Items/Weapons/LongSword"));
     }
 }

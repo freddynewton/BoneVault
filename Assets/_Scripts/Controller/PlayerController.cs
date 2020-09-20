@@ -96,6 +96,6 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (Inventory.Instance.currWeapon == null) Inventory.Instance.equipWeapon(Resources.Load<GameObject>("Items/Weapons/LongSword"));
+        
     }
 }

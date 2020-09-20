@@ -1017,7 +1017,7 @@ GameObject:
   - component: {fileID: 823860253}
   - component: {fileID: 823860251}
   m_Layer: 0
-  m_Name: Hands
+  m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3033,6 +3033,10 @@ PrefabInstance:
     - target: {fileID: 8412717563751396280, guid: a5c57fab0bb400c4489a83221ec3f0f0, type: 3}
       propertyPath: m_Range
       value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412717563751396280, guid: a5c57fab0bb400c4489a83221ec3f0f0, type: 3}
+      propertyPath: m_Intensity
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5c57fab0bb400c4489a83221ec3f0f0, type: 3}

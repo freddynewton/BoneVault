@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class LongSword : Weapon
 {
-    [HideInInspector] public bool attacking;
-
     [Header("LongSwordStats")]
-    public float DoDamageAfterSec = 0.3f;
+    public float doDamageAfterSec = 0.3f;
 
 
     public override void Start()
@@ -15,37 +13,9 @@ public class LongSword : Weapon
         base.Start();
     }
 
-    private void Update()
-    {
-        // Play Idle or Walk anim
-    }
-
-    public override void attackLeftClick()
-    {
-        attacking = true;
-    }
-
-    public override void attackRightClick()
-    {
-        Debug.Log("Right Click");
-        // start anim
-
-        /*
-        if (Input.GetButtonDown("Fire2"))
-        {
-            animator.SetBool("block", true);
-        }
-
-        if (Input.GetButtonUp("Fire2"))
-        {
-            animator.SetBool("block", false);
-        }
-        */
-    }
-
     private void OnTriggerStay(Collider other)
     {
-        if (attacking)
+        if (isAttacking)
         {
             StartCoroutine(SwingSwordAttack(other));
         }
@@ -53,13 +23,6 @@ public class LongSword : Weapon
 
     private IEnumerator SwingSwordAttack(Collider other)
     {
-        attacking = false;
-        yield return new WaitForSecondsRealtime(DoDamageAfterSec);
-
-        //Trigger Anim
-        animator.SetTrigger("hit");
-
-        // Damage bla 
-        Debug.Log("Swing Swoosh");
+        yield return new WaitForSecondsRealtime(doDamageAfterSec);
     }
 }

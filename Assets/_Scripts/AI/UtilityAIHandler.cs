@@ -94,7 +94,7 @@ public class UtilityAIHandler : MonoBehaviour
                     return tmp > 1 ? 1 : tmp;
                 }
             case InputAiEnum.TargetHealth:
-                return PlayerController.Instance.Unit.currentHealth / PlayerController.Instance.Unit.stats.health;
+                return PlayerController.Instance.unit.currentHealth / PlayerController.Instance.unit.stats.health;
 
         }
 

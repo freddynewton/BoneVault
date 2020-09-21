@@ -10,20 +10,23 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance { get; private set; }
     public GameObject weaponPos;
 
-    [HideInInspector] public PlayerUnit Unit;
-    [HideInInspector] public CharacterController Controller;
+    [HideInInspector] public PlayerUnit unit;
+    [HideInInspector] public CharacterController controller;
+    [HideInInspector] public Animator animator;
 
-    private Vector3 velocity;
     private float baseSpeed;
     private float sprintSpeed;
+    private float fallSpeed;
+    private Vector3 velocity;
 
 
     private void Start()
     {
-        Unit = GetComponent<PlayerUnit>();
-        Controller = GetComponent<CharacterController>();
-        baseSpeed = Unit.stats.moveSpeed;
-        sprintSpeed = Unit.stats.moveSpeed * 2f;
+        unit = GetComponent<PlayerUnit>();
+        controller = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
+        baseSpeed = unit.stats.moveSpeed;
+        sprintSpeed = unit.stats.moveSpeed * 2f;
     }
 
     private void Update()
@@ -33,59 +36,64 @@ public class PlayerController : MonoBehaviour
 
     private void Movement()
     {
+        // Move Input
         Vector3 move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
-        bool isGrounded = Controller.isGrounded;      
-
-        Controller.Move(move * Unit.stats.moveSpeed * Time.deltaTime);
-        
-
-        // Ground Check
-        if (isGrounded && velocity.y < 0){
-            velocity.y = -Unit.stats.gravity * Time.deltaTime; ;
-        }
-        else velocity.y += Unit.stats.gravity * Time.deltaTime;
-
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(Unit.stats.jumpHeight * -3f * Unit.stats.gravity);
-        }
-
-
-        // Sprint Input
-        if (Input.GetButton("Sprint")) {
-            Unit.stats.moveSpeed = sprintSpeed;
-        }
-        else {
-            Unit.stats.moveSpeed = baseSpeed;
-        }
+        controller.Move(move * unit.stats.moveSpeed * Time.deltaTime);
 
         // Left Click Attack
-        if(Input.GetButtonDown("Fire1")) {
-            if (Inventory.Instance.currWeapon != null)
+        if (Input.GetButtonDown("Fire1")) {
+            if (Inventory.Instance.currWeapon != null) {
+                Inventory.Instance.currWeaponScript.isAttacking = true;
                 Inventory.Instance.currWeaponScript.attackLeftClick();
+            }
         }
-
         // Right Click Attack
-        if (Input.GetButtonDown("Fire2")) {
-            if (Inventory.Instance.currWeapon != null)
+        else if (Input.GetButtonDown("Fire2")) {
+            if (Inventory.Instance.currWeapon != null) {
+                Inventory.Instance.currWeaponScript.isBlocking = true;
                 Inventory.Instance.currWeaponScript.attackRightClick();
+            }
         }
 
+        // End Block
+        if (Input.GetButtonUp("Fire2")) {
+            Inventory.Instance.currWeaponScript.blockComplete();
+        }
         
+        // Sprint Input
+        if (Input.GetButton("Sprint")) {
+            unit.stats.moveSpeed = sprintSpeed;
+        }
+        else {
+            unit.stats.moveSpeed = baseSpeed;
+        }
 
-        /*
+        // idle/walking animation
         if (move != Vector3.zero) {
-            Animator.SetBool("walking", true);
+            if (Inventory.Instance.currWeapon != null) {
+                Inventory.Instance.currWeaponScript.isMoving = true;
+                Inventory.Instance.currWeaponScript.move();
+            }
         }
-        else Animator.SetBool("walking", false);
-        */
-        
-        Controller.Move(velocity * Time.deltaTime);
+        else {
+            if (Inventory.Instance.currWeapon != null) {
+                Inventory.Instance.currWeaponScript.isMoving = false;
+                Inventory.Instance.currWeaponScript.idle();
+            }
+        }
+
+        // Gravity
+        if (controller.isGrounded) {
+            fallSpeed = 0;
+        }
+        // apply gravity acceleration to vertical speed:
+        fallSpeed += unit.stats.gravity * Time.deltaTime;
+        velocity.y = fallSpeed;
+        controller.Move(velocity * Time.deltaTime);
     }
 
     private void Awake()
     {
-
         if (Instance == null)
         {
             Instance = this;
@@ -95,7 +103,5 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        
     }
 }

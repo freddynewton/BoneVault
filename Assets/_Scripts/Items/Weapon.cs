@@ -12,7 +12,6 @@ public abstract class Weapon : MonoBehaviour
 
     [HideInInspector] public Animator animator;
     [HideInInspector] public string currentState;
-    [HideInInspector] public float animationLength;
     [HideInInspector] public bool isAttacking;
     [HideInInspector] public bool isMoving;
     [HideInInspector] public bool isBlocking;
@@ -22,17 +21,16 @@ public abstract class Weapon : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public virtual void attackLeftClick()
-    {
-        if (!isBlocking) changeAnimationState("Attack1");
-        animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
-        Invoke("attackComplete", animationLength);
-    }
+    public abstract void attackLeftClick();
 
     public virtual void attackRightClick()
     {
-        if (!isAttacking) changeAnimationState("Block1");
-        animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
+        if (!isAttacking) {
+            int randomInt = Random.Range(1, 3);
+            Debug.Log(randomInt);
+            if (randomInt == 1) changeAnimationState("Block1");
+            else changeAnimationState("Block2");
+        }
     }
 
     public virtual void idle() {
@@ -59,7 +57,7 @@ public abstract class Weapon : MonoBehaviour
         isAttacking = false;
     }
 
-    public virtual void blockComplete () {
+    public virtual void blockComplete() {
         isBlocking = false;
     }
 }

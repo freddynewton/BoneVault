@@ -30,10 +30,10 @@ public class LongSword : Weapon
 
     public override void attackLeftClick() {
         if (!isBlocking) {
-            int randomInt = Random.Range(1, 3);
+            int randomInt = Random.Range(1, 4);
             if (randomInt == 1) changeAnimationState("Attack1");
-            else changeAnimationState("Attack2");
-
+            else if (randomInt == 2) changeAnimationState("Attack2");
+            else changeAnimationState("Attack3");
         }
         Invoke("attackComplete", 0.7f);
     }

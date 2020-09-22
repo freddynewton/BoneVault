@@ -29,9 +29,12 @@ public class LongSword : Weapon
     }
 
     public override void attackLeftClick() {
-        if (!isBlocking) changeAnimationState("Attack1");
-        animationLength = animator.GetCurrentAnimatorStateInfo(0).length; // diese Zeile funktioniert nicht, daher ist unten hardcoded die Dauer drin
+        if (!isBlocking) {
+            int randomInt = Random.Range(1, 3);
+            if (randomInt == 1) changeAnimationState("Attack1");
+            else changeAnimationState("Attack2");
 
-        Invoke("attackComplete", 0.35f); // hier müsste eig animationLength rein als zweiter Parameter
+        }
+        Invoke("attackComplete", 0.7f);
     }
 }

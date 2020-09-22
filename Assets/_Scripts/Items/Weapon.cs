@@ -27,7 +27,6 @@ public abstract class Weapon : MonoBehaviour
     {
         if (!isAttacking) {
             int randomInt = Random.Range(1, 3);
-            Debug.Log(randomInt);
             if (randomInt == 1) changeAnimationState("Block1");
             else changeAnimationState("Block2");
         }
@@ -55,6 +54,7 @@ public abstract class Weapon : MonoBehaviour
 
     public virtual void attackComplete() {
         isAttacking = false;
+        Debug.Log(Inventory.Instance.currWeaponScript.isAttacking);
     }
 
     public virtual void blockComplete() {

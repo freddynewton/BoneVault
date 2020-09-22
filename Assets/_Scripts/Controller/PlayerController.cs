@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private float baseSpeed;
     private float sprintSpeed;
+    private float halfSpeed;
     private float fallSpeed;
     private Vector3 velocity;
 
@@ -27,11 +28,12 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         baseSpeed = unit.stats.moveSpeed;
         sprintSpeed = unit.stats.moveSpeed * 2f;
+        halfSpeed = unit.stats.moveSpeed / 2;
     }
 
     private void Update()
     {
-        Movement();
+        Movement();       
     }
 
     private void Movement()
@@ -41,7 +43,7 @@ public class PlayerController : MonoBehaviour
         controller.Move(move * unit.stats.moveSpeed * Time.deltaTime);
 
         // Left Click Attack
-        if (Input.GetButtonDown("Fire1")) {
+        if (Input.GetButtonDown("Fire1") && !Inventory.Instance.currWeaponScript.isAttacking) {
             if (Inventory.Instance.currWeapon != null) {
                 Inventory.Instance.currWeaponScript.isAttacking = true;
                 Inventory.Instance.currWeaponScript.attackLeftClick();
@@ -52,19 +54,22 @@ public class PlayerController : MonoBehaviour
             if (Inventory.Instance.currWeapon != null) {
                 Inventory.Instance.currWeaponScript.isBlocking = true;
                 Inventory.Instance.currWeaponScript.attackRightClick();
+                unit.stats.moveSpeed = halfSpeed;
             }
         }
 
         // End Block
         if (Input.GetButtonUp("Fire2")) {
             Inventory.Instance.currWeaponScript.blockComplete();
+            unit.stats.moveSpeed = baseSpeed;
         }
         
         // Sprint Input
         if (Input.GetButton("Sprint")) {
             unit.stats.moveSpeed = sprintSpeed;
         }
-        else {
+
+        if (Input.GetButtonUp("Sprint")) {
             unit.stats.moveSpeed = baseSpeed;
         }
 

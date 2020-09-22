@@ -11,7 +11,6 @@ public class Stats : ScriptableObject
     [Header("MovementSettings")]
     public float moveSpeed = 5f;
 
-
     [Header("Enemy Settings")]
     public float maxRange = 3f;
     public float stoppingDistance = 1.5f;

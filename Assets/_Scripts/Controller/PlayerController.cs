@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public PlayerUnit unit;
     [HideInInspector] public CharacterController controller;
     [HideInInspector] public Animator animator;
+    [HideInInspector] public Vector3 move;
 
     private float baseSpeed;
     private float sprintSpeed;
@@ -33,62 +34,60 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Movement();       
+        Movement();
+        InputButtons();
     }
 
-    private void Movement()
+    private void InputButtons()
     {
-        // Move Input
-        Vector3 move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
-        controller.Move(move * unit.stats.moveSpeed * Time.deltaTime);
-
         // Left Click Attack
-        if (Input.GetButtonDown("Fire1") && !Inventory.Instance.currWeaponScript.isAttacking) {
-            if (Inventory.Instance.currWeapon != null) {
-                Inventory.Instance.currWeaponScript.isAttacking = true;
-                Inventory.Instance.currWeaponScript.attackLeftClick();
+        if (Input.GetButtonDown("Fire1"))
+        {
+            if (Inventory.Instance.currWeapon != null)
+            {
+                Inventory.Instance.currWeaponScript.attackLeftClick(true);
             }
         }
+
+
         // Right Click Attack
-        else if (Input.GetButtonDown("Fire2")) {
-            if (Inventory.Instance.currWeapon != null) {
-                Inventory.Instance.currWeaponScript.isBlocking = true;
-                Inventory.Instance.currWeaponScript.attackRightClick();
+        if (Input.GetButtonDown("Fire2"))
+        {
+            if (Inventory.Instance.currWeapon != null)
+            {
+                Inventory.Instance.currWeaponScript.attackRightClick(true);
                 unit.stats.moveSpeed = halfSpeed;
             }
         }
 
         // End Block
-        if (Input.GetButtonUp("Fire2")) {
-            Inventory.Instance.currWeaponScript.blockComplete();
+        if (Input.GetButtonUp("Fire2"))
+        {
             unit.stats.moveSpeed = baseSpeed;
+            Inventory.Instance.currWeaponScript.attackRightClick(false);
         }
-        
+
         // Sprint Input
-        if (Input.GetButton("Sprint")) {
+        if (Input.GetButton("Sprint"))
+        {
             unit.stats.moveSpeed = sprintSpeed;
         }
 
-        if (Input.GetButtonUp("Sprint")) {
+        if (Input.GetButtonUp("Sprint"))
+        {
             unit.stats.moveSpeed = baseSpeed;
         }
+    }
 
-        // idle/walking animation
-        if (move != Vector3.zero) {
-            if (Inventory.Instance.currWeapon != null) {
-                Inventory.Instance.currWeaponScript.isMoving = true;
-                Inventory.Instance.currWeaponScript.move();
-            }
-        }
-        else {
-            if (Inventory.Instance.currWeapon != null) {
-                Inventory.Instance.currWeaponScript.isMoving = false;
-                Inventory.Instance.currWeaponScript.idle();
-            }
-        }
+    private void Movement()
+    {
+        // Move Input
+        move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
+        controller.Move(move * unit.stats.moveSpeed * Time.deltaTime);
 
         // Gravity
-        if (controller.isGrounded) {
+        if (controller.isGrounded)
+        {
             fallSpeed = 0;
         }
         // apply gravity acceleration to vertical speed:

@@ -11,10 +11,14 @@ public class LongSword : Weapon
     [HideInInspector] public bool isAttacking;
     [HideInInspector] public bool isBlocking;
 
+    public Collider Collider;
+
 
     public override void Start()
     {
         base.Start();
+        Collider = GetComponent<BoxCollider>();
+        Collider.enabled = false;
     }
 
     public override void attackLeftClick(bool active)
@@ -35,17 +39,22 @@ public class LongSword : Weapon
                     break;
             }
         }
-        //Invoke("attackComplete", 0.7f);
+
+        StartCoroutine(SwingSwordAttack());
     }
 
     public override void attackRightClick(bool active)
     {
         isBlocking = active;
+
+        if (isBlocking) changeAnimationState("Block1");
+        else changeAnimationState("Block2");
     }
 
     private void Update()
     {
         idle();
+        Debug.Log(isAttacking);
     }
 
     public void idle()
@@ -54,18 +63,20 @@ public class LongSword : Weapon
         else if (!isAttacking && !isBlocking && PlayerController.Instance.move != Vector3.zero) changeAnimationState("Walk");
     }
 
-    private IEnumerator SwingSwordAttack(Collider other)
+    private IEnumerator SwingSwordAttack()
     {
         isAttacking = false;
+        changeAnimationState("Idle");
         yield return new WaitForSecondsRealtime(doDamageAfterSec);
-
+        Collider.enabled = true;
+        yield return new WaitForFixedUpdate();
+        Collider.enabled = false;
     }
+
+    
 
     private void OnTriggerStay(Collider other)
     {
-        if (isAttacking)
-        {
-            StartCoroutine(SwingSwordAttack(other));
-        }
+
     }
 }

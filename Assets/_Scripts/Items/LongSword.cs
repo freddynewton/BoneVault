@@ -11,15 +11,9 @@ public class LongSword : Weapon
     [HideInInspector] public float animationLength;
     [HideInInspector] public bool isAttacking;
     [HideInInspector] public bool isBlocking;
-
-    public Collider Collider;
-
-
     public override void Start()
     {
         base.Start();
-        Collider = GetComponent<BoxCollider>();
-        Collider.enabled = false;
     }
 
     public override void attackLeftClick(bool active)
@@ -62,6 +56,7 @@ public class LongSword : Weapon
     private void Update()
     {
         idle();
+
     }
 
     public void idle()
@@ -73,9 +68,21 @@ public class LongSword : Weapon
     private IEnumerator SwingSwordAttack()
     {
         yield return new WaitForSecondsRealtime(doDamageAfterSec);
-        Collider.enabled = true;
+
+        List<GameObject> remList = new List<GameObject>();
+
+        foreach (GameObject obj in hitObjects)
+        {
+            Unit objU = obj.GetComponent<Unit>();
+
+            if (objU.currentHealth - Damage <= 0) remList.Add(obj);
+
+            objU.DoDamage(gameObject.transform.position, Damage);
+        }
+
+        foreach (GameObject obj in remList) hitObjects.Remove(obj);
+
         yield return new WaitForFixedUpdate();
-        Collider.enabled = false;
     }
 
     private void OnAttackComplete()
@@ -83,8 +90,13 @@ public class LongSword : Weapon
         isAttacking = false;
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (layermaskInclude(other.gameObject.layer) && !hitObjects.Contains(other.gameObject)) hitObjects.Add(other.gameObject);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (layermaskInclude(other.gameObject.layer) && hitObjects.Contains(other.gameObject)) hitObjects.Remove(other.gameObject);
     }
 }

@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public Animator animator;
     [HideInInspector] public Vector3 move;
 
+    private float walkSpeed;
     private float baseSpeed;
     private float sprintSpeed;
     private float halfSpeed;
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
         unit = GetComponent<PlayerUnit>();
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        walkSpeed = unit.stats.moveSpeed;
         baseSpeed = unit.stats.moveSpeed;
         sprintSpeed = unit.stats.moveSpeed * 2f;
         halfSpeed = unit.stats.moveSpeed / 2;
@@ -56,26 +58,24 @@ public class PlayerController : MonoBehaviour
             if (Inventory.Instance.currWeapon != null)
             {
                 Inventory.Instance.currWeaponScript.attackRightClick(true);
-                unit.stats.moveSpeed = halfSpeed;
+                walkSpeed = halfSpeed;
             }
         }
 
         // End Block
         if (Input.GetButtonUp("Fire2"))
         {
-            unit.stats.moveSpeed = baseSpeed;
             Inventory.Instance.currWeaponScript.attackRightClick(false);
+            walkSpeed = baseSpeed;
         }
 
         // Sprint Input
-        if (Input.GetButton("Sprint"))
+        if (Input.GetButtonDown("Sprint"))
         {
-            unit.stats.moveSpeed = sprintSpeed;
-        }
-
-        if (Input.GetButtonUp("Sprint"))
+            walkSpeed = sprintSpeed;
+        } else if (Input.GetButtonUp("Sprint"))
         {
-            unit.stats.moveSpeed = baseSpeed;
+            walkSpeed  = baseSpeed;
         }
     }
 
@@ -83,13 +83,14 @@ public class PlayerController : MonoBehaviour
     {
         // Move Input
         move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
-        controller.Move(move * unit.stats.moveSpeed * Time.deltaTime);
+        controller.Move(move * walkSpeed * Time.deltaTime);
 
         // Gravity
         if (controller.isGrounded)
         {
             fallSpeed = 0;
         }
+
         // apply gravity acceleration to vertical speed:
         fallSpeed += unit.stats.gravity * Time.deltaTime;
         velocity.y = fallSpeed;

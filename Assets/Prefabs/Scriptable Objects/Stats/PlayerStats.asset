@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
   health: 10
-  moveSpeed: 5
+  moveSpeed: 3
   maxRange: 3
+  stoppingDistance: 1.5
   mouseSensitivity: 500
   gravity: -9.81
   groundDistance: 0.4

@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1857660287664064081}
   - component: {fileID: -3658924847489240888}
   - component: {fileID: 8419775150344606401}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LongSword
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,10 +119,14 @@ MonoBehaviour:
   DoDamageOn:
     serializedVersion: 2
     m_Bits: 2048
-  Damage: 5
+  Damage: 1
+  hitObjects: []
   animator: {fileID: 0}
-  attacking: 0
-  DoDamageAfterSec: 0.3
+  currentState: 
+  doDamageAfterSec: 0.3
+  animationLength: 0
+  isAttacking: 0
+  isBlocking: 0
 --- !u!65 &8419775150344606401
 BoxCollider:
   m_ObjectHideFlags: 0

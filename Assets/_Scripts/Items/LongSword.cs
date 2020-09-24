@@ -81,8 +81,6 @@ public class LongSword : Weapon
         }
 
         foreach (GameObject obj in remList) hitObjects.Remove(obj);
-
-        yield return new WaitForFixedUpdate();
     }
 
     private void OnAttackComplete()

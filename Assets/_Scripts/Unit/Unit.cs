@@ -21,6 +21,8 @@ public class Unit : MonoBehaviour
             baseMat = spriteRend.material;
             rb = GetComponent<Rigidbody>();
         }
+
+        currentHealth = stats.health;
     }
 
     public virtual void Update()
@@ -35,6 +37,7 @@ public class Unit : MonoBehaviour
         knockback(damageSrcPos, 100);
 
         currentHealth -= damage;
+        Debug.Log("Current Health: " + currentHealth + "\nDamage: " + damage);
 
         if (currentHealth > 0)
         {

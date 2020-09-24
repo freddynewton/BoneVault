@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 
 public class LongSword : Weapon
@@ -23,7 +24,7 @@ public class LongSword : Weapon
 
     public override void attackLeftClick(bool active)
     {
-        if (!isBlocking)
+        if (!isBlocking && !isAttacking)
         {
             isAttacking = active;
             int randomInt = Random.Range(0, 3);
@@ -33,28 +34,34 @@ public class LongSword : Weapon
                 case 0:
                     changeAnimationState("Attack1");
                     break;
-                case 1: changeAnimationState("Attack2");
+                case 1:
+                    changeAnimationState("Attack2");
                     break;
-                case 2: changeAnimationState("Attack3");
+                case 2:
+                    changeAnimationState("Attack3");
                     break;
             }
-        }
 
-        StartCoroutine(SwingSwordAttack());
+            Invoke("OnAttackComplete", 0.7f);
+            StartCoroutine(SwingSwordAttack());
+        }
     }
 
     public override void attackRightClick(bool active)
     {
-        isBlocking = active;
 
-        if (isBlocking) changeAnimationState("Block1");
-        else changeAnimationState("Block2");
+        if (!isAttacking)
+        {
+            isBlocking = active;
+            int randomInt = Random.Range(1, 3);
+
+            changeAnimationState("Block" + randomInt.ToString());
+        }
     }
 
     private void Update()
     {
         idle();
-        Debug.Log(isAttacking);
     }
 
     public void idle()
@@ -65,18 +72,19 @@ public class LongSword : Weapon
 
     private IEnumerator SwingSwordAttack()
     {
-        isAttacking = false;
-        changeAnimationState("Idle");
         yield return new WaitForSecondsRealtime(doDamageAfterSec);
         Collider.enabled = true;
         yield return new WaitForFixedUpdate();
         Collider.enabled = false;
     }
 
-    
+    private void OnAttackComplete()
+    {
+        isAttacking = false;
+    }
 
     private void OnTriggerStay(Collider other)
     {
-
+        
     }
 }

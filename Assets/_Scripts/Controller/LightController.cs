@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LightController : MonoBehaviour
 {
+    [HideInInspector] public Animator animator;
     public AnimationCurve animationCurve;
     private float animationTime;
     private Light torchLight;
@@ -15,6 +16,9 @@ public class LightController : MonoBehaviour
         torchLight = transform.GetComponent<Light>();
         timeElapsed = 0;
         animationTime = animationCurve[animationCurve.length - 1].time;
+        animator = GetComponentInParent<Animator>();
+
+        animator.Play("Torch_Idle", 0, Random.Range(0.0f, 1.0f));
     }
 
     void FixedUpdate()

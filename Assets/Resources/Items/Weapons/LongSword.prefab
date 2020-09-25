@@ -120,6 +120,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   Damage: 1
+  knockbackForce: 20
   hitObjects: []
   animator: {fileID: 0}
   currentState: 

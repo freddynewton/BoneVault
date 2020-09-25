@@ -9,6 +9,7 @@ public abstract class Weapon : MonoBehaviour
     [Header("Weapon Default Stats")]
     public LayerMask DoDamageOn;
     public int Damage;
+    public float knockbackForce = 40;
 
     [SerializeField] public List<GameObject> hitObjects;
     [HideInInspector] public Animator animator;

@@ -30,11 +30,11 @@ public class Unit : MonoBehaviour
 
     }
 
-    public virtual void DoDamage(Vector3 damageSrcPos ,int damage)
+    public virtual void DoDamage(Vector3 damageSrcPos ,int damage, float kbForce)
     {
         StartCoroutine(flashWhite(0.1f));
 
-        knockback(damageSrcPos, 100);
+        knockback(damageSrcPos, kbForce);
 
         currentHealth -= damage;
         Debug.Log("Current Health: " + currentHealth + "\nDamage: " + damage);

@@ -77,7 +77,7 @@ public class LongSword : Weapon
 
             if (objU.currentHealth - Damage <= 0) remList.Add(obj);
 
-            objU.DoDamage(gameObject.transform.position, Damage);
+            objU.DoDamage(gameObject.transform.position, Damage, knockbackForce);
         }
 
         foreach (GameObject obj in remList) hitObjects.Remove(obj);

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 66126a2e7f43bd543aed0b9903da8a6e
+guid: 6aebb2863effafd428ebfc7d4ba66a98
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
@@ -7,13 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Torch.Small
-    second: {fileID: 2100000, guid: c65f715897a0a234bbdf48fa9df9a9c5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Torch.Small.001
-    second: {fileID: 2100000, guid: c65f715897a0a234bbdf48fa9df9a9c5, type: 2}
+      name: Wall.Stone
+    second: {fileID: 2100000, guid: b4a118b2e513dbc439a23ddb415988ea, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

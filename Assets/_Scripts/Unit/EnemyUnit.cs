@@ -8,6 +8,12 @@ public class EnemyUnit : Unit
     [HideInInspector] public UtilityAIHandler utilityAI;
     [HideInInspector] public string currentState;
 
+    [HideInInspector] public bool isIdling;
+    [HideInInspector] public bool isHit;
+    [HideInInspector] public bool isDead;
+    [HideInInspector] public bool isAttacking;
+    [HideInInspector] public bool isWalking;
+
     public override void Start()
     {
         base.Start();
@@ -21,15 +27,41 @@ public class EnemyUnit : Unit
         setWalkingAnimation();
     }
 
-    private void setWalkingAnimation()
+    public override void death()
     {
-        if (utilityAI.navAgent.velocity != Vector3.zero) {
-            changeAnimationState("Walk");
-        }
-        else changeAnimationState("Idle");
+        isDead = true;
+
+        // Play death anim
+        // here
+
+        base.death();
     }
 
-    public void changeAnimationState (string newState) {
+    private void setWalkingAnimation()
+    {
+        if (!isHit && !isDead && !isAttacking)
+        {
+            if (utilityAI.navAgent.velocity != Vector3.zero)
+            {
+                isWalking = true;
+                isIdling = false;
+                changeAnimationState("Walk");
+            }
+            else
+            {
+                isWalking = false;
+                isIdling = true;
+                changeAnimationState("Idle");
+            }
+        } else
+        {
+            isWalking = false;
+            isIdling = false;
+        }
+    }
+
+    public void changeAnimationState(string newState)
+    {
         // prevent current animation interruption
         if (currentState == newState) return;
 

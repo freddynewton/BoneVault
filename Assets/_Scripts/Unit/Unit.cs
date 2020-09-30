@@ -47,11 +47,6 @@ public class Unit : MonoBehaviour
         {
             death();
         }
-
-        /*
-        if (bulletSettings.screenShakeSetting.screenShakeOnHitCharacter)
-            CameraHandler.Instance.CameraShake(bulletSettings.screenShakeSetting.duration, bulletSettings.screenShakeSetting.intensitivität, bulletSettings.screenShakeSetting.dropOffTime);
-        */
     }
 
     public virtual void death()

@@ -35,6 +35,8 @@ public class EnemyUnit : Unit
         changeAnimationState("Death");
         GetComponent<UtilityAIHandler>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;
+        GetComponent<Rigidbody>().isKinematic = true;
+        GetComponent<CapsuleCollider>().enabled = false;
         base.death();
     }
 

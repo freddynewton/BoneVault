@@ -15,6 +15,9 @@ public class Stats : ScriptableObject
     public float maxRange = 3f;
     public float stoppingDistance = 1.5f;
 
+    [Header("Enemy Fighting Stats")]
+    public float damage = 1;
+
     [Header("PlayerStats")]
     public float mouseSensitivity = 500f;
     public float gravity = -9.81f;

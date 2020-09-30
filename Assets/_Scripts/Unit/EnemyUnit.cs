@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyUnit : Unit
 {
+    [Header("Animation Duration")]
+    public float hitAnimationDuration;
+    public float isAttackingDuration;
+
     [HideInInspector] public UtilityAIHandler utilityAI;
 
     [HideInInspector] public bool isIdling;
@@ -27,9 +32,18 @@ public class EnemyUnit : Unit
     public override void death()
     {
         isDead = true;
-
+        changeAnimationState("Death");
+        GetComponent<UtilityAIHandler>().enabled = false;
+        GetComponent<NavMeshAgent>().enabled = false;
         base.death();
     }
+
+    public override void hit()
+    {
+        changeAnimationState("Hit");
+        base.hit();
+    }
+
 
     private void setWalkingAnimation()
     {

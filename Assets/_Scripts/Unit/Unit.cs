@@ -44,7 +44,7 @@ public class Unit : MonoBehaviour
 
         if (currentHealth > 0)
         {
-            changeAnimationState("Hit");
+            hit();
         }
         else
         {
@@ -52,9 +52,13 @@ public class Unit : MonoBehaviour
         }
     }
 
+    public virtual void hit()
+    {
+
+    }
+
     public virtual void death()
     {
-        changeAnimationState("Death");
         // Destroy(gameObject, 3);
     }
 

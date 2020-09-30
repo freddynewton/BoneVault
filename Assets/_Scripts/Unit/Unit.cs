@@ -8,6 +8,8 @@ public class Unit : MonoBehaviour
     public Stats stats;
     
     [HideInInspector] public int currentHealth;
+    [HideInInspector] public string currentState;
+    [HideInInspector] public Animator animator;
     [HideInInspector] public SpriteRenderer spriteRend;
     [HideInInspector] public Rigidbody rb;
 
@@ -22,6 +24,7 @@ public class Unit : MonoBehaviour
             rb = GetComponent<Rigidbody>();
         }
 
+        animator = GetComponent<Animator>();
         currentHealth = stats.health;
     }
 
@@ -41,7 +44,7 @@ public class Unit : MonoBehaviour
 
         if (currentHealth > 0)
         {
-            // Hit anim
+            changeAnimationState("Hit");
         }
         else
         {
@@ -51,8 +54,8 @@ public class Unit : MonoBehaviour
 
     public virtual void death()
     {
-        // Death Anim 
-        Destroy(gameObject);
+        changeAnimationState("Death");
+        // Destroy(gameObject, 3);
     }
 
     IEnumerator freezeGame(float time)
@@ -74,5 +77,16 @@ public class Unit : MonoBehaviour
         StartCoroutine(freezeGame(0.035f));
 
         //spriteRend.material = baseMat;
+    }
+
+    public void changeAnimationState (string newState) {
+        // prevent current animation interruption
+        if (currentState == newState) return;
+
+        // play the invoked animation
+        animator.Play(newState);
+
+        // set string to current animation as a monitor
+        currentState = newState;
     }
 }

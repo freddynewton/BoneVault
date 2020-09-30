@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class EnemyUnit : Unit
 {
-    [HideInInspector] public Animator animator;
     [HideInInspector] public UtilityAIHandler utilityAI;
-    [HideInInspector] public string currentState;
 
     [HideInInspector] public bool isIdling;
     [HideInInspector] public bool isHit;
@@ -17,7 +15,6 @@ public class EnemyUnit : Unit
     public override void Start()
     {
         base.Start();
-        animator = GetComponent<Animator>();
         utilityAI = GetComponent<UtilityAIHandler>();
     }
 
@@ -30,9 +27,6 @@ public class EnemyUnit : Unit
     public override void death()
     {
         isDead = true;
-
-        // Play death anim
-        // here
 
         base.death();
     }
@@ -58,17 +52,5 @@ public class EnemyUnit : Unit
             isWalking = false;
             isIdling = false;
         }
-    }
-
-    public void changeAnimationState(string newState)
-    {
-        // prevent current animation interruption
-        if (currentState == newState) return;
-
-        // play the invoked animation
-        animator.Play(newState);
-
-        // set string to current animation as a monitor
-        currentState = newState;
     }
 }

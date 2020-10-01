@@ -139,8 +139,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   spriteRend: {fileID: 0}
   rb: {fileID: 0}
-  hitAnimationDuration: 0
-  isAttackingDuration: 0
+  hitAnimationDuration: 0.8
+  isAttackingDuration: 3
   utilityAI: {fileID: 0}
   isIdling: 0
   isHit: 0

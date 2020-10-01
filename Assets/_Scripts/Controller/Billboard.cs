@@ -1,10 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.WSA.Input;
 
 public class Billboard : MonoBehaviour
 {
     private Vector3 forward;
+    private SpriteRenderer spriteRenderer;
+
+    private void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
 
 
     private void LateUpdate () {
@@ -12,6 +20,11 @@ public class Billboard : MonoBehaviour
 
         if (forward != Vector3.zero) {
             transform.forward = forward;
+        }
+
+        if (gameObject.layer == 11)
+        {
+           // if (gameObject.transform.position)
         }
     }
 }

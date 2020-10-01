@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
@@ -61,10 +62,10 @@ public class Unit : MonoBehaviour
     {
     }
 
-    // AAA Incoke Function
-    public void changeBoolToOpposite(bool boo, bool thisNeedsToBeTrue)
+    public IEnumerator returnOppBool(bool boo, float t)
     {
-        if (thisNeedsToBeTrue) boo = !boo;
+        yield return new WaitForSeconds(t);
+        yield return !boo;
     }
 
     IEnumerator freezeGame(float time)
@@ -74,10 +75,7 @@ public class Unit : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    private void knockback(Vector3 otherPos, float kb)
-    {
-        rb.AddForce((gameObject.transform.position - otherPos).normalized * kb, ForceMode.Impulse);
-    }
+    private void knockback(Vector3 otherPos, float kb) => rb.AddForce((gameObject.transform.position - otherPos).normalized * kb, ForceMode.Impulse);
 
     public IEnumerator flashWhite(float time)
     {

@@ -18,6 +18,11 @@ public class EnemyUnit : Unit
     [HideInInspector] public bool isAttacking;
     [HideInInspector] public bool isWalking;
 
+
+    public void changeHitBool() => isHit = !isHit;
+
+    public void changeAttackingBool() => isAttacking = !isAttacking;
+
     public override void Start()
     {
         base.Start();
@@ -35,18 +40,34 @@ public class EnemyUnit : Unit
     public override void death()
     {
         isDead = true;
+
+        // Play Death Animation
         changeAnimationState("Death");
+
+        // Play Hit Particle
+        vfx.Clear();
+        vfx.Play();
+
+        // Disable all component and leave a sprite
         GetComponent<UtilityAIHandler>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
         GetComponent<CapsuleCollider>().enabled = false;
+
         base.death();
     }
 
     public override void hit()
     {
-        //isHit = true;
+        isHit = true;
+
+        // Play Hit Animation
         changeAnimationState("Hit");
+
+        // Imitate Animation Event
+        Invoke("changeHitBool", hitAnimationDuration);
+        
+        // Play Hit Particle
         vfx.Clear();
         vfx.Play();
         base.hit();
@@ -75,4 +96,5 @@ public class EnemyUnit : Unit
             isIdling = false;
         }
     }
+
 }

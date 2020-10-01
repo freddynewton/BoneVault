@@ -9,7 +9,7 @@ public class Stats : ScriptableObject
     public int health = 10;
 
     [Header("MovementSettings")]
-    public float moveSpeed = 5f;
+    public float moveSpeed = 7f;
 
     [Header("Enemy Settings")]
     public float maxRange = 3f;

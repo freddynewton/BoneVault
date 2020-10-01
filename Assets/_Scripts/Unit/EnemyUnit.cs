@@ -10,6 +10,7 @@ public class EnemyUnit : Unit
     public float isAttackingDuration;
 
     [HideInInspector] public UtilityAIHandler utilityAI;
+    [HideInInspector] private ParticleSystem vfx;
 
     [HideInInspector] public bool isIdling;
     [HideInInspector] public bool isHit;
@@ -21,6 +22,8 @@ public class EnemyUnit : Unit
     {
         base.Start();
         utilityAI = GetComponent<UtilityAIHandler>();
+        vfx = GetComponentInChildren<ParticleSystem>();
+        vfx.Stop();
     }
 
     public override void Update()
@@ -43,6 +46,8 @@ public class EnemyUnit : Unit
     public override void hit()
     {
         changeAnimationState("Hit");
+        vfx.Clear();
+        vfx.Play();
         base.hit();
     }
 

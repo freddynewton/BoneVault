@@ -45,6 +45,7 @@ public class EnemyUnit : Unit
 
     public override void hit()
     {
+        //isHit = true;
         changeAnimationState("Hit");
         vfx.Clear();
         vfx.Play();

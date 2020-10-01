@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -54,12 +55,16 @@ public class Unit : MonoBehaviour
 
     public virtual void hit()
     {
-
     }
 
     public virtual void death()
     {
-        // Destroy(gameObject, 3);
+    }
+
+    // AAA Incoke Function
+    public void changeBoolToOpposite(bool boo, bool thisNeedsToBeTrue)
+    {
+        if (thisNeedsToBeTrue) boo = !boo;
     }
 
     IEnumerator freezeGame(float time)
@@ -82,6 +87,8 @@ public class Unit : MonoBehaviour
 
         //spriteRend.material = baseMat;
     }
+
+    
 
     public void changeAnimationState (string newState) {
         // prevent current animation interruption

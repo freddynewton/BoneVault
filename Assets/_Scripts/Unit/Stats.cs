@@ -16,7 +16,8 @@ public class Stats : ScriptableObject
     public float stoppingDistance = 1.5f;
 
     [Header("Enemy Fighting Stats")]
-    public float damage = 1;
+    public bool stopsAttackingWhenHit = true;
+    public int damage = 1;
 
     [Header("PlayerStats")]
     public float mouseSensitivity = 500f;

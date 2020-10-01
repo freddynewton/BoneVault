@@ -18,9 +18,10 @@ public class EnemyUnit : Unit
     [HideInInspector] public bool isAttacking;
     [HideInInspector] public bool isWalking;
 
+    public List<GameObject> playerList = new List<GameObject>();
 
+    // Bodyless functions
     public void changeHitBool() => isHit = !isHit;
-
     public void changeAttackingBool() => isAttacking = !isAttacking;
 
     public override void Start()
@@ -70,9 +71,9 @@ public class EnemyUnit : Unit
         // Play Hit Particle
         vfx.Clear();
         vfx.Play();
+
         base.hit();
     }
-
 
     private void setWalkingAnimation()
     {
@@ -97,4 +98,13 @@ public class EnemyUnit : Unit
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") && !playerList.Contains(other.gameObject)) playerList.Add(other.gameObject);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") && playerList.Contains(other.gameObject)) playerList.Remove(other.gameObject);
+    }
 }

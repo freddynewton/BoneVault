@@ -59,11 +59,11 @@ public class EnemyUnit : Unit
         base.hit();
     }
 
-    public void CallTriggerDamage(int damage)
+    public void CallTriggerDamage()
     {
         foreach (GameObject obj in triggerList)
         {
-            obj.GetComponent<Unit>().DoDamage(gameObject.transform.position, damage, 10);
+            obj.GetComponent<Unit>().DoDamage(gameObject.transform.position, stats.damage, 10);
         }
     }
 

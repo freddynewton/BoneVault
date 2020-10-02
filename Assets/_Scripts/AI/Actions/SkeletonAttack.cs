@@ -8,16 +8,9 @@ public class SkeletonAttack : ActionAI
 {
     public override void use(UtilityAIHandler controller)
     {
-        
-    }
-
-    IEnumerator attack(UtilityAIHandler controller, float t)
-    {
-        yield return new WaitForSecondsRealtime(t);
-            foreach (GameObject obj in controller.unit.triggerList)
-            {
-                obj.GetComponent<Unit>().DoDamage(controller.gameObject.transform.position, controller.unit.stats.damage, 0f);
-            }
-        
+        if (controller.unit.waitTimer(controller.unit.stats.attackRate))
+        {
+            controller.unit.animator.SetTrigger("Attack");
+        }
     }
 }

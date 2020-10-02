@@ -17,6 +17,22 @@ public class Unit : MonoBehaviour
 
     private Material baseMat;
 
+    private float waitTicker;
+    private float waitTime;
+
+    public bool waitTimer(float time)
+    {
+        waitTime = time;
+
+        if (waitTicker > waitTime)
+        {
+            waitTicker = 0;
+            return true;
+        }
+        else waitTicker += Time.deltaTime;
+
+        return false;
+    }
 
     public virtual void Start()
     {
@@ -32,7 +48,6 @@ public class Unit : MonoBehaviour
 
     public virtual void Update()
     {
-
     }
 
     public virtual void DoDamage(Vector3 damageSrcPos ,int damage, float kbForce)
@@ -41,7 +56,7 @@ public class Unit : MonoBehaviour
         {
             StartCoroutine(flashWhite(0.1f));
 
-            knockback(damageSrcPos, kbForce);
+            if (!gameObject.CompareTag("Player")) knockback(damageSrcPos, kbForce);
 
             currentHealth -= damage;
             Debug.Log("Current Health: " + currentHealth + "\nDamage: " + damage);

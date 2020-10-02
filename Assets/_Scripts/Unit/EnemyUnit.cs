@@ -12,17 +12,7 @@ public class EnemyUnit : Unit
     [HideInInspector] public UtilityAIHandler utilityAI;
     [HideInInspector] private ParticleSystem vfx;
 
-    [HideInInspector] public bool isIdling;
-    [HideInInspector] public bool isHit;
-    [HideInInspector] public bool isDead;
-    [HideInInspector] public bool isAttacking;
-    [HideInInspector] public bool isWalking;
-
-    public List<GameObject> playerList = new List<GameObject>();
-
-    // Bodyless functions
-    public void changeHitBool() => isHit = !isHit;
-    public void changeAttackingBool() => isAttacking = !isAttacking;
+    public List<GameObject> triggerList = new List<GameObject>();
 
     public override void Start()
     {
@@ -40,10 +30,9 @@ public class EnemyUnit : Unit
 
     public override void death()
     {
-        isDead = true;
 
         // Play Death Animation
-        changeAnimationState("Death");
+        animator.SetTrigger("isDead");
 
         // Play Hit Particle
         vfx.Clear();
@@ -60,14 +49,9 @@ public class EnemyUnit : Unit
 
     public override void hit()
     {
-        isHit = true;
-
         // Play Hit Animation
-        changeAnimationState("Hit");
+        animator.SetTrigger("Hit");
 
-        // Imitate Animation Event
-        Invoke("changeHitBool", hitAnimationDuration);
-        
         // Play Hit Particle
         vfx.Clear();
         vfx.Play();
@@ -75,36 +59,27 @@ public class EnemyUnit : Unit
         base.hit();
     }
 
+    public void CallTriggerDamage(int damage)
+    {
+        foreach (GameObject obj in triggerList)
+        {
+            obj.GetComponent<Unit>().DoDamage(gameObject.transform.position, damage, 10);
+        }
+    }
+
     private void setWalkingAnimation()
     {
-        if (!isHit && !isDead && !isAttacking)
-        {
-            if (utilityAI.navAgent.velocity != Vector3.zero)
-            {
-                isWalking = true;
-                isIdling = false;
-                changeAnimationState("Walk");
-            }
-            else
-            {
-                isWalking = false;
-                isIdling = true;
-                changeAnimationState("Idle");
-            }
-        } else
-        {
-            isWalking = false;
-            isIdling = false;
-        }
+        if (utilityAI.navAgent.velocity != Vector3.zero) animator.SetBool("isWalking", true);
+        else animator.SetBool("isWalking", false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && !playerList.Contains(other.gameObject)) playerList.Add(other.gameObject);
+        if (other.gameObject.CompareTag("Player") && !triggerList.Contains(other.gameObject)) triggerList.Add(other.gameObject);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && playerList.Contains(other.gameObject)) playerList.Remove(other.gameObject);
+        if (other.gameObject.CompareTag("Player") && triggerList.Contains(other.gameObject)) triggerList.Remove(other.gameObject);
     }
 }

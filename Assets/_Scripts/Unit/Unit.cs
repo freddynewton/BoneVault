@@ -37,20 +37,23 @@ public class Unit : MonoBehaviour
 
     public virtual void DoDamage(Vector3 damageSrcPos ,int damage, float kbForce)
     {
-        StartCoroutine(flashWhite(0.1f));
-
-        knockback(damageSrcPos, kbForce);
-
-        currentHealth -= damage;
-        Debug.Log("Current Health: " + currentHealth + "\nDamage: " + damage);
-
         if (currentHealth > 0)
         {
-            hit();
-        }
-        else
-        {
-            death();
+            StartCoroutine(flashWhite(0.1f));
+
+            knockback(damageSrcPos, kbForce);
+
+            currentHealth -= damage;
+            Debug.Log("Current Health: " + currentHealth + "\nDamage: " + damage);
+
+            if (currentHealth > 0)
+            {
+                hit();
+            }
+            else
+            {
+                death();
+            }
         }
     }
 

@@ -29,6 +29,7 @@ public class PlayerUnit : Unit
         else if (currentStamina < 0) currentStamina = 0;
 
         // TODO CALL UI UPDATE FUNCTION
+        UiManager.Instance.setStamina();
     }
 
     public override void Update()
@@ -52,5 +53,6 @@ public class PlayerUnit : Unit
     public override void DoDamage(Vector3 damageSrcPos, int damage, float kbForce)
     {
         base.DoDamage(damageSrcPos, damage, kbForce);
+        UiManager.Instance.setHealth();
     }
 }

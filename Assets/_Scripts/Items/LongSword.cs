@@ -47,6 +47,7 @@ public class LongSword : Weapon
         if (!isAttacking)
         {
             isBlocking = active;
+            PlayerController.Instance.unit.isStaminaReg = !active;
             int randomInt = Random.Range(1, 3);
 
             changeAnimationState("Block" + randomInt.ToString());

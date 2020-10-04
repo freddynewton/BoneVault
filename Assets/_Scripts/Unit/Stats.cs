@@ -21,6 +21,10 @@ public class Stats : ScriptableObject
     public float attackRate = 1.5f;
 
     [Header("PlayerStats")]
+    public float stamina = 10;
+    public float staminaRate = 1;
+
+    [Header("Player movement")]
     public float mouseSensitivity = 500f;
     public float gravity = -9.81f;
 

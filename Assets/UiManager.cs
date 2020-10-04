@@ -35,6 +35,14 @@ public class UiManager : MonoBehaviour
         // TODO LEANTWEEN
     }
 
+    private IEnumerator loadUi()
+    {
+        yield return new WaitForEndOfFrame();
+
+        setHealth();
+        setStamina();
+    }
+
     private void Awake()
     {
         if (Instance == null)
@@ -47,7 +55,6 @@ public class UiManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        setStamina();
-        setHealth();
+        StartCoroutine(loadUi());
     }
 }

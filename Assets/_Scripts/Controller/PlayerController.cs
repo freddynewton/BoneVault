@@ -69,27 +69,30 @@ public class PlayerController : MonoBehaviour
             walkSpeed = baseSpeed;
         }
 
-        if (unit.currentStamina > 0)
-        {
-            Sprint();
-        }
+        Sprint();
     }
 
     private void Sprint()
     {
-        // Sprint Input
-        if (Input.GetButtonDown("Sprint"))
+        if (unit.currentStamina > 0)
         {
-            walkSpeed = sprintSpeed;
+            if (Input.GetButtonDown("Sprint"))
+            {
+                walkSpeed = sprintSpeed;
+            }
+            else if (Input.GetButtonUp("Sprint"))
+            {
+                walkSpeed = baseSpeed;
+            }
+
+            if (Input.GetButton("Sprint"))
+            {
+                unit.setStamina(-(unit.stats.sprintCostRate * Time.deltaTime));
+            }
         }
-        else if (Input.GetButtonUp("Sprint"))
+        else
         {
             walkSpeed = baseSpeed;
-        }
-
-        if (Input.GetButton("Sprint"))
-        {
-            unit.setStamina(-(unit.stats.sprintCostRate * Time.deltaTime));
         }
     }
 

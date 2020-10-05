@@ -10,8 +10,6 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance { get; private set; }
     public GameObject weaponPos;
 
-
-
     [HideInInspector] public PlayerUnit unit;
     [HideInInspector] public CharacterController controller;
     [HideInInspector] public Animator animator;
@@ -71,16 +69,27 @@ public class PlayerController : MonoBehaviour
             walkSpeed = baseSpeed;
         }
 
+        if (unit.currentStamina > 0)
+        {
+            Sprint();
+        }
+    }
+
+    private void Sprint()
+    {
         // Sprint Input
         if (Input.GetButtonDown("Sprint"))
         {
             walkSpeed = sprintSpeed;
-            unit.setStamina(-(unit.stats.sprintCostRate * Time.deltaTime));
-
         }
         else if (Input.GetButtonUp("Sprint"))
         {
             walkSpeed = baseSpeed;
+        }
+
+        if (Input.GetButton("Sprint"))
+        {
+            unit.setStamina(-(unit.stats.sprintCostRate * Time.deltaTime));
         }
     }
 

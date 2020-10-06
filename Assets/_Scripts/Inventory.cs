@@ -15,10 +15,14 @@ public class Inventory : MonoBehaviour
     {
         if (newWeapon == null) return;
 
-        if (currWeapon != null) Destroy(currWeapon);
+        if (currWeapon != null) { 
+        currWeaponScript.callOnEquip(false);
+        Destroy(currWeapon);
+        }
 
         currWeapon = Instantiate(newWeapon, PlayerController.Instance.weaponPos.transform.position, Quaternion.identity, PlayerController.Instance.weaponPos.transform) as GameObject;
         currWeaponScript = currWeapon.GetComponent<Weapon>();
+        currWeaponScript.callOnEquip(true);
     }
 
     private void Awake()

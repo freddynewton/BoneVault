@@ -19,10 +19,5 @@ public class Billboard : MonoBehaviour
         if (forward != Vector3.zero) {
             transform.forward = -forward;
         }
-
-        if (gameObject.layer == 11)
-        {
-           // if (gameObject.transform.position)
-        }
     }
 }

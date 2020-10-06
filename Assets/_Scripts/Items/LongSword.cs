@@ -7,6 +7,8 @@ public class LongSword : Weapon
 {
     [Header("LongSwordStats")]
     public float doDamageAfterSec = 0.3f;
+    public int maxCharges = 3;
+    private int currentCharges;
 
     [Header("Block Stats")]
     public float perfectBlockDuration = 5;
@@ -75,6 +77,8 @@ public class LongSword : Weapon
     {
         if (perfectBlockActive && isBlocking)
         {
+            if (currentCharges < maxCharges) setCharges(currentCharges + 1);
+
             return callbackValue.SUCCESS;
         }
         else if (!perfectBlockActive && isBlocking)
@@ -114,10 +118,31 @@ public class LongSword : Weapon
 
             if (objU.currentHealth - damageType.damage <= 0) remList.Add(obj);
 
+            // TODO Clean trash code
+            int d = damageType.damage;
+            damageType.damage = d + currentCharges;
+
             objU.DoDamage(gameObject.transform.position, damageType);
+
+            damageType.damage = d;
+            // End Trash Code
         }
 
         foreach (GameObject obj in remList) hitObjects.Remove(obj);
+
+        setCharges(0);
+    }
+
+    private void setCharges(int value)
+    {
+        currentCharges = value;
+        UiManager.Instance.swordUi.setCharge(value);
+        Debug.Log("Current charges: " + currentCharges);
+    }
+
+    public override void callOnEquip(bool isSpawned)
+    {
+        
     }
 
     private void OnAttackComplete()

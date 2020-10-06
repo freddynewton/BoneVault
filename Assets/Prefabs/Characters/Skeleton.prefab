@@ -92,6 +92,7 @@ MonoBehaviour:
   hitAnimationDuration: 0.8
   isAttackingDuration: 3
   utilityAI: {fileID: 0}
+  damageType: {fileID: 11400000, guid: 48b1bbf64f727664a8af64fa6023dddb, type: 2}
   triggerList: []
 --- !u!114 &3065674638620549659
 MonoBehaviour:
@@ -128,7 +129,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 86151faa7f5598c4d83aa6a258493427, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -224,7 +225,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 4, z: 2}
-  m_Center: {x: 0, y: 2, z: 1}
+  m_Center: {x: 0, y: 2, z: -1}
 --- !u!1001 &4624161356649792867
 PrefabInstance:
   m_ObjectHideFlags: 0

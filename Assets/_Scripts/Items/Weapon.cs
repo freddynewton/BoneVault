@@ -27,6 +27,8 @@ public abstract class Weapon : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    public abstract void callOnEquip(bool isSpawned);
+
     public abstract callbackValue callbackDamageFnc();
 
     public abstract void attackLeftClick(bool active);

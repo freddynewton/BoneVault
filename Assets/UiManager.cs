@@ -8,8 +8,12 @@ public class UiManager : MonoBehaviour
     public static UiManager Instance { get; private set; }
 
     [Header("HUD")]
+    public GameObject HUDCanvas;
     public Slider healthSlider;
     public Slider staminaSlider;
+
+    public SwordUI swordUi;
+    
 
 
     public void setStamina()

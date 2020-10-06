@@ -65,9 +65,16 @@ public class PlayerUnit : Unit
                 break;
 
             case Weapon.callbackValue.SUCCESS:
+                // TODO 
                 break;
 
             case Weapon.callbackValue.NOTHING:
+                if (currentStamina - (damageType.damage * 2) < 0)
+                {
+                    base.DoDamage(damageSrcPos, damageType);
+                    UiManager.Instance.setHealth();
+                }
+                setStamina(-damageType.damage * 2);
                 break;
 
         }

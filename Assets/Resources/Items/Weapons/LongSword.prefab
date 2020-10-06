@@ -124,7 +124,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   currentState: 
   doDamageAfterSec: 0.3
-  perfectBlockDuration: 5
+  perfectBlockDuration: 0.5
   knockbackOnPerfectBlock: 1
   perfectBlockActive: 0
   animationLength: 0

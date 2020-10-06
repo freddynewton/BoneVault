@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
   health: 10
-  moveSpeed: 3
+  moveSpeed: 6
   maxRange: 3
   stoppingDistance: 1.5
   stopsAttackingWhenHit: 1
-  damage: 1
   attackRate: 1.5
   stamina: 10
   staminaRate: 1

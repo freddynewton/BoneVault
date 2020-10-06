@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3065674638620549658}
   - component: {fileID: 3065674638620549732}
   - component: {fileID: 1285391051}
+  - component: {fileID: 94241713}
   m_Layer: 11
   m_Name: Skeleton
   m_TagString: Enemy
@@ -81,7 +82,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9d488f41d316b1f4c8145ec1eb07043c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 4, y: 4}
@@ -142,11 +143,8 @@ MonoBehaviour:
   hitAnimationDuration: 0.8
   isAttackingDuration: 3
   utilityAI: {fileID: 0}
-  isIdling: 0
-  isHit: 0
-  isDead: 0
-  isAttacking: 0
-  isWalking: 0
+  damageType: {fileID: 11400000, guid: 48b1bbf64f727664a8af64fa6023dddb, type: 2}
+  triggerList: []
 --- !u!114 &3065674638620549659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +213,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &94241713
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3065674638620549660}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 4, z: 2}
+  m_Center: {x: 0, y: 2, z: 1}
 --- !u!1001 &4624161356649792867
 PrefabInstance:
   m_ObjectHideFlags: 0

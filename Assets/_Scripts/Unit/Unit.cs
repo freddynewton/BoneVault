@@ -8,7 +8,7 @@ public class Unit : MonoBehaviour
 {
     [Header("Stats")]
     public Stats stats;
-    
+
     [HideInInspector] public int currentHealth;
     [HideInInspector] public string currentState;
     [HideInInspector] public Animator animator;
@@ -36,7 +36,8 @@ public class Unit : MonoBehaviour
 
     public virtual void Start()
     {
-        if(transform.name != "Player") {
+        if (transform.name != "Player")
+        {
             spriteRend = GetComponent<SpriteRenderer>();
             baseMat = spriteRend.material;
             rb = GetComponent<Rigidbody>();
@@ -50,16 +51,16 @@ public class Unit : MonoBehaviour
     {
     }
 
-    public virtual void DoDamage(Vector3 damageSrcPos ,int damage, float kbForce)
+    public virtual void DoDamage(Vector3 damageSrcPos, DamageType damageType)
     {
         if (currentHealth > 0)
         {
             StartCoroutine(flashWhite(0.1f));
 
-            if (!gameObject.CompareTag("Player")) knockback(damageSrcPos, kbForce);
+            if (!gameObject.CompareTag("Player")) knockback(damageSrcPos, damageType.knockbackForce);
 
-            currentHealth -= damage;
-            Debug.Log("Current Health: " + currentHealth + "\nDamage: " + damage);
+            currentHealth -= damageType.damage;
+            Debug.Log("Current Health: " + currentHealth + "\nDamage: " + damageType.damage);
 
             if (currentHealth > 0)
             {
@@ -104,9 +105,10 @@ public class Unit : MonoBehaviour
         //spriteRend.material = baseMat;
     }
 
-    
 
-    public void changeAnimationState (string newState) {
+
+    public void changeAnimationState(string newState)
+    {
         // prevent current animation interruption
         if (currentState == newState) return;
 

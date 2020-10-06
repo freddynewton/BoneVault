@@ -8,6 +8,12 @@ public class LongSword : Weapon
     [Header("LongSwordStats")]
     public float doDamageAfterSec = 0.3f;
 
+    [Header("Block Stats")]
+    public float perfectBlockDuration = 5;
+    public bool knockbackOnPerfectBlock = true;
+    [HideInInspector] public bool perfectBlockActive;
+
+
     [HideInInspector] public float animationLength;
     [HideInInspector] public bool isAttacking;
     [HideInInspector] public bool isBlocking;
@@ -16,6 +22,7 @@ public class LongSword : Weapon
         base.Start();
     }
 
+    // Attack 
     public override void attackLeftClick(bool active)
     {
         if (!isBlocking && !isAttacking)
@@ -41,9 +48,9 @@ public class LongSword : Weapon
         }
     }
 
+    // Block
     public override void attackRightClick(bool active)
     {
-
         if (!isAttacking)
         {
             isBlocking = active;
@@ -51,7 +58,36 @@ public class LongSword : Weapon
             int randomInt = Random.Range(1, 3);
 
             changeAnimationState("Block" + randomInt.ToString());
+
+            if (active)
+            {
+                perfectBlockActive = active;
+                Invoke("blockCharge", perfectBlockDuration);
+            }
+            else
+            {
+                perfectBlockActive = active;
+            }
         }
+    }
+
+    public override callbackValue callbackDamageFnc()
+    {
+        if (perfectBlockActive && isBlocking)
+        {
+            return callbackValue.SUCCESS;
+        }
+        else if (!perfectBlockActive && isBlocking)
+        {
+            return callbackValue.NOTHING;
+        }
+
+        return callbackValue.FAILURE;
+    }
+
+    public void blockCharge()
+    {
+        perfectBlockActive = false;
     }
 
     private void Update()
@@ -76,9 +112,9 @@ public class LongSword : Weapon
         {
             Unit objU = obj.GetComponent<Unit>();
 
-            if (objU.currentHealth - Damage <= 0) remList.Add(obj);
+            if (objU.currentHealth - damageType.damage <= 0) remList.Add(obj);
 
-            objU.DoDamage(gameObject.transform.position, Damage, knockbackForce);
+            objU.DoDamage(gameObject.transform.position, damageType);
         }
 
         foreach (GameObject obj in remList) hitObjects.Remove(obj);

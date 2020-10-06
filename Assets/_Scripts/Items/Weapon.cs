@@ -6,10 +6,16 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
+    public enum callbackValue
+    {
+        SUCCESS,
+        FAILURE,
+        NOTHING
+    }
+
     [Header("Weapon Default Stats")]
     public LayerMask DoDamageOn;
-    public int Damage;
-    public float knockbackForce = 40;
+    public DamageType damageType;
 
     [SerializeField] public List<GameObject> hitObjects;
     [HideInInspector] public Animator animator;
@@ -20,6 +26,8 @@ public abstract class Weapon : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
+
+    public abstract callbackValue callbackDamageFnc();
 
     public abstract void attackLeftClick(bool active);
 

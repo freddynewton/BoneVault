@@ -12,6 +12,9 @@ public class EnemyUnit : Unit
     [HideInInspector] public UtilityAIHandler utilityAI;
     [HideInInspector] private ParticleSystem vfx;
 
+    [Header("Damage")]
+    public DamageType damageType;
+
     public List<GameObject> triggerList = new List<GameObject>();
 
     public override void Start()
@@ -63,7 +66,7 @@ public class EnemyUnit : Unit
     {
         foreach (GameObject obj in triggerList)
         {
-            obj.GetComponent<Unit>().DoDamage(gameObject.transform.position, stats.damage, 10);
+            obj.GetComponent<Unit>().DoDamage(gameObject.transform.position, damageType);
         }
     }
 

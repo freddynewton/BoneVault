@@ -17,7 +17,6 @@ public class Stats : ScriptableObject
 
     [Header("Enemy Fighting Stats")]
     public bool stopsAttackingWhenHit = true;
-    public int damage = 1;
     public float attackRate = 1.5f;
 
     [Header("PlayerStats")]

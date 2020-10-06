@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
+using UnityEditor;
 using UnityEngine;
+
 
 public class PlayerUnit : Unit
 {
@@ -50,10 +53,31 @@ public class PlayerUnit : Unit
         // TODO Do Player hit effect
     }
 
-    public override void DoDamage(Vector3 damageSrcPos, int damage, float kbForce)
+    public override void DoDamage(Vector3 damageSrcPos, DamageType damageType)
     {
-        base.DoDamage(damageSrcPos, damage, kbForce);
-        UiManager.Instance.setHealth();
+        Weapon.callbackValue v = Inventory.Instance.currWeaponScript.callbackDamageFnc();
+
+        switch (v)
+        {
+            case Weapon.callbackValue.FAILURE:
+                base.DoDamage(damageSrcPos, damageType);
+                UiManager.Instance.setHealth();
+                break;
+
+            case Weapon.callbackValue.SUCCESS:
+                // TODO 
+                break;
+
+            case Weapon.callbackValue.NOTHING:
+                if (currentStamina - (damageType.damage * 2) < 0)
+                {
+                    base.DoDamage(damageSrcPos, damageType);
+                    UiManager.Instance.setHealth();
+                }
+                setStamina(-damageType.damage * 2);
+                break;
+
+        }
     }
 
 

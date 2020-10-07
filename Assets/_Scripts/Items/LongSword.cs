@@ -136,13 +136,18 @@ public class LongSword : Weapon
     private void setCharges(int value)
     {
         currentCharges = value;
-        UiManager.Instance.swordUi.setCharge(value);
+        UiManager.Instance.weaponUI.swordUI.setCharge(value);
         Debug.Log("Current charges: " + currentCharges);
     }
 
     public override void callOnEquip(bool isSpawned)
     {
-        
+        if (isSpawned)
+        {
+            UiManager.Instance.weaponUI.activateSwordUI();
+            UiManager.Instance.weaponUI.swordUI.spawnUI(maxCharges);
+            UiManager.Instance.weaponUI.swordUI.setCharge(currentCharges);
+        }
     }
 
     private void OnAttackComplete()

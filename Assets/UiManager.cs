@@ -12,7 +12,7 @@ public class UiManager : MonoBehaviour
     public Slider healthSlider;
     public Slider staminaSlider;
 
-    public SwordUI swordUi;
+    public WeaponUI weaponUI;
     
 
 

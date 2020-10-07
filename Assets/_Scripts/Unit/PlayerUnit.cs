@@ -10,6 +10,9 @@ public class PlayerUnit : Unit
     [HideInInspector] public float currentStamina;
     [HideInInspector] public bool isStaminaReg = true;
 
+    public float timeToRegStaminaAfterHitZero = 2f;
+    private bool foolStamina;
+
     public override void Start()
     {
         base.Start();
@@ -18,7 +21,7 @@ public class PlayerUnit : Unit
 
     public void updateStamina()
     {
-        if (isStaminaReg && currentStamina <= stats.stamina)
+        if (!foolStamina && isStaminaReg && currentStamina <= stats.stamina)
         {
             setStamina(Time.deltaTime * stats.staminaRate);
         }
@@ -29,10 +32,20 @@ public class PlayerUnit : Unit
         currentStamina += amount;
 
         if (currentStamina > stats.stamina) currentStamina = stats.stamina;
-        else if (currentStamina < 0) currentStamina = 0;
+        else if (currentStamina < 0)
+        {
+            foolStamina = true;
+            currentStamina = 0;
+            Invoke("changeFoolStamina", timeToRegStaminaAfterHitZero);
+        }
 
         // TODO CALL UI UPDATE FUNCTION
         UiManager.Instance.setStamina();
+    }
+
+    private void changeFoolStamina()
+    {
+        foolStamina = false;
     }
 
     public override void Update()

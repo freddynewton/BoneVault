@@ -6,18 +6,6 @@ public class GameManagerHelper : MonoBehaviour
 {
     public static GameManagerHelper Instance { get; private set; }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void Awake()
     {
         if (Instance == null)

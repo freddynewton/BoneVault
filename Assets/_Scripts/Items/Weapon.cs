@@ -17,6 +17,10 @@ public abstract class Weapon : MonoBehaviour
     public LayerMask DoDamageOn;
     public DamageType damageType;
 
+    [Header("Screenshake Settings")]
+    public float ShakeLenght = 1;
+    public float ShakeStrength = 2;
+
     [SerializeField] public List<GameObject> hitObjects;
     [HideInInspector] public Animator animator;
     [HideInInspector] public string currentState;

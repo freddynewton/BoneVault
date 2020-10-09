@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using BoneVault.CameraEffects;
+using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
+using BoneVault.CameraEffects;
 
 public class LongSword : Weapon
 {
@@ -19,6 +21,11 @@ public class LongSword : Weapon
     [HideInInspector] public float animationLength;
     [HideInInspector] public bool isAttacking;
     [HideInInspector] public bool isBlocking;
+
+    // INVOKE FUNCTIONS
+    public void blockCharge() => perfectBlockActive = false;
+    private void OnAttackComplete() => isAttacking = false;
+
     public override void Start()
     {
         base.Start();
@@ -73,39 +80,55 @@ public class LongSword : Weapon
         }
     }
 
+    /// <summary>
+    /// Abstract Callback Function to handle blocking and everything else with the Player Unit
+    /// </summary>
+    /// <returns></returns>
     public override callbackValue callbackDamageFnc()
     {
+
+        // Add Charge because of Perfect blocking
         if (perfectBlockActive && isBlocking)
         {
             if (currentCharges < maxCharges) setCharges(currentCharges + 1);
 
+            // Camera Shake
+            CameraEffects.ShakeOnce(ShakeLenght, ShakeStrength);
+
             return callbackValue.SUCCESS;
         }
+
+        // Normal blocking
         else if (!perfectBlockActive && isBlocking)
         {
             return callbackValue.NOTHING;
         }
 
+        // No blocking
         return callbackValue.FAILURE;
     }
 
-    public void blockCharge()
-    {
-        perfectBlockActive = false;
-    }
-
+    /// <summary>
+    /// Frame Ticking Update Function
+    /// </summary>
     private void Update()
     {
         idle();
-
     }
 
+    /// <summary>
+    /// Set Walk and Idle Animations
+    /// </summary>
     public void idle()
     {
         if (!isAttacking && !isBlocking && PlayerController.Instance.move == Vector3.zero) changeAnimationState("Idle");
         else if (!isAttacking && !isBlocking && PlayerController.Instance.move != Vector3.zero) changeAnimationState("Walk");
     }
 
+    /// <summary>
+    /// Courotine that Handles the Damage after x seconds from the Sword
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator SwingSwordAttack()
     {
         yield return new WaitForSecondsRealtime(doDamageAfterSec);
@@ -133,6 +156,10 @@ public class LongSword : Weapon
         setCharges(0);
     }
 
+    /// <summary>
+    /// Set Charges and Updates the UI 
+    /// </summary>
+    /// <param name="value"></param>
     private void setCharges(int value)
     {
         currentCharges = value;
@@ -140,21 +167,24 @@ public class LongSword : Weapon
         Debug.Log("Current charges: " + currentCharges);
     }
 
+    /// <summary>
+    /// Change Sword HUD UI based on the parameters
+    /// </summary>
+    /// <param name="isSpawned"></param>
     public override void callOnEquip(bool isSpawned)
     {
         if (isSpawned)
         {
-            UiManager.Instance.weaponUI.activateSwordUI();
+            UiManager.Instance.weaponUI.activateSwordUI(true);
             UiManager.Instance.weaponUI.swordUI.spawnUI(maxCharges);
             UiManager.Instance.weaponUI.swordUI.setCharge(currentCharges);
+        } else
+        {
+            UiManager.Instance.weaponUI.activateSwordUI(false);
         }
     }
 
-    private void OnAttackComplete()
-    {
-        isAttacking = false;
-    }
-
+    // Trigger Handler
     private void OnTriggerEnter(Collider other)
     {
         if (layermaskInclude(other.gameObject.layer) && !hitObjects.Contains(other.gameObject)) hitObjects.Add(other.gameObject);

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Skeletton DT
   m_EditorClassIdentifier: 
   damage: 1
+  staminaCost: 0
   isBlockable: 1
   isShootingBackWhenHit: 0
   knockbackForce: 10

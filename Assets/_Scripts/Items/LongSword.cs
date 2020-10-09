@@ -34,7 +34,7 @@ public class LongSword : Weapon
     // Attack 
     public override void attackLeftClick(bool active)
     {
-        if (!isBlocking && !isAttacking)
+        if (!isBlocking && !isAttacking && PlayerController.Instance.unit.currentStamina > 0)
         {
             isAttacking = active;
             int randomInt = Random.Range(0, 3);
@@ -51,6 +51,8 @@ public class LongSword : Weapon
                     changeAnimationState("Attack3");
                     break;
             }
+
+            PlayerController.Instance.unit.setStamina(-damageType.staminaCost);
 
             Invoke("OnAttackComplete", 0.7f);
             StartCoroutine(SwingSwordAttack());

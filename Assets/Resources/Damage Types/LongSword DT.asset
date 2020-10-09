@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: LongSword DT
   m_EditorClassIdentifier: 
   damage: 1
+  staminaCost: 1
   isBlockable: 0
   isShootingBackWhenHit: 0
   knockbackForce: 25

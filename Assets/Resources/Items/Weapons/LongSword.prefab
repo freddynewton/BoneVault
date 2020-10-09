@@ -120,10 +120,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   damageType: {fileID: 11400000, guid: 40172974392c8c940b3d18b599938690, type: 2}
+  ShakeLenght: 1
+  ShakeStrength: 3
   hitObjects: []
   animator: {fileID: 0}
   currentState: 
   doDamageAfterSec: 0.3
+  maxCharges: 3
   perfectBlockDuration: 0.5
   knockbackOnPerfectBlock: 1
   perfectBlockActive: 0

@@ -15,6 +15,14 @@ public class Room : MonoBehaviour
     [Header("Basic Room Settings")]
     public RoomType roomType;
     public List<Door> doors;
+
+    [Header("Room Light Settings")]
+    public List<Light> lights;
+    public float activateLightDelay = 0.2f;
+    public Color mainColor;
+    public Color secColor;
+
+    
     
     public void setDoors(bool isOpen)
     {

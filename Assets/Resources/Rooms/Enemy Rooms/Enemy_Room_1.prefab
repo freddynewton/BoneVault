@@ -40,6 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4644606797329063884}
   - component: {fileID: -1134667536947972702}
+  - component: {fileID: 1977085441}
   m_Layer: 0
   m_Name: Enemy_Room_1
   m_TagString: Untagged
@@ -80,7 +81,7 @@ MonoBehaviour:
   doors: []
   lights: []
   activateLightDelay: 0.2
-  mainColor: {r: 0, g: 0, b: 0, a: 0}
+  mainColor: {r: 0, g: 0.6, b: 0.7019608, a: 1}
   secColor: {r: 0, g: 0, b: 0, a: 0}
   EnemyContainer: {fileID: 2033133657}
   EnemyTypes:
@@ -90,6 +91,19 @@ MonoBehaviour:
   spawnNewWaveUnder: 1
   minEnemies: 2
   maxEnemies: 4
+--- !u!65 &1977085441
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4644606797329063885}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 40, y: 20, z: 40}
+  m_Center: {x: 0, y: 10, z: 0}
 --- !u!1 &4644606797407389071
 GameObject:
   m_ObjectHideFlags: 0

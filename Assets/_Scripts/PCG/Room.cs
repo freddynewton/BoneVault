@@ -19,7 +19,7 @@ public class Room : MonoBehaviour
     [Header("Room Light Settings")]
     [Tooltip("Will setup automatical")] public List<Light> lights;
     public float activateLightDelay = 0.2f;
-    public Color mainColor;
+    public Color mainColor = Color.HSVToRGB(189, 100, 70);
     public Color secColor;
 
     public virtual void Awake()
@@ -27,6 +27,8 @@ public class Room : MonoBehaviour
         getAllLights();
         getAllDoors();
         setDoors(true);
+
+        foreach (Light l in lights) l.gameObject.SetActive(false);
     }
 
     public void getAllLights()
@@ -46,5 +48,21 @@ public class Room : MonoBehaviour
             if (isOpen) d.openDoor();
             else d.closeDoor();
         }
+    }
+
+    public void setLights(Color color)
+    {
+        foreach (Light l in lights) l.gameObject.SetActive(true);
+        foreach (Light l in lights) l.color = color;
+    }
+
+    public virtual void OnTriggerEnter(Collider other)
+    {
+
+    }
+
+    public virtual void OnTriggerExit(Collider other)
+    {
+
     }
 }

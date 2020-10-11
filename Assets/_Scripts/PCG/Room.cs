@@ -14,16 +14,31 @@ public class Room : MonoBehaviour
 
     [Header("Basic Room Settings")]
     public RoomType roomType;
-    public List<Door> doors;
+    [Tooltip("Will setup automatical")] public List<Door> doors;
 
     [Header("Room Light Settings")]
-    public List<Light> lights;
+    [Tooltip("Will setup automatical")] public List<Light> lights;
     public float activateLightDelay = 0.2f;
     public Color mainColor;
     public Color secColor;
 
-    
-    
+    public virtual void Awake()
+    {
+        getAllLights();
+        getAllDoors();
+        setDoors(true);
+    }
+
+    public void getAllLights()
+    {
+        foreach (Light l in gameObject.GetComponentsInChildren<Light>()) lights.Add(l);
+    }
+
+    public void getAllDoors()
+    {
+        foreach (Door d in gameObject.GetComponentsInChildren<Door>()) doors.Add(d);
+    }
+
     public void setDoors(bool isOpen)
     {
         foreach(Door d in doors)

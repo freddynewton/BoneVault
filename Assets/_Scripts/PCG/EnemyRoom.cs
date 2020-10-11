@@ -32,6 +32,7 @@ public class EnemyRoom : Room
 
     private void Awake()
     {
+        base.Awake();
         setEnemyList();
     }
 

@@ -64,7 +64,7 @@ public class Room : MonoBehaviour
         l.gameObject.SetActive(true);
         l.color = color;
 
-        if (idx < lights.Count) StartCoroutine(lightDelay(color, idx += 1));
+        if (idx < lights.Count - 1) StartCoroutine(lightDelay(color, idx += 1));
     }
 
     public virtual void OnTriggerEnter(Collider other)

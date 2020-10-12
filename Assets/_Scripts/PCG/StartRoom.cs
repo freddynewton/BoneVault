@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class StartRoom : Room
 {
+    [Header("Start Room Settings")]
+    public Transform PlayerSpawn;
+
     public override void Awake()
     {
         base.Awake();
+        setLights(mainColor);
+        PlayerController.Instance.transform.position = PlayerSpawn.position;
     }
 
     public override void OnTriggerExit(Collider other)

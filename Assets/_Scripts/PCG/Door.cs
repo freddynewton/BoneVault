@@ -6,11 +6,15 @@ public class Door : MonoBehaviour
 {
     public void openDoor()
     {
+        // TODO Dust Particle
+
         LeanTween.moveLocalY(gameObject, 6, 2).setEaseOutBounce();
     }
 
     public void closeDoor()
     {
-        LeanTween.moveLocalY(gameObject, 0, 2).setEaseOutBounce();
+        // TODO Dust Particle
+
+        LeanTween.moveLocalY(gameObject, 0, 1).setEaseOutBounce();
     }
 }

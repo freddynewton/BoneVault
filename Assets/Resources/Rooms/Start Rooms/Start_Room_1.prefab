@@ -91,6 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4107013260048610404}
   - component: {fileID: 8686317276715681193}
+  - component: {fileID: 5594626617180415792}
   m_Layer: 0
   m_Name: Start_Room_1
   m_TagString: Untagged
@@ -128,6 +129,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 40, y: 20, z: 40}
   m_Center: {x: 0, y: 10, z: 0}
+--- !u!114 &5594626617180415792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4107013260048610405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f46003e7cfdafe1408b46442c759ae1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomType: 0
+  doors: []
+  lights: []
+  activateLightDelay: 0.2
+  mainColor: {r: 1, g: 0.65023714, b: 0.08018869, a: 1}
+  secColor: {r: 0, g: 0, b: 0, a: 0}
+  PlayerSpawn: {fileID: 8686317276766585842}
 --- !u!1 &8686317276766585841
 GameObject:
   m_ObjectHideFlags: 0

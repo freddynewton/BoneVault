@@ -12,8 +12,18 @@ public class Room : MonoBehaviour
         EXIT_ROOM
     }
 
+    public enum RoomDirection
+    {
+        OneDoor,
+        TwoDoorLinear,
+        TwoDoorCurve,
+        ThreeDoor,
+        FourDoor
+    }
+
     [Header("Basic Room Settings")]
     public RoomType roomType;
+    public RoomDirection roomDirection;
 
     [Tooltip("Will setup automatical")] public List<Door> doors;
 

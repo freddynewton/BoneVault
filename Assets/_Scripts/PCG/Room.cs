@@ -14,6 +14,7 @@ public class Room : MonoBehaviour
 
     [Header("Basic Room Settings")]
     public RoomType roomType;
+
     [Tooltip("Will setup automatical")] public List<Door> doors;
 
     [Header("Room Light Settings")]
@@ -28,7 +29,13 @@ public class Room : MonoBehaviour
         getAllDoors();
         setDoors(true);
 
-        foreach (Light l in lights) { l.gameObject.SetActive(false); l.gameObject.GetComponent<SpriteRenderer>().enabled = false; }
+        foreach (Light l in lights)
+        {
+            l.gameObject.SetActive(false);
+
+            SpriteRenderer rend = l.gameObject.GetComponent<SpriteRenderer>();
+            if (rend != null) l.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 
     public void getAllLights()

@@ -21,7 +21,8 @@ public class Billboard : MonoBehaviour
             forward = new Vector3(-Camera.main.transform.forward.x, transform.forward.y, transform.forward.z);
         }
         else {
-            forward = new Vector3(Camera.main.transform.forward.x, transform.forward.y, Camera.main.transform.forward.z);          
+            //transform.LookAt(Camera.main.transform.position, Vector3.up);
+            transform.forward = Camera.main.transform.forward;
         }
 
         if (forward != Vector3.zero) {

@@ -11,6 +11,12 @@ public class StartRoom : Room
     {
         base.Awake();
         setLights(mainColor);
+        StartCoroutine(setSpawnPos());
+    }
+
+    private IEnumerator setSpawnPos()
+    {
+        yield return new WaitForEndOfFrame();
         PlayerController.Instance.transform.position = PlayerSpawn.position;
     }
 

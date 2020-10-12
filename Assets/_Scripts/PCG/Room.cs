@@ -61,7 +61,14 @@ public class Room : MonoBehaviour
 
         Light l = lights[idx];
 
-        l.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        SpriteRenderer rend = l.gameObject.gameObject.GetComponent<SpriteRenderer>();
+
+        if (rend != null)
+        {
+            rend.enabled = true;
+            rend.color = color;
+        }
+
         l.gameObject.SetActive(true);
         l.color = color;
 

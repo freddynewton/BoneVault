@@ -33,7 +33,7 @@ public class EnemyRoom : Room
 
     private List<float> enemyListSpawnPerc;
 
-    private void Awake()
+    public override void Awake()
     {
         base.Awake();
         setEnemyList();

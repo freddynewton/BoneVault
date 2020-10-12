@@ -28,7 +28,7 @@ public class Room : MonoBehaviour
         getAllDoors();
         setDoors(true);
 
-        foreach (Light l in lights) l.gameObject.SetActive(false);
+        foreach (Light l in lights) { l.gameObject.SetActive(false); l.gameObject.GetComponent<SpriteRenderer>().enabled = false; }
     }
 
     public void getAllLights()
@@ -61,8 +61,10 @@ public class Room : MonoBehaviour
 
         Light l = lights[idx];
 
+        l.gameObject.GetComponent<SpriteRenderer>().enabled = true;
         l.gameObject.SetActive(true);
         l.color = color;
+
 
         if (idx < lights.Count - 1) StartCoroutine(lightDelay(color, idx += 1));
     }

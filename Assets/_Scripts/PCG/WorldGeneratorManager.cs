@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,6 +23,9 @@ public class WorldGeneratorManager : MonoBehaviour
 
     public static WorldGeneratorManager Instance { get; private set; }
 
+    [Header("World Generation Settings")]
+    public bool startOnAwake;
+
     [Header("World Size Settings")]
     public int roomCount;
     public int worldWidth = 10;
@@ -40,6 +45,8 @@ public class WorldGeneratorManager : MonoBehaviour
         // Create a new Map
         SetMap();
 
+        // Print Matrix
+        printMatrix();
     }
 
     public void SetMap()
@@ -51,13 +58,14 @@ public class WorldGeneratorManager : MonoBehaviour
         {
             for (int y = 0; y < worldLength; y++)
             {
-                map[worldWidth, worldLength] = 0;
+                map[x, y] = 0;
             }
         }
 
+
         int roomsLeft = roomCount;
 
-        Vector2Int randomStartPos = new Vector2Int(Random.Range(0, worldWidth), Random.Range(0, worldLength));
+        Vector2Int randomStartPos = new Vector2Int(UnityEngine.Random.Range(0, worldWidth), UnityEngine.Random.Range(0, worldLength));
 
 
         while (roomsLeft > 0)
@@ -67,11 +75,13 @@ public class WorldGeneratorManager : MonoBehaviour
                 map[randomStartPos.x, randomStartPos.y] = 1;
                 roomsLeft -= 1;
                 mapSetPos.Add(randomStartPos);
-                continue;
+            }
+            else
+            {
+                while (setRandomRoom()) ;
+                roomsLeft -= 1;
             }
 
-            while (setRandomRoom()) ;
-            roomsLeft -= 1;
         }
     }
 
@@ -95,19 +105,24 @@ public class WorldGeneratorManager : MonoBehaviour
                 break;
         }
 
-        if (mapSetPos.Contains(pos)) { mapSetPos.Add(pos); return true; }
+        if (!mapSetPos.Contains(pos) && pos.x >= 0 && pos.x < worldWidth && pos.y >= 0 && pos.y < worldLength)
+        {
+            mapSetPos.Add(pos);
+            map[pos.x, pos.y] = 1;
+            return false;
+        }
 
-        return false;
+        return true;
     }
 
     public Vector2Int getRandomRoomInMap()
     {
-        return mapSetPos[Random.Range(0, mapSetPos.Count - 1)];
+        return mapSetPos[UnityEngine.Random.Range(0, mapSetPos.Count - 1)];
     }
 
     public Direction RandomDir()
     {
-        switch (Random.Range(0, 4))
+        switch (UnityEngine.Random.Range(0, 4))
         {
             case 0:
                 return Direction.Top;
@@ -133,6 +148,26 @@ public class WorldGeneratorManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        StartCoroutine(generateMap());
     }
 
+    private void printMatrix()
+    {
+        String matrix = "";
+
+        for (int i = 0; i < worldWidth; i++)
+        {
+            String row = "";
+
+            for (int j = 0; j < worldLength; j++)
+            {
+                row += map[i, j].ToString() + " ";
+            }
+
+            matrix += row + "\n";
+        }
+
+        Debug.Log(matrix);
+    }
 }

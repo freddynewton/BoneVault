@@ -43,7 +43,7 @@ public class Room : MonoBehaviour
 
     public void setDoors(bool isOpen)
     {
-        foreach(Door d in doors)
+        foreach (Door d in doors)
         {
             if (isOpen) d.openDoor();
             else d.closeDoor();
@@ -52,8 +52,19 @@ public class Room : MonoBehaviour
 
     public void setLights(Color color)
     {
-        foreach (Light l in lights) l.gameObject.SetActive(true);
-        foreach (Light l in lights) l.color = color;
+        StartCoroutine(lightDelay(color, 0));
+    }
+
+    private IEnumerator lightDelay(Color color, int idx)
+    {
+        yield return new WaitForSecondsRealtime(activateLightDelay);
+
+        Light l = lights[idx];
+
+        l.gameObject.SetActive(true);
+        l.color = color;
+
+        if (idx < lights.Count - 1) StartCoroutine(lightDelay(color, idx += 1));
     }
 
     public virtual void OnTriggerEnter(Collider other)

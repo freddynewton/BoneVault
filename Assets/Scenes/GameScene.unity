@@ -110,9 +110,9 @@ NavMeshSettings:
     agentHeight: 3.5
     agentSlope: 45
     agentClimb: 0.8
-    ledgeDropHeight: 0
+    ledgeDropHeight: 1
     maxJumpAcrossDistance: 0
-    minRegionArea: 2
+    minRegionArea: 10
     manualCellSize: 0
     cellSize: 0.33333334
     manualTileSize: 0
@@ -1535,10 +1535,6 @@ PrefabInstance:
     - target: {fileID: 4644606797329063885, guid: 0e876947665134a49a940b1cb265d7a2, type: 3}
       propertyPath: m_Name
       value: Enemy_Room_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6577273957573104656, guid: 0e876947665134a49a940b1cb265d7a2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e876947665134a49a940b1cb265d7a2, type: 3}

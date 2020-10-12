@@ -25,11 +25,16 @@ public class EnemyRoom : Room
     [Tooltip("All spawnPercentage needs to fit into 100")]
     public enemyTypes[] EnemyTypes;
 
-    [Header("Enemy Count")]
+    [Header("Enemy Spawn Count")]
     public int waves = 1;
     public int spawnNewWaveUnder = 1;
     public int minEnemies = 2;
     public int maxEnemies = 10;
+
+    [Header("Enemy Spawn Settings")]
+    public float spawnRange;
+    public Vector3 spawnOffset;
+
 
     private List<float> enemyListSpawnPerc;
 
@@ -87,7 +92,7 @@ public class EnemyRoom : Room
     {
         Vector3 pos = new Vector3();
 
-        Vector3 randomPoint = gameObject.transform.position + UnityEngine.Random.insideUnitSphere * 3;
+        Vector3 randomPoint = gameObject.transform.position + spawnOffset + UnityEngine.Random.insideUnitSphere * spawnRange;
 
         NavMeshHit hit;
         if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
@@ -125,6 +130,6 @@ public class EnemyRoom : Room
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(gameObject.transform.position, 4);
+        Gizmos.DrawWireSphere(gameObject.transform.position + spawnOffset, spawnRange);
     }
 }

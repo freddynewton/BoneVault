@@ -91,6 +91,8 @@ MonoBehaviour:
   spawnNewWaveUnder: 1
   minEnemies: 2
   maxEnemies: 4
+  spawnRange: 10
+  spawnOffset: {x: 0, y: 3, z: 0}
 --- !u!65 &1977085441
 BoxCollider:
   m_ObjectHideFlags: 0

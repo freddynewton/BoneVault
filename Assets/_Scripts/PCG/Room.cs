@@ -14,6 +14,7 @@ public class Room : MonoBehaviour
 
     [Header("Basic Room Settings")]
     public RoomType roomType;
+
     [Tooltip("Will setup automatical")] public List<Door> doors;
 
     [Header("Room Light Settings")]

@@ -10,7 +10,7 @@ public class EnemyUnit : Unit
     public float isAttackingDuration;
 
     [HideInInspector] public UtilityAIHandler utilityAI;
-    [HideInInspector] private ParticleSystem vfx;
+    private ParticleSystem vfx;
 
     [Header("Damage")]
     public DamageType damageType;

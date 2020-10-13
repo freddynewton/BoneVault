@@ -15,11 +15,11 @@ public class LongSword : Weapon
     public float perfectBlockDuration = 5;
     public bool knockbackOnPerfectBlock = true;
     [HideInInspector] public bool perfectBlockActive;
-
-
     [HideInInspector] public float animationLength;
     [HideInInspector] public bool isAttacking;
     [HideInInspector] public bool isBlocking;
+
+    private ParticleSystem sparks;
 
     // INVOKE FUNCTIONS
     public void blockCharge() => perfectBlockActive = false;
@@ -28,6 +28,8 @@ public class LongSword : Weapon
     public override void Start()
     {
         base.Start();
+        sparks = GetComponentInChildren<ParticleSystem>();
+        sparks.Stop();
     }
 
     // Attack 
@@ -96,12 +98,18 @@ public class LongSword : Weapon
             // Camera Shake
             CameraEffects.ShakeOnce(ShakeLenght, ShakeStrength);
 
+            sparks.Clear();
+            sparks.Play();
+
             return callbackValue.SUCCESS;
         }
 
         // Normal blocking
         else if (!perfectBlockActive && isBlocking)
         {
+            sparks.Clear();
+            sparks.Play();
+
             return callbackValue.NOTHING;
         }
 

@@ -114,8 +114,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 43b0f26349d3314418aedf871701de1e, type: 2}
   currentHealth: 0
+  currentState: 
+  animator: {fileID: 0}
   spriteRend: {fileID: 0}
   rb: {fileID: 0}
+  currentStamina: 0
+  isStaminaReg: 1
+  timeToRegStaminaAfterHitZero: 2
 --- !u!1 &252462660899415495
 GameObject:
   m_ObjectHideFlags: 0

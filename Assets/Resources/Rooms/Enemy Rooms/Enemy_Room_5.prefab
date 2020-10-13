@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 1655157410333718691}
   - component: {fileID: 7401829841887060736}
   m_Layer: 0
-  m_Name: Enemy_Room_4
+  m_Name: Enemy_Room_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomType: 1
-  roomDirection: 0
+  roomDirection: 3
   doors: []
   lights: []
   activateLightDelay: 0.2

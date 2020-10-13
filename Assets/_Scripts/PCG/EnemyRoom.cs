@@ -42,6 +42,7 @@ public class EnemyRoom : Room
     {
         base.Awake();
         setEnemyList();
+        EnemyContainer.transform.position = gameObject.transform.position;
     }
 
     public void setEnemyList()
@@ -84,26 +85,28 @@ public class EnemyRoom : Room
     public void spawnRandomEnemy()
     {
         // TODO Spawn VFX
-
-        Instantiate(getRandomEnemy(), getRandomPos(), Quaternion.identity, EnemyContainer.gameObject.transform);
+        Debug.Log("Spawn Enemy");
+        GameObject e = Instantiate(getRandomEnemy(), getRandomPos(), Quaternion.identity, EnemyContainer.gameObject.transform) as GameObject;
     }
 
     public Vector3 getRandomPos()
     {
-        Vector3 pos = new Vector3();
+        Vector3 pos = new Vector3(0, 0, 0);
 
-        Vector3 randomPoint = gameObject.transform.position + spawnOffset + UnityEngine.Random.insideUnitSphere * spawnRange;
-
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+        while (pos == Vector3.zero)
         {
-            pos = hit.position;
+            Vector3 randomPoint = gameObject.transform.position + spawnOffset + UnityEngine.Random.insideUnitSphere * spawnRange;
+
+            if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 10, NavMesh.AllAreas))
+            {
+                pos = hit.position;
+            }
         }
 
         return pos;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (waves == 0 && EnemyContainer.transform.childCount == 0)
         {

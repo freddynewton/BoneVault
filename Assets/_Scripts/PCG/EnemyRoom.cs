@@ -20,6 +20,7 @@ public class EnemyRoom : Room
 
     [Header("Enemy Room Settings")]
     public GameObject EnemyContainer;
+    public GameObject[] EnemySpawner;
 
     [Header("all spawn percentages must add up to 100")]
     [Tooltip("All spawnPercentage needs to fit into 100")]
@@ -99,7 +100,19 @@ public class EnemyRoom : Room
 
             if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 10, NavMesh.AllAreas))
             {
-                pos = hit.position;
+                bool foundPoint = false;
+
+                foreach (GameObject obj in EnemySpawner)
+                {
+                    RaycastHit ray;
+
+                    if (Physics.Raycast(hit.position, obj.transform.position - hit.position, out ray))
+                    {
+                        foundPoint = ray.point == obj.transform.position ? true : false;
+                    }
+                }
+
+                if (foundPoint) pos = hit.position;
             }
         }
 

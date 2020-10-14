@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Start_Room_1
       objectReference: {fileID: 0}
+    - target: {fileID: 4107013260048610405, guid: b1913b03fe0b812478e2282962014fea, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1913b03fe0b812478e2282962014fea, type: 3}
 --- !u!1 &82073706
@@ -977,6 +981,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hallway_1
       objectReference: {fileID: 0}
+    - target: {fileID: 3531142587057605177, guid: 85e8133929eb90440a1e0ac263ec9d1c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85e8133929eb90440a1e0ac263ec9d1c, type: 3}
 --- !u!1 &1517512622
@@ -1401,6 +1409,10 @@ PrefabInstance:
     - target: {fileID: 4644606797329063885, guid: 0e876947665134a49a940b1cb265d7a2, type: 3}
       propertyPath: m_Name
       value: Enemy_Room_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644606797329063885, guid: 0e876947665134a49a940b1cb265d7a2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e876947665134a49a940b1cb265d7a2, type: 3}

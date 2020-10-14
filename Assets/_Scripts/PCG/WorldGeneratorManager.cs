@@ -43,6 +43,10 @@ public class WorldGeneratorManager : MonoBehaviour
     private List<GameObject> resourcesStartRoomList = new List<GameObject>();
     private List<GameObject> resourcesHallwayList = new List<GameObject>();
 
+    /// <summary>
+    /// Generate Map
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator generateMap()
     {
         // Delete old map
@@ -71,6 +75,9 @@ public class WorldGeneratorManager : MonoBehaviour
         SpawnRooms();
     }
 
+    /// <summary>
+    /// Get Next room Spawn
+    /// </summary>
     public void SpawnRooms()
     {
         rooms = new List<GameObject>();
@@ -84,82 +91,191 @@ public class WorldGeneratorManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Spawns all Rooms
+    /// </summary>
+    /// <param name="roomPos"></param>
+    /// <param name="neighbourRoomCount"></param>
     public void roomSpawner(Vector2Int roomPos, int neighbourRoomCount)
     {
         GameObject r = new GameObject();
-        List<GameObject> rList = new List<GameObject>();
 
         if (rooms.Count == 0)
         {
-            switch (neighbourRoomCount)
-            {
-                case 1:
-                    break;
-
-                case 2:
-                    break;
-
-                case 3:
-                    break;
-
-                case 4:
-                    foreach (GameObject room in resourcesStartRoomList) if (room.GetComponent<EnemyRoom>().roomDirection == Room.RoomDirection.FourDoor) rList.Add(room);
-
-                    r = Instantiate(resourcesStartRoomList[UnityEngine.Random.Range(0, resourcesStartRoomList.Count)], new Vector3(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), Quaternion.identity, gameObject.transform) as GameObject;
-                    break;
-
-                default:
-                    r = Instantiate(resourcesStartRoomList[UnityEngine.Random.Range(0, resourcesStartRoomList.Count)], new Vector3(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), Quaternion.identity, gameObject.transform) as GameObject;
-                    break;
-            }
-
+            r = Instantiate(returnRandomRoom(neighbourRoomCount, 0), new Vector3(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), returnRoomRotation(neighbourRoomCount, roomPos), gameObject.transform) as GameObject;
         }
         else
         {
-            switch (neighbourRoomCount)
-            {
-                case 1:
-                    break;
-
-                case 2:
-                    break;
-
-                case 3:
-                    break;
-
-                case 4:
-                    foreach (GameObject room in resourcesEnemyRoomList) if (room.GetComponent<EnemyRoom>().roomDirection == Room.RoomDirection.FourDoor) rList.Add(room);
-
-                    r = Instantiate(rList[UnityEngine.Random.Range(0, rList.Count)], new Vector3(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), Quaternion.identity, gameObject.transform) as GameObject;
-                    break;
-
-                default:
-                    r = Instantiate(resourcesEnemyRoomList[UnityEngine.Random.Range(0, resourcesEnemyRoomList.Count)], new Vector3(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), Quaternion.identity, gameObject.transform) as GameObject;
-                    break;
-
-            }
-
+            r = Instantiate(returnRandomRoom(neighbourRoomCount, 1), new Vector3(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), returnRoomRotation(neighbourRoomCount, roomPos), gameObject.transform) as GameObject;
         }
 
         rooms.Add(r);
     }
 
+    /// <summary>
+    /// returns a Random room
+    /// </summary>
+    /// <param name="neighbourRoomCount">Room Count</param>
+    /// <param name="roomType">
+    /// 
+    /// 0 = Start Room
+    /// 1 = Enemy Room
+    /// 
+    /// </param>
+    /// <returns></returns>
+    public GameObject returnRandomRoom(int neighbourRoomCount, int roomType)
+    {
+        List<GameObject> rList = new List<GameObject>();
+        List<GameObject> roomList = new List<GameObject>();
+
+        switch (roomType)
+        {
+            case 0:
+                roomList = resourcesStartRoomList;
+                break;
+            case 1:
+                roomList = resourcesEnemyRoomList;
+                break;
+        }
+
+        switch (neighbourRoomCount)
+        {
+            case 1:
+                foreach (GameObject room in roomList)
+                    if (room.GetComponent<Room>().roomDirection == Room.RoomDirection.OneDoor) rList.Add(room);
+                break;
+
+            case 2:
+                foreach (GameObject room in roomList)
+                    if (room.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorCurve || room.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorLinear) rList.Add(room);
+                break;
+
+            case 3:
+                foreach (GameObject room in roomList)
+                    if (room.GetComponent<Room>().roomDirection == Room.RoomDirection.ThreeDoor) rList.Add(room);
+                break;
+
+            case 4:
+                foreach (GameObject room in roomList)
+                    if (room.GetComponent<Room>().roomDirection == Room.RoomDirection.FourDoor) rList.Add(room);
+                break;
+        }
+
+        return rList[UnityEngine.Random.Range(0, rList.Count - 1)];
+    }
+
+    /// <summary>
+    /// Return a Rotation to set the rooms positon
+    /// </summary>
+    /// <param name="neighbourRoomCount"></param>
+    /// <param name="roomPos"></param>
+    /// <returns></returns>
+    public Quaternion returnRoomRotation(int neighbourRoomCount, Vector2Int roomPos)
+    {
+        Quaternion q = new Quaternion();
+
+        switch (neighbourRoomCount)
+        {
+            case 1:
+
+                if (roomPos.x + 1 < worldWidth)
+                    if (map[roomPos.x + 1, roomPos.y] == 1) q = Quaternion.Euler(0, 90, 0);
+
+                if (roomPos.x - 1 >= 0)
+                    if (map[roomPos.x - 1, roomPos.y] == 1) q = Quaternion.Euler(0, 270, 0);
+
+                if (roomPos.y - 1 >= 0)
+                    if (map[roomPos.x, roomPos.y - 1] == 1) q = Quaternion.Euler(0, 180, 0);
+
+                if (roomPos.y + 1 < worldLength)
+                    if (map[roomPos.x, roomPos.y + 1] == 1) q = Quaternion.identity;
+                break;
+
+            case 2:
+
+                if (roomPos.y + 1 < worldLength && roomPos.y - 1 >= 0)
+                    if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x, roomPos.y - 1] == 1)) q = Quaternion.identity;
+
+                if (roomPos.x + 1 < worldWidth && roomPos.x - 1 >= 0)
+                    if (map[roomPos.x + 1, roomPos.y] == 1 && (map[roomPos.x - 1, roomPos.y] == 1)) q = Quaternion.Euler(0, 90, 0);
+
+                if (roomPos.y + 1 < worldLength && roomPos.x + 1 < worldWidth)
+                    if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x + 1, roomPos.y] == 1)) q = Quaternion.identity;
+
+                if (roomPos.x + 1 < worldWidth && roomPos.y - 1 >= 0)
+                    if (map[roomPos.x, roomPos.y - 1] == 1 && (map[roomPos.x + 1, roomPos.y] == 1)) q = Quaternion.Euler(0, 90, 0);
+
+                if (roomPos.x - 1 >= 0 && roomPos.y - 1 >= 0)
+                    if (map[roomPos.x, roomPos.y - 1] == 1 && (map[roomPos.x - 1, roomPos.y] == 1)) q = Quaternion.Euler(0, 180, 0);
+
+                if (roomPos.y + 1 < worldLength && roomPos.x - 1 >= 0)
+                    if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x - 1, roomPos.y] == 1)) q = Quaternion.Euler(0, 270, 0);
+                break;
+
+            case 3:
+                if (roomPos.x + 1 < worldWidth)
+                {
+                    if (map[roomPos.x + 1, roomPos.y] == 0) q = Quaternion.Euler(0, 180, 0);
+                }
+                else q = Quaternion.Euler(0, 180, 0);
+
+                if (roomPos.x - 1 >= 0)
+                {
+                    if (map[roomPos.x - 1, roomPos.y] == 0) q = Quaternion.identity;
+                }
+                else q = Quaternion.identity;
+
+                if (roomPos.y - 1 >= 0)
+                {
+                    if (map[roomPos.x, roomPos.y - 1] == 0) q = Quaternion.Euler(0, 270, 0);
+                }
+                else q = Quaternion.Euler(0, 270, 0);
+
+                if (roomPos.y + 1 < worldLength)
+                {
+                    if (map[roomPos.x, roomPos.y + 1] == 0) q = Quaternion.Euler(0, 90, 0);
+                }
+                else q = Quaternion.Euler(0, 90, 0);
+
+                break;
+
+            case 4:
+                int random = UnityEngine.Random.Range(0, 5);
+
+                q = Quaternion.Euler(0, 90 * random, 0);
+                break;
+        }
+
+        return q;
+    }
+
+    /// <summary>
+    /// Return Neighbour Room Count
+    /// </summary>
+    /// <param name="roomPos"></param>
+    /// <returns></returns>
     public int findNeighbourRoomCount(Vector2Int roomPos)
     {
-        int count = -1;
+        int count = 0;
 
-        for (int x = -1; x < 2; x++)
-        {
-            for (int y = -1; y < 2; y++)
-            {
-                if (roomPos.x + x >= 0 && roomPos.x + x < worldWidth && roomPos.y + y >= 0 && roomPos.y + y < worldLength)
-                    if (map[roomPos.x + x, roomPos.y + y] != 0) count += 1;
-            }
-        }
+        if (roomPos.x + 1 < worldWidth)
+            if (map[roomPos.x + 1, roomPos.y] == 1 && roomPos.x >= 0) count += 1;
+
+        if (roomPos.y - 1 >= 0)
+            if (map[roomPos.x, roomPos.y - 1] == 1) count += 1;
+
+        if (roomPos.x - 1 >= 0)
+            if (map[roomPos.x - 1, roomPos.y] == 1) count += 1;
+
+        if (roomPos.y + 1 < worldLength)
+            if (map[roomPos.x, roomPos.y + 1] == 1) count += 1;
 
         return count;
     }
 
+    /// <summary>
+    /// Generate 2D Int Array with binary structure
+    /// </summary>
     public void SetMap()
     {
         mapSetPos.Clear();
@@ -196,6 +312,10 @@ public class WorldGeneratorManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Random room walker
+    /// </summary>
+    /// <returns></returns>
     public bool setRandomRoom()
     {
         Vector2Int pos = getRandomRoomInMap();
@@ -226,11 +346,19 @@ public class WorldGeneratorManager : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// Returns random set room
+    /// </summary>
+    /// <returns></returns>
     public Vector2Int getRandomRoomInMap()
     {
         return mapSetPos[UnityEngine.Random.Range(0, mapSetPos.Count - 1)];
     }
 
+    /// <summary>
+    /// Random Direction
+    /// </summary>
+    /// <returns></returns>
     public Direction RandomDir()
     {
         switch (UnityEngine.Random.Range(0, 4))
@@ -248,6 +376,9 @@ public class WorldGeneratorManager : MonoBehaviour
         return Direction.Top;
     }
 
+    /// <summary>
+    /// Awake
+    /// </summary>
     private void Awake()
     {
         if (Instance == null)
@@ -263,6 +394,9 @@ public class WorldGeneratorManager : MonoBehaviour
         StartCoroutine(generateMap());
     }
 
+    /// <summary>
+    /// Prints Map for Debug
+    /// </summary>
     private void printMatrix()
     {
         String matrix = "";

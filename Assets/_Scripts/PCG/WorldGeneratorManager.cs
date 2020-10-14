@@ -98,18 +98,15 @@ public class WorldGeneratorManager : MonoBehaviour
     /// <param name="neighbourRoomCount"></param>
     public void roomSpawner(Vector2Int roomPos, int neighbourRoomCount)
     {
-        GameObject r = new GameObject();
-
         if (rooms.Count == 0)
         {
-            r = Instantiate(returnRandomRoom(neighbourRoomCount, 0, roomPos), new Vector3(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), returnRoomRotation(neighbourRoomCount, roomPos), gameObject.transform) as GameObject;
+            rooms.Add(Instantiate(returnRandomRoom(neighbourRoomCount, 0, roomPos), new Vector3(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), returnRoomRotation(neighbourRoomCount, roomPos), gameObject.transform) as GameObject);
         }
         else
         {
-            r = Instantiate(returnRandomRoom(neighbourRoomCount, 1, roomPos), new Vector3(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), returnRoomRotation(neighbourRoomCount, roomPos), gameObject.transform) as GameObject;
+            rooms.Add(Instantiate(returnRandomRoom(neighbourRoomCount, 1, roomPos), new Vector3(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), returnRoomRotation(neighbourRoomCount, roomPos), gameObject.transform) as GameObject);
         }
 
-        rooms.Add(r);
     }
 
     /// <summary>
@@ -138,48 +135,74 @@ public class WorldGeneratorManager : MonoBehaviour
                 break;
         }
 
-        switch (neighbourRoomCount)
+        foreach (GameObject room in roomList)
         {
-            case 1:
-                foreach (GameObject room in roomList)
-                    if (room.GetComponent<Room>().roomDirection == Room.RoomDirection.OneDoor) rList.Add(room);
-                break;
+            Room.RoomDirection roomDir = room.GetComponent<Room>().roomDirection;
 
-            case 2:
-                foreach (GameObject room in roomList)
-                {
-                    if (roomPos.y + 1 < worldLength && roomPos.y - 1 >= 0)
-                        if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x, roomPos.y - 1] == 1)) if (room.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorLinear) rList.Add(room);
 
-                    if (roomPos.x + 1 < worldWidth && roomPos.x - 1 >= 0)
-                        if (map[roomPos.x + 1, roomPos.y] == 1 && (map[roomPos.x - 1, roomPos.y] == 1)) if (room.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorLinear) rList.Add(room);
+            switch (neighbourRoomCount)
+            {
+                case 1:
+                    if (roomDir == Room.RoomDirection.OneDoor) rList.Add(room);
+                    break;
 
-                    if (roomPos.y + 1 < worldLength && roomPos.x + 1 < worldWidth)
-                        if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x + 1, roomPos.y] == 1)) if (room.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorCurve) rList.Add(room);
+                case 2:
 
-                    if (roomPos.x + 1 < worldWidth && roomPos.y - 1 >= 0)
-                        if (map[roomPos.x, roomPos.y - 1] == 1 && (map[roomPos.x + 1, roomPos.y] == 1)) if (room.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorCurve) rList.Add(room);
+                    if (roomDir == Room.RoomDirection.TwoDoorLinear)
+                    {
+                        if (roomPos.y + 1 < worldLength && roomPos.y - 1 >= 0)
+                        {
+                            if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x, roomPos.y - 1] == 1)) rList.Add(room);
+                        }
 
-                    if (roomPos.x - 1 >= 0 && roomPos.y - 1 >= 0)
-                        if (map[roomPos.x, roomPos.y - 1] == 1 && (map[roomPos.x - 1, roomPos.y] == 1)) if (room.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorCurve) rList.Add(room);
+                        if (roomPos.x + 1 < worldWidth && roomPos.x - 1 >= 0)
+                        {
+                            if (map[roomPos.x + 1, roomPos.y] == 1 && (map[roomPos.x - 1, roomPos.y] == 1)) rList.Add(room);
+                        }
+                    }
 
-                    if (roomPos.y + 1 < worldLength && roomPos.x - 1 >= 0)
-                        if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x - 1, roomPos.y] == 1)) if (room.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorCurve) rList.Add(room);
-                }
-                break;
+                    if (roomDir == Room.RoomDirection.TwoDoorCurve)
+                    {
+                        if (roomPos.y + 1 < worldLength && roomPos.x + 1 < worldWidth)
+                        {
+                            if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x + 1, roomPos.y] == 1)) rList.Add(room);
+                        }
 
-            case 3:
-                foreach (GameObject room in roomList)
-                    if (room.GetComponent<Room>().roomDirection == Room.RoomDirection.ThreeDoor) rList.Add(room);
-                break;
+                        if (roomPos.x + 1 < worldWidth && roomPos.y - 1 >= 0)
+                        {
+                            if (map[roomPos.x, roomPos.y - 1] == 1 && (map[roomPos.x + 1, roomPos.y] == 1)) rList.Add(room);
+                        }
 
-            case 4:
-                foreach (GameObject room in roomList)
-                    if (room.GetComponent<Room>().roomDirection == Room.RoomDirection.FourDoor) rList.Add(room);
-                break;
+                        if (roomPos.x - 1 >= 0 && roomPos.y - 1 >= 0)
+                        {
+                            if (map[roomPos.x, roomPos.y - 1] == 1 && (map[roomPos.x - 1, roomPos.y] == 1)) rList.Add(room);
+                        }
+
+                        if (roomPos.y + 1 < worldLength && roomPos.x - 1 >= 0)
+                        {
+                            if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x - 1, roomPos.y] == 1)) rList.Add(room);
+                        }
+                    }
+
+                    break;
+
+                case 3:
+
+                    if (roomDir == Room.RoomDirection.ThreeDoor) rList.Add(room);
+                    break;
+
+                case 4:
+
+                    if (roomDir == Room.RoomDirection.FourDoor) rList.Add(room);
+                    break;
+            }
         }
 
-        return rList[UnityEngine.Random.Range(0, rList.Count - 1)];
+
+
+        Debug.Log("rList Count " + rList.Count + "Door Count: " + neighbourRoomCount);
+
+        return rList[UnityEngine.Random.Range(0, rList.Count - 1 == 0 ? 1 : rList.Count - 1)];
     }
 
     /// <summary>

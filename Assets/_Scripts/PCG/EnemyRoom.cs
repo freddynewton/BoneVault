@@ -20,7 +20,7 @@ public class EnemyRoom : Room
 
     [Header("Enemy Room Settings")]
     public GameObject EnemyContainer;
-    public GameObject[] EnemySpawner;
+    public GameObject[] EnemySpawnPositions;
 
     [Header("all spawn percentages must add up to 100")]
     [Tooltip("All spawnPercentage needs to fit into 100")]
@@ -87,36 +87,7 @@ public class EnemyRoom : Room
     {
         // TODO Spawn VFX
         Debug.Log("Spawn Enemy");
-        GameObject e = Instantiate(getRandomEnemy(), getRandomPos(), Quaternion.identity, EnemyContainer.gameObject.transform) as GameObject;
-    }
-
-    public Vector3 getRandomPos()
-    {
-        Vector3 pos = new Vector3(0, 0, 0);
-
-        while (pos == Vector3.zero)
-        {
-            Vector3 randomPoint = gameObject.transform.position + spawnOffset + UnityEngine.Random.insideUnitSphere * spawnRange;
-
-            if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 10, NavMesh.AllAreas))
-            {
-                bool foundPoint = false;
-
-                foreach (GameObject obj in EnemySpawner)
-                {
-                    RaycastHit ray;
-
-                    if (Physics.Raycast(hit.position, obj.transform.position - hit.position, out ray))
-                    {
-                        foundPoint = ray.point == obj.transform.position ? true : false;
-                    }
-                }
-
-                if (foundPoint) pos = hit.position;
-            }
-        }
-
-        return pos;
+        GameObject e = Instantiate(getRandomEnemy(), EnemySpawnPositions[UnityEngine.Random.Range(0, EnemySpawnPositions.Length - 1)].transform.position, Quaternion.identity, EnemyContainer.gameObject.transform) as GameObject;
     }
 
     private void LateUpdate()

@@ -87,6 +87,8 @@ MonoBehaviour:
   mainColor: {r: 0, g: 0.6, b: 0.7019608, a: 1}
   secColor: {r: 0, g: 0, b: 0, a: 0}
   EnemyContainer: {fileID: 2033133657}
+  EnemySpawner:
+  - {fileID: 5527496292367957640}
   EnemyTypes:
   - Enemy: {fileID: 3065674638620549660, guid: 66f84629eab951742955a69e0e86b7e1, type: 3}
     spawnPercentage: 100

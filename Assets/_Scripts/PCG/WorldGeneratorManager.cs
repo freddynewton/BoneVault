@@ -102,11 +102,11 @@ public class WorldGeneratorManager : MonoBehaviour
 
         if (rooms.Count == 0)
         {
-            r = Instantiate(returnRandomRoom(neighbourRoomCount, 0), new Vector3(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), returnRoomRotation(neighbourRoomCount, roomPos), gameObject.transform) as GameObject;
+            r = Instantiate(returnRandomRoom(neighbourRoomCount, 0, roomPos), new Vector3(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), returnRoomRotation(neighbourRoomCount, roomPos), gameObject.transform) as GameObject;
         }
         else
         {
-            r = Instantiate(returnRandomRoom(neighbourRoomCount, 1), new Vector3(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), returnRoomRotation(neighbourRoomCount, roomPos), gameObject.transform) as GameObject;
+            r = Instantiate(returnRandomRoom(neighbourRoomCount, 1, roomPos), new Vector3(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), returnRoomRotation(neighbourRoomCount, roomPos), gameObject.transform) as GameObject;
         }
 
         rooms.Add(r);
@@ -123,7 +123,7 @@ public class WorldGeneratorManager : MonoBehaviour
     /// 
     /// </param>
     /// <returns></returns>
-    public GameObject returnRandomRoom(int neighbourRoomCount, int roomType)
+    public GameObject returnRandomRoom(int neighbourRoomCount, int roomType, Vector2Int roomPos)
     {
         List<GameObject> rList = new List<GameObject>();
         List<GameObject> roomList = new List<GameObject>();
@@ -147,7 +147,25 @@ public class WorldGeneratorManager : MonoBehaviour
 
             case 2:
                 foreach (GameObject room in roomList)
-                    if (room.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorCurve || room.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorLinear) rList.Add(room);
+                {
+                    if (roomPos.y + 1 < worldLength && roomPos.y - 1 >= 0)
+                        if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x, roomPos.y - 1] == 1)) if (room.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorLinear) rList.Add(room);
+
+                    if (roomPos.x + 1 < worldWidth && roomPos.x - 1 >= 0)
+                        if (map[roomPos.x + 1, roomPos.y] == 1 && (map[roomPos.x - 1, roomPos.y] == 1)) if (room.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorLinear) rList.Add(room);
+
+                    if (roomPos.y + 1 < worldLength && roomPos.x + 1 < worldWidth)
+                        if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x + 1, roomPos.y] == 1)) if (room.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorCurve) rList.Add(room);
+
+                    if (roomPos.x + 1 < worldWidth && roomPos.y - 1 >= 0)
+                        if (map[roomPos.x, roomPos.y - 1] == 1 && (map[roomPos.x + 1, roomPos.y] == 1)) if (room.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorCurve) rList.Add(room);
+
+                    if (roomPos.x - 1 >= 0 && roomPos.y - 1 >= 0)
+                        if (map[roomPos.x, roomPos.y - 1] == 1 && (map[roomPos.x - 1, roomPos.y] == 1)) if (room.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorCurve) rList.Add(room);
+
+                    if (roomPos.y + 1 < worldLength && roomPos.x - 1 >= 0)
+                        if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x - 1, roomPos.y] == 1)) if (room.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorCurve) rList.Add(room);
+                }
                 break;
 
             case 3:
@@ -192,7 +210,6 @@ public class WorldGeneratorManager : MonoBehaviour
                 break;
 
             case 2:
-
                 if (roomPos.y + 1 < worldLength && roomPos.y - 1 >= 0)
                     if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x, roomPos.y - 1] == 1)) q = Quaternion.identity;
 

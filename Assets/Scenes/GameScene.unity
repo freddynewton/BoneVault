@@ -630,9 +630,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startOnAwake: 1
-  roomCount: 2
-  worldWidth: 3
-  worldLength: 3
+  roomCount: 10
+  worldWidth: 10
+  worldLength: 10
   mapSetPos: []
 --- !u!1001 &1043866670
 PrefabInstance:

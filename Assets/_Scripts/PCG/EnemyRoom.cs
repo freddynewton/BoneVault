@@ -117,6 +117,6 @@ public class EnemyRoom : Room
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(gameObject.transform.position + spawnOffset, spawnRange);
+        //Gizmos.DrawWireSphere(gameObject.transform.position + spawnOffset, spawnRange);
     }
 }

@@ -1354,14 +1354,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -1134667536947972702, guid: 0e876947665134a49a940b1cb265d7a2, type: 3}
-      propertyPath: EnemySpawner.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -1134667536947972702, guid: 0e876947665134a49a940b1cb265d7a2, type: 3}
-      propertyPath: EnemySpawner.Array.data[0]
-      value: 
-      objectReference: {fileID: 2011950329}
     - target: {fileID: 4644606797329063884, guid: 0e876947665134a49a940b1cb265d7a2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -96
@@ -1412,11 +1404,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e876947665134a49a940b1cb265d7a2, type: 3}
---- !u!1 &2011950329 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5527496292367957640, guid: 0e876947665134a49a940b1cb265d7a2, type: 3}
-  m_PrefabInstance: {fileID: 2011950328}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &252462660732713553
 PrefabInstance:
   m_ObjectHideFlags: 0

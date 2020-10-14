@@ -1,7 +1,7 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -31,13 +31,23 @@ public class WorldGeneratorManager : MonoBehaviour
     public int worldWidth = 10;
     public int worldLength = 10;
 
+    [Header("Placement Settings")]
+    public const float roomSpace = 96;
+
     [HideInInspector] public int[,] map;
     [HideInInspector] public List<Vector2Int> mapSetPos;
+
+    private List<GameObject> rooms = new List<GameObject>();
+
+    private List<GameObject> resourcesEnemyRoomList = new List<GameObject>();
+    private List<GameObject> resourcesStartRoomList = new List<GameObject>();
+    private List<GameObject> resourcesHallwayList = new List<GameObject>();
 
     public IEnumerator generateMap()
     {
         // Delete old map
         foreach (Transform child in gameObject.transform) Destroy(child.gameObject);
+        rooms.Clear();
 
         // Wait a Frame
         yield return new WaitForFixedUpdate();
@@ -47,6 +57,107 @@ public class WorldGeneratorManager : MonoBehaviour
 
         // Print Matrix
         printMatrix();
+
+        // Load all resources rooms in a Array
+        resourcesEnemyRoomList.Clear();
+        resourcesHallwayList.Clear();
+        resourcesStartRoomList.Clear();
+
+        resourcesEnemyRoomList = Resources.LoadAll<GameObject>("Rooms/Enemy Rooms").ToList();
+        resourcesStartRoomList = Resources.LoadAll<GameObject>("Rooms/Start Rooms").ToList();
+        resourcesHallwayList = Resources.LoadAll<GameObject>("Rooms/Hallway").ToList();
+
+        // Spawn Rooms
+        SpawnRooms();
+    }
+
+    public void SpawnRooms()
+    {
+        rooms = new List<GameObject>();
+
+        for (int x = 0; x < worldWidth; x++)
+        {
+            for (int y = 0; y < worldLength; y++)
+            {
+                if (map[x, y] == 1) roomSpawner(new Vector2Int(x, y), findNeighbourRoomCount(new Vector2Int(x, y)));
+            }
+        }
+    }
+
+    public void roomSpawner(Vector2Int roomPos, int neighbourRoomCount)
+    {
+        GameObject r = new GameObject();
+        List<GameObject> rList = new List<GameObject>();
+
+        if (rooms.Count == 0)
+        {
+            switch (neighbourRoomCount)
+            {
+                case 1:
+                    break;
+
+                case 2:
+                    break;
+
+                case 3:
+                    break;
+
+                case 4:
+                    foreach (GameObject room in resourcesStartRoomList) if (room.GetComponent<EnemyRoom>().roomDirection == Room.RoomDirection.FourDoor) rList.Add(room);
+
+                    r = Instantiate(resourcesStartRoomList[UnityEngine.Random.Range(0, resourcesStartRoomList.Count)], new Vector3(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), Quaternion.identity, gameObject.transform) as GameObject;
+                    break;
+
+                default:
+                    r = Instantiate(resourcesStartRoomList[UnityEngine.Random.Range(0, resourcesStartRoomList.Count)], new Vector3(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), Quaternion.identity, gameObject.transform) as GameObject;
+                    break;
+            }
+
+        }
+        else
+        {
+            switch (neighbourRoomCount)
+            {
+                case 1:
+                    break;
+
+                case 2:
+                    break;
+
+                case 3:
+                    break;
+
+                case 4:
+                    foreach (GameObject room in resourcesEnemyRoomList) if (room.GetComponent<EnemyRoom>().roomDirection == Room.RoomDirection.FourDoor) rList.Add(room);
+
+                    r = Instantiate(rList[UnityEngine.Random.Range(0, rList.Count)], new Vector3(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), Quaternion.identity, gameObject.transform) as GameObject;
+                    break;
+
+                default:
+                    r = Instantiate(resourcesEnemyRoomList[UnityEngine.Random.Range(0, resourcesEnemyRoomList.Count)], new Vector3(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), Quaternion.identity, gameObject.transform) as GameObject;
+                    break;
+
+            }
+
+        }
+
+        rooms.Add(r);
+    }
+
+    public int findNeighbourRoomCount(Vector2Int roomPos)
+    {
+        int count = -1;
+
+        for (int x = -1; x < 2; x++)
+        {
+            for (int y = -1; y < 2; y++)
+            {
+                if (roomPos.x + x >= 0 && roomPos.x + x < worldWidth && roomPos.y + y >= 0 && roomPos.y + y < worldLength)
+                    if (map[roomPos.x + x, roomPos.y + y] != 0) count += 1;
+            }
+        }
+
+        return count;
     }
 
     public void SetMap()
@@ -168,6 +279,6 @@ public class WorldGeneratorManager : MonoBehaviour
             matrix += row + "\n";
         }
 
-        Debug.Log(matrix);
+        UnityEngine.Debug.Log(matrix);
     }
 }

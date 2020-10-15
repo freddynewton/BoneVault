@@ -11,7 +11,7 @@ public class StartRoom : Room
     {
         base.Awake();
         setLights(mainColor);
-        // StartCoroutine(setSpawnPos());
+        StartCoroutine(setSpawnPos());
     }
 
     public IEnumerator setSpawnPos()

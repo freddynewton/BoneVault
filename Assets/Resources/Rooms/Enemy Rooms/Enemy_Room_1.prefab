@@ -2820,6 +2820,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cage.Metal
       objectReference: {fileID: 0}
+    - target: {fileID: 1880089085207120884, guid: 033e37c292b23fa47bb05f4edccf48ca, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2134093189137094333, guid: 033e37c292b23fa47bb05f4edccf48ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4

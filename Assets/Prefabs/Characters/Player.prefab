@@ -118,6 +118,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   spriteRend: {fileID: 0}
   rb: {fileID: 0}
+  flashScript: {fileID: 0}
   currentStamina: 0
   isStaminaReg: 1
   timeToRegStaminaAfterHitZero: 2
@@ -138,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &252462660899415494
 Transform:
   m_ObjectHideFlags: 0
@@ -337,7 +338,7 @@ MonoBehaviour:
   volumeTrigger: {fileID: 252462661427320613}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1024
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
   antialiasingMode: 1

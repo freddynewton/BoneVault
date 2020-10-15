@@ -1630,6 +1630,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 252462661427320614, guid: 080454e15c9a6b74ba7de97815822b6c, type: 3}
+      propertyPath: volumeLayer.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 252462661427320614, guid: 080454e15c9a6b74ba7de97815822b6c, type: 3}
+      propertyPath: fastApproximateAntialiasing.fastMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 252462661427320615, guid: 080454e15c9a6b74ba7de97815822b6c, type: 3}
       propertyPath: m_Enabled
       value: 1

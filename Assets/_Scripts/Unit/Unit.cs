@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro.EditorUtilities;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Unit : MonoBehaviour
     [HideInInspector] public Animator animator;
     [HideInInspector] public SpriteRenderer spriteRend;
     [HideInInspector] public Rigidbody rb;
+    [HideInInspector] public FlashScreen flashScript;
 
     private Material baseMat;
 
@@ -75,6 +77,10 @@ public class Unit : MonoBehaviour
 
     public virtual void hit()
     {
+        if (gameObject.CompareTag("Player")) {
+            // flash screen red
+            GameObject.Find("HitFlash").GetComponent<FlashScreen>().hit = true;
+        }
     }
 
     public virtual void death()
@@ -99,10 +105,11 @@ public class Unit : MonoBehaviour
 
         if (gameObject.CompareTag("Enemy"))
         {
-            LeanTween.move(gameObject, (gameObject.transform.position - otherPos) * kb, 1).setEaseOutExpo();
+            // LeanTween.move(gameObject, (gameObject.transform.position - otherPos) * kb, 1).setEaseOutExpo();
+            rb.AddForce((gameObject.transform.position - otherPos).normalized * kb, ForceMode.Impulse);
         }
 
-        // rb.AddForce((gameObject.transform.position - otherPos).normalized * kb, ForceMode.Impulse);
+        rb.AddForce((gameObject.transform.position - otherPos).normalized * kb, ForceMode.Impulse);
     }
 
     public IEnumerator flashWhite(float time)
@@ -114,9 +121,7 @@ public class Unit : MonoBehaviour
         //spriteRend.material = baseMat;
     }
 
-
-
-    public void changeAnimationState(string newState)
+        public void changeAnimationState(string newState)
     {
         // prevent current animation interruption
         if (currentState == newState) return;

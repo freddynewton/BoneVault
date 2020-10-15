@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -34,7 +35,8 @@ public class WorldGeneratorManager : MonoBehaviour
     public int worldLength = 10;
 
     [Header("Placement Settings")]
-    public const float roomSpace = 96;
+    public const int roomSpace = 96;
+    public const int hallwaySpace = 48;
 
     [Header("Developer Settings")]
     public bool TestMode = false;
@@ -43,6 +45,7 @@ public class WorldGeneratorManager : MonoBehaviour
     [HideInInspector] public List<Vector2Int> mapSetPos;
 
     private List<GameObject> rooms = new List<GameObject>();
+    private List<GameObject> hallWays = new List<GameObject>();
 
     private List<GameObject> resourcesEnemyRoomList = new List<GameObject>();
     private List<GameObject> resourcesStartRoomList = new List<GameObject>();
@@ -79,7 +82,7 @@ public class WorldGeneratorManager : MonoBehaviour
 
         resourcesEnemyRoomList = Resources.LoadAll<GameObject>("Rooms/Enemy Rooms").ToList();
         resourcesStartRoomList = Resources.LoadAll<GameObject>("Rooms/Start Rooms").ToList();
-        resourcesHallwayList = Resources.LoadAll<GameObject>("Rooms/Hallway").ToList();
+        resourcesHallwayList = Resources.LoadAll<GameObject>("Rooms/Hallways").ToList();
 
         // Spawn Rooms
         SpawnRooms();
@@ -99,9 +102,70 @@ public class WorldGeneratorManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Spawning Hallways
+    /// </summary>
     public void SpawnHallways()
     {
+        hallWays.Clear();
 
+        foreach (GameObject r in rooms)
+        {
+            Room room = r.GetComponent<Room>();
+
+            foreach (Door d in room.doors)
+            {
+                Vector3 dir = -(r.gameObject.transform.position - d.gameObject.transform.position).normalized;
+
+                if (controlHallwayPos(r.gameObject.transform.position + dir * hallwaySpace))
+                    hallWays.Add(Instantiate(returnRandomHallway(), r.gameObject.transform.position + dir * hallwaySpace, returnHallwayRotation(dir), gameObject.transform) as GameObject); ;
+            }
+
+        }
+    }
+
+    /// <summary>
+    /// Return rotation for Hallways
+    /// </summary>
+    /// <param name="dir"></param>
+    /// <returns></returns>
+    private Quaternion returnHallwayRotation(Vector3 dir)
+    {
+        Quaternion q = Quaternion.identity;
+
+        if (dir.z == 1)
+        {
+            q = Quaternion.Euler(0, 90, 0);
+        }
+
+        return q;
+    }
+    
+
+    /// <summary>
+    /// Return Random Hallway Object
+    /// </summary>
+    /// <returns></returns>
+    private GameObject returnRandomHallway()
+    {
+        return resourcesHallwayList[UnityEngine.Random.Range(0, resourcesHallwayList.Count)];
+    }
+
+    /// <summary>
+    /// Check if on the Pos a Hallway already spawned
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <returns></returns>
+    private bool controlHallwayPos(Vector3 pos)
+    {
+        bool found = true;
+
+        foreach (GameObject h in hallWays)
+        {
+            if (pos == h.gameObject.transform.position) found = false;
+        }
+
+        return found;
     }
 
     /// <summary>

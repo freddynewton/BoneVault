@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 /// <summary>
 /// The world get a abstract view as a 2D Integer Array
@@ -35,6 +36,9 @@ public class WorldGeneratorManager : MonoBehaviour
     [Header("Placement Settings")]
     public const float roomSpace = 96;
 
+    [Header("Developer Settings")]
+    public bool TestMode = false;
+
     [HideInInspector] public int[,] map;
     [HideInInspector] public List<Vector2Int> mapSetPos;
 
@@ -43,6 +47,11 @@ public class WorldGeneratorManager : MonoBehaviour
     private List<GameObject> resourcesEnemyRoomList = new List<GameObject>();
     private List<GameObject> resourcesStartRoomList = new List<GameObject>();
     private List<GameObject> resourcesHallwayList = new List<GameObject>();
+
+    private void LateUpdate()
+    {
+        if (TestMode && Input.GetKeyDown(KeyCode.DownArrow)) StartCoroutine(generateMap());
+    }
 
     /// <summary>
     /// Generate Map
@@ -74,6 +83,25 @@ public class WorldGeneratorManager : MonoBehaviour
 
         // Spawn Rooms
         SpawnRooms();
+
+        // Set Hallway
+        SpawnHallways();
+
+        // Set Playerpos
+        foreach (GameObject r in rooms)
+        {
+            StartRoom sr = r.GetComponent<StartRoom>();
+
+            if (sr != null)
+            {
+                PlayerController.Instance.transform.position = sr.PlayerSpawn.position;
+            }
+        }
+    }
+
+    public void SpawnHallways()
+    {
+
     }
 
     /// <summary>
@@ -148,7 +176,42 @@ public class WorldGeneratorManager : MonoBehaviour
                     break;
 
                 case 2:
-                    if (roomDir == Room.RoomDirection.TwoDoorCurve || roomDir == Room.RoomDirection.TwoDoorLinear) rList.Add(room);
+
+                    if (roomDir == Room.RoomDirection.TwoDoorLinear)
+                    {
+                        if (roomPos.y + 1 < worldLength && roomPos.y - 1 >= 0)
+                        {
+                            if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x, roomPos.y - 1] == 1)) rList.Add(room);
+                        }
+
+                        if (roomPos.x + 1 < worldWidth && roomPos.x - 1 >= 0)
+                        {
+                            if (map[roomPos.x + 1, roomPos.y] == 1 && (map[roomPos.x - 1, roomPos.y] == 1)) rList.Add(room);
+                        }
+                    }
+
+                    if (roomDir == Room.RoomDirection.TwoDoorCurve)
+                    {
+                        if (roomPos.y + 1 < worldLength && roomPos.x + 1 < worldWidth)
+                        {
+                            if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x + 1, roomPos.y] == 1)) rList.Add(room);
+                        }
+
+                        if (roomPos.x + 1 < worldWidth && roomPos.y - 1 >= 0)
+                        {
+                            if (map[roomPos.x, roomPos.y - 1] == 1 && (map[roomPos.x + 1, roomPos.y] == 1)) rList.Add(room);
+                        }
+
+                        if (roomPos.x - 1 >= 0 && roomPos.y - 1 >= 0)
+                        {
+                            if (map[roomPos.x, roomPos.y - 1] == 1 && (map[roomPos.x - 1, roomPos.y] == 1)) rList.Add(room);
+                        }
+
+                        if (roomPos.y + 1 < worldLength && roomPos.x - 1 >= 0)
+                        {
+                            if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x - 1, roomPos.y] == 1)) rList.Add(room);
+                        }
+                    }
                     break;
 
                 case 3:

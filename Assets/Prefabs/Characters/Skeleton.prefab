@@ -4883,7 +4883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aecc363471cbfd44a935af90de06939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnOnly: 0
+  turnOnly: 1
 --- !u!114 &3065674638620549657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4902,6 +4902,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   spriteRend: {fileID: 0}
   rb: {fileID: 0}
+  flashScript: {fileID: 0}
   hitAnimationDuration: 0.8
   isAttackingDuration: 3
   utilityAI: {fileID: 0}

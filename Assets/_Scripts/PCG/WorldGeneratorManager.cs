@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditorInternal;
 using UnityEngine;
 
 /// <summary>
@@ -147,43 +148,7 @@ public class WorldGeneratorManager : MonoBehaviour
                     break;
 
                 case 2:
-
-                    if (roomDir == Room.RoomDirection.TwoDoorLinear)
-                    {
-                        if (roomPos.y + 1 < worldLength && roomPos.y - 1 >= 0)
-                        {
-                            if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x, roomPos.y - 1] == 1)) rList.Add(room);
-                        }
-
-                        if (roomPos.x + 1 < worldWidth && roomPos.x - 1 >= 0)
-                        {
-                            if (map[roomPos.x + 1, roomPos.y] == 1 && (map[roomPos.x - 1, roomPos.y] == 1)) rList.Add(room);
-                        }
-                    }
-
-                    if (roomDir == Room.RoomDirection.TwoDoorCurve)
-                    {
-                        if (roomPos.y + 1 < worldLength && roomPos.x + 1 < worldWidth)
-                        {
-                            if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x + 1, roomPos.y] == 1)) rList.Add(room);
-                        }
-
-                        if (roomPos.x + 1 < worldWidth && roomPos.y - 1 >= 0)
-                        {
-                            if (map[roomPos.x, roomPos.y - 1] == 1 && (map[roomPos.x + 1, roomPos.y] == 1)) rList.Add(room);
-                        }
-
-                        if (roomPos.x - 1 >= 0 && roomPos.y - 1 >= 0)
-                        {
-                            if (map[roomPos.x, roomPos.y - 1] == 1 && (map[roomPos.x - 1, roomPos.y] == 1)) rList.Add(room);
-                        }
-
-                        if (roomPos.y + 1 < worldLength && roomPos.x - 1 >= 0)
-                        {
-                            if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x - 1, roomPos.y] == 1)) rList.Add(room);
-                        }
-                    }
-
+                    if (roomDir == Room.RoomDirection.TwoDoorCurve || roomDir == Room.RoomDirection.TwoDoorLinear) rList.Add(room);
                     break;
 
                 case 3:
@@ -198,9 +163,19 @@ public class WorldGeneratorManager : MonoBehaviour
             }
         }
 
+        if (neighbourRoomCount == 2)
+        {
+            /*
+            if (roomPos.y + 1 < worldLength && roomPos.y - 1 >= 0)
+                if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x, roomPos.y - 1] == 1)) q = Quaternion.identity;
 
+            if (roomPos.x + 1 < worldWidth && roomPos.x - 1 >= 0)
+                if (map[roomPos.x + 1, roomPos.y] == 1 && (map[roomPos.x - 1, roomPos.y] == 1)) q = Quaternion.Euler(0, 90, 0);
+            */
+        }
 
-        Debug.Log("rList Count " + rList.Count + "Door Count: " + neighbourRoomCount);
+        if (rList.Count == 0)
+            Debug.Log("rList Count " + rList.Count + "Door Count: " + neighbourRoomCount);
 
         return rList[UnityEngine.Random.Range(0, rList.Count - 1 == 0 ? 1 : rList.Count - 1)];
     }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.PlayerLoop;
 
 /// <summary>
@@ -50,6 +51,8 @@ public class WorldGeneratorManager : MonoBehaviour
     private List<GameObject> resourcesEnemyRoomList = new List<GameObject>();
     private List<GameObject> resourcesStartRoomList = new List<GameObject>();
     private List<GameObject> resourcesHallwayList = new List<GameObject>();
+
+    private List<NavMeshSurface> navMeshSurfaces = new List<NavMeshSurface>();
 
     private void LateUpdate()
     {
@@ -100,6 +103,21 @@ public class WorldGeneratorManager : MonoBehaviour
                 PlayerController.Instance.transform.position = sr.PlayerSpawn.position;
             }
         }
+
+        // Bake Navmesh
+        bakeNavmesh();
+    }
+
+    /// <summary>
+    /// Bake navmesh while runtime
+    /// </summary>
+    public void bakeNavmesh()
+    {
+        navMeshSurfaces.Clear();
+
+        navMeshSurfaces = gameObject.GetComponents<NavMeshSurface>().ToList();
+
+        foreach (NavMeshSurface n in navMeshSurfaces) n.BuildNavMesh();
     }
 
     /// <summary>

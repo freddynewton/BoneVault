@@ -70,6 +70,17 @@ public class EnemyRoom : Room
         return EnemyTypes[0].Enemy;
     }
 
+    public bool checkIfRoomCleared()
+    {
+        if (waves == 0 && returnLivingEnemyCount() == 0)
+        {
+            setDoors(true);
+            return true;
+        }
+
+        return false;
+    }
+
     public void startWave()
     {
         if (returnLivingEnemyCount() <= spawnNewWaveUnder && waves > 0)
@@ -90,14 +101,6 @@ public class EnemyRoom : Room
         GameObject e = Instantiate(getRandomEnemy(), EnemySpawnPositions[UnityEngine.Random.Range(0, EnemySpawnPositions.Length - 1)].transform.position, Quaternion.identity, EnemyContainer.gameObject.transform) as GameObject;
     }
 
-    private void LateUpdate()
-    {
-        if (waves == 0 && returnLivingEnemyCount() == 0)
-        {
-            setDoors(true);
-        }
-    }
-
     private int returnLivingEnemyCount()
     {
         int check = 0;
@@ -113,6 +116,7 @@ public class EnemyRoom : Room
     public override void OnTriggerExit(Collider other)
     {
         base.OnTriggerExit(other);
+        if (checkIfRoomCleared()) CancelInvoke();
     }
 
     public override void OnTriggerEnter(Collider other)
@@ -124,6 +128,7 @@ public class EnemyRoom : Room
             setDoors(false);
             InvokeRepeating("startWave", 1, 1);
             setLights(mainColor);
+            InvokeRepeating("checkIfRoomCleared", 1, 1);
         }
     }
 

@@ -77,10 +77,6 @@ public class Unit : MonoBehaviour
 
     public virtual void hit()
     {
-        if (gameObject.CompareTag("Player")) {
-            // flash screen red
-            GameObject.Find("HitFlash").GetComponent<FlashScreen>().hit = true;
-        }
     }
 
     public virtual void death()

@@ -63,7 +63,10 @@ public class PlayerUnit : Unit
     public override void hit()
     {
         base.hit();
+
         // TODO Do Player hit effect
+        UiManager.Instance.flashScreen.flashScreen(1);
+        
     }
 
     public override void DoDamage(Vector3 damageSrcPos, DamageType damageType)

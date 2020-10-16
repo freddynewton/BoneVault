@@ -13,6 +13,9 @@ public class UiManager : MonoBehaviour
     public Slider staminaSlider;
 
     public WeaponUI weaponUI;
+
+    [Header("Red Flash")]
+    public FlashScreen flashScreen;
     
 
 

@@ -291,6 +291,7 @@ MonoBehaviour:
   healthSlider: {fileID: 128480510}
   staminaSlider: {fileID: 874201549}
   weaponUI: {fileID: 717956696}
+  flashScreen: {fileID: 1388659675}
 --- !u!1 &486285904 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 252462659820718105, guid: 080454e15c9a6b74ba7de97815822b6c, type: 3}

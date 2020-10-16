@@ -62,6 +62,29 @@ public class EnemyUnit : Unit
         base.hit();
     }
 
+    public override void DoDamage(Vector3 damageSrcPos, DamageType damageType)
+    {
+        base.DoDamage(damageSrcPos, damageType);
+    }
+
+    public override void knockback(Vector3 otherPos, float kb)
+    {
+        base.knockback(otherPos, kb);
+
+        /*
+        utilityAI.enabled = false;
+        utilityAI.navAgent.enabled = false;
+
+        Vector3 pos = (gameObject.transform.position - otherPos) * kb;
+
+        LeanTween.move(gameObject, new Vector3(pos.x, pos.y + 1, pos.z), 1).setOnComplete(() =>
+        {
+            utilityAI.navAgent.enabled = true;
+            utilityAI.enabled = true;
+        });
+        */
+    }
+
     public void CallTriggerDamage()
     {
         foreach (GameObject obj in triggerList)

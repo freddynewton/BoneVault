@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using UnityEngine.AI;
 using UnityEditor;
 using UnityEngine.Networking;
+using System.Linq;
 
 public class EnemyRoom : Room
 {
@@ -35,7 +36,6 @@ public class EnemyRoom : Room
     [Header("Enemy Spawn Settings")]
     public float spawnRange;
     public Vector3 spawnOffset;
-
 
     private List<float> enemyListSpawnPerc;
 
@@ -72,7 +72,7 @@ public class EnemyRoom : Room
 
     public void startWave()
     {
-        if (EnemyContainer.transform.childCount <= spawnNewWaveUnder && waves > 0)
+        if (returnLivingEnemyCount() <= spawnNewWaveUnder && waves > 0)
         {
             waves -= 1;
 
@@ -92,10 +92,22 @@ public class EnemyRoom : Room
 
     private void LateUpdate()
     {
-        if (waves == 0 && EnemyContainer.transform.childCount == 0)
+        if (waves == 0 && returnLivingEnemyCount() == 0)
         {
             setDoors(true);
         }
+    }
+
+    private int returnLivingEnemyCount()
+    {
+        int check = 0;
+
+        foreach (EnemyUnit e in EnemyContainer.GetComponentsInChildren<EnemyUnit>())
+        {
+            if (e.currentHealth > 0) check += 1;
+        }
+
+        return check;
     }
 
     public override void OnTriggerExit(Collider other)

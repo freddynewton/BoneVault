@@ -32,6 +32,7 @@ public class WorldGeneratorManager : MonoBehaviour
 
     [Header("World Size Settings")]
     public int roomCount;
+    public int specialRoomCount = 1;
     public int worldWidth = 10;
     public int worldLength = 10;
 
@@ -51,6 +52,7 @@ public class WorldGeneratorManager : MonoBehaviour
     private List<GameObject> resourcesEnemyRoomList = new List<GameObject>();
     private List<GameObject> resourcesStartRoomList = new List<GameObject>();
     private List<GameObject> resourcesHallwayList = new List<GameObject>();
+    private List<GameObject> resourcesSpecialRooms = new List<GameObject>();
 
     private List<NavMeshSurface> navMeshSurfaces = new List<NavMeshSurface>();
 
@@ -82,10 +84,12 @@ public class WorldGeneratorManager : MonoBehaviour
         resourcesEnemyRoomList.Clear();
         resourcesHallwayList.Clear();
         resourcesStartRoomList.Clear();
+        resourcesSpecialRooms.Clear();
 
         resourcesEnemyRoomList = Resources.LoadAll<GameObject>("Rooms/Enemy Rooms").ToList();
         resourcesStartRoomList = Resources.LoadAll<GameObject>("Rooms/Start Rooms").ToList();
         resourcesHallwayList = Resources.LoadAll<GameObject>("Rooms/Hallways").ToList();
+        resourcesSpecialRooms = Resources.LoadAll<GameObject>("Rooms/Special Rooms").ToList();
 
         // Spawn Rooms
         SpawnRooms();
@@ -198,6 +202,25 @@ public class WorldGeneratorManager : MonoBehaviour
             for (int y = 0; y < worldLength; y++)
             {
                 if (map[x, y] == 1) roomSpawner(new Vector2Int(x, y), findNeighbourRoomCount(new Vector2Int(x, y)));
+            }
+        }
+    }
+
+    public void SpawnSpecialRooms()
+    {
+        for (int i = 0; i < specialRoomCount; i++)
+        {
+            Vector2Int t = new Vector2Int();
+
+            while (t == Vector2Int.zero)
+            {
+                Vector2Int tmp = getRandomRoomInMap();
+                Vector3 roomPos = new Vector3(tmp.x * roomSpace, 0, tmp.y * roomSpace);
+
+                if (findNeighbourRoomCount(tmp) < 4 && rooms[0].gameObject.transform.position != roomPos)
+                {
+
+                }
             }
         }
     }

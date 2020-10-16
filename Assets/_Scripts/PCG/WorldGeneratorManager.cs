@@ -217,7 +217,6 @@ public class WorldGeneratorManager : MonoBehaviour
         {
             rooms.Add(Instantiate(returnRandomRoom(neighbourRoomCount, 1, roomPos), new Vector3(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), returnRoomRotation(neighbourRoomCount, roomPos), gameObject.transform) as GameObject);
         }
-
     }
 
     /// <summary>

@@ -40,12 +40,12 @@ public class Unit : MonoBehaviour
     {
         if (transform.name != "Player")
         {
-            spriteRend = GetComponent<SpriteRenderer>();
+            spriteRend = GetComponentInChildren<SpriteRenderer>();
             baseMat = spriteRend.material;
             rb = GetComponent<Rigidbody>();
         }
 
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         currentHealth = stats.health;
     }
 

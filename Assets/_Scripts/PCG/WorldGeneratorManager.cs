@@ -219,10 +219,32 @@ public class WorldGeneratorManager : MonoBehaviour
 
                 if (findNeighbourRoomCount(tmp) < 4 && rooms[0].gameObject.transform.position != roomPos)
                 {
+                    // TODO maybe buggy
+                    bool noSpecialRoomPlace = true;
 
+                    foreach (GameObject obj in rooms)
+                    {
+                        if (!obj.GetComponent<SpecialRoom>() && obj.transform.position == roomPos)
+                        {
+                            noSpecialRoomPlace = false;
+                        }
+                    }
+
+                    if (!noSpecialRoomPlace)
+                    {
+                        if (map[tmp.x, tmp.y + 1] == 0) setSpecialRoom(tmp);
+                        else if (map[tmp.x, tmp.y - 1] == 0) setSpecialRoom(tmp);
+                    }
                 }
             }
         }
+    }
+
+    public bool setSpecialRoom(Vector2Int pos)
+    {
+        bool setted = false;
+
+        return setted;
     }
 
     /// <summary>

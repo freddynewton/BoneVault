@@ -13,17 +13,19 @@ public class LightController : MonoBehaviour
 
     void Start()
     {
-        torchLight = transform.GetComponent<Light>();
+        
+    }
+
+    private void Awake()
+    {
+        torchLight = gameObject.GetComponent<Light>();
         animationTime = animationCurve[animationCurve.length - 1].time;
         animator = GetComponentInParent<Animator>();
 
         // Get Default State and start at random Time
         animator.Play(animator.GetCurrentAnimatorStateInfo(0).shortNameHash, 0, Random.Range(0.0f, 1.0f)); ;
-    }
 
-    private void Awake()
-    {
-        StartCoroutine(setLightFlickering());
+        // StartCoroutine(setLightFlickering());
     }
 
     public IEnumerator setLightFlickering()

@@ -637,6 +637,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startOnAwake: 1
   roomCount: 10
+  specialRoomCount: 1
   worldWidth: 5
   worldLength: 5
   TestMode: 1
@@ -1168,7 +1169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16528707c39af2640a40f55d04f0f6a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hit: 0
 --- !u!1 &1517512622
 GameObject:
   m_ObjectHideFlags: 0

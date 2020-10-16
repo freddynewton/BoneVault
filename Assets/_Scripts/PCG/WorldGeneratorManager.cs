@@ -6,6 +6,7 @@ using System.Runtime.Remoting.Messaging;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Assertions.Must;
 using UnityEngine.PlayerLoop;
 
 /// <summary>
@@ -94,6 +95,9 @@ public class WorldGeneratorManager : MonoBehaviour
         // Spawn Rooms
         SpawnRooms();
 
+        // Spawn Special Rooms
+        SpawnSpecialRooms();
+
         // Set Hallway
         SpawnHallways();
 
@@ -162,7 +166,7 @@ public class WorldGeneratorManager : MonoBehaviour
 
         return q;
     }
-    
+
 
     /// <summary>
     /// Return Random Hallway Object
@@ -206,45 +210,213 @@ public class WorldGeneratorManager : MonoBehaviour
         }
     }
 
+    // Spawn all special rooms
     public void SpawnSpecialRooms()
     {
         for (int i = 0; i < specialRoomCount; i++)
         {
-            Vector2Int t = new Vector2Int();
+            bool t = false;
 
-            while (t == Vector2Int.zero)
+            while (!t)
             {
                 Vector2Int tmp = getRandomRoomInMap();
                 Vector3 roomPos = new Vector3(tmp.x * roomSpace, 0, tmp.y * roomSpace);
 
-                if (findNeighbourRoomCount(tmp) < 4 && rooms[0].gameObject.transform.position != roomPos)
+                if ((findNeighbourRoomCount(tmp) == 1 || findNeighbourRoomCount(tmp) == 3) && rooms[0].gameObject.transform.position != roomPos)
                 {
-                    // TODO maybe buggy
-                    bool noSpecialRoomPlace = true;
-
-                    foreach (GameObject obj in rooms)
-                    {
-                        if (!obj.GetComponent<SpecialRoom>() && obj.transform.position == roomPos)
-                        {
-                            noSpecialRoomPlace = false;
-                        }
-                    }
-
-                    if (!noSpecialRoomPlace)
-                    {
-                        if (map[tmp.x, tmp.y + 1] == 0) setSpecialRoom(tmp);
-                        else if (map[tmp.x, tmp.y - 1] == 0) setSpecialRoom(tmp);
-                    }
+                    t = setSpecialRoom(tmp, roomPos);
                 }
             }
         }
     }
 
-    public bool setSpecialRoom(Vector2Int pos)
+    /// <summary>
+    /// Replace Enemy Room and place a new one
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <param name="roomPos"></param>
+    public bool setSpecialRoom(Vector2Int pos, Vector3 roomPos)
     {
-        bool setted = false;
+        List<GameObject> roomL = new List<GameObject>();
+        List<GameObject> deleteList = new List<GameObject>();
+        List<GameObject> addedList = new List<GameObject>();
 
-        return setted;
+        foreach (GameObject r in rooms)
+        {
+            if (r.transform.position == roomPos)
+            {
+                switch (findNeighbourRoomCount(pos))
+                {
+                    case 1:
+                        switch (r.transform.rotation.y)
+                        {
+                            case 0:
+                                addedList.Add(Instantiate(resourcesSpecialRooms[UnityEngine.Random.Range(0, resourcesSpecialRooms.Count - 1)], new Vector3(roomPos.x, 0, roomPos.y - roomSpace), Quaternion.identity, gameObject.transform) as GameObject);
+
+                                foreach (GameObject f in resourcesEnemyRoomList)
+                                {
+                                    if (f.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorLinear) roomL.Add(f);
+                                }
+
+                                foreach (GameObject f in rooms)
+                                {
+                                    if (f.transform.position == roomPos)
+                                    {
+                                        Debug.Log("Set Spawn Room");
+
+                                        deleteList.Add(f);
+                                        addedList.Add(Instantiate(roomL[UnityEngine.Random.Range(0, roomL.Count - 1)], roomPos, Quaternion.identity, gameObject.transform));
+                                    }
+                                }
+
+                                break;
+
+                            case 90:
+                                addedList.Add(Instantiate(resourcesSpecialRooms[UnityEngine.Random.Range(0, resourcesSpecialRooms.Count - 1)], new Vector3(roomPos.x - roomSpace, 0, roomPos.y), Quaternion.Euler(0, 90, 0), gameObject.transform) as GameObject);
+
+                                foreach (GameObject f in resourcesEnemyRoomList)
+                                {
+                                    if (f.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorLinear) roomL.Add(f);
+                                }
+
+                                foreach (GameObject f in rooms)
+                                {
+                                    if (f.transform.position == roomPos)
+                                    {
+                                        Debug.Log("Set Spawn Room");
+                                        deleteList.Add(f);
+                                        addedList.Add(Instantiate(roomL[UnityEngine.Random.Range(0, roomL.Count - 1)], roomPos, Quaternion.Euler(0, 90, 0), gameObject.transform));
+                                    }
+                                }
+
+                                break;
+                            case 180:
+                                addedList.Add(Instantiate(resourcesSpecialRooms[UnityEngine.Random.Range(0, resourcesSpecialRooms.Count - 1)], new Vector3(roomPos.x, 0, roomPos.y + roomSpace), Quaternion.Euler(0, 180, 0), gameObject.transform) as GameObject);
+
+                                foreach (GameObject f in resourcesEnemyRoomList)
+                                {
+                                    if (f.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorLinear) roomL.Add(f);
+                                }
+
+                                foreach (GameObject f in rooms)
+                                {
+                                    if (f.transform.position == roomPos)
+                                    {
+                                        Debug.Log("Set Spawn Room");
+                                        deleteList.Add(f);
+                                        addedList.Add(Instantiate(roomL[UnityEngine.Random.Range(0, roomL.Count - 1)], roomPos, Quaternion.identity, gameObject.transform));
+                                    }
+                                }
+                                break;
+                            case 270:
+                                addedList.Add(Instantiate(resourcesSpecialRooms[UnityEngine.Random.Range(0, resourcesSpecialRooms.Count - 1)], new Vector3(roomPos.x + roomSpace, 0, roomPos.y), Quaternion.Euler(0, 270, 0), gameObject.transform) as GameObject);
+
+                                foreach (GameObject f in resourcesEnemyRoomList)
+                                {
+                                    if (f.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorLinear) roomL.Add(f);
+                                }
+
+                                foreach (GameObject f in rooms)
+                                {
+                                    if (f.transform.position == roomPos)
+                                    {
+                                        Debug.Log("Set Spawn Room");
+                                        deleteList.Add(f);
+                                        addedList.Add(Instantiate(roomL[UnityEngine.Random.Range(0, roomL.Count - 1)], roomPos, Quaternion.Euler(0, 90, 0), gameObject.transform));
+                                    }
+                                }
+                                break;
+                        }
+                        break;
+                    case 3:
+                        switch (r.transform.rotation.y)
+                        {
+                            case 0:
+                                addedList.Add(Instantiate(resourcesSpecialRooms[UnityEngine.Random.Range(0, resourcesSpecialRooms.Count - 1)], new Vector3(roomPos.x - roomSpace, 0, roomPos.y), Quaternion.Euler(0, 90, 0), gameObject.transform) as GameObject);
+
+                                foreach (GameObject f in resourcesEnemyRoomList)
+                                {
+                                    if (f.GetComponent<Room>().roomDirection == Room.RoomDirection.FourDoor) roomL.Add(f);
+                                }
+
+                                foreach (GameObject f in rooms)
+                                {
+                                    if (f.transform.position == roomPos)
+                                    {
+                                        Debug.Log("Set Spawn Room");
+                                        deleteList.Add(f);
+                                        addedList.Add(Instantiate(roomL[UnityEngine.Random.Range(0, roomL.Count - 1)], roomPos, Quaternion.identity, gameObject.transform));
+                                    }
+                                }
+
+                                break;
+                            case 90:
+                                addedList.Add(Instantiate(resourcesSpecialRooms[UnityEngine.Random.Range(0, resourcesSpecialRooms.Count - 1)], new Vector3(roomPos.x, 0, roomPos.y + roomSpace), Quaternion.Euler(0, 180, 0), gameObject.transform) as GameObject);
+
+                                foreach (GameObject f in resourcesEnemyRoomList)
+                                {
+                                    if (f.GetComponent<Room>().roomDirection == Room.RoomDirection.FourDoor) roomL.Add(f);
+                                }
+
+                                foreach (GameObject f in rooms)
+                                {
+                                    if (f.transform.position == roomPos)
+                                    {
+                                        Debug.Log("Set Spawn Room");
+                                        deleteList.Add(f);
+                                        addedList.Add(Instantiate(roomL[UnityEngine.Random.Range(0, roomL.Count - 1)], roomPos, Quaternion.identity, gameObject.transform));
+                                    }
+                                }
+
+                                break;
+                            case 180:
+                                addedList.Add(Instantiate(resourcesSpecialRooms[UnityEngine.Random.Range(0, resourcesSpecialRooms.Count - 1)], new Vector3(roomPos.x + roomSpace, 0, roomPos.y), Quaternion.Euler(0, 270, 0), gameObject.transform) as GameObject);
+
+                                foreach (GameObject f in resourcesEnemyRoomList)
+                                {
+                                    if (f.GetComponent<Room>().roomDirection == Room.RoomDirection.FourDoor) roomL.Add(f);
+                                }
+
+                                foreach (GameObject f in rooms)
+                                {
+                                    if (f.transform.position == roomPos)
+                                    {
+                                        Debug.Log("Set Spawn Room");
+                                        deleteList.Add(f);
+                                        addedList.Add(Instantiate(roomL[UnityEngine.Random.Range(0, roomL.Count - 1)], roomPos, Quaternion.identity, gameObject.transform));
+                                    }
+                                }
+
+                                break;
+                            case 270:
+                                addedList.Add(Instantiate(resourcesSpecialRooms[UnityEngine.Random.Range(0, resourcesSpecialRooms.Count - 1)], new Vector3(roomPos.x, 0, roomPos.y - roomSpace), Quaternion.Euler(0, 0, 0), gameObject.transform) as GameObject);
+
+                                foreach (GameObject f in resourcesEnemyRoomList)
+                                {
+                                    if (f.GetComponent<Room>().roomDirection == Room.RoomDirection.FourDoor) roomL.Add(f);
+                                }
+
+                                foreach (GameObject f in rooms)
+                                {
+                                    if (f.transform.position == roomPos)
+                                    {
+                                        Debug.Log("Set Spawn Room");
+                                        deleteList.Add(f);
+                                        addedList.Add(Instantiate(roomL[UnityEngine.Random.Range(0, roomL.Count - 1)], roomPos, Quaternion.identity, gameObject.transform));
+                                    }
+                                }
+                                break;
+                        }
+                        break;
+                }
+            }
+        }
+
+        foreach(GameObject d in deleteList) rooms.Remove(d);
+
+        foreach (GameObject r in addedList) rooms.Add(r);
+
+        return true;
     }
 
     /// <summary>

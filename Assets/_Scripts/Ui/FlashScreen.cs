@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class FlashScreen : MonoBehaviour
 {
-    [HideInInspector] public bool hit;
     private Image flashImage;
 
 

@@ -128,7 +128,7 @@ public class EnemyRoom : Room
             setDoors(false);
             InvokeRepeating("startWave", 1, 1);
             setLights(mainColor);
-            InvokeRepeating("checkIfRoomCleared", 1, 1);
+            InvokeRepeating("checkIfRoomCleared", 3, 1);
         }
     }
 

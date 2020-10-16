@@ -96,16 +96,9 @@ public class Unit : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    private void knockback(Vector3 otherPos, float kb)
+    public virtual void knockback(Vector3 otherPos, float kb)
     {
 
-        if (gameObject.CompareTag("Enemy"))
-        {
-            // LeanTween.move(gameObject, (gameObject.transform.position - otherPos) * kb, 1).setEaseOutExpo();
-            rb.AddForce((gameObject.transform.position - otherPos).normalized * kb, ForceMode.Impulse);
-        }
-
-        rb.AddForce((gameObject.transform.position - otherPos).normalized * kb, ForceMode.Impulse);
     }
 
     public IEnumerator flashWhite(float time)

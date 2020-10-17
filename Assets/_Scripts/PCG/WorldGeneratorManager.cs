@@ -54,6 +54,7 @@ public class WorldGeneratorManager : MonoBehaviour
     private List<GameObject> resourcesStartRoomList = new List<GameObject>();
     private List<GameObject> resourcesHallwayList = new List<GameObject>();
     private List<GameObject> resourcesSpecialRooms = new List<GameObject>();
+    private List<GameObject> resourcesBossRooms = new List<GameObject>();
 
     private List<NavMeshSurface> navMeshSurfaces = new List<NavMeshSurface>();
 
@@ -92,11 +93,19 @@ public class WorldGeneratorManager : MonoBehaviour
         resourcesHallwayList = Resources.LoadAll<GameObject>("Rooms/Hallways").ToList();
         resourcesSpecialRooms = Resources.LoadAll<GameObject>("Rooms/Special Rooms").ToList();
 
+        if (resourcesBossRooms.Count == 0)
+        {
+            resourcesBossRooms = Resources.LoadAll<GameObject>("Rooms/Boss Rooms").ToList();
+        }
+
         // Spawn Rooms
         SpawnRooms();
 
         // Spawn Special Rooms
-        SpawnSpecialRooms();
+        SpawnSpecialRooms(specialRoomCount, 0);
+
+        // Spawn Boss Room
+        SpawnSpecialRooms(1, 1);
 
         // Set Hallway
         SpawnHallways();
@@ -214,10 +223,19 @@ public class WorldGeneratorManager : MonoBehaviour
         }
     }
 
-    // Spawn all special rooms
-    public void SpawnSpecialRooms()
+    /// <summary>
+    /// Spawn all special rooms
+    /// </summary>
+    /// <param name="amount"></param>
+    /// <param name="type">
+    /// 
+    /// 0 = Special Room
+    /// 1 = Boss Room
+    /// 
+    /// </param>
+    public void SpawnSpecialRooms(int amount, int type)
     {
-        for (int i = 0; i < specialRoomCount; i++)
+        for (int i = 0; i < amount; i++)
         {
             bool t = false;
 
@@ -228,7 +246,7 @@ public class WorldGeneratorManager : MonoBehaviour
 
                 if ((findNeighbourRoomCount(tmp) == 1 || findNeighbourRoomCount(tmp) == 3) && rooms[0].gameObject.transform.position != roomPos)
                 {
-                    t = setSpecialRoom(tmp, roomPos);
+                    t = setSpecialRoom(tmp, roomPos, type);
                 }
             }
         }
@@ -366,12 +384,25 @@ public class WorldGeneratorManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Replace Enemy Room and place a new one
+    ///  Replace Enemy Room and place a new one
     /// </summary>
     /// <param name="pos"></param>
     /// <param name="roomPos"></param>
-    public bool setSpecialRoom(Vector2Int pos, Vector3 roomPos)
+    /// <param name="roomType">
+    /// 
+    /// 0 = Special Room
+    /// 1 = BossRoom
+    /// 
+    /// </param>
+    /// <returns></returns>
+    public bool setSpecialRoom(Vector2Int pos, Vector3 roomPos, int roomType)
     {
+        List<GameObject> roomTyped = new List<GameObject>();
+
+        if (roomType == 0) roomTyped = resourcesSpecialRooms;
+        else if (roomType == 1) roomTyped = resourcesBossRooms;
+
+
         List<GameObject> roomL = new List<GameObject>();
 
         GameObject room = getRoomOnPos(roomPos);
@@ -400,7 +431,7 @@ public class WorldGeneratorManager : MonoBehaviour
         {
             case 1:
                 specialRoomPos = getZeroInMap(pos, 1);
-                GameObject _spc = Instantiate(resourcesSpecialRooms[UnityEngine.Random.Range(0, resourcesSpecialRooms.Count)], new Vector3(specialRoomPos.x * roomSpace, 0, specialRoomPos.y * roomSpace), Quaternion.identity, gameObject.transform) as GameObject;
+                GameObject _spc = Instantiate(roomTyped[UnityEngine.Random.Range(0, roomTyped.Count)], new Vector3(specialRoomPos.x * roomSpace, 0, specialRoomPos.y * roomSpace), Quaternion.identity, gameObject.transform) as GameObject;
                 GameObject _new = Instantiate(roomL[UnityEngine.Random.Range(0, roomL.Count)], roomPos, room.transform.rotation, gameObject.transform) as GameObject;
                 _spc.transform.LookAt(_new.transform);
 
@@ -412,7 +443,7 @@ public class WorldGeneratorManager : MonoBehaviour
             case 3:
                 specialRoomPos = getZeroInMap(pos, 3);
 
-                GameObject specialRoom = Instantiate(resourcesSpecialRooms[UnityEngine.Random.Range(0, resourcesSpecialRooms.Count)], new Vector3(specialRoomPos.x * roomSpace, 0, specialRoomPos.y * roomSpace), Quaternion.identity, gameObject.transform) as GameObject;
+                GameObject specialRoom = Instantiate(roomTyped[UnityEngine.Random.Range(0, roomTyped.Count)], new Vector3(specialRoomPos.x * roomSpace, 0, specialRoomPos.y * roomSpace), Quaternion.identity, gameObject.transform) as GameObject;
                 GameObject newRoom = Instantiate(roomL[UnityEngine.Random.Range(0, roomL.Count)], roomPos, Quaternion.identity, gameObject.transform) as GameObject;
                 specialRoom.transform.LookAt(newRoom.transform);
 
@@ -420,6 +451,22 @@ public class WorldGeneratorManager : MonoBehaviour
                 rooms.Add(newRoom);
 
                 break;
+        }
+
+        foreach (GameObject r in rooms)
+        {
+            try
+            {
+
+                if (r.GetComponent<BossRoom>())
+                {
+                    resourcesBossRooms.Remove(r);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Log(ex);
+            }
 
         }
 

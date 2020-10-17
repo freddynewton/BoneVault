@@ -137,16 +137,18 @@ public class WorldGeneratorManager : MonoBehaviour
 
         foreach (GameObject r in rooms)
         {
-            Room room = r.GetComponent<Room>();
+            EnemyRoom room = r.GetComponent<EnemyRoom>();
 
-            foreach (Door d in room.doors)
+            if (room != null)
             {
-                Vector3 dir = -(r.gameObject.transform.position - d.gameObject.transform.position).normalized;
+                foreach (Door d in room.doors)
+                {
+                    Vector3 dir = -(r.gameObject.transform.position - d.gameObject.transform.position).normalized;
 
-                if (controlHallwayPos(r.gameObject.transform.position + dir * hallwaySpace))
-                    hallWays.Add(Instantiate(returnRandomHallway(), r.gameObject.transform.position + dir * hallwaySpace, returnHallwayRotation(dir), gameObject.transform) as GameObject); ;
+                    if (controlHallwayPos(r.gameObject.transform.position + dir * hallwaySpace))
+                        hallWays.Add(Instantiate(returnRandomHallway(), r.gameObject.transform.position + dir * hallwaySpace, returnHallwayRotation(dir), gameObject.transform) as GameObject); ;
+                }
             }
-
         }
     }
 
@@ -159,7 +161,9 @@ public class WorldGeneratorManager : MonoBehaviour
     {
         Quaternion q = Quaternion.identity;
 
-        if (dir.z == 1)
+        Debug.Log(dir);
+
+        if (dir.z == 1 || dir.z == -1)
         {
             q = Quaternion.Euler(0, 90, 0);
         }

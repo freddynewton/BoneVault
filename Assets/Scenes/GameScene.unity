@@ -292,30 +292,6 @@ MonoBehaviour:
   staminaSlider: {fileID: 874201549}
   weaponUI: {fileID: 717956696}
   flashScreen: {fileID: 1388659675}
---- !u!1 &486285904 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 252462659820718105, guid: 080454e15c9a6b74ba7de97815822b6c, type: 3}
-  m_PrefabInstance: {fileID: 252462660732713553}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &486285905
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 486285904}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9694f92bd4eafef49a62761cfef0c058, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &717956694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1653,38 +1629,6 @@ PrefabInstance:
     - target: {fileID: 252462659820718109, guid: 080454e15c9a6b74ba7de97815822b6c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 252462660899415495, guid: 080454e15c9a6b74ba7de97815822b6c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 252462660899415497, guid: 080454e15c9a6b74ba7de97815822b6c, type: 3}
-      propertyPath: m_Range
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 252462660899415497, guid: 080454e15c9a6b74ba7de97815822b6c, type: 3}
-      propertyPath: m_Intensity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 252462661427320613, guid: 080454e15c9a6b74ba7de97815822b6c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 252462661427320614, guid: 080454e15c9a6b74ba7de97815822b6c, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 252462661427320614, guid: 080454e15c9a6b74ba7de97815822b6c, type: 3}
-      propertyPath: volumeLayer.m_Bits
-      value: 1024
-      objectReference: {fileID: 0}
-    - target: {fileID: 252462661427320614, guid: 080454e15c9a6b74ba7de97815822b6c, type: 3}
-      propertyPath: fastApproximateAntialiasing.fastMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 252462661427320615, guid: 080454e15c9a6b74ba7de97815822b6c, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 080454e15c9a6b74ba7de97815822b6c, type: 3}

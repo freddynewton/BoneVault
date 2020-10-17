@@ -101,11 +101,11 @@ public class WorldGeneratorManager : MonoBehaviour
         // Spawn Rooms
         SpawnRooms();
 
-        // Spawn Special Rooms
-        SpawnSpecialRooms(specialRoomCount, 0);
-
         // Spawn Boss Room
         SpawnSpecialRooms(1, 1);
+
+        // Spawn Special Rooms
+        SpawnSpecialRooms(specialRoomCount, 0);
 
         // Set Hallway
         SpawnHallways();

@@ -274,8 +274,6 @@ public class WorldGeneratorManager : MonoBehaviour
     /// <returns></returns>
     public Vector2Int getZeroInMap(Vector2Int pos, int count)
     {
-        Vector2Int ret = new Vector2Int();
-
         if (count == 3)
         {
             try

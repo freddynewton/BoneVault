@@ -6,10 +6,11 @@ public class GameManagerHelper : MonoBehaviour
 {
     public static GameManagerHelper Instance { get; private set; }
 
+    public Stats playerStatsBackUp;
    
     public void ResetPlayerStats()
     {
-        
+        PlayerController.Instance.unit.stats = playerStatsBackUp;
     }
 
     private void Awake()

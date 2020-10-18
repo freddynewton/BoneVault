@@ -14,9 +14,9 @@ public class StartRoom : Room
         StartCoroutine(setSpawnPos());
     }
 
-    private IEnumerator setSpawnPos()
+    public IEnumerator setSpawnPos()
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSecondsRealtime(0.1f);
         PlayerController.Instance.transform.position = PlayerSpawn.position;
     }
 

@@ -9,7 +9,7 @@ public class Room : MonoBehaviour
         START_ROOM,
         ENEMIE_ROOM,
         BOSS_ROOM,
-        EXIT_ROOM
+        SPECIAL_ROOM
     }
 
     public enum RoomDirection

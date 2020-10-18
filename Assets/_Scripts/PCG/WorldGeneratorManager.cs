@@ -2,8 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Assertions.Must;
+using UnityEngine.PlayerLoop;
 
 /// <summary>
 /// The world get a abstract view as a 2D Integer Array
@@ -29,20 +33,35 @@ public class WorldGeneratorManager : MonoBehaviour
 
     [Header("World Size Settings")]
     public int roomCount;
+    public int specialRoomCount = 1;
     public int worldWidth = 10;
     public int worldLength = 10;
 
     [Header("Placement Settings")]
-    public const float roomSpace = 96;
+    public const int roomSpace = 96;
+    public const int hallwaySpace = 48;
+
+    [Header("Developer Settings")]
+    public bool TestMode = false;
 
     [HideInInspector] public int[,] map;
     [HideInInspector] public List<Vector2Int> mapSetPos;
 
     private List<GameObject> rooms = new List<GameObject>();
+    private List<GameObject> hallWays = new List<GameObject>();
 
     private List<GameObject> resourcesEnemyRoomList = new List<GameObject>();
     private List<GameObject> resourcesStartRoomList = new List<GameObject>();
     private List<GameObject> resourcesHallwayList = new List<GameObject>();
+    private List<GameObject> resourcesSpecialRooms = new List<GameObject>();
+    private List<GameObject> resourcesBossRooms = new List<GameObject>();
+
+    private List<NavMeshSurface> navMeshSurfaces = new List<NavMeshSurface>();
+
+    private void LateUpdate()
+    {
+        if (TestMode && Input.GetKeyDown(KeyCode.DownArrow)) StartCoroutine(generateMap());
+    }
 
     /// <summary>
     /// Generate Map
@@ -67,13 +86,125 @@ public class WorldGeneratorManager : MonoBehaviour
         resourcesEnemyRoomList.Clear();
         resourcesHallwayList.Clear();
         resourcesStartRoomList.Clear();
+        resourcesSpecialRooms.Clear();
 
         resourcesEnemyRoomList = Resources.LoadAll<GameObject>("Rooms/Enemy Rooms").ToList();
         resourcesStartRoomList = Resources.LoadAll<GameObject>("Rooms/Start Rooms").ToList();
-        resourcesHallwayList = Resources.LoadAll<GameObject>("Rooms/Hallway").ToList();
+        resourcesHallwayList = Resources.LoadAll<GameObject>("Rooms/Hallways").ToList();
+        resourcesSpecialRooms = Resources.LoadAll<GameObject>("Rooms/Special Rooms").ToList();
+
+        if (resourcesBossRooms.Count == 0)
+        {
+            resourcesBossRooms = Resources.LoadAll<GameObject>("Rooms/Boss Rooms").ToList();
+        }
 
         // Spawn Rooms
         SpawnRooms();
+
+        // Spawn Boss Room
+        SpawnSpecialRooms(1, 1);
+
+        // Spawn Special Rooms
+        SpawnSpecialRooms(specialRoomCount, 0);
+
+        // Set Hallway
+        SpawnHallways();
+
+        // Set Playerpos
+        foreach (GameObject r in rooms)
+        {
+            StartRoom sr = r.GetComponent<StartRoom>();
+
+            if (sr != null)
+            {
+                PlayerController.Instance.transform.position = sr.PlayerSpawn.position;
+            }
+        }
+
+        // Bake Navmesh
+        bakeNavmesh();
+    }
+
+    /// <summary>
+    /// Bake navmesh while runtime
+    /// </summary>
+    public void bakeNavmesh()
+    {
+        navMeshSurfaces.Clear();
+
+        navMeshSurfaces = gameObject.GetComponents<NavMeshSurface>().ToList();
+
+        foreach (NavMeshSurface n in navMeshSurfaces) n.BuildNavMesh();
+    }
+
+    /// <summary>
+    /// Spawning Hallways
+    /// </summary>
+    public void SpawnHallways()
+    {
+        hallWays.Clear();
+
+        foreach (GameObject r in rooms)
+        {
+            EnemyRoom room = r.GetComponent<EnemyRoom>();
+
+            if (room != null)
+            {
+                foreach (Door d in room.doors)
+                {
+                    Vector3 dir = -(r.gameObject.transform.position - d.gameObject.transform.position).normalized;
+
+                    if (controlHallwayPos(r.gameObject.transform.position + dir * hallwaySpace))
+                        hallWays.Add(Instantiate(returnRandomHallway(), r.gameObject.transform.position + dir * hallwaySpace, returnHallwayRotation(dir), gameObject.transform) as GameObject); ;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Return rotation for Hallways
+    /// </summary>
+    /// <param name="dir"></param>
+    /// <returns></returns>
+    private Quaternion returnHallwayRotation(Vector3 dir)
+    {
+        Quaternion q = Quaternion.identity;
+
+        Debug.Log(dir);
+
+        if (dir.z == 1 || dir.z == -1)
+        {
+            q = Quaternion.Euler(0, 90, 0);
+        }
+
+        return q;
+    }
+
+
+    /// <summary>
+    /// Return Random Hallway Object
+    /// </summary>
+    /// <returns></returns>
+    private GameObject returnRandomHallway()
+    {
+        return resourcesHallwayList[UnityEngine.Random.Range(0, resourcesHallwayList.Count)];
+    }
+
+    /// <summary>
+    /// Check if on the Pos a Hallway already spawned
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <returns></returns>
+    private bool controlHallwayPos(Vector3 pos)
+    {
+        bool found = true;
+
+        foreach (GameObject h in hallWays)
+        {
+            if (pos == h.gameObject.transform.position) found = false;
+        }
+
+        return found;
     }
 
     /// <summary>
@@ -93,6 +224,259 @@ public class WorldGeneratorManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Spawn all special rooms
+    /// </summary>
+    /// <param name="amount"></param>
+    /// <param name="type">
+    /// 
+    /// 0 = Special Room
+    /// 1 = Boss Room
+    /// 
+    /// </param>
+    public void SpawnSpecialRooms(int amount, int type)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            bool t = false;
+
+            while (!t)
+            {
+                Vector2Int tmp = getRandomRoomInMap();
+                Vector3 roomPos = new Vector3(tmp.x * roomSpace, 0, tmp.y * roomSpace);
+
+                if ((findNeighbourRoomCount(tmp) == 1 || findNeighbourRoomCount(tmp) == 3) && rooms[0].gameObject.transform.position != roomPos)
+                {
+                    t = setSpecialRoom(tmp, roomPos, type);
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Get Room in World Pos
+    /// </summary>
+    /// <param name="roomPos"></param>
+    /// <returns></returns>
+    public GameObject getRoomOnPos(Vector3 roomPos)
+    {
+        foreach (GameObject r in rooms)
+        {
+            if (r.transform.position == roomPos) return r;
+        }
+
+        return new GameObject();
+    }
+
+    /// <summary>
+    /// Returns a direction where the is not a Room
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <returns></returns>
+    public Vector2Int getZeroInMap(Vector2Int pos, int count)
+    {
+        Vector2Int ret = new Vector2Int();
+
+        if (count == 3)
+        {
+            try
+            {
+                if (map[pos.x, pos.y + 1] == 0)
+                {
+                    return new Vector2Int(pos.x, pos.y + 1);
+                }
+            }
+            catch (Exception)
+            {
+                return new Vector2Int(pos.x, pos.y + 1);
+            }
+
+            try
+            {
+
+                if (map[pos.x, pos.y - 1] == 0)
+                {
+                    return new Vector2Int(pos.x, pos.y - 1);
+                }
+            }
+            catch (Exception)
+            {
+                return new Vector2Int(pos.x, pos.y - 1);
+            }
+
+
+            try
+            {
+                if (map[pos.x + 1, pos.y] == 0)
+                {
+                    return new Vector2Int(pos.x + 1, pos.y);
+                }
+            }
+            catch (Exception)
+            {
+                return new Vector2Int(pos.x + 1, pos.y);
+            }
+
+            try
+            {
+                if (map[pos.x - 1, pos.y] == 0)
+                {
+                    return new Vector2Int(pos.x - 1, pos.y);
+                }
+            }
+            catch (Exception)
+            {
+                return new Vector2Int(pos.x - 1, pos.y);
+            }
+        }
+        else if (count == 1)
+        {
+            try
+            {
+                if (map[pos.x, pos.y + 1] == 1)
+                {
+                    return new Vector2Int(pos.x, pos.y - 1);
+                }
+            }
+            catch (Exception)
+            {
+                
+            }
+
+            try
+            {
+
+                if (map[pos.x, pos.y - 1] == 1)
+                {
+                    return new Vector2Int(pos.x, pos.y + 1);
+                }
+            }
+            catch (Exception)
+            {
+                
+            }
+
+
+            try
+            {
+                if (map[pos.x + 1, pos.y] == 1)
+                {
+                    return new Vector2Int(pos.x - 1, pos.y);
+                }
+            }
+            catch (Exception)
+            {
+                
+            }
+
+            try
+            {
+                if (map[pos.x - 1, pos.y] == 1)
+                {
+                    return new Vector2Int(pos.x + 1, pos.y);
+                }
+            }
+            catch (Exception)
+            {
+                
+            }
+        }
+        return pos;
+    }
+
+    /// <summary>
+    ///  Replace Enemy Room and place a new one
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <param name="roomPos"></param>
+    /// <param name="roomType">
+    /// 
+    /// 0 = Special Room
+    /// 1 = BossRoom
+    /// 
+    /// </param>
+    /// <returns></returns>
+    public bool setSpecialRoom(Vector2Int pos, Vector3 roomPos, int roomType)
+    {
+        List<GameObject> roomTyped = new List<GameObject>();
+
+        if (roomType == 0) roomTyped = resourcesSpecialRooms;
+        else if (roomType == 1) roomTyped = resourcesBossRooms;
+
+
+        List<GameObject> roomL = new List<GameObject>();
+
+        GameObject room = getRoomOnPos(roomPos);
+
+        int neighbourPos = findNeighbourRoomCount(pos);
+
+        if (neighbourPos == 1)
+        {
+            foreach (GameObject f in resourcesEnemyRoomList)
+            {
+                if (f.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorLinear) roomL.Add(f);
+            }
+        }
+        else if (neighbourPos == 3)
+        {
+            foreach (GameObject f in resourcesEnemyRoomList)
+            {
+                if (f.GetComponent<Room>().roomDirection == Room.RoomDirection.FourDoor) roomL.Add(f);
+            }
+
+        }
+
+        Vector2Int specialRoomPos = new Vector2Int();
+
+        switch (neighbourPos)
+        {
+            case 1:
+                specialRoomPos = getZeroInMap(pos, 1);
+                GameObject _spc = Instantiate(roomTyped[UnityEngine.Random.Range(0, roomTyped.Count)], new Vector3(specialRoomPos.x * roomSpace, 0, specialRoomPos.y * roomSpace), Quaternion.identity, gameObject.transform) as GameObject;
+                GameObject _new = Instantiate(roomL[UnityEngine.Random.Range(0, roomL.Count)], roomPos, room.transform.rotation, gameObject.transform) as GameObject;
+                _spc.transform.LookAt(_new.transform);
+
+                rooms.Add(_new);
+                rooms.Add(_spc);
+
+
+                break;
+            case 3:
+                specialRoomPos = getZeroInMap(pos, 3);
+
+                GameObject specialRoom = Instantiate(roomTyped[UnityEngine.Random.Range(0, roomTyped.Count)], new Vector3(specialRoomPos.x * roomSpace, 0, specialRoomPos.y * roomSpace), Quaternion.identity, gameObject.transform) as GameObject;
+                GameObject newRoom = Instantiate(roomL[UnityEngine.Random.Range(0, roomL.Count)], roomPos, Quaternion.identity, gameObject.transform) as GameObject;
+                specialRoom.transform.LookAt(newRoom.transform);
+
+                rooms.Add(specialRoom);
+                rooms.Add(newRoom);
+
+                break;
+        }
+
+        foreach (GameObject r in rooms)
+        {
+            try
+            {
+
+                if (r.GetComponent<BossRoom>())
+                {
+                    resourcesBossRooms.Remove(r);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Log(ex);
+            }
+
+        }
+
+        rooms.Remove(room);
+        Destroy(room);
+
+        return true;
+    }
+
+    /// <summary>
     /// Spawns all Rooms
     /// </summary>
     /// <param name="roomPos"></param>
@@ -107,7 +491,6 @@ public class WorldGeneratorManager : MonoBehaviour
         {
             rooms.Add(Instantiate(returnRandomRoom(neighbourRoomCount, 1, roomPos), new Vector3(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), returnRoomRotation(neighbourRoomCount, roomPos), gameObject.transform) as GameObject);
         }
-
     }
 
     /// <summary>
@@ -148,7 +531,42 @@ public class WorldGeneratorManager : MonoBehaviour
                     break;
 
                 case 2:
-                    if (roomDir == Room.RoomDirection.TwoDoorCurve || roomDir == Room.RoomDirection.TwoDoorLinear) rList.Add(room);
+
+                    if (roomDir == Room.RoomDirection.TwoDoorLinear)
+                    {
+                        if (roomPos.y + 1 < worldLength && roomPos.y - 1 >= 0)
+                        {
+                            if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x, roomPos.y - 1] == 1)) rList.Add(room);
+                        }
+
+                        if (roomPos.x + 1 < worldWidth && roomPos.x - 1 >= 0)
+                        {
+                            if (map[roomPos.x + 1, roomPos.y] == 1 && (map[roomPos.x - 1, roomPos.y] == 1)) rList.Add(room);
+                        }
+                    }
+
+                    if (roomDir == Room.RoomDirection.TwoDoorCurve)
+                    {
+                        if (roomPos.y + 1 < worldLength && roomPos.x + 1 < worldWidth)
+                        {
+                            if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x + 1, roomPos.y] == 1)) rList.Add(room);
+                        }
+
+                        if (roomPos.x + 1 < worldWidth && roomPos.y - 1 >= 0)
+                        {
+                            if (map[roomPos.x, roomPos.y - 1] == 1 && (map[roomPos.x + 1, roomPos.y] == 1)) rList.Add(room);
+                        }
+
+                        if (roomPos.x - 1 >= 0 && roomPos.y - 1 >= 0)
+                        {
+                            if (map[roomPos.x, roomPos.y - 1] == 1 && (map[roomPos.x - 1, roomPos.y] == 1)) rList.Add(room);
+                        }
+
+                        if (roomPos.y + 1 < worldLength && roomPos.x - 1 >= 0)
+                        {
+                            if (map[roomPos.x, roomPos.y + 1] == 1 && (map[roomPos.x - 1, roomPos.y] == 1)) rList.Add(room);
+                        }
+                    }
                     break;
 
                 case 3:

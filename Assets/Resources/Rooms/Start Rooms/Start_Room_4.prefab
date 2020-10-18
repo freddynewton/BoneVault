@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomType: 0
-  roomDirection: 0
+  roomDirection: 4
   doors: []
   lights: []
   activateLightDelay: 0.2

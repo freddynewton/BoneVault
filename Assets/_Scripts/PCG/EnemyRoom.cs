@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using UnityEngine.AI;
 using UnityEditor;
 using UnityEngine.Networking;
+using System.Linq;
 
 public class EnemyRoom : Room
 {
@@ -35,7 +36,6 @@ public class EnemyRoom : Room
     [Header("Enemy Spawn Settings")]
     public float spawnRange;
     public Vector3 spawnOffset;
-
 
     private List<float> enemyListSpawnPerc;
 
@@ -70,9 +70,20 @@ public class EnemyRoom : Room
         return EnemyTypes[0].Enemy;
     }
 
+    public bool checkIfRoomCleared()
+    {
+        if (waves == 0 && returnLivingEnemyCount() == 0)
+        {
+            setDoors(true);
+            return true;
+        }
+
+        return false;
+    }
+
     public void startWave()
     {
-        if (EnemyContainer.transform.childCount <= spawnNewWaveUnder && waves > 0)
+        if (returnLivingEnemyCount() <= spawnNewWaveUnder && waves > 0)
         {
             waves -= 1;
 
@@ -90,17 +101,22 @@ public class EnemyRoom : Room
         GameObject e = Instantiate(getRandomEnemy(), EnemySpawnPositions[UnityEngine.Random.Range(0, EnemySpawnPositions.Length - 1)].transform.position, Quaternion.identity, EnemyContainer.gameObject.transform) as GameObject;
     }
 
-    private void LateUpdate()
+    private int returnLivingEnemyCount()
     {
-        if (waves == 0 && EnemyContainer.transform.childCount == 0)
+        int check = 0;
+
+        foreach (EnemyUnit e in EnemyContainer.GetComponentsInChildren<EnemyUnit>())
         {
-            setDoors(true);
+            if (e.currentHealth > 0) check += 1;
         }
+
+        return check;
     }
 
     public override void OnTriggerExit(Collider other)
     {
         base.OnTriggerExit(other);
+        if (checkIfRoomCleared()) CancelInvoke();
     }
 
     public override void OnTriggerEnter(Collider other)
@@ -112,6 +128,7 @@ public class EnemyRoom : Room
             setDoors(false);
             InvokeRepeating("startWave", 1, 1);
             setLights(mainColor);
+            InvokeRepeating("checkIfRoomCleared", 3, 1);
         }
     }
 

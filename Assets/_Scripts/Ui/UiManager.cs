@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngineInternal;
 
 public class UiManager : MonoBehaviour
 {
@@ -14,9 +16,22 @@ public class UiManager : MonoBehaviour
 
     public WeaponUI weaponUI;
 
+    [Header("Bones")]
+    public TextMeshProUGUI BonesCount;
+    public Image BonesLogo;
+
+
     [Header("Red Flash")]
     public FlashScreen flashScreen;
     
+    public void setBones(string amount)
+    {
+        BonesCount.text = amount;
+
+        LeanTween.scale(BonesLogo.gameObject, new Vector3(1.3f, 0.7f, 1), 0.2f).setEaseOutQuad().setOnComplete(() => {
+            LeanTween.scale(BonesLogo.gameObject, Vector3.one, 0.4f).setEaseOutBounce();
+        });
+    }
 
 
     public void setStamina()

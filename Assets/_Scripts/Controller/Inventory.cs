@@ -7,9 +7,18 @@ public class Inventory : MonoBehaviour
     // Singleton Instance
     public static Inventory Instance { get; private set; }
 
-    // Weapon
+    [Header("Weapon")]
     public GameObject currWeapon;
     public Weapon currWeaponScript;
+
+    [Header("Currency")]
+    public int bones;
+
+    public void setBones(int amount)
+    {
+        bones += amount;
+        UiManager.Instance.setBones(bones.ToString());
+    }
 
     public void equipWeapon(GameObject newWeapon)
     {

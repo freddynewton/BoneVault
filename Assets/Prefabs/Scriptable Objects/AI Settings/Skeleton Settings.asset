@@ -95,6 +95,7 @@ MonoBehaviour:
       input: 1
   - actionList:
     - {fileID: 11400000, guid: 60b88cc81682b184f86917db852ff25c, type: 2}
+    - {fileID: 11400000, guid: cdc724f5a414a7440bc3ac8424243bc3, type: 2}
     settingList:
     - curve:
         serializedVersion: 2

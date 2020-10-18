@@ -48,6 +48,8 @@ public class EnemyUnit : Unit
         GetComponent<CapsuleCollider>().enabled = false;
 
         base.death();
+
+        Inventory.Instance.setBones(1);
     }
 
     public override void hit()

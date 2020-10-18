@@ -6,6 +6,12 @@ public class GameManagerHelper : MonoBehaviour
 {
     public static GameManagerHelper Instance { get; private set; }
 
+   
+    public void ResetPlayerStats()
+    {
+        
+    }
+
     private void Awake()
     {
         if (Instance == null)

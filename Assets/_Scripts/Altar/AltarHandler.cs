@@ -14,7 +14,10 @@ public class AltarHandler : MonoBehaviour
     public Light altarLight;
 
     [HideInInspector] public SpecialRoom room;
+    [HideInInspector] public SphereCollider col;
     public AltarUpgrade upgrade;
+
+    public bool used = false;
 
     public void setOutline(bool active)
     {
@@ -29,21 +32,61 @@ public class AltarHandler : MonoBehaviour
         upgrade = _upgrade;
         spriteRend.sprite = upgrade.Icon;
         altarLight.color = upgrade.lightColor;
+        spriteRend.color = Color.white;
+        spriteRend.enabled = true;
+        altarLight.enabled = true;
+        spriteRend.gameObject.SetActive(true);
     }
 
     public void use()
     {
-
+        if (Inventory.Instance.bones >= upgrade.BoneCost)
+        {
+            used = true;
+            Inventory.Instance.setBones(-upgrade.BoneCost);
+            upgrade.use();
+        }
+        else
+        {
+            // TODO ERROR MESSAGE
+            UiManager.Instance.showErrorMessage(upgrade, 0.5f);
+        }
     }
+
+    public void showText(bool acitve)
+    {
+        if (!used) UiManager.Instance.showText(acitve, upgrade.uiText, upgrade.BoneCost, 0.1f);
+        else UiManager.Instance.showText(false, "", 0, 0);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        showText(true);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        showText(false);
+    }
+
+
 
     private void Awake()
     {
-        // LeanTween.moveY(hand, 2.2f, 1f).setEaseInOutQuad().setDelay(UnityEngine.Random.Range(0, 0.3f)).setLoopPingPong();
+        StartCoroutine(startHandmoving());
+    }
+
+    private IEnumerator startHandmoving()
+    {
+        yield return new WaitForSecondsRealtime(UnityEngine.Random.Range(0, 2f));
+        LeanTween.moveY(hand, 2.8f, 2f).setEaseInOutQuad().setDelay(UnityEngine.Random.Range(0, 0.3f)).setLoopPingPong();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         outlines = gameObject.GetComponentsInChildren<Outline>().ToList();
+        col = gameObject.GetComponent<SphereCollider>();
+        col.radius = distance;
     }
 }

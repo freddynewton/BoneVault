@@ -18,6 +18,8 @@ public class SpecialRoom : Room
             if (Vector3.Distance(altar.gameObject.transform.position, PlayerController.Instance.transform.position) < altar.distance)
             {
                 altar.setOutline(true);
+
+                if (Input.GetKeyDown(KeyCode.E)) altar.use();
             }
             else
             {
@@ -41,7 +43,8 @@ public class SpecialRoom : Room
     public override void Awake()
     {
         base.Awake();
-        // setLights(mainColor);
+        
+        //setLights(mainColor);
 
         altars = gameObject.transform.GetComponentsInChildren<AltarHandler>().ToList();
 

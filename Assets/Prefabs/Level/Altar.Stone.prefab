@@ -351,6 +351,7 @@ GameObject:
   - component: {fileID: 1941442582947370839}
   - component: {fileID: 1941442582947370836}
   - component: {fileID: 1941442582947370837}
+  - component: {fileID: 3593001503708401109}
   m_Layer: 0
   m_Name: Altar.Stone
   m_TagString: Untagged
@@ -406,6 +407,19 @@ MonoBehaviour:
   altarLight: {fileID: 1941442583795095203}
   room: {fileID: 0}
   upgrade: {fileID: 0}
+--- !u!135 &3593001503708401109
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941442582947370838}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1941442583795095228
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,7 +635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4546228510492515292, guid: 5a87283f6dfa5964897a6a159815d8c0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.56
+      value: 2.6
       objectReference: {fileID: 0}
     - target: {fileID: 4546228510492515292, guid: 5a87283f6dfa5964897a6a159815d8c0, type: 3}
       propertyPath: m_LocalPosition.z

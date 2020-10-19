@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 5a87283f6dfa5964897a6a159815d8c0
+guid: 70347f025650da8498fb34e4bf893a70
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
   externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Altar.Stone
-    second: {fileID: 2100000, guid: c398fe0a0cff75346bce440d29ee19e5, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

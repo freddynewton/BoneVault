@@ -45,6 +45,21 @@ public class AltarHandler : MonoBehaviour
             used = true;
             Inventory.Instance.setBones(-upgrade.BoneCost);
             upgrade.use();
+            altarLight.color = room.mainColor;
+            altarLight.intensity = 2;
+
+            // SWAP SPRITE TO "EMPTY SPRITE"
+            spriteRend.sprite = null;
+
+            // DISABLE DIALOG TEXT BOX
+            UiManager.Instance.showText(false, "", 0, 0);
+
+            // Shake GameObject
+            LeanTween.moveLocalX(hand.gameObject.transform.parent.gameObject, 0.2f, 0.2f).setEaseOutBounce().setOnComplete(() =>
+            {
+                LeanTween.moveLocalX(hand.gameObject.transform.parent.gameObject, 0, 0.1f).setEaseOutBounce();
+            }).setLoopCount(2);
+
         }
         else
         {

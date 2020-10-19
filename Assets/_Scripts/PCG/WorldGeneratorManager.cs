@@ -337,7 +337,7 @@ public class WorldGeneratorManager : MonoBehaviour
             }
             catch (Exception)
             {
-                
+
             }
 
             try
@@ -350,7 +350,7 @@ public class WorldGeneratorManager : MonoBehaviour
             }
             catch (Exception)
             {
-                
+
             }
 
 
@@ -363,7 +363,7 @@ public class WorldGeneratorManager : MonoBehaviour
             }
             catch (Exception)
             {
-                
+
             }
 
             try
@@ -375,7 +375,7 @@ public class WorldGeneratorManager : MonoBehaviour
             }
             catch (Exception)
             {
-                
+
             }
         }
         return pos;
@@ -822,7 +822,7 @@ public class WorldGeneratorManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        StartCoroutine(generateMap());
+        if (startOnAwake) StartCoroutine(generateMap());
     }
 
     /// <summary>

@@ -17,32 +17,31 @@ public class SpecialRoom : Room
         {
             if (Vector3.Distance(altar.gameObject.transform.position, PlayerController.Instance.transform.position) < altar.distance)
             {
-
-                altar.outline.enabled = true;
-
+                altar.setOutline(true);
             }
             else
             {
-                altar.outline.enabled = false;
+                altar.setOutline(false);
             }
         }
     }
 
 
     public override void Awake()
-{
-    base.Awake();
-    altars = gameObject.transform.GetComponentsInChildren<AltarHandler>().ToList();
-}
+    {
+        base.Awake();
+        altars = gameObject.transform.GetComponentsInChildren<AltarHandler>().ToList();
+        foreach (AltarHandler a in altars) a.room = this;
+    }
 
-public override void OnTriggerEnter(Collider other)
-{
-    base.OnTriggerEnter(other);
-    setLights(mainColor);
-}
+    public override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+        setLights(mainColor);
+    }
 
-public override void OnTriggerExit(Collider other)
-{
-    base.OnTriggerExit(other);
-}
+    public override void OnTriggerExit(Collider other)
+    {
+        base.OnTriggerExit(other);
+    }
 }

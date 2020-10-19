@@ -10,8 +10,11 @@ public class AltarHandler : MonoBehaviour
     [Header("Altar Settings")]
     public float distance = 5;
     public GameObject hand;
+    public SpriteRenderer spriteRend;
+    public Light altarLight;
 
     [HideInInspector] public SpecialRoom room;
+    public AltarUpgrade upgrade;
 
     public void setOutline(bool active)
     {
@@ -21,6 +24,13 @@ public class AltarHandler : MonoBehaviour
         }
     }
 
+    public void setUpgrade(AltarUpgrade _upgrade)
+    {
+        upgrade = _upgrade;
+        spriteRend.sprite = upgrade.Icon;
+        altarLight.color = upgrade.lightColor;
+    }
+
     public void use()
     {
 
@@ -28,7 +38,7 @@ public class AltarHandler : MonoBehaviour
 
     private void Awake()
     {
-        LeanTween.moveY(hand, 2.2f, 1f).setEaseInOutQuad().setDelay(UnityEngine.Random.Range(0, 0.3f)).setLoopPingPong();
+        // LeanTween.moveY(hand, 2.2f, 1f).setEaseInOutQuad().setDelay(UnityEngine.Random.Range(0, 0.3f)).setLoopPingPong();
     }
 
     // Start is called before the first frame update

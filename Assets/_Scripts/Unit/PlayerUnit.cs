@@ -66,7 +66,7 @@ public class PlayerUnit : Unit
 
         // TODO Do Player hit effect
         UiManager.Instance.flashScreen.flashScreen(1);
-        
+
     }
 
     public override void DoDamage(Vector3 damageSrcPos, DamageType damageType)
@@ -96,5 +96,11 @@ public class PlayerUnit : Unit
         }
     }
 
+    public void setHealthPlayer(int amount)
+    {
+        currentHealth += amount;
+        if (currentHealth > stats.health) currentHealth = stats.health;
 
+        UiManager.Instance.setHealth();
+    }
 }

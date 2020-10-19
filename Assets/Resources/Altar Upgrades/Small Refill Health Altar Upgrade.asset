@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 040f19c50f616974fbd1c4610956ecf4, type: 3}
+  m_Name: Small Refill Health Altar Upgrade
+  m_EditorClassIdentifier: 
+  BoneCost: 5
+  Icon: {fileID: 21300000, guid: 9465a333a8d559044828fa67c4f177a7, type: 3}
+  lightColor: {r: 1, g: 0, b: 0, a: 0}
+  uiText: Heal 1 Hearth
+  amount: 1

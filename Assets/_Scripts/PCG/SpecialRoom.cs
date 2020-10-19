@@ -26,18 +26,31 @@ public class SpecialRoom : Room
         }
     }
 
+    public void fillUpgrades()
+    {
+        List<AltarUpgrade> upgrades = Resources.LoadAll<AltarUpgrade>("Altar Upgrades").ToList();
+
+        foreach (AltarHandler a in altars)
+        {
+            a.room = this;
+            a.setUpgrade(upgrades[Random.Range(0, upgrades.Count)]);
+        }
+    }
+
 
     public override void Awake()
     {
         base.Awake();
+        // setLights(mainColor);
+
         altars = gameObject.transform.GetComponentsInChildren<AltarHandler>().ToList();
-        foreach (AltarHandler a in altars) a.room = this;
+
+        fillUpgrades();
     }
 
     public override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
-        setLights(mainColor);
     }
 
     public override void OnTriggerExit(Collider other)

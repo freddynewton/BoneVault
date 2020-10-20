@@ -42,9 +42,9 @@ public class SpecialRoom : Room
 
     public override void Awake()
     {
-        base.Awake();
-        
-        //setLights(mainColor);
+        getAllLights();
+        getAllDoors();
+        setDoors(true);
 
         altars = gameObject.transform.GetComponentsInChildren<AltarHandler>().ToList();
 

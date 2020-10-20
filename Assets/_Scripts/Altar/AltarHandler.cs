@@ -87,8 +87,6 @@ public class AltarHandler : MonoBehaviour
         showText(false);
     }
 
-
-
     private void Awake()
     {
         StartCoroutine(startHandmoving());

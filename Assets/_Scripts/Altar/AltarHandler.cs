@@ -40,7 +40,7 @@ public class AltarHandler : MonoBehaviour
 
     public void use()
     {
-        if (Inventory.Instance.bones >= upgrade.BoneCost)
+        if (Inventory.Instance.bones >= upgrade.BoneCost && !used)
         {
             used = true;
             Inventory.Instance.setBones(-upgrade.BoneCost);
@@ -54,11 +54,11 @@ public class AltarHandler : MonoBehaviour
             // DISABLE DIALOG TEXT BOX
             UiManager.Instance.showText(false, "", 0, 0);
 
-            // Shake GameObject
-            LeanTween.moveLocalX(hand.gameObject.transform.parent.gameObject, 0.2f, 0.2f).setEaseOutBounce().setOnComplete(() =>
+            // Squish & Strech GameObject for Feedback
+            LeanTween.scale(gameObject, new Vector3(0.7f, 1.3f, 1), 0.4f).setEaseOutBack().setOnComplete(() =>
             {
-                LeanTween.moveLocalX(hand.gameObject.transform.parent.gameObject, 0, 0.1f).setEaseOutBounce();
-            }).setLoopCount(2);
+                LeanTween.scale(gameObject, Vector3.one, 1).setEaseOutBounce();
+            });
 
         }
         else

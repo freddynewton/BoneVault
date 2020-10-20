@@ -10,12 +10,6 @@ public class LightController : MonoBehaviour
     private Light torchLight;
     private float timeElapsed;
 
-
-    void Start()
-    {
-        
-    }
-
     private void Awake()
     {
         torchLight = gameObject.GetComponent<Light>();

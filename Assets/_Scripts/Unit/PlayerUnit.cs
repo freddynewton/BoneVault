@@ -10,6 +10,8 @@ public class PlayerUnit : Unit
     [HideInInspector] public float currentStamina;
     [HideInInspector] public bool isStaminaReg = true;
 
+    public PlayerUpgradeHandler upgradeHandler;
+
     public float timeToRegStaminaAfterHitZero = 2f;
     private bool foolStamina;
 
@@ -21,9 +23,9 @@ public class PlayerUnit : Unit
 
     public void updateStamina()
     {
-        if (!foolStamina && isStaminaReg && currentStamina <= stats.stamina)
+        if (!foolStamina && isStaminaReg && currentStamina <= stats.stamina + upgradeHandler.maxStaminaUpgrade)
         {
-            setStamina(Time.deltaTime * stats.staminaRate);
+            setStamina(Time.deltaTime * stats.staminaRate * upgradeHandler.staminaRateUpgrade);
         }
     }
 
@@ -31,13 +33,15 @@ public class PlayerUnit : Unit
     {
         currentStamina += amount;
 
-        if (currentStamina > stats.stamina) currentStamina = stats.stamina;
+        if (currentStamina > stats.stamina + upgradeHandler.maxStaminaUpgrade) currentStamina = stats.stamina + upgradeHandler.maxStaminaUpgrade;
         else if (currentStamina < 0)
         {
             foolStamina = true;
             currentStamina = 0;
             Invoke("changeFoolStamina", timeToRegStaminaAfterHitZero);
         }
+
+        Debug.Log("Current Stamina: " + currentStamina + "\nMax Stamina: " + (stats.stamina + upgradeHandler.maxStaminaUpgrade));
 
         // TODO CALL UI UPDATE FUNCTION
         UiManager.Instance.setStamina();
@@ -64,7 +68,7 @@ public class PlayerUnit : Unit
     {
         base.hit();
 
-        // TODO Do Player hit effect
+        // Do Player hit effect
         UiManager.Instance.flashScreen.flashScreen(1);
 
     }
@@ -85,12 +89,12 @@ public class PlayerUnit : Unit
                 break;
 
             case Weapon.callbackValue.NOTHING:
-                if (currentStamina - (damageType.damage * 2) < 0)
+                if (currentStamina - (damageType.damage * 3) < 0)
                 {
                     base.DoDamage(damageSrcPos, damageType);
                     UiManager.Instance.setHealth();
                 }
-                setStamina(-damageType.damage * 2);
+                setStamina(-damageType.damage * 3);
                 break;
 
         }
@@ -99,7 +103,7 @@ public class PlayerUnit : Unit
     public void setHealthPlayer(int amount)
     {
         currentHealth += amount;
-        if (currentHealth > stats.health) currentHealth = stats.health;
+        if (currentHealth > stats.health + upgradeHandler.maxHealthUpgrade) currentHealth = stats.health;
 
         UiManager.Instance.setHealth();
     }

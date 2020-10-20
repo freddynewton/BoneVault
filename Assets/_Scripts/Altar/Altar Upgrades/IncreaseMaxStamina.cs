@@ -5,8 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Altar/Upgrade/IncreaseMaxStaminaAltarUpgrade")]
 public class IncreaseMaxStamina : AltarUpgrade
 {
+    [Header("Amount Max Stamina Upgrade")]
+    public int maxStaminaUpgradeValue = 1;
+
     public override void use()
     {
-        throw new System.NotImplementedException();
+        PlayerController.Instance.unit.upgradeHandler.maxStaminaUpgrade += maxStaminaUpgradeValue;
     }
 }

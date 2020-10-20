@@ -87,23 +87,23 @@ public class UiManager : MonoBehaviour
     {
         if (PlayerController.Instance != null)
         {
-            staminaSlider.maxValue = PlayerController.Instance.unit.stats.stamina;
+            staminaSlider.maxValue = PlayerController.Instance.unit.stats.stamina + PlayerController.Instance.unit.upgradeHandler.maxStaminaUpgrade;
             staminaSlider.value = PlayerController.Instance.unit.currentStamina;
         }
-
-
-        // TODO LEANTWEEN
     }
 
     public void setHealth()
     {
         if (PlayerController.Instance != null)
         {
-            healthSlider.maxValue = PlayerController.Instance.unit.stats.health;
-            healthSlider.value = PlayerController.Instance.unit.currentHealth;
-        }
+            healthSlider.maxValue = PlayerController.Instance.unit.stats.health + PlayerController.Instance.unit.upgradeHandler.maxHealthUpgrade;
+            //healthSlider.value = PlayerController.Instance.unit.currentHealth;
 
-        // TODO LEANTWEEN
+            LeanTween.value(healthSlider.value, PlayerController.Instance.unit.currentHealth, 1f).setEaseOutBounce().setOnUpdate((float value) =>
+            {
+                healthSlider.value = value;
+            });
+        }
     }
 
     private IEnumerator loadUi()

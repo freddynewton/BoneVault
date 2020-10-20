@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     private float walkSpeed;
     private float baseSpeed;
     private float sprintSpeed;
-    private float halfSpeed;
     private float fallSpeed;
     private Vector3 velocity;
 
@@ -31,7 +30,6 @@ public class PlayerController : MonoBehaviour
         walkSpeed = unit.stats.moveSpeed;
         baseSpeed = unit.stats.moveSpeed;
         sprintSpeed = unit.stats.moveSpeed * 2f;
-        halfSpeed = unit.stats.moveSpeed / 2;
     }
 
     private void Update()
@@ -58,7 +56,7 @@ public class PlayerController : MonoBehaviour
             if (Inventory.Instance.currWeapon != null)
             {
                 Inventory.Instance.currWeaponScript.attackRightClick(true);
-                walkSpeed = halfSpeed;
+                walkSpeed = unit.stats.moveSpeed / 2;
             }
         }
 
@@ -66,7 +64,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonUp("Fire2"))
         {
             Inventory.Instance.currWeaponScript.attackRightClick(false);
-            walkSpeed = baseSpeed;
+            walkSpeed = baseSpeed + unit.upgradeHandler.baseSpeedUpgrade;
         }
 
         Sprint();
@@ -78,21 +76,21 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetButtonDown("Sprint"))
             {
-                walkSpeed = sprintSpeed;
+                walkSpeed = sprintSpeed + unit.upgradeHandler.sprintSpeedUpgrade; 
             }
             else if (Input.GetButtonUp("Sprint"))
             {
-                walkSpeed = baseSpeed;
+                walkSpeed = baseSpeed + unit.upgradeHandler.baseSpeedUpgrade;
             }
 
             if (Input.GetButton("Sprint"))
             {
-                unit.setStamina(-(unit.stats.sprintCostRate * Time.deltaTime));
+                unit.setStamina(-((unit.stats.sprintCostRate * unit.upgradeHandler.sprintSpeedCosts) * Time.deltaTime));
             }
         }
         else
         {
-            walkSpeed = baseSpeed;
+            walkSpeed = baseSpeed + unit.upgradeHandler.baseSpeedUpgrade;
         }
     }
 

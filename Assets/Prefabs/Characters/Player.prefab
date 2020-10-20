@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 252462659820718107}
   - component: {fileID: 252462659820718106}
   - component: {fileID: 486285905}
+  - component: {fileID: 594818234}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -122,7 +123,8 @@ MonoBehaviour:
   flashScript: {fileID: 0}
   currentStamina: 0
   isStaminaReg: 1
-  timeToRegStaminaAfterHitZero: 2
+  upgradeHandler: {fileID: 594818234}
+  timeToRegStaminaAfterHitZero: 3
 --- !u!95 &486285905
 Animator:
   serializedVersion: 3
@@ -142,6 +144,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &594818234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252462659820718105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d582256b758e4fe49804b10446450db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthUpgrade: 0
+  sprintSpeedUpgrade: 0
+  baseSpeedUpgrade: 0
+  sprintSpeedCosts: 1
+  staminaRateUpgrade: 1
+  maxStaminaUpgrade: 0
 --- !u!1 &252462660899415495
 GameObject:
   m_ObjectHideFlags: 0

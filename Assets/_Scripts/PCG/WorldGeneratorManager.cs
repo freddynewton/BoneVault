@@ -107,6 +107,20 @@ public class WorldGeneratorManager : MonoBehaviour
         // Spawn Special Rooms
         SpawnSpecialRooms(specialRoomCount, 0);
 
+        // Controll that no room is on the same place as a other
+        foreach (GameObject r in rooms)
+        {
+            int count = 0;
+
+            foreach (GameObject _r in rooms)
+            {
+                if (r.transform.position == r.transform.position) count += 1;
+            }
+
+            if (count > 1) StartCoroutine(generateMap());
+        }
+
+
         // Set Hallway
         SpawnHallways();
 

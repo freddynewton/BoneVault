@@ -157,8 +157,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealthUpgrade: 0
-  sprintSpeedUpgrade: 0
-  baseSpeedUpgrade: 0
+  sprintSpeedUpgrade: 1
+  baseSpeedUpgrade: 1
   sprintSpeedCosts: 1
   staminaRateUpgrade: 1
   maxStaminaUpgrade: 0

@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonUp("Fire2"))
         {
             Inventory.Instance.currWeaponScript.attackRightClick(false);
-            walkSpeed = baseSpeed + unit.upgradeHandler.baseSpeedUpgrade;
+            walkSpeed = baseSpeed * unit.upgradeHandler.baseSpeedPercentageUpgrade;
         }
 
         Sprint();
@@ -76,21 +76,21 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetButtonDown("Sprint"))
             {
-                walkSpeed = sprintSpeed + unit.upgradeHandler.sprintSpeedUpgrade; 
+                walkSpeed = sprintSpeed * unit.upgradeHandler.sprintSpeedPercentageUpgrade; 
             }
             else if (Input.GetButtonUp("Sprint"))
             {
-                walkSpeed = baseSpeed + unit.upgradeHandler.baseSpeedUpgrade;
+                walkSpeed = baseSpeed * unit.upgradeHandler.baseSpeedPercentageUpgrade;
             }
 
             if (Input.GetButton("Sprint"))
             {
-                unit.setStamina(-((unit.stats.sprintCostRate * unit.upgradeHandler.sprintSpeedCosts) * Time.deltaTime));
+                unit.setStamina(-((unit.stats.sprintCostRate * unit.upgradeHandler.sprintSpeedPercentageCostsUpgrade) * Time.deltaTime));
             }
         }
         else
         {
-            walkSpeed = baseSpeed + unit.upgradeHandler.baseSpeedUpgrade;
+            walkSpeed = baseSpeed * unit.upgradeHandler.baseSpeedPercentageUpgrade;
         }
     }
 

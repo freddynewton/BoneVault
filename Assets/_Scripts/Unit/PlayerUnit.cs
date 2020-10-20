@@ -25,7 +25,7 @@ public class PlayerUnit : Unit
     {
         if (!foolStamina && isStaminaReg && currentStamina <= stats.stamina + upgradeHandler.maxStaminaUpgrade)
         {
-            setStamina(Time.deltaTime * stats.staminaRate * upgradeHandler.staminaRateUpgrade);
+            setStamina(Time.deltaTime * stats.staminaRate * upgradeHandler.staminaRatePercentageUpgrade);
         }
     }
 

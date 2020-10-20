@@ -108,17 +108,7 @@ public class WorldGeneratorManager : MonoBehaviour
         SpawnSpecialRooms(specialRoomCount, 0);
 
         // Controll that no room is on the same place as a other
-        foreach (GameObject r in rooms)
-        {
-            int count = 0;
-
-            foreach (GameObject _r in rooms)
-            {
-                if (r.transform.position == r.transform.position) count += 1;
-            }
-
-            if (count > 1) StartCoroutine(generateMap());
-        }
+        if (controllWorldGen()) StartCoroutine(generateMap());
 
 
         // Set Hallway
@@ -137,6 +127,23 @@ public class WorldGeneratorManager : MonoBehaviour
 
         // Bake Navmesh
         bakeNavmesh();
+    }
+
+    private bool controllWorldGen()
+    {
+        foreach (GameObject r in rooms)
+        {
+            int count = 0;
+
+            foreach (GameObject _r in rooms)
+            {
+                if (r.transform.position == _r.transform.position) count += 1;
+            }
+
+            if (count > 1) return true;
+        }
+
+        return false;
     }
 
     /// <summary>

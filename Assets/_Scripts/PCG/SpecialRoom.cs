@@ -8,8 +8,9 @@ public class SpecialRoom : Room
     [Header("Altar")]
     public List<AltarHandler> altars;
 
-    [Header("Raycast Settings")]
-    public LayerMask ignoreMeRay;
+    [Header("Special Room Lights")]
+    public GameObject lightsParentSpecialRoom;
+    public List<Light> specialLights;
 
     private void LateUpdate()
     {
@@ -49,11 +50,42 @@ public class SpecialRoom : Room
         altars = gameObject.transform.GetComponentsInChildren<AltarHandler>().ToList();
 
         fillUpgrades();
+
+        specialLights = lightsParentSpecialRoom.GetComponentsInChildren<Light>().ToList();
+
+        foreach(Light l in specialLights)
+        {
+            SpriteRenderer rend = l.gameObject.gameObject.GetComponent<SpriteRenderer>();
+            rend.enabled = false;
+            l.gameObject.SetActive(false);
+        }
+    }
+
+    public IEnumerator setSpecialRoomLights(Color color, int idx)
+    {
+        yield return new WaitForSecondsRealtime(activateLightDelay);
+
+        Light l = specialLights[idx];
+
+        SpriteRenderer rend = l.gameObject.gameObject.GetComponent<SpriteRenderer>();
+
+        if (rend != null)
+        {
+            rend.enabled = true;
+            rend.color = color;
+        }
+
+        l.color = color;
+        l.gameObject.SetActive(true);
+
+
+        if (idx < specialLights.Count - 1) StartCoroutine(setSpecialRoomLights(color, idx += 1));
     }
 
     public override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
+        StartCoroutine(setSpecialRoomLights(mainColor, 0));
     }
 
     public override void OnTriggerExit(Collider other)

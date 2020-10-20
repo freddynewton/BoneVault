@@ -41,8 +41,6 @@ public class PlayerUnit : Unit
             Invoke("changeFoolStamina", timeToRegStaminaAfterHitZero);
         }
 
-        Debug.Log("Current Stamina: " + currentStamina + "\nMax Stamina: " + (stats.stamina + upgradeHandler.maxStaminaUpgrade));
-
         // TODO CALL UI UPDATE FUNCTION
         UiManager.Instance.setStamina();
     }

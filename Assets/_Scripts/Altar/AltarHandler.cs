@@ -55,11 +55,14 @@ public class AltarHandler : MonoBehaviour
             UiManager.Instance.showText(false, "", 0, 0);
 
             // Squish & Strech GameObject for Feedback
-            LeanTween.scale(gameObject, new Vector3(0.7f, 1.3f, 1), 0.4f).setEaseOutBack().setOnComplete(() =>
+            LeanTween.scale(hand, new Vector3(0.7f, 1.3f, 1), 0.4f).setEaseOutBack().setOnComplete(() =>
             {
-                LeanTween.scale(gameObject, Vector3.one, 1).setEaseOutBounce();
+                LeanTween.scale(hand, Vector3.one, 1).setEaseOutBounce().setOnComplete(() => {
+                    LeanTween.cancel(hand);
+                    LeanTween.moveLocal(hand, new Vector3(0, 1.2f, -0.5f), 3f).setEaseInQuad();
+                    LeanTween.rotateX(hand, 30f, 3f).setEaseInQuad();
+                });
             });
-
         }
         else
         {

@@ -52,7 +52,7 @@ public class UiManager : MonoBehaviour
         LeanTween.scale(dialogBackground.gameObject, new Vector3(0.1f, 0.8f, 1), 0.3f).setEaseOutQuint().setOnComplete(() =>
         {
             uiboxText.text = text;
-            costsText.text = "Bones: " + costs.ToString();
+            costsText.text = "Cost: " + costs.ToString();
             uiboxText.gameObject.SetActive(true);
             costsText.gameObject.SetActive(true);
 
@@ -77,7 +77,7 @@ public class UiManager : MonoBehaviour
             {
                 d.color = Color.white;
                 uiboxText.text = upgrade.uiText;
-                costsText.text = "Bones: " + upgrade.BoneCost.ToString();
+                costsText.text = "Cost: " + upgrade.BoneCost.ToString();
             });
         });
     }

@@ -766,7 +766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69c19645abc1424d82f80c94de947f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startOnAwake: 0
+  startOnAwake: 1
   roomCount: 10
   specialRoomCount: 1
   worldWidth: 5
@@ -1878,7 +1878,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2795715297161401036, guid: f4d29d215adc25b41820125aaa9f4c01, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2795715297161401037, guid: f4d29d215adc25b41820125aaa9f4c01, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2014,15 +2014,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
+  m_fontSize: 72
   m_fontSizeBase: 100
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 4
-  m_VerticalAlignment: 1024
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0

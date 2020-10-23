@@ -174,9 +174,10 @@ public class WorldGeneratorManager : MonoBehaviour
                 foreach (Door d in room.doors)
                 {
                     Vector3 dir = -(r.gameObject.transform.position - d.gameObject.transform.position).normalized;
+                    Vector3Int pos = Vector3Int.FloorToInt(r.gameObject.transform.position + dir * hallwaySpace);
 
-                    if (controlHallwayPos(r.gameObject.transform.position + dir * hallwaySpace))
-                        hallWays.Add(Instantiate(returnRandomHallway(), r.gameObject.transform.position + dir * hallwaySpace, returnHallwayRotation(dir), gameObject.transform) as GameObject); ;
+                    if (controlHallwayPos(pos))
+                        hallWays.Add(Instantiate(returnRandomHallway(), pos, returnHallwayRotation(dir), gameObject.transform) as GameObject); ;
                 }
             }
         }
@@ -263,7 +264,7 @@ public class WorldGeneratorManager : MonoBehaviour
             while (!t)
             {
                 Vector2Int tmp = getRandomRoomInMap();
-                Vector3 roomPos = new Vector3(tmp.x * roomSpace, 0, tmp.y * roomSpace);
+                Vector3Int roomPos = new Vector3Int(tmp.x * roomSpace, 0, tmp.y * roomSpace);
 
                 if ((findNeighbourRoomCount(tmp) == 1 || findNeighbourRoomCount(tmp) == 3) && rooms[0].gameObject.transform.position != roomPos)
                 {
@@ -450,7 +451,7 @@ public class WorldGeneratorManager : MonoBehaviour
         {
             case 1:
                 specialRoomPos = getZeroInMap(pos, 1);
-                GameObject _spc = Instantiate(roomTyped[UnityEngine.Random.Range(0, roomTyped.Count)], new Vector3(specialRoomPos.x * roomSpace, 0, specialRoomPos.y * roomSpace), Quaternion.identity, gameObject.transform) as GameObject;
+                GameObject _spc = Instantiate(roomTyped[UnityEngine.Random.Range(0, roomTyped.Count)], new Vector3Int(specialRoomPos.x * roomSpace, 0, specialRoomPos.y * roomSpace), Quaternion.identity, gameObject.transform) as GameObject;
                 GameObject _new = Instantiate(roomL[UnityEngine.Random.Range(0, roomL.Count)], roomPos, room.transform.rotation, gameObject.transform) as GameObject;
                 _spc.transform.LookAt(_new.transform);
 
@@ -462,7 +463,7 @@ public class WorldGeneratorManager : MonoBehaviour
             case 3:
                 specialRoomPos = getZeroInMap(pos, 3);
 
-                GameObject specialRoom = Instantiate(roomTyped[UnityEngine.Random.Range(0, roomTyped.Count)], new Vector3(specialRoomPos.x * roomSpace, 0, specialRoomPos.y * roomSpace), Quaternion.identity, gameObject.transform) as GameObject;
+                GameObject specialRoom = Instantiate(roomTyped[UnityEngine.Random.Range(0, roomTyped.Count)], new Vector3Int(specialRoomPos.x * roomSpace, 0, specialRoomPos.y * roomSpace), Quaternion.identity, gameObject.transform) as GameObject;
                 GameObject newRoom = Instantiate(roomL[UnityEngine.Random.Range(0, roomL.Count)], roomPos, Quaternion.identity, gameObject.transform) as GameObject;
                 specialRoom.transform.LookAt(newRoom.transform);
 
@@ -504,11 +505,11 @@ public class WorldGeneratorManager : MonoBehaviour
     {
         if (rooms.Count == 0)
         {
-            rooms.Add(Instantiate(returnRandomRoom(neighbourRoomCount, 0, roomPos), new Vector3(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), returnRoomRotation(neighbourRoomCount, roomPos), gameObject.transform) as GameObject);
+            rooms.Add(Instantiate(returnRandomRoom(neighbourRoomCount, 0, roomPos), new Vector3Int(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), returnRoomRotation(neighbourRoomCount, roomPos), gameObject.transform) as GameObject);
         }
         else
         {
-            rooms.Add(Instantiate(returnRandomRoom(neighbourRoomCount, 1, roomPos), new Vector3(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), returnRoomRotation(neighbourRoomCount, roomPos), gameObject.transform) as GameObject);
+            rooms.Add(Instantiate(returnRandomRoom(neighbourRoomCount, 1, roomPos), new Vector3Int(roomPos.x * roomSpace, 0, roomPos.y * roomSpace), returnRoomRotation(neighbourRoomCount, roomPos), gameObject.transform) as GameObject);
         }
     }
 

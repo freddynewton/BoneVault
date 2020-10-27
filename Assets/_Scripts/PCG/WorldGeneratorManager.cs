@@ -47,8 +47,8 @@ public class WorldGeneratorManager : MonoBehaviour
     [HideInInspector] public int[,] map;
     [HideInInspector] public List<Vector2Int> mapSetPos;
 
-    private List<GameObject> rooms = new List<GameObject>();
-    private List<GameObject> hallWays = new List<GameObject>();
+    [HideInInspector] public List<GameObject> rooms = new List<GameObject>();
+    [HideInInspector] private List<GameObject> hallWays = new List<GameObject>();
 
     private List<GameObject> resourcesEnemyRoomList = new List<GameObject>();
     private List<GameObject> resourcesStartRoomList = new List<GameObject>();

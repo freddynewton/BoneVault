@@ -21,7 +21,7 @@ public class MiniMapGenerator : MonoBehaviour
     public void generateMiniMap()
     {
         // Clear Minimap
-        foreach (Transform t in gameObject.transform) Destroy(t.gameObject);
+        foreach (Transform t in MiniMapCanvas.transform) Destroy(t.gameObject);
         mmParts.Clear();
 
         // Get World Map
@@ -36,18 +36,30 @@ public class MiniMapGenerator : MonoBehaviour
 
     public void spawnRoom(GameObject room)
     {
+        Vector3 roomPos = new Vector3(room.transform.position.x, room.transform.position.z, 0);
+        Quaternion roomRot = Quaternion.Euler(0, 0, room.transform.rotation.eulerAngles.y);
+
         switch (room.GetComponent<Room>().roomDirection)
         {
             case Room.RoomDirection.OneDoor:
-                mmParts.Add(Instantiate(getRoomPF(Room.RoomDirection.OneDoor), room.transform.position, room.transform.rotation, MiniMapCanvas.transform));
+                mmParts.Add(Instantiate(getRoomPF(Room.RoomDirection.OneDoor), roomPos, roomRot, MiniMapCanvas.transform));
+                mmParts[mmParts.Count - 1].GetComponent<MiniMapPart>().room = room.GetComponent<Room>();
                 break;
             case Room.RoomDirection.TwoDoorLinear:
+                mmParts.Add(Instantiate(getRoomPF(Room.RoomDirection.TwoDoorLinear), roomPos, roomRot, MiniMapCanvas.transform));
+                mmParts[mmParts.Count - 1].GetComponent<MiniMapPart>().room = room.GetComponent<Room>();
                 break;
             case Room.RoomDirection.TwoDoorCurve:
+                mmParts.Add(Instantiate(getRoomPF(Room.RoomDirection.TwoDoorCurve), roomPos, roomRot, MiniMapCanvas.transform));
+                mmParts[mmParts.Count - 1].GetComponent<MiniMapPart>().room = room.GetComponent<Room>();
                 break;
             case Room.RoomDirection.ThreeDoor:
+                mmParts.Add(Instantiate(getRoomPF(Room.RoomDirection.ThreeDoor), roomPos, roomRot, MiniMapCanvas.transform));
+                mmParts[mmParts.Count - 1].GetComponent<MiniMapPart>().room = room.GetComponent<Room>();
                 break;
             case Room.RoomDirection.FourDoor:
+                mmParts.Add(Instantiate(getRoomPF(Room.RoomDirection.FourDoor), roomPos, roomRot, MiniMapCanvas.transform));
+                mmParts[mmParts.Count - 1].GetComponent<MiniMapPart>().room = room.GetComponent<Room>();
                 break;
             default:
                 break;
@@ -59,19 +71,15 @@ public class MiniMapGenerator : MonoBehaviour
         switch (roomDirection)
         {
             case Room.RoomDirection.OneDoor:
-                foreach (GameObject g in miniMapPartsResources)
-                {
-
-                }
-                break;
+                return Resources.Load<GameObject>("UI/Minimap/1Room_MM");
             case Room.RoomDirection.TwoDoorLinear:
-                break;
+                return Resources.Load<GameObject>("UI/Minimap/2Room_Linear_MM");
             case Room.RoomDirection.TwoDoorCurve:
-                break;
+                return Resources.Load<GameObject>("UI/Minimap/2Room_Curve_MM");
             case Room.RoomDirection.ThreeDoor:
-                break;
+                return Resources.Load<GameObject>("UI/Minimap/3Room_MM");
             case Room.RoomDirection.FourDoor:
-                break;
+                return Resources.Load<GameObject>("UI/Minimap/4Room_MM");
             default:
                 break;
         }

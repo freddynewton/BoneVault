@@ -14,6 +14,8 @@ public class MiniMapPart : MonoBehaviour
         Hallway
     }
 
+    public Room room;
+
     [Header("Part Settigns")]
     public RoomDirMM roomDirection;
 }

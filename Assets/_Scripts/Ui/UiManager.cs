@@ -30,6 +30,14 @@ public class UiManager : MonoBehaviour
     [Header("Red Flash")]
     public FlashScreen flashScreen;
 
+    [Header("Minimap Canvas")]
+    public GameObject minimapCanvas;
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab)) minimapCanvas.SetActive(!minimapCanvas.activeSelf);
+    }
+
     public void setBones(string amount)
     {
         BonesCount.text = amount;

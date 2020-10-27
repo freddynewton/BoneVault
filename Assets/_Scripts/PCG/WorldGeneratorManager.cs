@@ -58,6 +58,9 @@ public class WorldGeneratorManager : MonoBehaviour
 
     private List<NavMeshSurface> navMeshSurfaces = new List<NavMeshSurface>();
 
+    [Header("Minimap")]
+    public MiniMapGenerator miniMapGenerator;
+
     private void LateUpdate()
     {
         if (TestMode && Input.GetKeyDown(KeyCode.DownArrow)) StartCoroutine(generateMap());
@@ -127,6 +130,9 @@ public class WorldGeneratorManager : MonoBehaviour
 
         // Bake Navmesh
         bakeNavmesh();
+
+        // Generate Minimap
+        miniMapGenerator.generateMiniMap();
     }
 
     private bool controllWorldGen()

@@ -198,8 +198,6 @@ public class WorldGeneratorManager : MonoBehaviour
     {
         Quaternion q = Quaternion.identity;
 
-        Debug.Log(dir);
-
         if (dir.z == 1 || dir.z == -1)
         {
             q = Quaternion.Euler(0, 90, 0);

@@ -20,8 +20,10 @@ public class MiniMapPart : MonoBehaviour
     public Room room;
     public Image icon;
 
-    private void Awake()
+    public void setPart(Room _room)
     {
+        room = _room;
+        room.miniMapPart = this;
         StartCoroutine(setIcon());
     }
 
@@ -30,30 +32,35 @@ public class MiniMapPart : MonoBehaviour
         yield return new WaitForEndOfFrame();
         if (room != null)
         {
-            if (room.roomType != Room.RoomType.ENEMIE_ROOM) icon.sprite = getIcon(room.roomType);
-            icon.preserveAspect = true;
+            if (room.roomType != Room.RoomType.ENEMIE_ROOM && room.roomType != Room.RoomType.HALLWAY)
+            {
+                icon.sprite = getIcon(room.roomType);
+                icon.preserveAspect = true;
+            }
+
         }
-        
+
+        gameObject.SetActive(false);
     }
 
     // Get Sprites todo
     public Sprite getIcon(Room.RoomType type)
     {
-        icon.enabled = true;
-
-        switch (type)
+        if (icon != null)
         {
-            case Room.RoomType.START_ROOM:
-                return Resources.Load<Sprite>("UI/Health");
-                break;
-            case Room.RoomType.ENEMIE_ROOM:
-                break;
-            case Room.RoomType.BOSS_ROOM:
-                return Resources.Load<Sprite>("UI/Passive");
-                break;
-            case Room.RoomType.SPECIAL_ROOM:
-                return Resources.Load<Sprite>("UI/Stamina");
-                break;
+            icon.enabled = true;
+
+            switch (type)
+            {
+                case Room.RoomType.START_ROOM:
+                    return Resources.Load<Sprite>("UI/Health");
+                case Room.RoomType.ENEMIE_ROOM:
+                    break;
+                case Room.RoomType.BOSS_ROOM:
+                    return Resources.Load<Sprite>("UI/Passive");
+                case Room.RoomType.SPECIAL_ROOM:
+                    return Resources.Load<Sprite>("UI/Stamina");
+            }
         }
 
         return null;

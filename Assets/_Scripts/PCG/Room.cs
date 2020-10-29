@@ -9,7 +9,8 @@ public class Room : MonoBehaviour
         START_ROOM,
         ENEMIE_ROOM,
         BOSS_ROOM,
-        SPECIAL_ROOM
+        SPECIAL_ROOM,
+        HALLWAY
     }
 
     public enum RoomDirection
@@ -18,7 +19,8 @@ public class Room : MonoBehaviour
         TwoDoorLinear,
         TwoDoorCurve,
         ThreeDoor,
-        FourDoor
+        FourDoor,
+        Hallway
     }
 
     [Header("Basic Room Settings")]
@@ -32,6 +34,8 @@ public class Room : MonoBehaviour
     public float activateLightDelay = 0.2f;
     public Color mainColor = Color.HSVToRGB(189, 100, 70);
     public Color secColor;
+
+    [HideInInspector] public MiniMapPart miniMapPart;
 
     public virtual void Awake()
     {
@@ -95,7 +99,7 @@ public class Room : MonoBehaviour
 
     public virtual void OnTriggerEnter(Collider other)
     {
-
+        miniMapPart.gameObject.SetActive(true);
     }
 
     public virtual void OnTriggerExit(Collider other)

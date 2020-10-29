@@ -32,6 +32,7 @@ public class EnemyRoom : Room
     public int spawnNewWaveUnder = 1;
     public int minEnemies = 2;
     public int maxEnemies = 10;
+    private bool isCleared = false;
 
     [Header("Enemy Spawn Settings")]
     public float spawnRange;
@@ -75,6 +76,7 @@ public class EnemyRoom : Room
         if (waves == 0 && returnLivingEnemyCount() == 0)
         {
             setDoors(true);
+            isCleared = true;
             return true;
         }
 
@@ -123,7 +125,7 @@ public class EnemyRoom : Room
     {
         base.OnTriggerEnter(other);
 
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && !isCleared)
         {
             setDoors(false);
             InvokeRepeating("startWave", 1, 1);

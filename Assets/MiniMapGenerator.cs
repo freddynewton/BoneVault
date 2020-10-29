@@ -50,6 +50,7 @@ public class MiniMapGenerator : MonoBehaviour
         Quaternion hallwayRot = Quaternion.Euler(0, 0, hallway.transform.rotation.eulerAngles.y);
 
         mmParts.Add(Instantiate(miniMapPartsResources.Find(x => x.GetComponent<MiniMapPart>().roomDirection == MiniMapPart.RoomDirMM.Hallway), hallwayPos, hallwayRot, miniMapContainer.transform));
+        mmParts[mmParts.Count - 1].GetComponent<MiniMapPart>().setPart(hallway.GetComponent<Room>());
     }
 
     public void spawnRoom(GameObject room)
@@ -59,7 +60,7 @@ public class MiniMapGenerator : MonoBehaviour
         GameObject minimapP = getRoomPF(room.GetComponent<Room>().roomDirection);
 
         mmParts.Add(Instantiate(minimapP, roomPos, roomRot, miniMapContainer.transform));
-        mmParts[mmParts.Count - 1].GetComponent<MiniMapPart>().room = room.GetComponent<Room>();
+        mmParts[mmParts.Count - 1].GetComponent<MiniMapPart>().setPart(room.GetComponent<Room>());
     }
 
     public Quaternion getRoomRotation(GameObject room)

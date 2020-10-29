@@ -38,16 +38,10 @@ public class MiniMapGenerator : MonoBehaviour
         miniMap = WorldGeneratorManager.Instance.map;
 
         // Spawn Rooms
-        foreach (GameObject room in WorldGeneratorManager.Instance.rooms)
-        {
-            spawnRoom(room);
-        }
+        foreach (GameObject room in WorldGeneratorManager.Instance.rooms) spawnRoom(room);
 
         // Spawn Hallways
-        foreach (GameObject hallway in WorldGeneratorManager.Instance.hallWays)
-        {
-            spawnHallways(hallway);
-        }
+        foreach (GameObject hallway in WorldGeneratorManager.Instance.hallWays) spawnHallways(hallway);
     }
 
     public void spawnHallways(GameObject hallway)
@@ -64,18 +58,13 @@ public class MiniMapGenerator : MonoBehaviour
         Quaternion roomRot = getRoomRotation(room);
         GameObject minimapP = getRoomPF(room.GetComponent<Room>().roomDirection);
 
-
         mmParts.Add(Instantiate(minimapP, roomPos, roomRot, miniMapContainer.transform));
         mmParts[mmParts.Count - 1].GetComponent<MiniMapPart>().room = room.GetComponent<Room>();
     }
 
     public Quaternion getRoomRotation(GameObject room)
     {
-        Quaternion q = Quaternion.identity;
-
-        q = Quaternion.Euler(0, 0, -room.transform.rotation.eulerAngles.y);
-
-        return q;
+        return Quaternion.Euler(0, 0, -room.transform.rotation.eulerAngles.y); ;
     }
 
     public GameObject getRoomPF(Room.RoomDirection roomDirection)

@@ -9,12 +9,19 @@ public class MiniMapGenerator : MonoBehaviour
 
     public GameObject miniMapContainer;
     public GameObject miniMapCanvas;
+    public GameObject playerMiniMap;
 
     private List<GameObject> miniMapPartsResources = new List<GameObject>();
     public const float gapFix = 0.64f;
 
 
     [HideInInspector] public List<GameObject> mmParts = new List<GameObject>();
+
+    private void LateUpdate()
+    {
+        // Set Playerpos
+        playerMiniMap.transform.position = new Vector3(PlayerController.Instance.transform.position.x, PlayerController.Instance.transform.position.z, 0) * gapFix;
+    }
 
     private void Start()
     {
@@ -66,7 +73,7 @@ public class MiniMapGenerator : MonoBehaviour
     {
         Quaternion q = Quaternion.identity;
 
-        q = Quaternion.Euler(0, 0, room.transform.rotation.eulerAngles.y);
+        q = Quaternion.Euler(0, 0, -room.transform.rotation.eulerAngles.y);
 
         return q;
     }

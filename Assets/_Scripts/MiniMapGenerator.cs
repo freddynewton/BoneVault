@@ -42,6 +42,9 @@ public class MiniMapGenerator : MonoBehaviour
 
         // Spawn Hallways
         foreach (GameObject hallway in WorldGeneratorManager.Instance.hallWays) spawnHallways(hallway);
+
+        // disable minimap
+        //miniMapCanvas.SetActive(false);
     }
 
     public void spawnHallways(GameObject hallway)
@@ -49,7 +52,7 @@ public class MiniMapGenerator : MonoBehaviour
         Vector3 hallwayPos = new Vector3(hallway.transform.position.x, hallway.transform.position.z, 0) * gapFix;
         Quaternion hallwayRot = Quaternion.Euler(0, 0, hallway.transform.rotation.eulerAngles.y);
 
-        mmParts.Add(Instantiate(miniMapPartsResources.Find(x => x.GetComponent<MiniMapPart>().roomDirection == MiniMapPart.RoomDirMM.Hallway), hallwayPos, hallwayRot, miniMapContainer.transform));
+        mmParts.Add(Instantiate(miniMapPartsResources.Find(x => x.name == "Hallway"), hallwayPos, hallwayRot, miniMapContainer.transform));
         mmParts[mmParts.Count - 1].GetComponent<MiniMapPart>().setPart(hallway.GetComponent<Room>());
     }
 

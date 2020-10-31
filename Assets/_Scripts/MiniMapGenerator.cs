@@ -55,9 +55,12 @@ public class MiniMapGenerator : MonoBehaviour
     {
         Vector3 pos = Vector3.zero;
 
-        foreach (GameObject m in mmParts)
+        while (pos != Vector3.zero)
         {
-            pos += m.transform.position;
+            foreach (GameObject m in mmParts)
+            {
+                pos += m.transform.position;
+            }
         }
 
         return (pos / mmParts.Count) + Vector3.forward * -512f;

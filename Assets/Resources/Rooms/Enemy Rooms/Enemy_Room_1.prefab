@@ -176,7 +176,7 @@ MonoBehaviour:
   lights: []
   activateLightDelay: 0.2
   mainColor: {r: 0, g: 0.6, b: 0.7019608, a: 1}
-  secColor: {r: 0, g: 0, b: 0, a: 0}
+  secColor: {r: 1, g: 0.6509804, b: 0.078431375, a: 0}
   miniMapPart: {fileID: 0}
   EnemyContainer: {fileID: 2033133657}
   EnemySpawnPositions:

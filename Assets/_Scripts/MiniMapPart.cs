@@ -40,7 +40,7 @@ public class MiniMapPart : MonoBehaviour
 
         }
 
-        if (room.roomType != Room.RoomType.START_ROOM) gameObject.SetActive(false);
+        // if (room.roomType != Room.RoomType.START_ROOM) gameObject.SetActive(false);
     }
 
     // Get Sprites todo

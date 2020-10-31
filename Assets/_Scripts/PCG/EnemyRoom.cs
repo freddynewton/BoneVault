@@ -77,6 +77,7 @@ public class EnemyRoom : Room
         {
             setDoors(true);
             isCleared = true;
+            setLights(secColor);
             return true;
         }
 

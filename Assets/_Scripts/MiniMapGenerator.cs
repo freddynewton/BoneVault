@@ -11,9 +11,10 @@ public class MiniMapGenerator : MonoBehaviour
     public GameObject miniMapCanvas;
     public GameObject playerMiniMap;
     public GameObject miniMapCamera;
+    public GameObject minimapTextureCanvas;
 
     private List<GameObject> miniMapPartsResources = new List<GameObject>();
-    public const float gapFix = 0.7f;
+    public const float gapFix = 0.38f;
 
 
     [HideInInspector] public List<GameObject> mmParts = new List<GameObject>();
@@ -49,21 +50,21 @@ public class MiniMapGenerator : MonoBehaviour
 
         // set Camera Pos
         miniMapCamera.transform.position = getCameraPos();
+
+        // close minimap
+        minimapTextureCanvas.SetActive(false);
     }
 
     public Vector3 getCameraPos()
     {
         Vector3 pos = Vector3.zero;
 
-        while (pos != Vector3.zero)
+        foreach (GameObject m in mmParts)
         {
-            foreach (GameObject m in mmParts)
-            {
-                pos += m.transform.position;
-            }
+            pos += m.transform.position;
         }
 
-        return (pos / mmParts.Count) + Vector3.forward * -512f;
+        return (pos / mmParts.Count) + Vector3.forward * -256f;
     }
 
     public void spawnHallways(GameObject hallway)

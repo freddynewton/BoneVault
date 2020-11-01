@@ -271,7 +271,7 @@ MonoBehaviour:
   uiboxText: {fileID: 619189540}
   costsText: {fileID: 1945093714}
   flashScreen: {fileID: 1388659675}
-  minimapCanvas: {fileID: 238684594}
+  minimapCanvas: {fileID: 1100081164}
 --- !u!1 &619189538
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,6 +931,7 @@ MonoBehaviour:
   miniMapCanvas: {fileID: 1919782110}
   playerMiniMap: {fileID: 2050344075}
   miniMapCamera: {fileID: 1785350613}
+  minimapTextureCanvas: {fileID: 1100081164}
   mmParts: []
 --- !u!1001 &1043866670
 PrefabInstance:

@@ -68,6 +68,7 @@ MonoBehaviour:
   activateLightDelay: 0.2
   mainColor: {r: 0.6009053, g: 0.0141509175, b: 1, a: 1}
   secColor: {r: 0, g: 0, b: 0, a: 0}
+  miniMapPart: {fileID: 0}
   TrapDoor:
   - {fileID: 2689473784974198526}
   - {fileID: 9100105078850125474}
@@ -1002,7 +1003,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 270926624414936043, guid: 865e87883b694dd48bf2bcc2895f3997, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -41
+      value: 7.18
       objectReference: {fileID: 0}
     - target: {fileID: 270926624414936043, guid: 865e87883b694dd48bf2bcc2895f3997, type: 3}
       propertyPath: m_LocalPosition.z

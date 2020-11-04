@@ -59,9 +59,17 @@ public class MiniMapGenerator : MonoBehaviour
     {
         Vector3 pos = Vector3.zero;
 
-        foreach (GameObject m in mmParts)
+        try
         {
-            pos += m.transform.position;
+            foreach (GameObject m in mmParts)
+            {
+                pos += m.transform.position;
+            }
+
+        }
+        catch (System.Exception)
+        {
+            miniMapCamera.transform.position = getCameraPos();
         }
 
         return (pos / mmParts.Count) + Vector3.forward * -256f;

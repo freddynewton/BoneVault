@@ -35,7 +35,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Movement();
-        InputButtons();
+
+        if (Cursor.lockState == CursorLockMode.Locked) InputButtons();
     }
 
     private void InputButtons()

@@ -19,7 +19,7 @@ public class CameraHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lookAtMouse();
+        if (Cursor.lockState == CursorLockMode.Locked) lookAtMouse();
     }
 
     private void lookAtMouse()

@@ -31,11 +31,18 @@ public class UiManager : MonoBehaviour
     public FlashScreen flashScreen;
 
     [Header("Minimap Canvas")]
-    public GameObject minimapCanvas;
+    public MiniMapManager miniMapManager;
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab)) minimapCanvas.SetActive(!minimapCanvas.activeSelf);
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (!miniMapManager.MiniMapGenerator.minimapTextureCanvas.activeSelf) Cursor.lockState = CursorLockMode.Confined;
+            else Cursor.lockState = CursorLockMode.Locked;
+
+            miniMapManager.openMinimap(!miniMapManager.MiniMapGenerator.minimapTextureCanvas.activeSelf);
+        } 
+
     }
 
     public void setBones(string amount)
@@ -71,7 +78,7 @@ public class UiManager : MonoBehaviour
         });
     }
 
-    public void showErrorMessage(AltarUpgrade upgrade ,float duration)
+    public void showErrorMessage(AltarUpgrade upgrade, float duration)
     {
         uiboxText.text = "NOT ENOUGH BONES";
         costsText.text = "";
@@ -105,7 +112,6 @@ public class UiManager : MonoBehaviour
         if (PlayerController.Instance != null)
         {
             healthSlider.maxValue = PlayerController.Instance.unit.stats.health + PlayerController.Instance.unit.upgradeHandler.maxHealthUpgrade;
-            //healthSlider.value = PlayerController.Instance.unit.currentHealth;
 
             LeanTween.value(healthSlider.value, PlayerController.Instance.unit.currentHealth, 1f).setEaseOutBounce().setOnUpdate((float value) =>
             {

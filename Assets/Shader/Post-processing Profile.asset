@@ -135,7 +135,7 @@ MonoBehaviour:
     value: 0
   saturation:
     overrideState: 1
-    value: 16.9
+    value: 7.9
   brightness:
     overrideState: 1
     value: -25
@@ -1459,7 +1459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d65e486e4de6e5448a8fbb43dc8756a0, type: 3}
   m_Name: Grain
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
@@ -1468,7 +1468,7 @@ MonoBehaviour:
     value: 0
   intensity:
     overrideState: 1
-    value: 0.5
+    value: 0.568
   size:
     overrideState: 1
     value: 2.5

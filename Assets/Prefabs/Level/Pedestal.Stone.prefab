@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aecc363471cbfd44a935af90de06939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnOnly: 0
+  turnOnly: 1
 --- !u!108 &738029873568380534
 Light:
   m_ObjectHideFlags: 0
@@ -227,7 +227,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.6509804, b: 0.078431375, a: 1}
-  m_Intensity: 16
+  m_Intensity: 12
   m_Range: 24
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

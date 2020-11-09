@@ -8,7 +8,8 @@ public enum InputAiEnum
 {
     Health,
     RangeToTargetNormalized,
-    TargetHealth
+    TargetHealth,
+    FireBallCount
 }
 
 public class UtilityAIHandler : MonoBehaviour
@@ -18,6 +19,7 @@ public class UtilityAIHandler : MonoBehaviour
 
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public EnemyUnit unit;
+    [HideInInspector] public BossUdokEnemyUnit bossUdokEnemyUnit;
     [HideInInspector] public NavMeshAgent navAgent;
 
 
@@ -28,6 +30,7 @@ public class UtilityAIHandler : MonoBehaviour
     void Start()
     {
         unit = GetComponent<EnemyUnit>();
+        bossUdokEnemyUnit = GetComponent<BossUdokEnemyUnit>();
         rb = GetComponent<Rigidbody2D>();
         navAgent = GetComponent<NavMeshAgent>();
     }
@@ -95,7 +98,8 @@ public class UtilityAIHandler : MonoBehaviour
                 }
             case InputAiEnum.TargetHealth:
                 return PlayerController.Instance.unit.currentHealth / PlayerController.Instance.unit.stats.health;
-
+            case InputAiEnum.FireBallCount:
+                return bossUdokEnemyUnit.fireBalls.Count / bossUdokEnemyUnit.maxFireBalls;
         }
 
         return 0;

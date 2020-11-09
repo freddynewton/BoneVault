@@ -95,7 +95,7 @@ public class EnemyUnit : Unit
         }
     }
 
-    private void setWalkingAnimation()
+    public virtual void setWalkingAnimation()
     {
         if (utilityAI.navAgent.velocity != Vector3.zero) animator.SetBool("isWalking", true);
         else animator.SetBool("isWalking", false);

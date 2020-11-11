@@ -29,7 +29,7 @@ public class Projectile : MonoBehaviour
     {
         if (isCirclingAround)
         {
-            gameObject.transform.RotateAround(circleAroundObj.transform.position, Vector3.up, 0f);
+            gameObject.transform.RotateAround(circleAroundObj.transform.position, Vector3.up, 30 * Time.deltaTime);
         }
     }
 
@@ -37,7 +37,7 @@ public class Projectile : MonoBehaviour
     {
         isCirclingAround = true;
         
-        // LeanTween.moveLocalY(gameObject, gameObject.transform.position.y - 0.5f, 1f).setEaseInOutQuad().setLoopPingPong();
+        LeanTween.moveLocalY(gameObject, 2.5f, 1.3f).setEaseInOutQuad().setLoopPingPong();
     }
 
     public void DestroyProj()

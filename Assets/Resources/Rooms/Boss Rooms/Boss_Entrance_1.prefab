@@ -62,15 +62,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomType: 2
   roomDirection: 0
-  doors: []
+  doors:
+  - {fileID: 3525499691901795746}
   lights: []
-  activateLightDelay: 0.2
+  activateLightDelay: 0.15
   mainColor: {r: 0.6009053, g: 0.0141509175, b: 1, a: 1}
   secColor: {r: 0, g: 0, b: 0, a: 0}
   miniMapPart: {fileID: 0}
   TrapDoor:
   - {fileID: 2689473784974198526}
   - {fileID: 9100105078850125474}
+  portalDoor: {fileID: 3772162024798434044}
   Button: {fileID: 0}
 --- !u!1 &2795715297913410846
 GameObject:
@@ -1631,6 +1633,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94fb00497e38b5046b3f9469dad3e78c, type: 3}
+--- !u!114 &3772162024798434044 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8381991521713077520, guid: 94fb00497e38b5046b3f9469dad3e78c, type: 3}
+  m_PrefabInstance: {fileID: 4614986207567220716}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86bb601805f5f6e4999a1a59ed68c78d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4480919227694916328 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9089625015135382788, guid: 94fb00497e38b5046b3f9469dad3e78c, type: 3}
@@ -1873,6 +1886,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1010693395267296081, guid: 865e87883b694dd48bf2bcc2895f3997, type: 3}
+      propertyPath: bossRoom
+      value: 
+      objectReference: {fileID: -1384700792354018123}
     - target: {fileID: 8170622236074527741, guid: 865e87883b694dd48bf2bcc2895f3997, type: 3}
       propertyPath: m_Name
       value: Boss
@@ -2933,6 +2950,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2e06c8d2ae1a5e4e96cb77d824655ce, type: 3}
+--- !u!114 &3525499691901795746 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5093478382365216585, guid: d2e06c8d2ae1a5e4e96cb77d824655ce, type: 3}
+  m_PrefabInstance: {fileID: 8521581047610913515}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86bb601805f5f6e4999a1a59ed68c78d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &605286762921238511 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9089625015135382788, guid: d2e06c8d2ae1a5e4e96cb77d824655ce, type: 3}

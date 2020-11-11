@@ -8,6 +8,8 @@ public class SpawnFireballs : ActionAI
 {
     public override void use(UtilityAIHandler controller)
     {
+        Debug.Log("Spawn");
+
         if (controller.bossUdokEnemyUnit.fireBalls.Count < controller.bossUdokEnemyUnit.maxFireBalls && controller.unit.waitTimer(3f))
         {
             controller.bossUdokEnemyUnit.fireBalls.Add(Instantiate<GameObject>(controller.bossUdokEnemyUnit.fireBallPF, controller.gameObject.transform.position + new Vector3(0, 2, 2), Quaternion.identity, controller.gameObject.transform));

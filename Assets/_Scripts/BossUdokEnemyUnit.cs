@@ -5,12 +5,14 @@ using UnityEngine;
 public class BossUdokEnemyUnit : EnemyUnit
 {
     [Header("Boss Settings")]
+    public BossRoom bossRoom;
 
     [Header("Fire Balls")]
     public List<GameObject> fireBalls = new List<GameObject>();
     public int maxFireBalls;
     public GameObject fireBallPF;
     public GameObject[] fireballFlyPos;
+
 
     public override void Start()
     {
@@ -53,5 +55,6 @@ public class BossUdokEnemyUnit : EnemyUnit
     public override void death()
     {
         base.death();
+        bossRoom.portalDoor.openDoor();
     }
 }

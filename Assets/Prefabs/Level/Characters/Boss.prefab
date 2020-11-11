@@ -339,6 +339,7 @@ MonoBehaviour:
   utilityAI: {fileID: 0}
   damageType: {fileID: 11400000, guid: 0e1f36deba2cd1a45aa13a0069a354d9, type: 2}
   triggerList: []
+  bossRoom: {fileID: 0}
   fireBalls: []
   maxFireBalls: 3
   fireBallPF: {fileID: 2675099585983753324, guid: d192cc3767f9e4b46b0d2224f35a4662, type: 3}

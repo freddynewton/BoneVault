@@ -8,6 +8,9 @@ public class BossRoom : Room
     [Header("TrapDoor")]
     public GameObject[] TrapDoor;
 
+    [Header("Portal Room")]
+    public Door portalDoor;
+
     [Header("Button")]
     public GameObject Button;
 
@@ -19,10 +22,19 @@ public class BossRoom : Room
         }
     }
 
-
     public override void Awake()
     {
-        base.Awake();
+        getAllLights();
+        setDoors(true);
+        portalDoor.closeDoor();
+
+        foreach (Light l in lights)
+        {
+            l.gameObject.SetActive(false);
+
+            SpriteRenderer rend = l.gameObject.GetComponent<SpriteRenderer>();
+            if (rend != null) l.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 
     public override void OnTriggerEnter(Collider other)

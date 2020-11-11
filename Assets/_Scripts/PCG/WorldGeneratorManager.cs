@@ -227,7 +227,8 @@ public class WorldGeneratorManager : MonoBehaviour
 
         foreach (GameObject h in hallWays)
         {
-            if (pos == h.gameObject.transform.position) found = false;
+            if (pos == h.transform.position) found = false;
+            if (Vector3.Distance(pos, h.transform.position) < 3) found = false;
         }
 
         return found;

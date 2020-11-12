@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   moveSpeed: 3
-  maxRange: 3
+  maxRange: 10
   stoppingDistance: 1.5
   stopsAttackingWhenHit: 0
   attackRate: 4

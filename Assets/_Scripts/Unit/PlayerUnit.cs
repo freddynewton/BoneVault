@@ -71,31 +71,49 @@ public class PlayerUnit : Unit
 
     }
 
-    public override void DoDamage(Vector3 damageSrcPos, DamageType damageType)
+    public override void DoDamage(GameObject damageObj, DamageType damageType)
     {
         Weapon.callbackValue v = Inventory.Instance.currWeaponScript.callbackDamageFnc();
 
         switch (v)
         {
             case Weapon.callbackValue.FAILURE:
-                base.DoDamage(damageSrcPos, damageType);
+                base.DoDamage(damageObj, damageType);
                 UiManager.Instance.setHealth();
                 break;
 
             case Weapon.callbackValue.SUCCESS:
-                // TODO 
+                // Projectile Throwback
+                if (damageObj.GetComponent<Projectile>()) projectileThrowback(damageObj, damageType);
                 break;
 
             case Weapon.callbackValue.NOTHING:
                 if (currentStamina - (damageType.damage * 3) < 0)
                 {
-                    base.DoDamage(damageSrcPos, damageType);
+                    base.DoDamage(damageObj, damageType);
                     UiManager.Instance.setHealth();
                 }
                 setStamina(-damageType.damage * 3);
                 break;
-
         }
+    }
+
+    public void projectileThrowback(GameObject damageObj, DamageType damageType)
+    {
+        LeanTween.cancel(damageObj);
+        Projectile proj = damageObj.GetComponent<Projectile>();
+        proj.isHittingEnemies = true;
+
+        RaycastHit hit;
+        Vector3 hitpos;
+
+        Physics.Raycast(Inventory.Instance.currWeapon.transform.position, Inventory.Instance.currWeapon.transform.forward, out hit);
+        hitpos = hit.point;
+
+        LeanTween.move(damageObj, hitpos, 5f).setEaseInBack().setOnComplete(() =>
+        {
+            proj.DestroyProj();
+        });
     }
 
     public void setHealthPlayer(int amount)

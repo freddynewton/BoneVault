@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
     [HideInInspector] public GameObject circleAroundObj;
     [HideInInspector] public BossUdokEnemyUnit bossUdok;
     [HideInInspector] public bool isCirclingAround = false;
+    [HideInInspector] public bool isHittingEnemies = false;
 
     private int targetPosIdx = 0;
 
@@ -52,11 +53,12 @@ public class Projectile : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Projectile Hit");
+            Debug.Log("Projectile Hit Player");
             DestroyProj();
         }
-        else if (!other.CompareTag("Enemy"))
+        else if (!other.CompareTag("Enemy") || isHittingEnemies)
         {
+            Debug.Log("Projectile Hit Enemy");
             DestroyProj();
         }
     }

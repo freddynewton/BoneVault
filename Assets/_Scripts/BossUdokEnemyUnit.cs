@@ -46,10 +46,9 @@ public class BossUdokEnemyUnit : EnemyUnit
         // Nothing
     }
 
-
-    public override void DoDamage(Vector3 damageSrcPos, DamageType damageType)
+    public override void DoDamage(GameObject damageObj, DamageType damageType)
     {
-        base.DoDamage(damageSrcPos, damageType);
+        base.DoDamage(damageObj, damageType);
     }
 
     public override void death()

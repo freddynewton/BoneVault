@@ -155,7 +155,7 @@ public class LongSword : Weapon
             int d = damageType.damage;
             damageType.damage = d + currentCharges;
 
-            objU.DoDamage(gameObject.transform.position, damageType);
+            objU.DoDamage(gameObject, damageType);
 
             damageType.damage = d;
             // End Trash Code

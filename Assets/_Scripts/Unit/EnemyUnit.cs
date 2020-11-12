@@ -64,9 +64,9 @@ public class EnemyUnit : Unit
         base.hit();
     }
 
-    public override void DoDamage(Vector3 damageSrcPos, DamageType damageType)
+    public override void DoDamage(GameObject damageObj, DamageType damageType)
     {
-        base.DoDamage(damageSrcPos, damageType);
+        base.DoDamage(damageObj, damageType);
     }
 
     public override void knockback(Vector3 otherPos, float kb)
@@ -91,7 +91,7 @@ public class EnemyUnit : Unit
     {
         foreach (GameObject obj in triggerList)
         {
-            obj.GetComponent<Unit>().DoDamage(gameObject.transform.position, damageType);
+            obj.GetComponent<Unit>().DoDamage(gameObject, damageType);
         }
     }
 

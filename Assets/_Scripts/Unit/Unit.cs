@@ -53,13 +53,13 @@ public class Unit : MonoBehaviour
     {
     }
 
-    public virtual void DoDamage(Vector3 damageSrcPos, DamageType damageType)
+    public virtual void DoDamage(GameObject damageObj, DamageType damageType)
     {
         if (currentHealth > 0)
         {
             StartCoroutine(flashWhite(0.1f));
 
-            if (!gameObject.CompareTag("Player")) knockback(damageSrcPos, damageType.knockbackForce);
+            if (!gameObject.CompareTag("Player")) knockback(damageObj.transform.position, damageType.knockbackForce);
 
             currentHealth -= damageType.damage;
             Debug.Log("Current Health: " + currentHealth + "\nDamage: " + damageType.damage);

@@ -39,6 +39,7 @@ Transform:
   - {fileID: 6824815113331400585}
   - {fileID: 6744224286674474881}
   - {fileID: 2142514781163872613}
+  - {fileID: 9223178808953616686}
   m_Father: {fileID: 4107013260048610404}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -112,7 +113,6 @@ Transform:
   - {fileID: 4107013258625119158}
   - {fileID: 4107013258747487277}
   - {fileID: 8686317276766585842}
-  - {fileID: 9223178808953616686}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -148,6 +148,7 @@ MonoBehaviour:
   activateLightDelay: 0.2
   mainColor: {r: 1, g: 0.65023714, b: 0.08018869, a: 1}
   secColor: {r: 0, g: 0, b: 0, a: 0}
+  miniMapPart: {fileID: 0}
   PlayerSpawn: {fileID: 8686317276766585842}
 --- !u!1 &8686317276766585841
 GameObject:
@@ -1418,7 +1419,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 4107013260048610404}
+    m_TransformParent: {fileID: 4107013258625119158}
     m_Modifications:
     - target: {fileID: 3983517019730311549, guid: b34f999f94a96dc4c9751d776d6c17ac, type: 3}
       propertyPath: m_Name
@@ -1454,7 +1455,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4324470711340966855, guid: b34f999f94a96dc4c9751d776d6c17ac, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4324470711340966855, guid: b34f999f94a96dc4c9751d776d6c17ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

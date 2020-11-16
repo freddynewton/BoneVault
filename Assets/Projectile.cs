@@ -53,12 +53,13 @@ public class Projectile : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Projectile Hit Player");
+            other.gameObject.GetComponent<Unit>().DoDamage(gameObject, damageType);
             DestroyProj();
         }
-        else if (!other.CompareTag("Enemy") || isHittingEnemies)
+        else if (other.CompareTag("Enemy") && isHittingEnemies)
         {
             Debug.Log("Projectile Hit Enemy");
+            other.gameObject.GetComponent<Unit>().DoDamage(gameObject, damageType);
             DestroyProj();
         }
     }

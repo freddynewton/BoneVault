@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 61d658fef08c5e2408062f8e59098b3d
+guid: 4cdf8a6f9c98617469090eaa7cab4277
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
@@ -7,13 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Pillar.Stone
-    second: {fileID: 2100000, guid: 23ad1bddd39ff3349966b687b218c283, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: UVMaterial32
-    second: {fileID: 2100000, guid: 23ad1bddd39ff3349966b687b218c283, type: 2}
+      name: Pedestal.Stone
+    second: {fileID: 2100000, guid: 056add6b1f5d3574ebe52d85702eeabd, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

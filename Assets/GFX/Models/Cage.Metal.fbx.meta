@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Chain.Metal
+    second: {fileID: 2100000, guid: 23ad1bddd39ff3349966b687b218c283, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Pillar.Stone
     second: {fileID: 2100000, guid: 23ad1bddd39ff3349966b687b218c283, type: 2}
   materials:

@@ -19,9 +19,11 @@ public class Billboard : MonoBehaviour
     private void LateUpdate () {
         if (turnOnly) {
             forward = new Vector3(Camera.main.transform.forward.x, transform.forward.y, Camera.main.transform.forward.z);
+            Vector3 camPos = new Vector3(Camera.main.transform.position.x, transform.position.y, Camera.main.transform.position.z);
 
             if (forward != Vector3.zero) {
-                transform.forward = forward;
+                // transform.forward = forward;
+                transform.LookAt(camPos, Vector3.up);
             }
         }
         else {

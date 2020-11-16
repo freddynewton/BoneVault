@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [HideInInspector] public DamageType damageType;
+    public DamageType damageType;
     [HideInInspector] public GameObject circleAroundObj;
     [HideInInspector] public BossUdokEnemyUnit bossUdok;
     [HideInInspector] public bool isCirclingAround = false;

@@ -42,7 +42,7 @@ public class Projectile : MonoBehaviour
 
     public void DestroyProj()
     {
-        LeanTween.cancel(gameObject);
+        LeanTween.cancel(gameObject, false);
         animator.SetTrigger("Explode");
         Destroy(gameObject, 1);
     }
@@ -58,9 +58,7 @@ public class Projectile : MonoBehaviour
         else if (other.CompareTag("Enemy") && isHittingEnemies)
         {
             other.gameObject.GetComponent<Unit>().DoDamage(gameObject, damageType);
-            LeanTween.cancel(gameObject);
-            animator.SetTrigger("Explode");
-            Invoke("DestroyProj", 1);
+            DestroyProj();
         }
     }
 }

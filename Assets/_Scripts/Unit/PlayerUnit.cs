@@ -112,15 +112,18 @@ public class PlayerUnit : Unit
 
     public void projectileThrowback(GameObject damageObj, DamageType damageType)
     {
-        LeanTween.cancel(damageObj);
+        LeanTween.cancel(gameObject, false);
         Projectile proj = damageObj.GetComponent<Projectile>();
         proj.isHittingEnemies = true;
 
         RaycastHit hit;
         Vector3 hitpos;
+        Vector3 dir = (transform.position - damageObj.transform.position).normalized;
 
-        Physics.Raycast(Inventory.Instance.currWeapon.transform.position, transform.position - damageObj.transform.position, out hit, 40f, proj.ignoreRayCastMask);
+        Physics.Raycast(Inventory.Instance.currWeapon.transform.position, dir, out hit, 40f, proj.ignoreRayCastMask);
         hitpos = hit.point;
+
+        Debug.DrawLine(gameObject.transform.position, hitpos);
 
         proj.ShootToTarget(hitpos, 1.3f);
     }

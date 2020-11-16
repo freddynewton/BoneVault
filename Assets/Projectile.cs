@@ -11,14 +11,11 @@ public class Projectile : MonoBehaviour
     [HideInInspector] public bool isCirclingAround = false;
     [HideInInspector] public bool isHittingEnemies = false;
 
-    private int targetPosIdx = 0;
-
-
-    public void ShootToTarget(Vector3 pos)
+    public void ShootToTarget(Vector3 pos, float time)
     {
         isCirclingAround = false;
         LeanTween.cancel(gameObject);
-        LeanTween.move(gameObject, pos, 5f).setEaseInBack().setOnComplete(() =>
+        LeanTween.move(gameObject, pos, time).setEaseInBack().setOnComplete(() =>
         {
             DestroyProj();
         });
@@ -44,8 +41,7 @@ public class Projectile : MonoBehaviour
     public void DestroyProj()
     {
         // TODO Explosion Effect
-        // bossUdok.fireBalls.Remove(gameObject);
-        // Destroy(gameObject);
+        Destroy(gameObject);
     }
 
 
@@ -54,13 +50,11 @@ public class Projectile : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.gameObject.GetComponent<Unit>().DoDamage(gameObject, damageType);
-            DestroyProj();
         }
         else if (other.CompareTag("Enemy") && isHittingEnemies)
         {
             Debug.Log("Projectile Hit Enemy");
             other.gameObject.GetComponent<Unit>().DoDamage(gameObject, damageType);
-            DestroyProj();
         }
     }
 }

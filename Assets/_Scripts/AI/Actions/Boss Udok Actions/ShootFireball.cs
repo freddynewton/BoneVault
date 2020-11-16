@@ -10,14 +10,11 @@ public class ShootFireball : ActionAI
 
     public override void use(UtilityAIHandler controller)
     {
-        
-
         if (controller.bossUdokEnemyUnit.waitTimer(waitShootTimer))
         {
-            Debug.Log("Shoot");
             GameObject proj = controller.bossUdokEnemyUnit.fireBalls[Random.Range(0, controller.bossUdokEnemyUnit.fireBalls.Count)];
             controller.bossUdokEnemyUnit.fireBalls.Remove(proj);
-            proj.GetComponent<Projectile>().ShootToTarget(PlayerController.Instance.transform.position);
+            proj.GetComponent<Projectile>().ShootToTarget(PlayerController.Instance.transform.position, 3f);
         }
     }
 }

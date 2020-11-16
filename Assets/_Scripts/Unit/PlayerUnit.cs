@@ -110,10 +110,7 @@ public class PlayerUnit : Unit
         Physics.Raycast(Inventory.Instance.currWeapon.transform.position, Inventory.Instance.currWeapon.transform.forward, out hit);
         hitpos = hit.point;
 
-        LeanTween.move(damageObj, hitpos, 5f).setEaseInBack().setOnComplete(() =>
-        {
-            proj.DestroyProj();
-        });
+        proj.ShootToTarget(hitpos, 1.3f);
     }
 
     public void setHealthPlayer(int amount)

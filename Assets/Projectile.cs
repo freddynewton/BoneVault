@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public DamageType damageType;
+    public Animator animator;
+    public LayerMask ignoreRayCastMask;
+    [HideInInspector] public DamageType damageType;
     [HideInInspector] public GameObject circleAroundObj;
     [HideInInspector] public BossUdokEnemyUnit bossUdok;
     [HideInInspector] public bool isCirclingAround = false;
@@ -40,21 +42,25 @@ public class Projectile : MonoBehaviour
 
     public void DestroyProj()
     {
-        // TODO Explosion Effect
-        Destroy(gameObject);
+        LeanTween.cancel(gameObject);
+        animator.SetTrigger("Explode");
+        Destroy(gameObject, 1);
     }
-
 
     private void OnTriggerEnter(Collider other)
     {
+        // Debug.Log("Projectile Hit: " + other.tag);
+
         if (other.CompareTag("Player"))
         {
             other.gameObject.GetComponent<Unit>().DoDamage(gameObject, damageType);
         }
         else if (other.CompareTag("Enemy") && isHittingEnemies)
         {
-            Debug.Log("Projectile Hit Enemy");
             other.gameObject.GetComponent<Unit>().DoDamage(gameObject, damageType);
+            LeanTween.cancel(gameObject);
+            animator.SetTrigger("Explode");
+            Invoke("DestroyProj", 1);
         }
     }
 }

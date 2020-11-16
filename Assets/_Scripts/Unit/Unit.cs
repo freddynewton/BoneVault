@@ -62,7 +62,7 @@ public class Unit : MonoBehaviour
             if (!gameObject.CompareTag("Player")) knockback(damageObj.transform.position, damageType.knockbackForce);
 
             currentHealth -= damageType.damage;
-            Debug.Log("Current Health: " + currentHealth + "\nDamage: " + damageType.damage);
+            // Debug.Log("Current Health: " + currentHealth + "\nDamage: " + damageType.damage);
 
             if (currentHealth > 0)
             {

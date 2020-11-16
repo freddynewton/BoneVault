@@ -174,7 +174,7 @@ public class LongSword : Weapon
     {
         currentCharges = value;
         UiManager.Instance.weaponUI.swordUI.setCharge(value);
-        Debug.Log("Current charges: " + currentCharges);
+        // Debug.Log("Current charges: " + currentCharges);
     }
 
     /// <summary>

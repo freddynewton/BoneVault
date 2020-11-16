@@ -49,7 +49,7 @@ public class EnemyUnit : Unit
 
         base.death();
 
-        Inventory.Instance.setBones(1);
+        Inventory.Instance.setBones(Random.Range(0, 2));
     }
 
     public override void hit()
@@ -72,19 +72,6 @@ public class EnemyUnit : Unit
     public override void knockback(Vector3 otherPos, float kb)
     {
         base.knockback(otherPos, kb);
-
-        /*
-        utilityAI.enabled = false;
-        utilityAI.navAgent.enabled = false;
-
-        Vector3 pos = (gameObject.transform.position - otherPos) * kb;
-
-        LeanTween.move(gameObject, new Vector3(pos.x, pos.y + 1, pos.z), 1).setOnComplete(() =>
-        {
-            utilityAI.navAgent.enabled = true;
-            utilityAI.enabled = true;
-        });
-        */
     }
 
     public void CallTriggerDamage()

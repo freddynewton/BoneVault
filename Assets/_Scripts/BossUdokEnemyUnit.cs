@@ -53,6 +53,7 @@ public class BossUdokEnemyUnit : EnemyUnit
 
     public override void death()
     {
+        Inventory.Instance.setBones(Random.Range(0, 10));
         base.death();
         bossRoom.portalDoor.openDoor();
     }

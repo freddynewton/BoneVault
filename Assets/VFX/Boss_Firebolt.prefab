@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2675099585983753315}
   - component: {fileID: 2675099585983753312}
   - component: {fileID: 1094678600642719747}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Boss_Firebolt
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -59,6 +59,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f83cdb4d1e951c4478ec31d024019e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 4795233344733110744}
+  ignoreRayCastMask:
+    serializedVersion: 2
+    m_Bits: 32562
   damageType: {fileID: 0}
   circleAroundObj: {fileID: 0}
   bossUdok: {fileID: 0}
@@ -75,7 +79,8 @@ GameObject:
   - component: {fileID: 2845251729143792900}
   - component: {fileID: 4813816102022899029}
   - component: {fileID: 2114846447549049449}
-  m_Layer: 0
+  - component: {fileID: 4795233344733110744}
+  m_Layer: 14
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,3 +165,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnOnly: 0
+--- !u!95 &4795233344733110744
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6853679827560590090}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 821cb123e7243d44588f177b47127835, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -80,6 +80,7 @@ public class PlayerUnit : Unit
             case Weapon.callbackValue.FAILURE:
                 base.DoDamage(damageObj, damageType);
                 UiManager.Instance.setHealth();
+                stopPorjectile(damageObj, damageType);
                 break;
 
             case Weapon.callbackValue.SUCCESS:
@@ -94,7 +95,18 @@ public class PlayerUnit : Unit
                     UiManager.Instance.setHealth();
                 }
                 setStamina(-damageType.damage * 3);
+
+                stopPorjectile(damageObj, damageType);
                 break;
+        }
+    }
+
+    public void stopPorjectile(GameObject damageObj, DamageType damage)
+    {
+        if (damageObj.GetComponent<Projectile>())
+        {
+            Projectile projectile = damageObj.GetComponent<Projectile>();
+            projectile.DestroyProj();
         }
     }
 
@@ -107,7 +119,7 @@ public class PlayerUnit : Unit
         RaycastHit hit;
         Vector3 hitpos;
 
-        Physics.Raycast(Inventory.Instance.currWeapon.transform.position, Inventory.Instance.currWeapon.transform.forward, out hit);
+        Physics.Raycast(Inventory.Instance.currWeapon.transform.position, transform.position - damageObj.transform.position, out hit, 40f, proj.ignoreRayCastMask);
         hitpos = hit.point;
 
         proj.ShootToTarget(hitpos, 1.3f);

@@ -116,16 +116,15 @@ public class PlayerUnit : Unit
         Projectile proj = damageObj.GetComponent<Projectile>();
         proj.isHittingEnemies = true;
 
-        RaycastHit hit;
-        Vector3 hitpos;
-        Vector3 dir = (transform.position - damageObj.transform.position).normalized;
+        //RaycastHit hit;
+        //Vector3 hitpos;
+        Vector3 dir = (transform.position - damageObj.transform.position);
 
-        Physics.Raycast(Inventory.Instance.currWeapon.transform.position, dir, out hit, 40f, proj.ignoreRayCastMask);
-        hitpos = hit.point;
+        
+        //Physics.Raycast(Inventory.Instance.currWeapon.transform.position, dir, out hit, 40f, proj.ignoreRayCastMask);
+        // hitpos = hit.point;
 
-        Debug.DrawLine(gameObject.transform.position, hitpos);
-
-        proj.ShootToTarget(hitpos, 1.3f);
+        proj.ShootToTarget(200, dir);
     }
 
     public void setHealthPlayer(int amount)

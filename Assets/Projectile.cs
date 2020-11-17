@@ -11,16 +11,30 @@ public class Projectile : MonoBehaviour
     [HideInInspector] public GameObject circleAroundObj;
     [HideInInspector] public BossUdokEnemyUnit bossUdok;
     [HideInInspector] public bool isCirclingAround = false;
+    [HideInInspector] public Rigidbody rb;
     [HideInInspector] public bool isHittingEnemies = false;
 
-    public void ShootToTarget(Vector3 pos, float time)
+    private List<int> ltIds = new List<int>();
+
+    private void Start()
     {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    public void ShootToTarget(float strength, Vector3 dir)
+    {
+        // Stop Tweens
         isCirclingAround = false;
-        LeanTween.cancel(gameObject);
-        LeanTween.move(gameObject, pos, time).setEaseInBack().setOnComplete(() =>
+        stopAllTweens();
+
+        // Add Force
+        rb.AddForce(dir * Time.deltaTime * strength, ForceMode.Impulse);
+        
+        /*ltIds.Add(LeanTween.move(gameObject, pos, time).setEaseInBack().setOnComplete(() =>
         {
             DestroyProj();
-        });
+        }).id);
+        */
     }
 
 
@@ -33,24 +47,32 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    public void stopAllTweens()
+    {
+        foreach(int i in ltIds)
+        {
+            LeanTween.cancel(i, false);
+        }
+
+        ltIds.Clear();
+    }
+
     public void startCircleAround()
     {
         isCirclingAround = true;
-        
-        LeanTween.moveLocalY(gameObject, 2.5f, 1.3f).setEaseInOutQuad().setLoopPingPong();
+
+        ltIds.Add(LeanTween.moveLocalY(gameObject, 2.5f, 1.3f).setEaseInOutQuad().setLoopPingPong().id);
     }
 
     public void DestroyProj()
     {
-        LeanTween.cancel(gameObject, false);
+        stopAllTweens();
         animator.SetTrigger("Explode");
-        Destroy(gameObject, 1);
+        Destroy(gameObject, 0.333f);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Debug.Log("Projectile Hit: " + other.tag);
-
         if (other.CompareTag("Player"))
         {
             other.gameObject.GetComponent<Unit>().DoDamage(gameObject, damageType);

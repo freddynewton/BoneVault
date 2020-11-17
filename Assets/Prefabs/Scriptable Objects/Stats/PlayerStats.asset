@@ -20,7 +20,7 @@ MonoBehaviour:
   attackRate: 1.5
   stamina: 10
   staminaRate: 1
-  sprintCostRate: 5
+  sprintCostRate: 2.5
   mouseSensitivity: 500
   gravity: -9.81
   groundDistance: 0.4

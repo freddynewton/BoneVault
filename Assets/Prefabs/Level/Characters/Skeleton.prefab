@@ -4889,6 +4889,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 7fe646de7fff3ec409abfd7e175647c8, type: 2}
   rb: {fileID: 0}
   unit: {fileID: 0}
+  bossUdokEnemyUnit: {fileID: 0}
   navAgent: {fileID: 0}
 --- !u!136 &3065674638620549658
 CapsuleCollider:
@@ -4954,7 +4955,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.5, y: 4, z: 3}
-  m_Center: {x: 0, y: 2, z: 2}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &3518550471976835322
 GameObject:
   m_ObjectHideFlags: 0

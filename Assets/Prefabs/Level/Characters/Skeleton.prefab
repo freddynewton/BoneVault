@@ -5116,6 +5116,10 @@ PrefabInstance:
       propertyPath: SubModule.subEmitters.Array.data[0].emitter
       value: 
       objectReference: {fileID: 877289384}
+    - target: {fileID: 6107800924613412377, guid: be78105227f33e944bdfc1872dd2057f, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6107800924613412379, guid: be78105227f33e944bdfc1872dd2057f, type: 3}
       propertyPath: m_Name
       value: Hit_VFX

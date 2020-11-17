@@ -14,7 +14,7 @@ public class ShootFireball : ActionAI
         {
             GameObject proj = controller.bossUdokEnemyUnit.fireBalls[Random.Range(0, controller.bossUdokEnemyUnit.fireBalls.Count)];
             controller.bossUdokEnemyUnit.fireBalls.Remove(proj);
-            proj.GetComponent<Projectile>().ShootToTarget(100f, controller.transform.position - PlayerController.Instance.transform.position);
+            proj.GetComponent<Projectile>().ShootToTarget(100f, PlayerController.Instance.transform.position - controller.transform.position);
         }
     }
 }

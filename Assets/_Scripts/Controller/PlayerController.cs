@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
     private void Movement()
     {
         // Move Input
-        move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
+        move = transform.right * Input.GetAxis("Horizontal")+ transform.forward * Input.GetAxis("Vertical");
         controller.Move(move * walkSpeed * Time.deltaTime);
 
         // Gravity

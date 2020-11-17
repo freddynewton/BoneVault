@@ -118,7 +118,7 @@ public class PlayerUnit : Unit
 
         //RaycastHit hit;
         //Vector3 hitpos;
-        Vector3 dir = (transform.position - damageObj.transform.position);
+        Vector3 dir = (damageObj.transform.position - transform.position);
 
         
         //Physics.Raycast(Inventory.Instance.currWeapon.transform.position, dir, out hit, 40f, proj.ignoreRayCastMask);

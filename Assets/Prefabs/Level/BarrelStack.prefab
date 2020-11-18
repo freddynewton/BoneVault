@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5091647888792705894}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: BarrelStack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4792076668472800239}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5336102203874204314}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}

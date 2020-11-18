@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 3040503588822964504}
   - component: {fileID: 997264392733535698}
   - component: {fileID: 1880089084415029588}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Cage.Metal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,6 +171,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9952a3d9b070d12408bd3b6f25e3f6ee, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9952a3d9b070d12408bd3b6f25e3f6ee, type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9952a3d9b070d12408bd3b6f25e3f6ee, type: 3}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5747573610498238588}
   - component: {fileID: 2620447944580011471}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5546892428992028996}
   - component: {fileID: 839629581084284788}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Point Light (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 2577682257113636218}
   - component: {fileID: 6791844684389678240}
   - component: {fileID: 141763467585172920}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Door.Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 7954509407526163682}
   - component: {fileID: 5296496360135680040}
   - component: {fileID: 6791844684389678255}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: BossPortal.Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5986274554957382269}
   - component: {fileID: 8428332445956388535}
   - component: {fileID: 2651874980443789522}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Pit.Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

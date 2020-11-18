@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2577682257113636218}
   - component: {fileID: 6791844684389678240}
   - component: {fileID: 141763467585172920}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Door.Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 7954509407526163682}
   - component: {fileID: 5296496360135680040}
   - component: {fileID: 6791844684389678255}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Portal.Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

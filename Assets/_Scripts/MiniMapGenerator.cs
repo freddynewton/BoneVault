@@ -48,16 +48,16 @@ public class MiniMapGenerator : MonoBehaviour
         // disable minimap
         //miniMapCanvas.SetActive(false);
 
-        // set Camera Pos
-        StartCoroutine(getCameraPos());
-
         // close minimap
         minimapTextureCanvas.SetActive(false);
+        
+        // set Camera Pos
+        // StartCoroutine(getCameraPos());
     }
 
     public IEnumerator getCameraPos()
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForFixedUpdate();
 
         Vector3 pos = Vector3.zero;
 
@@ -74,7 +74,15 @@ public class MiniMapGenerator : MonoBehaviour
             StartCoroutine(getCameraPos());
         }
 
-        miniMapCamera.transform.position = (pos / mmParts.Count) + Vector3.forward * -256f;
+        try
+        {
+            miniMapCamera.transform.position = (pos / mmParts.Count) + Vector3.forward * -256f;
+        }
+        catch (System.Exception)
+        {
+            StartCoroutine(getCameraPos());
+        }
+        
     }
 
     public void spawnHallways(GameObject hallway)

@@ -115,10 +115,11 @@ public class PlayerUnit : Unit
         LeanTween.cancel(gameObject, false);
         Projectile proj = damageObj.GetComponent<Projectile>();
         proj.isHittingEnemies = true;
+        proj.rb.velocity = Vector3.zero;
 
         //RaycastHit hit;
         //Vector3 hitpos;
-        Vector3 dir = (damageObj.transform.position - transform.position);
+        Vector3 dir = (damageObj.transform.position - proj.circleAroundObj.transform.position);
 
         
         //Physics.Raycast(Inventory.Instance.currWeapon.transform.position, dir, out hit, 40f, proj.ignoreRayCastMask);

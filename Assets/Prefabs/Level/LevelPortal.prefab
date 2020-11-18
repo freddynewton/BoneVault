@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7179321546289439893}
   - component: {fileID: 5504031209408321232}
   - component: {fileID: 2829362717547539611}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4822,7 +4822,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4375768083769695502}
   - component: {fileID: 5946133411831396499}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4915,7 +4915,7 @@ GameObject:
   - component: {fileID: 1868158347866995221}
   - component: {fileID: 8765631927358409519}
   - component: {fileID: 2751371356742701285}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4999,7 +4999,7 @@ GameObject:
   - component: {fileID: 1735668509240068551}
   - component: {fileID: 4607923600350444813}
   - component: {fileID: 565169281754027905}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: LevelPortal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5096,7 +5096,7 @@ GameObject:
   - component: {fileID: 6332756165271201805}
   - component: {fileID: 4294272141084128589}
   - component: {fileID: 7371207517445124394}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 139631905018099250}
   - component: {fileID: 5784215243186098036}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: ShieldBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -21,6 +21,11 @@ public class Projectile : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    private void Awake()
+    {
+        Invoke("DestroyProj", 20);
+    }
+
     public void ShootToTarget(float strength, Vector3 dir)
     {
         // Stop Tweens
@@ -29,12 +34,6 @@ public class Projectile : MonoBehaviour
 
         // Add Force
         rb.AddForce(dir * Time.deltaTime * strength, ForceMode.Impulse);
-        
-        /*ltIds.Add(LeanTween.move(gameObject, pos, time).setEaseInBack().setOnComplete(() =>
-        {
-            DestroyProj();
-        }).id);
-        */
     }
 
 
@@ -81,6 +80,6 @@ public class Projectile : MonoBehaviour
         {
             other.gameObject.GetComponent<Unit>().DoDamage(gameObject, damageType);
             DestroyProj();
-        }
+        } 
     }
 }

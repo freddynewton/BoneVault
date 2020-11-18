@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4623185588199734475}
   - component: {fileID: 7479403133920692225}
   - component: {fileID: 211144615469463291}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Arc.Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

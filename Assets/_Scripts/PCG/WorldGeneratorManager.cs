@@ -72,6 +72,9 @@ public class WorldGeneratorManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator generateMap()
     {
+        // Stop all Tweens
+        LeanTween.cancelAll();
+
         // Delete old map
         foreach (Transform child in gameObject.transform) Destroy(child.gameObject);
         rooms.Clear();

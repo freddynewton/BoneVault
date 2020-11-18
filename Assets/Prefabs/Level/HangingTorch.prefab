@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 939506820057582767}
   - component: {fileID: 4226091606599123722}
   - component: {fileID: 2108494575064135616}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: HangingTorch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 4005415593926083158}
   - component: {fileID: 5720953451645516374}
   - component: {fileID: 8229035980892426306}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,6 +356,10 @@ PrefabInstance:
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9952a3d9b070d12408bd3b6f25e3f6ee, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9952a3d9b070d12408bd3b6f25e3f6ee, type: 3}
 --- !u!1 &3393873789736266628 stripped
@@ -378,6 +382,10 @@ PrefabInstance:
     - target: {fileID: 5408754180824331858, guid: e8653e05916e9044686c87543c031b97, type: 3}
       propertyPath: m_Name
       value: Sparks
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408754180824331858, guid: e8653e05916e9044686c87543c031b97, type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6221276316926977979, guid: e8653e05916e9044686c87543c031b97, type: 3}
       propertyPath: m_LocalPosition.x

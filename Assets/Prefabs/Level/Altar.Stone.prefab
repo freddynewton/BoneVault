@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 1941442582947370836}
   - component: {fileID: 1941442582947370837}
   - component: {fileID: 3593001503708401109}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Altar.Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -406,7 +406,9 @@ MonoBehaviour:
   spriteRend: {fileID: 1941442583795095202}
   altarLight: {fileID: 1941442583795095203}
   room: {fileID: 0}
+  col: {fileID: 0}
   upgrade: {fileID: 0}
+  used: 0
 --- !u!135 &3593001503708401109
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -432,7 +434,7 @@ GameObject:
   - component: {fileID: 1941442583795095202}
   - component: {fileID: 1941442583795095200}
   - component: {fileID: 1941442583795095203}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -629,9 +631,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6360261941026498507, guid: 5a87283f6dfa5964897a6a159815d8c0, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5a87283f6dfa5964897a6a159815d8c0, type: 3}
       propertyPath: m_Name
       value: Altar.Stone
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5a87283f6dfa5964897a6a159815d8c0, type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 4546228510492515292, guid: 5a87283f6dfa5964897a6a159815d8c0, type: 3}
       propertyPath: m_LocalPosition.y

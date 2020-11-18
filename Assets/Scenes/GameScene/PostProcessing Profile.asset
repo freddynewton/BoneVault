@@ -16,6 +16,7 @@ MonoBehaviour:
   - {fileID: 233621071356203720}
   - {fileID: 7160631702033993300}
   - {fileID: 585487732902807087}
+  - {fileID: 5253427613966676844}
 --- !u!114 &233621071356203720
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -114,15 +115,15 @@ MonoBehaviour:
   active: 1
   m_AdvancedMode: 0
   mode:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 1
   gaussianStart:
-    m_OverrideState: 0
-    m_Value: 10
+    m_OverrideState: 1
+    m_Value: 16
     min: 0
   gaussianEnd:
-    m_OverrideState: 0
-    m_Value: 30
+    m_OverrideState: 1
+    m_Value: 128
     min: 0
   gaussianMaxRadius:
     m_OverrideState: 0

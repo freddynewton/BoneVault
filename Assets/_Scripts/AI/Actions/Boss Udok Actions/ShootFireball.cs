@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "AI/Actions/Boss/Udok/ShootFireBall")]
 public class ShootFireball : ActionAI
 {
-    public float waitShootTimer = 0.8f;
+    public float waitShootTimer = 0.2f;
 
     public override void use(UtilityAIHandler controller)
     {

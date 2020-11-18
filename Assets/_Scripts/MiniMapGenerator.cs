@@ -52,7 +52,7 @@ public class MiniMapGenerator : MonoBehaviour
         minimapTextureCanvas.SetActive(false);
         
         // set Camera Pos
-        // StartCoroutine(getCameraPos());
+        StartCoroutine(getCameraPos());
     }
 
     public IEnumerator getCameraPos()

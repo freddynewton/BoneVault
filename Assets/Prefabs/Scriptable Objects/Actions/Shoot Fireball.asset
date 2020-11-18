@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9498fe5f4c675d34a85c9082b4769c99, type: 3}
   m_Name: Shoot Fireball
   m_EditorClassIdentifier: 
-  waitShootTimer: 0.8
+  waitShootTimer: 0.24

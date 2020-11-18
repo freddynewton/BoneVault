@@ -6,7 +6,6 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public Animator animator;
-    public LayerMask ignoreRayCastMask;
     [HideInInspector] public DamageType damageType;
     [HideInInspector] public GameObject circleAroundObj;
     [HideInInspector] public BossUdokEnemyUnit bossUdok;
@@ -28,9 +27,10 @@ public class Projectile : MonoBehaviour
 
     public void ShootToTarget(float strength, Vector3 dir)
     {
-        // Stop Tweens
+        // Stop Tweens and Movement
         isCirclingAround = false;
         stopAllTweens();
+        rb.velocity = Vector3.zero;
 
         // Add Force
         rb.AddForce(dir * Time.deltaTime * strength, ForceMode.Impulse);

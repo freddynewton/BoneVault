@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2914058982878040251}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Fire Fly Pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5259249398483132703}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Fire Fly Pos (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5207277246122741257}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Fire Fly Pos (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 489179075377947684}
   - component: {fileID: 7526654494894973954}
   - component: {fileID: 8693443911316183515}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2506532751891314298}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Fire Fly Pos (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,9 +250,9 @@ GameObject:
   - component: {fileID: 1010693395267296081}
   - component: {fileID: 554263566041780037}
   - component: {fileID: 6155626307414723837}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -57,8 +57,11 @@ public class EnemyUnit : Unit
         animator.SetTrigger("Hit");
 
         // Play Hit Particle
-        vfx.Clear();
-        vfx.Play();
+        if (vfx != null)
+        {
+            vfx.Clear();
+            vfx.Play();
+        }
 
         base.hit();
     }

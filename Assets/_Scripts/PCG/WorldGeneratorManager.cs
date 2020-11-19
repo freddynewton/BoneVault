@@ -126,6 +126,7 @@ public class WorldGeneratorManager : MonoBehaviour
             if (sr != null)
             {
                 PlayerController.Instance.transform.position = sr.PlayerSpawn.position;
+                PlayerController.Instance.unit.setHealthPlayer(0);
             }
         }
 

@@ -38,6 +38,7 @@ public class BossUdokEnemyUnit : EnemyUnit
     public override void hit()
     {
         base.hit();
+        Debug.Log("Boss Hit");
     }
 
     public override void setWalkingAnimation()

@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     // Singleton Instance
     public static PlayerController Instance { get; private set; }
+
     public GameObject weaponPos;
 
     [HideInInspector] public PlayerUnit unit;
@@ -20,7 +17,6 @@ public class PlayerController : MonoBehaviour
     private float sprintSpeed;
     private float fallSpeed;
     private Vector3 velocity;
-
 
     private void Start()
     {
@@ -50,7 +46,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-
         // Right Click Attack
         if (Input.GetButtonDown("Fire2"))
         {
@@ -77,7 +72,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetButtonDown("Sprint"))
             {
-                walkSpeed = sprintSpeed * unit.upgradeHandler.sprintSpeedPercentageUpgrade; 
+                walkSpeed = sprintSpeed * unit.upgradeHandler.sprintSpeedPercentageUpgrade;
             }
             else if (Input.GetButtonUp("Sprint"))
             {
@@ -98,7 +93,7 @@ public class PlayerController : MonoBehaviour
     private void Movement()
     {
         // Move Input
-        move = transform.right * Input.GetAxis("Horizontal")+ transform.forward * Input.GetAxis("Vertical");
+        move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
         controller.Move(move * walkSpeed * Time.deltaTime);
 
         // Gravity

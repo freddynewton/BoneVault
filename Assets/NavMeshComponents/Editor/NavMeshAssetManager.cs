@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor.Experimental.SceneManagement;
 using UnityEditor.SceneManagement;
-using UnityEngine.AI;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace UnityEditor.AI
 {
@@ -16,18 +16,22 @@ namespace UnityEditor.AI
             public AsyncOperation bakeOperation;
         }
 
-        List<AsyncBakeOperation> m_BakeOperations = new List<AsyncBakeOperation>();
-        internal List<AsyncBakeOperation> GetBakeOperations() { return m_BakeOperations; }
+        private List<AsyncBakeOperation> m_BakeOperations = new List<AsyncBakeOperation>();
 
-        struct SavedPrefabNavMeshData
+        internal List<AsyncBakeOperation> GetBakeOperations()
+        {
+            return m_BakeOperations;
+        }
+
+        private struct SavedPrefabNavMeshData
         {
             public NavMeshSurface surface;
             public NavMeshData navMeshData;
         }
 
-        List<SavedPrefabNavMeshData> m_PrefabNavMeshDataAssets = new List<SavedPrefabNavMeshData>();
+        private List<SavedPrefabNavMeshData> m_PrefabNavMeshDataAssets = new List<SavedPrefabNavMeshData>();
 
-        static string GetAndEnsureTargetPath(NavMeshSurface surface)
+        private static string GetAndEnsureTargetPath(NavMeshSurface surface)
         {
             // Create directory for the asset if it does not exist yet.
             var activeScenePath = surface.gameObject.scene.path;
@@ -53,7 +57,7 @@ namespace UnityEditor.AI
             return targetPath;
         }
 
-        static void CreateNavMeshAsset(NavMeshSurface surface)
+        private static void CreateNavMeshAsset(NavMeshSurface surface)
         {
             var targetPath = GetAndEnsureTargetPath(surface);
 
@@ -62,7 +66,7 @@ namespace UnityEditor.AI
             AssetDatabase.CreateAsset(surface.navMeshData, combinedAssetPath);
         }
 
-        NavMeshData GetNavMeshAssetToDelete(NavMeshSurface navSurface)
+        private NavMeshData GetNavMeshAssetToDelete(NavMeshSurface navSurface)
         {
             if (PrefabUtility.IsPartOfPrefabInstance(navSurface) && !PrefabUtility.IsPartOfModelPrefab(navSurface))
             {
@@ -81,7 +85,7 @@ namespace UnityEditor.AI
             return navSurface.navMeshData;
         }
 
-        void ClearSurface(NavMeshSurface navSurface)
+        private void ClearSurface(NavMeshSurface navSurface)
         {
             var hasNavMeshData = navSurface.navMeshData != null;
             StoreNavMeshDataIfInPrefab(navSurface);
@@ -119,7 +123,7 @@ namespace UnityEditor.AI
             }
         }
 
-        static NavMeshData InitializeBakeData(NavMeshSurface surface)
+        private static NavMeshData InitializeBakeData(NavMeshSurface surface)
         {
             var emptySources = new List<NavMeshBuildSource>();
             var emptyBounds = new Bounds();
@@ -127,7 +131,7 @@ namespace UnityEditor.AI
                 , surface.transform.position, surface.transform.rotation);
         }
 
-        void UpdateAsyncBuildOperations()
+        private void UpdateAsyncBuildOperations()
         {
             foreach (var oper in m_BakeOperations)
             {
@@ -178,7 +182,7 @@ namespace UnityEditor.AI
                 ClearSurface(s);
         }
 
-        static void SetNavMeshData(NavMeshSurface navSurface, NavMeshData navMeshData)
+        private static void SetNavMeshData(NavMeshSurface navSurface, NavMeshData navMeshData)
         {
             var so = new SerializedObject(navSurface);
             var navMeshDataProperty = so.FindProperty("m_NavMeshData");
@@ -186,7 +190,7 @@ namespace UnityEditor.AI
             so.ApplyModifiedPropertiesWithoutUndo();
         }
 
-        void StoreNavMeshDataIfInPrefab(NavMeshSurface surfaceToStore)
+        private void StoreNavMeshDataIfInPrefab(NavMeshSurface surfaceToStore)
         {
             var prefabStage = PrefabStageUtility.GetPrefabStage(surfaceToStore.gameObject);
             var isPartOfPrefab = prefabStage != null && prefabStage.IsPartOfPrefabContents(surfaceToStore.gameObject);
@@ -216,7 +220,7 @@ namespace UnityEditor.AI
             m_PrefabNavMeshDataAssets.Add(new SavedPrefabNavMeshData { surface = surfaceToStore, navMeshData = isDataOwner ? surfaceToStore.navMeshData : null });
         }
 
-        bool IsCurrentPrefabNavMeshDataStored(NavMeshSurface surface)
+        private bool IsCurrentPrefabNavMeshDataStored(NavMeshSurface surface)
         {
             if (surface == null)
                 return false;
@@ -230,7 +234,7 @@ namespace UnityEditor.AI
             return false;
         }
 
-        void DeleteStoredNavMeshDataAssetsForOwnedSurfaces(GameObject gameObjectInPrefab)
+        private void DeleteStoredNavMeshDataAssetsForOwnedSurfaces(GameObject gameObjectInPrefab)
         {
             // Debug.LogFormat("DeleteStoredNavMeshDataAsset() when saving prefab {0}", gameObjectInPrefab.name);
 
@@ -239,7 +243,7 @@ namespace UnityEditor.AI
                 DeleteStoredPrefabNavMeshDataAsset(surface);
         }
 
-        void DeleteStoredPrefabNavMeshDataAsset(NavMeshSurface surface)
+        private void DeleteStoredPrefabNavMeshDataAsset(NavMeshSurface surface)
         {
             for (var i = m_PrefabNavMeshDataAssets.Count - 1; i >= 0; i--)
             {
@@ -265,7 +269,7 @@ namespace UnityEditor.AI
             }
         }
 
-        void ForgetUnsavedNavMeshDataChanges(PrefabStage prefabStage)
+        private void ForgetUnsavedNavMeshDataChanges(PrefabStage prefabStage)
         {
             // Debug.Log("On prefab closing - forget about this object's surfaces and stop caring about prefab saving");
 

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -9,6 +8,7 @@ public class Inventory : MonoBehaviour
 
     [Header("Weapon")]
     public GameObject currWeapon;
+
     public Weapon currWeaponScript;
 
     [Header("Currency")]
@@ -24,9 +24,10 @@ public class Inventory : MonoBehaviour
     {
         if (newWeapon == null) return;
 
-        if (currWeapon != null) { 
-        currWeaponScript.callOnEquip(false);
-        Destroy(currWeapon);
+        if (currWeapon != null)
+        {
+            currWeaponScript.callOnEquip(false);
+            Destroy(currWeapon);
         }
 
         currWeapon = Instantiate(newWeapon, PlayerController.Instance.weaponPos.transform.position, Quaternion.identity, PlayerController.Instance.weaponPos.transform) as GameObject;
@@ -53,7 +54,7 @@ public class Inventory : MonoBehaviour
     private IEnumerator startWeapon()
     {
         yield return new WaitForEndOfFrame();
-        
+
         if (currWeapon == null) equipWeapon(Resources.Load<GameObject>("Items/Weapons/LongSword"));
     }
 }

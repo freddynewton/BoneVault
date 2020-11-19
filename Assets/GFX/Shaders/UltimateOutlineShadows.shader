@@ -77,7 +77,6 @@ half4 frag(v2f i) : COLOR{
 ENDCG
 }
 
-
 //Second outline
 Pass{
 	Tags{ "Queue" = "Geometry" }

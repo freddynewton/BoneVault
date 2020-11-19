@@ -16,7 +16,6 @@ public class MiniMapGenerator : MonoBehaviour
     private List<GameObject> miniMapPartsResources = new List<GameObject>();
     public const float gapFix = 0.38f;
 
-
     [HideInInspector] public List<GameObject> mmParts = new List<GameObject>();
 
     private void LateUpdate()
@@ -50,39 +49,44 @@ public class MiniMapGenerator : MonoBehaviour
 
         // close minimap
         minimapTextureCanvas.SetActive(false);
-        
+
         // set Camera Pos
         StartCoroutine(getCameraPos());
     }
 
     public IEnumerator getCameraPos()
     {
-        yield return new WaitForFixedUpdate();
+        yield return new WaitForEndOfFrame();
 
         Vector3 pos = Vector3.zero;
 
-        try
+        if (mmParts.Count != 0)
         {
-            foreach (GameObject m in mmParts)
+            try
             {
-                pos += m.transform.position;
+                foreach (GameObject m in mmParts)
+                {
+                    pos += m.transform.position;
+                }
+            }
+            catch (System.Exception)
+            {
+                StartCoroutine(getCameraPos());
             }
 
+            try
+            {
+                miniMapCamera.transform.position = (pos / mmParts.Count) + Vector3.forward * -256f;
+            }
+            catch (System.Exception)
+            {
+                StartCoroutine(getCameraPos());
+            }
         }
-        catch (System.Exception)
+        else
         {
             StartCoroutine(getCameraPos());
         }
-
-        try
-        {
-            miniMapCamera.transform.position = (pos / mmParts.Count) + Vector3.forward * -256f;
-        }
-        catch (System.Exception)
-        {
-            StartCoroutine(getCameraPos());
-        }
-        
     }
 
     public void spawnHallways(GameObject hallway)
@@ -115,14 +119,19 @@ public class MiniMapGenerator : MonoBehaviour
         {
             case Room.RoomDirection.OneDoor:
                 return miniMapPartsResources.Find(x => x.GetComponent<MiniMapPart>().roomDirection == MiniMapPart.RoomDirMM.OneDoor);
+
             case Room.RoomDirection.TwoDoorLinear:
                 return miniMapPartsResources.Find(x => x.GetComponent<MiniMapPart>().roomDirection == MiniMapPart.RoomDirMM.TwoDoorLinear);
+
             case Room.RoomDirection.TwoDoorCurve:
                 return miniMapPartsResources.Find(x => x.GetComponent<MiniMapPart>().roomDirection == MiniMapPart.RoomDirMM.TwoDoorCurve);
+
             case Room.RoomDirection.ThreeDoor:
                 return miniMapPartsResources.Find(x => x.GetComponent<MiniMapPart>().roomDirection == MiniMapPart.RoomDirMM.ThreeDoor);
+
             case Room.RoomDirection.FourDoor:
                 return miniMapPartsResources.Find(x => x.GetComponent<MiniMapPart>().roomDirection == MiniMapPart.RoomDirMM.FourDoor);
+
             default:
                 break;
         }

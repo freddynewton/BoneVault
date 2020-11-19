@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SkeletonFollow : MonoBehaviour
 {
@@ -9,22 +7,24 @@ public class SkeletonFollow : MonoBehaviour
     private float distance;
     private float moveSpeed;
 
-
-    void Start()
+    private void Start()
     {
         target = GameObject.Find("Player").transform;
         animator = transform.GetComponent<Animator>();
         moveSpeed = 3f;
     }
 
-    void Update() {
+    private void Update()
+    {
         Follow();
     }
 
-    void Follow() {
+    private void Follow()
+    {
         distance = Vector3.Distance(target.position, transform.position);
 
-        if (distance > 4f) {
+        if (distance > 4f)
+        {
             animator.SetBool("walking", true);
             transform.position = Vector3.MoveTowards(transform.position, target.position, Time.deltaTime * moveSpeed);
         }

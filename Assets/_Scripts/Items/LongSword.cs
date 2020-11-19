@@ -1,18 +1,19 @@
 ﻿using BoneVault.CameraEffects;
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml;
 using UnityEngine;
 
 public class LongSword : Weapon
 {
     [Header("LongSwordStats")]
     public float doDamageAfterSec = 0.3f;
+
     public int maxCharges = 3;
     private int currentCharges;
 
     [Header("Block Stats")]
     public float perfectBlockDuration = 5;
+
     public bool knockbackOnPerfectBlock = true;
     [HideInInspector] public bool perfectBlockActive;
     [HideInInspector] public float animationLength;
@@ -24,6 +25,7 @@ public class LongSword : Weapon
 
     // INVOKE FUNCTIONS
     public void blockCharge() => perfectBlockActive = false;
+
     private void OnAttackComplete() => isAttacking = false;
 
     public override void Start()
@@ -33,7 +35,7 @@ public class LongSword : Weapon
         sparksCharged.Stop();
     }
 
-    // Attack 
+    // Attack
     public override void attackLeftClick(bool active)
     {
         if (!isBlocking && !isAttacking && PlayerController.Instance.unit.currentStamina > 0)
@@ -46,9 +48,11 @@ public class LongSword : Weapon
                 case 0:
                     changeAnimationState("Attack1");
                     break;
+
                 case 1:
                     changeAnimationState("Attack2");
                     break;
+
                 case 2:
                     changeAnimationState("Attack3");
                     break;
@@ -90,7 +94,6 @@ public class LongSword : Weapon
     /// <returns></returns>
     public override callbackValue callbackDamageFnc()
     {
-
         // Add Charge because of Perfect blocking
         if (perfectBlockActive && isBlocking)
         {
@@ -167,7 +170,7 @@ public class LongSword : Weapon
     }
 
     /// <summary>
-    /// Set Charges and Updates the UI 
+    /// Set Charges and Updates the UI
     /// </summary>
     /// <param name="value"></param>
     private void setCharges(int value)
@@ -188,7 +191,8 @@ public class LongSword : Weapon
             UiManager.Instance.weaponUI.activateSwordUI(true);
             UiManager.Instance.weaponUI.swordUI.spawnUI(maxCharges);
             UiManager.Instance.weaponUI.swordUI.setCharge(currentCharges);
-        } else
+        }
+        else
         {
             UiManager.Instance.weaponUI.activateSwordUI(false);
         }

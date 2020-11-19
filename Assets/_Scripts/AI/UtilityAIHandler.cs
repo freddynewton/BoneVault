@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -22,12 +21,11 @@ public class UtilityAIHandler : MonoBehaviour
     [HideInInspector] public BossUdokEnemyUnit bossUdokEnemyUnit;
     [HideInInspector] public NavMeshAgent navAgent;
 
-
     private List<float> utilitiesArr = new List<float>();
     private int currentAction;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         unit = GetComponent<EnemyUnit>();
         bossUdokEnemyUnit = GetComponent<BossUdokEnemyUnit>();
@@ -91,6 +89,7 @@ public class UtilityAIHandler : MonoBehaviour
         {
             case InputAiEnum.Health:
                 return unit.currentHealth / unit.stats.health;
+
             case InputAiEnum.RangeToTargetNormalized:
                 {
                     float tmp = Vector2.Distance(gameObject.transform.position, PlayerController.Instance.transform.position) / (unit.stats.moveSpeed * unit.stats.maxRange);
@@ -98,6 +97,7 @@ public class UtilityAIHandler : MonoBehaviour
                 }
             case InputAiEnum.TargetHealth:
                 return PlayerController.Instance.unit.currentHealth / PlayerController.Instance.unit.stats.health;
+
             case InputAiEnum.FireBallCount:
                 return bossUdokEnemyUnit.fireBalls.Count / bossUdokEnemyUnit.maxFireBalls;
         }
@@ -106,7 +106,7 @@ public class UtilityAIHandler : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         foreach (ActionAI action in settings.actionSettingList[currentAction].actionList)
         {

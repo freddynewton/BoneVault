@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "AI/Actions/Boss/Udok/SpawnFireballsBossUdok")]
 public class SpawnFireballs : ActionAI

@@ -1,14 +1,12 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 [CreateAssetMenu(menuName = "AI/Settings")]
 public class SettingsAI : ScriptableObject
 {
-
     public List<actionSetting> actionSettingList;
-    
+
     [Serializable]
     public struct actionSetting
     {
@@ -22,6 +20,4 @@ public class SettingsAI : ScriptableObject
         public AnimationCurve curve;
         public InputAiEnum input;
     }
-
-
 }

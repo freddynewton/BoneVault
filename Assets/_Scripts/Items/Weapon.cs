@@ -1,7 +1,4 @@
-﻿using JetBrains.Annotations;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
@@ -15,16 +12,17 @@ public abstract class Weapon : MonoBehaviour
 
     [Header("Weapon Default Stats")]
     public LayerMask DoDamageOn;
+
     public DamageType damageType;
 
     [Header("Screenshake Settings")]
     public float ShakeLenght = 1;
+
     public float ShakeStrength = 2;
 
     [SerializeField] public List<GameObject> hitObjects;
     [HideInInspector] public Animator animator;
     [HideInInspector] public string currentState;
-    
 
     public virtual void Start()
     {
@@ -40,7 +38,8 @@ public abstract class Weapon : MonoBehaviour
     public abstract void attackRightClick(bool active);
 
     // manages animation states
-    public void changeAnimationState (string newState) {
+    public void changeAnimationState(string newState)
+    {
         // prevent current animation interruption
         if (currentState == newState) return;
 

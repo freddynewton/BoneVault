@@ -1,12 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MiniMapPart : MonoBehaviour
 {
-
     public enum RoomDirMM
     {
         OneDoor,
@@ -37,7 +34,6 @@ public class MiniMapPart : MonoBehaviour
                 icon.sprite = getIcon(room.roomType);
                 icon.preserveAspect = true;
             }
-
         }
 
         if (room.roomType != Room.RoomType.START_ROOM) gameObject.SetActive(false);
@@ -54,10 +50,13 @@ public class MiniMapPart : MonoBehaviour
             {
                 case Room.RoomType.START_ROOM:
                     return Resources.Load<Sprite>("UI/Health");
+
                 case Room.RoomType.ENEMIE_ROOM:
                     break;
+
                 case Room.RoomType.BOSS_ROOM:
                     return Resources.Load<Sprite>("UI/Passive");
+
                 case Room.RoomType.SPECIAL_ROOM:
                     return Resources.Load<Sprite>("UI/Stamina");
             }
@@ -65,8 +64,6 @@ public class MiniMapPart : MonoBehaviour
 
         return null;
     }
-
-
 
     [Header("Part Settigns")]
     public RoomDirMM roomDirection;

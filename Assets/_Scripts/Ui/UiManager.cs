@@ -1,9 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngineInternal;
 
 public class UiManager : MonoBehaviour
 {
@@ -11,6 +9,7 @@ public class UiManager : MonoBehaviour
 
     [Header("HUD")]
     public GameObject HUDCanvas;
+
     public Slider healthSlider;
     public Slider staminaSlider;
 
@@ -18,14 +17,15 @@ public class UiManager : MonoBehaviour
 
     [Header("Bones")]
     public TextMeshProUGUI BonesCount;
+
     public Image BonesLogo;
 
     [Header("Dialog box")]
     public GameObject dialogBox;
+
     public GameObject dialogBackground;
     public TextMeshProUGUI uiboxText;
     public TextMeshProUGUI costsText;
-
 
     [Header("Red Flash")]
     public FlashScreen flashScreen;
@@ -41,8 +41,7 @@ public class UiManager : MonoBehaviour
             else Cursor.lockState = CursorLockMode.Locked;
 
             miniMapManager.openMinimap(!miniMapManager.MiniMapGenerator.minimapTextureCanvas.activeSelf);
-        } 
-
+        }
     }
 
     public void setBones(string amount)
@@ -73,7 +72,6 @@ public class UiManager : MonoBehaviour
 
             LeanTween.scale(dialogBackground.gameObject, new Vector3(1f, 1f, 1), 0.5f).setEaseOutElastic().setOnComplete(() =>
             {
-
             });
         });
     }
@@ -96,7 +94,6 @@ public class UiManager : MonoBehaviour
             });
         });
     }
-
 
     public void setStamina()
     {

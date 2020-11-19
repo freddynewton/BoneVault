@@ -25,12 +25,14 @@ public class Room : MonoBehaviour
 
     [Header("Basic Room Settings")]
     public RoomType roomType;
+
     public RoomDirection roomDirection;
 
     [Tooltip("Will setup automatical")] public List<Door> doors;
 
     [Header("Room Light Settings")]
     [Tooltip("Will setup automatical")] public List<Light> lights;
+
     public float activateLightDelay = 0.2f;
     public Color mainColor = Color.HSVToRGB(189, 100, 70);
     public Color secColor;
@@ -93,7 +95,6 @@ public class Room : MonoBehaviour
         l.gameObject.SetActive(true);
         l.color = color;
 
-
         if (idx < lights.Count - 1) StartCoroutine(lightDelay(color, idx += 1));
     }
 
@@ -104,6 +105,5 @@ public class Room : MonoBehaviour
 
     public virtual void OnTriggerExit(Collider other)
     {
-
     }
 }

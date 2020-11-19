@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerUpgradeHandler : MonoBehaviour
 {
@@ -12,7 +10,4 @@ public class PlayerUpgradeHandler : MonoBehaviour
 
     public float staminaRatePercentageUpgrade = 1;
     public int maxStaminaUpgrade;
-
-
-
 }

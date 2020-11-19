@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class BossUdokEnemyUnit : EnemyUnit
@@ -9,10 +8,10 @@ public class BossUdokEnemyUnit : EnemyUnit
 
     [Header("Fire Balls")]
     public List<GameObject> fireBalls = new List<GameObject>();
+
     public int maxFireBalls;
     public GameObject fireBallPF;
     public GameObject[] fireballFlyPos;
-
 
     public override void Start()
     {

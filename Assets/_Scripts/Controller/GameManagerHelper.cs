@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameManagerHelper : MonoBehaviour
 {
     public static GameManagerHelper Instance { get; private set; }
 
     public Stats playerStatsBackUp;
-   
+
     public void ResetPlayerStats()
     {
         PlayerController.Instance.unit.stats = playerStatsBackUp;
@@ -29,9 +27,7 @@ public class GameManagerHelper : MonoBehaviour
 #if UNITY_EDITOR
         Debug.unityLogger.logEnabled = true;
 #else
-        Debug.unityLogger.logEnabled = false; 
+        Debug.unityLogger.logEnabled = false;
 #endif
     }
-
-
 }

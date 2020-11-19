@@ -10,6 +10,7 @@ public class SpecialRoom : Room
 
     [Header("Special Room Lights")]
     public GameObject lightsParentSpecialRoom;
+
     public List<Light> specialLights;
 
     private void LateUpdate()
@@ -40,7 +41,6 @@ public class SpecialRoom : Room
         }
     }
 
-
     public override void Awake()
     {
         getAllLights();
@@ -53,7 +53,7 @@ public class SpecialRoom : Room
 
         specialLights = lightsParentSpecialRoom.GetComponentsInChildren<Light>().ToList();
 
-        foreach(Light l in specialLights)
+        foreach (Light l in specialLights)
         {
             SpriteRenderer rend = l.gameObject.gameObject.GetComponent<SpriteRenderer>();
             rend.enabled = false;
@@ -77,7 +77,6 @@ public class SpecialRoom : Room
 
         l.color = color;
         l.gameObject.SetActive(true);
-
 
         if (idx < specialLights.Count - 1) StartCoroutine(setSpecialRoomLights(color, idx += 1));
     }

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Timeline;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MiniMapManager : MonoBehaviour
 {
@@ -26,6 +23,7 @@ public class MiniMapManager : MonoBehaviour
         // TODO: FIX
         // if (MiniMapGenerator.minimapTextureCanvas.activeSelf) moveMinimap();
     }
+
     public void moveMinimap()
     {
         Vector3 prevMousePos = new Vector3();

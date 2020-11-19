@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro.EditorUtilities;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
@@ -89,7 +85,7 @@ public class Unit : MonoBehaviour
         yield return !boo;
     }
 
-    IEnumerator freezeGame(float time)
+    private IEnumerator freezeGame(float time)
     {
         Time.timeScale = 0;
         yield return new WaitForSecondsRealtime(time);
@@ -98,7 +94,6 @@ public class Unit : MonoBehaviour
 
     public virtual void knockback(Vector3 otherPos, float kb)
     {
-
     }
 
     public IEnumerator flashWhite(float time)
@@ -110,7 +105,7 @@ public class Unit : MonoBehaviour
         //spriteRend.material = baseMat;
     }
 
-        public void changeAnimationState(string newState)
+    public void changeAnimationState(string newState)
     {
         // prevent current animation interruption
         if (currentState == newState) return;

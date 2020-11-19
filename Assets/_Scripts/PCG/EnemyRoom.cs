@@ -1,12 +1,6 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-using System.Runtime.InteropServices;
-using UnityEngine.AI;
-using UnityEditor;
-using UnityEngine.Networking;
-using System.Linq;
 
 public class EnemyRoom : Room
 {
@@ -21,6 +15,7 @@ public class EnemyRoom : Room
 
     [Header("Enemy Room Settings")]
     public GameObject EnemyContainer;
+
     public GameObject[] EnemySpawnPositions;
 
     [Header("all spawn percentages must add up to 100")]
@@ -29,6 +24,7 @@ public class EnemyRoom : Room
 
     [Header("Enemy Spawn Count")]
     public int waves = 1;
+
     public int spawnNewWaveUnder = 1;
     public int minEnemies = 2;
     public int maxEnemies = 10;
@@ -36,6 +32,7 @@ public class EnemyRoom : Room
 
     [Header("Enemy Spawn Settings")]
     public float spawnRange;
+
     public Vector3 spawnOffset;
 
     private List<float> enemyListSpawnPerc;

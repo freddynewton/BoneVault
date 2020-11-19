@@ -5,7 +5,6 @@ public class FlashScreen : MonoBehaviour
 {
     private Image flashImage;
 
-
     private void Awake()
     {
         flashImage = gameObject.GetComponent<Image>();

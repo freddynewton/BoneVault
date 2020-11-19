@@ -9,6 +9,7 @@ public class AltarHandler : MonoBehaviour
 
     [Header("Altar Settings")]
     public float distance = 5;
+
     public GameObject hand;
     public SpriteRenderer spriteRend;
     public Light altarLight;
@@ -57,7 +58,8 @@ public class AltarHandler : MonoBehaviour
             // Squish & Strech GameObject for Feedback
             LeanTween.scale(hand, new Vector3(0.7f, 1.3f, 1), 0.4f).setEaseOutBack().setOnComplete(() =>
             {
-                LeanTween.scale(hand, Vector3.one, 1).setEaseOutBounce().setOnComplete(() => {
+                LeanTween.scale(hand, Vector3.one, 1).setEaseOutBounce().setOnComplete(() =>
+                {
                     LeanTween.cancel(hand);
                     LeanTween.moveLocal(hand, new Vector3(0, 1.2f, -0.5f), 3f).setEaseInQuad();
                     LeanTween.rotateX(hand, 30f, 3f).setEaseInQuad();
@@ -99,7 +101,7 @@ public class AltarHandler : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         outlines = gameObject.GetComponentsInChildren<Outline>().ToList();
         col = gameObject.GetComponent<SphereCollider>();

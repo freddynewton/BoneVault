@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,6 +6,7 @@ public class EnemyUnit : Unit
 {
     [Header("Animation Duration")]
     public float hitAnimationDuration;
+
     public float isAttackingDuration;
 
     [HideInInspector] public UtilityAIHandler utilityAI;
@@ -33,7 +33,6 @@ public class EnemyUnit : Unit
 
     public override void death()
     {
-
         // Play Death Animation
         animator.SetTrigger("isDead");
 

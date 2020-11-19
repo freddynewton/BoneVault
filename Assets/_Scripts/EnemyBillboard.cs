@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class EnemyBillboard : Billboard
+﻿public class EnemyBillboard : Billboard
 {
     public EnemyUnit unit;
 
@@ -10,9 +6,9 @@ public class EnemyBillboard : Billboard
     /// Call Function from Unit
     /// </summary>
     /// <param name="type">
-    /// 
+    ///
     /// 0 = Call Trigger Damage from Unit
-    /// 
+    ///
     /// </param>
     public void InvokeFunction(int type)
     {
@@ -22,6 +18,5 @@ public class EnemyBillboard : Billboard
                 unit.CallTriggerDamage();
                 break;
         }
-
     }
 }

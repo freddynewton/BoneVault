@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Xml;
-using UnityEditor;
-using UnityEngine;
-
+﻿using UnityEngine;
 
 public class PlayerUnit : Unit
 {
@@ -59,7 +54,7 @@ public class PlayerUnit : Unit
     public override void death()
     {
         base.death();
-        // TODO Player Hit effect & "Game over" Scene 
+        // TODO Player Hit effect & "Game over" Scene
     }
 
     public override void hit()
@@ -68,7 +63,6 @@ public class PlayerUnit : Unit
 
         // Do Player hit effect
         UiManager.Instance.flashScreen.flashScreen(1);
-
     }
 
     public override void DoDamage(GameObject damageObj, DamageType damageType)
@@ -117,9 +111,7 @@ public class PlayerUnit : Unit
         Projectile proj = damageObj.GetComponent<Projectile>();
         proj.isHittingEnemies = true;
 
-        Vector3 dir = (damageObj.transform.position - proj.circleAroundObj.transform.position);
-        
-        proj.ShootToTarget(200, dir);
+        proj.ShootToTarget(0, proj.circleAroundObj.transform.position - damageObj.transform.position);
     }
 
     public void setHealthPlayer(int amount)

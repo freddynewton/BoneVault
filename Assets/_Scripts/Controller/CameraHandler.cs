@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraHandler : MonoBehaviour
 {
@@ -9,15 +7,14 @@ public class CameraHandler : MonoBehaviour
     // private values
     private float xRotation = 0f;
 
-
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Cursor.lockState == CursorLockMode.Locked) lookAtMouse();
     }

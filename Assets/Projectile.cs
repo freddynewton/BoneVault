@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -31,12 +29,11 @@ public class Projectile : MonoBehaviour
         isCirclingAround = false;
         stopAllTweens();
         rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
 
         // Add Force
         rb.AddForce(dir * Time.deltaTime * strength, ForceMode.Impulse);
     }
-
-
 
     private void Update()
     {
@@ -48,7 +45,7 @@ public class Projectile : MonoBehaviour
 
     public void stopAllTweens()
     {
-        foreach(int i in ltIds)
+        foreach (int i in ltIds)
         {
             LeanTween.cancel(i, false);
         }
@@ -80,6 +77,6 @@ public class Projectile : MonoBehaviour
         {
             other.gameObject.GetComponent<Unit>().DoDamage(gameObject, damageType);
             DestroyProj();
-        } 
+        }
     }
 }

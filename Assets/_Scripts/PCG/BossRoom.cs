@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BossRoom : Room
 {
-
     [Header("TrapDoor")]
     public GameObject[] TrapDoor;
 
@@ -16,7 +13,7 @@ public class BossRoom : Room
 
     public void openTrapDoor()
     {
-        foreach(GameObject trap in TrapDoor)
+        foreach (GameObject trap in TrapDoor)
         {
             LeanTween.rotateX(trap, 90, 4).setEaseOutBounce();
         }

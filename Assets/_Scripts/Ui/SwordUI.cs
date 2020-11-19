@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,7 +29,8 @@ public class SwordUI : MonoBehaviour
                 {
                     LeanTween.scale(obj, Vector3.one, 0.3f).setEaseOutCirc();
                 });
-            } else
+            }
+            else
             {
                 obj.GetComponent<Image>().sprite = Resources.Load<Sprite>(isNotChargedImg);
             }

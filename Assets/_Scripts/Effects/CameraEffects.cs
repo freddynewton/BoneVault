@@ -118,5 +118,4 @@ namespace BoneVault.CameraEffects
             lastFoV = nextFoV = 0f;
         }
     }
-
 }

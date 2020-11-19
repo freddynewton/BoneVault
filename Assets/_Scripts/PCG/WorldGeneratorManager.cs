@@ -3,18 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Assertions.Must;
-using UnityEngine.PlayerLoop;
 
 /// <summary>
 /// The world get a abstract view as a 2D Integer Array
-/// 
+///
 /// 0 = Empty
 /// 1 = Room
-/// 
+///
 /// </summary>
 public class WorldGeneratorManager : MonoBehaviour
 {
@@ -33,12 +30,14 @@ public class WorldGeneratorManager : MonoBehaviour
 
     [Header("World Size Settings")]
     public int roomCount;
+
     public int specialRoomCount = 1;
     public int worldWidth = 10;
     public int worldLength = 10;
 
     [Header("Placement Settings")]
     public const int roomSpace = 96;
+
     public const int hallwaySpace = 48;
 
     [Header("Developer Settings")]
@@ -115,7 +114,6 @@ public class WorldGeneratorManager : MonoBehaviour
 
         // Controll that no room is on the same place as a other
         if (controllWorldGen()) StartCoroutine(generateMap());
-
 
         // Set Hallway
         SpawnHallways();
@@ -209,7 +207,6 @@ public class WorldGeneratorManager : MonoBehaviour
         return q;
     }
 
-
     /// <summary>
     /// Return Random Hallway Object
     /// </summary>
@@ -258,10 +255,10 @@ public class WorldGeneratorManager : MonoBehaviour
     /// </summary>
     /// <param name="amount"></param>
     /// <param name="type">
-    /// 
+    ///
     /// 0 = Special Room
     /// 1 = Boss Room
-    /// 
+    ///
     /// </param>
     public void SpawnSpecialRooms(int amount, int type)
     {
@@ -320,7 +317,6 @@ public class WorldGeneratorManager : MonoBehaviour
 
             try
             {
-
                 if (map[pos.x, pos.y - 1] == 0)
                 {
                     return new Vector2Int(pos.x, pos.y - 1);
@@ -330,7 +326,6 @@ public class WorldGeneratorManager : MonoBehaviour
             {
                 return new Vector2Int(pos.x, pos.y - 1);
             }
-
 
             try
             {
@@ -367,12 +362,10 @@ public class WorldGeneratorManager : MonoBehaviour
             }
             catch (Exception)
             {
-
             }
 
             try
             {
-
                 if (map[pos.x, pos.y - 1] == 1)
                 {
                     return new Vector2Int(pos.x, pos.y + 1);
@@ -380,9 +373,7 @@ public class WorldGeneratorManager : MonoBehaviour
             }
             catch (Exception)
             {
-
             }
-
 
             try
             {
@@ -393,7 +384,6 @@ public class WorldGeneratorManager : MonoBehaviour
             }
             catch (Exception)
             {
-
             }
 
             try
@@ -405,7 +395,6 @@ public class WorldGeneratorManager : MonoBehaviour
             }
             catch (Exception)
             {
-
             }
         }
         return pos;
@@ -417,10 +406,10 @@ public class WorldGeneratorManager : MonoBehaviour
     /// <param name="pos"></param>
     /// <param name="roomPos"></param>
     /// <param name="roomType">
-    /// 
+    ///
     /// 0 = Special Room
     /// 1 = BossRoom
-    /// 
+    ///
     /// </param>
     /// <returns></returns>
     public bool setSpecialRoom(Vector2Int pos, Vector3 roomPos, int roomType)
@@ -429,7 +418,6 @@ public class WorldGeneratorManager : MonoBehaviour
 
         if (roomType == 0) roomTyped = resourcesSpecialRooms;
         else if (roomType == 1) roomTyped = resourcesBossRooms;
-
 
         List<GameObject> roomL = new List<GameObject>();
 
@@ -450,7 +438,6 @@ public class WorldGeneratorManager : MonoBehaviour
             {
                 if (f.GetComponent<Room>().roomDirection == Room.RoomDirection.FourDoor) roomL.Add(f);
             }
-
         }
 
         Vector2Int specialRoomPos = new Vector2Int();
@@ -466,8 +453,8 @@ public class WorldGeneratorManager : MonoBehaviour
                 rooms.Add(_new);
                 rooms.Add(_spc);
 
-
                 break;
+
             case 3:
                 specialRoomPos = getZeroInMap(pos, 3);
 
@@ -485,7 +472,6 @@ public class WorldGeneratorManager : MonoBehaviour
         {
             try
             {
-
                 if (r.GetComponent<BossRoom>())
                 {
                     resourcesBossRooms.Remove(r);
@@ -495,7 +481,6 @@ public class WorldGeneratorManager : MonoBehaviour
             {
                 Debug.Log(ex);
             }
-
         }
 
         rooms.Remove(room);
@@ -526,10 +511,10 @@ public class WorldGeneratorManager : MonoBehaviour
     /// </summary>
     /// <param name="neighbourRoomCount">Room Count</param>
     /// <param name="roomType">
-    /// 
+    ///
     /// 0 = Start Room
     /// 1 = Enemy Room
-    /// 
+    ///
     /// </param>
     /// <returns></returns>
     public GameObject returnRandomRoom(int neighbourRoomCount, int roomType, Vector2Int roomPos)
@@ -542,6 +527,7 @@ public class WorldGeneratorManager : MonoBehaviour
             case 0:
                 roomList = resourcesStartRoomList;
                 break;
+
             case 1:
                 roomList = resourcesEnemyRoomList;
                 break;
@@ -550,7 +536,6 @@ public class WorldGeneratorManager : MonoBehaviour
         foreach (GameObject room in roomList)
         {
             Room.RoomDirection roomDir = room.GetComponent<Room>().roomDirection;
-
 
             switch (neighbourRoomCount)
             {
@@ -750,11 +735,9 @@ public class WorldGeneratorManager : MonoBehaviour
             }
         }
 
-
         int roomsLeft = roomCount;
 
         Vector2Int randomStartPos = new Vector2Int(UnityEngine.Random.Range(0, worldWidth), UnityEngine.Random.Range(0, worldLength));
-
 
         while (roomsLeft > 0)
         {
@@ -769,7 +752,6 @@ public class WorldGeneratorManager : MonoBehaviour
                 while (setRandomRoom()) ;
                 roomsLeft -= 1;
             }
-
         }
     }
 
@@ -786,12 +768,15 @@ public class WorldGeneratorManager : MonoBehaviour
             case Direction.Top:
                 pos.y += 1;
                 break;
+
             case Direction.Left:
                 pos.x -= 1;
                 break;
+
             case Direction.Right:
                 pos.x += 1;
                 break;
+
             case Direction.Down:
                 pos.y -= 1;
                 break;
@@ -826,10 +811,13 @@ public class WorldGeneratorManager : MonoBehaviour
         {
             case 0:
                 return Direction.Top;
+
             case 1:
                 return Direction.Left;
+
             case 2:
                 return Direction.Right;
+
             case 3:
                 return Direction.Down;
         }

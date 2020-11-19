@@ -8,7 +8,8 @@ public enum InputAiEnum
     Health,
     RangeToTargetNormalized,
     TargetHealth,
-    FireBallCount
+    FireBallCount,
+    LivingSpawnedMinions
 }
 
 public class UtilityAIHandler : MonoBehaviour
@@ -100,8 +101,18 @@ public class UtilityAIHandler : MonoBehaviour
 
             case InputAiEnum.FireBallCount:
                 return bossUdokEnemyUnit.fireBalls.Count / bossUdokEnemyUnit.maxFireBalls;
-        }
 
+            case InputAiEnum.LivingSpawnedMinions:
+                if (bossUdokEnemyUnit.spawnedMinions.Count <= 0) return 0;
+                int count = 0;
+
+                foreach (EnemyUnit e in bossUdokEnemyUnit.spawnedMinions)
+                {
+                    if (e.currentHealth <= 0) count++;
+                }
+
+                return count / bossUdokEnemyUnit.minionsLivingCount;
+        }
         return 0;
     }
 

@@ -13,6 +13,11 @@ public class BossUdokEnemyUnit : EnemyUnit
     public GameObject fireBallPF;
     public GameObject[] fireballFlyPos;
 
+    [Header("SpawnedMinions")]
+    public List<EnemyUnit> spawnedMinions = new List<EnemyUnit>();
+
+    public int minionsLivingCount = 3;
+
     public override void Start()
     {
         spriteRend = GetComponentInChildren<SpriteRenderer>();
@@ -38,7 +43,6 @@ public class BossUdokEnemyUnit : EnemyUnit
     public override void hit()
     {
         base.hit();
-        Debug.Log("Boss Hit");
     }
 
     public override void setWalkingAnimation()
@@ -53,6 +57,11 @@ public class BossUdokEnemyUnit : EnemyUnit
 
     public override void death()
     {
+        foreach (GameObject fireball in fireBalls)
+        {
+            fireball.GetComponent<Projectile>().DestroyProj();
+        }
+
         Inventory.Instance.setBones(Random.Range(0, 10));
         base.death();
         bossRoom.portalDoor.openDoor();

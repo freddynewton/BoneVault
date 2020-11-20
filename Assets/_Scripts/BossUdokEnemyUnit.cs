@@ -66,4 +66,16 @@ public class BossUdokEnemyUnit : EnemyUnit
         base.death();
         bossRoom.portalDoor.openDoor();
     }
+
+    public int returnLivingMinions()
+    {
+        int count = 0;
+
+        foreach (EnemyUnit e in spawnedMinions)
+        {
+            if (e.currentHealth > 0) count++;
+        }
+
+        return count;
+    }
 }

@@ -37,8 +37,11 @@ public class EnemyUnit : Unit
         animator.SetTrigger("isDead");
 
         // Play Hit Particle
-        vfx.Clear();
-        vfx.Play();
+        if (vfx != null)
+        {
+            vfx.Clear();
+            vfx.Play();
+        }
 
         // Disable all component and leave a sprite
         GetComponent<UtilityAIHandler>().enabled = false;

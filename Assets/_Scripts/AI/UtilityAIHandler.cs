@@ -104,14 +104,8 @@ public class UtilityAIHandler : MonoBehaviour
 
             case InputAiEnum.LivingSpawnedMinions:
                 if (bossUdokEnemyUnit.spawnedMinions.Count <= 0) return 0;
-                int count = 0;
 
-                foreach (EnemyUnit e in bossUdokEnemyUnit.spawnedMinions)
-                {
-                    if (e.currentHealth <= 0) count++;
-                }
-
-                return count / bossUdokEnemyUnit.minionsLivingCount;
+                return bossUdokEnemyUnit.returnLivingMinions() / bossUdokEnemyUnit.minionsLivingCount;
         }
         return 0;
     }

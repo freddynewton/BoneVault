@@ -311,10 +311,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 6b26556fa11f53345a6d1df30c98d92a, type: 2}
+  navAgent: {fileID: 1128569394610793412}
   rb: {fileID: 0}
   unit: {fileID: 0}
   bossUdokEnemyUnit: {fileID: 0}
-  navAgent: {fileID: 0}
 --- !u!114 &1010693395267296081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,8 +348,11 @@ MonoBehaviour:
   - {fileID: 5514465916374684679}
   - {fileID: 6568183313554841107}
   - {fileID: 5061357290183313095}
-  spawnedMinions: []
+  enemyTypes:
+  - {fileID: 3065674638620549660, guid: 66f84629eab951742955a69e0e86b7e1, type: 3}
   minionsLivingCount: 3
+  spawnedMinions: []
+  isSpawning: 0
 --- !u!54 &554263566041780037
 Rigidbody:
   m_ObjectHideFlags: 0

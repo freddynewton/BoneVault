@@ -17,10 +17,11 @@ public class UtilityAIHandler : MonoBehaviour
     [Header("Settings")]
     public SettingsAI settings;
 
+    public NavMeshAgent navAgent;
+
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public EnemyUnit unit;
     [HideInInspector] public BossUdokEnemyUnit bossUdokEnemyUnit;
-    [HideInInspector] public NavMeshAgent navAgent;
 
     private List<float> utilitiesArr = new List<float>();
     private int currentAction;
@@ -31,7 +32,7 @@ public class UtilityAIHandler : MonoBehaviour
         unit = GetComponent<EnemyUnit>();
         bossUdokEnemyUnit = GetComponent<BossUdokEnemyUnit>();
         rb = GetComponent<Rigidbody2D>();
-        navAgent = GetComponent<NavMeshAgent>();
+        // navAgent = GetComponent<NavMeshAgent>();
     }
 
     private void Awake()

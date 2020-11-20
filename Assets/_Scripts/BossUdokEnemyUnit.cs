@@ -14,9 +14,11 @@ public class BossUdokEnemyUnit : EnemyUnit
     public GameObject[] fireballFlyPos;
 
     [Header("SpawnedMinions")]
-    public List<EnemyUnit> spawnedMinions = new List<EnemyUnit>();
+    public List<GameObject> enemyTypes = new List<GameObject>();
 
     public int minionsLivingCount = 3;
+    [HideInInspector] public List<EnemyUnit> spawnedMinions = new List<EnemyUnit>();
+    [HideInInspector] public bool isSpawning;
 
     public override void Start()
     {
@@ -71,11 +73,41 @@ public class BossUdokEnemyUnit : EnemyUnit
     {
         int count = 0;
 
+        if (spawnedMinions.Count == 0) return 0;
         foreach (EnemyUnit e in spawnedMinions)
         {
             if (e.currentHealth > 0) count++;
         }
 
         return count;
+    }
+
+    public void spawnMinions()
+    {
+        LeanTween.cancel(gameObject);
+        isSpawning = true;
+        RaycastHit hit;
+
+        Physics.Raycast(transform.position, Vector3.down, out hit);
+        LeanTween.moveY(gameObject, -45, 1.5f).setEaseOutSine().setOnComplete(() =>
+        {
+            for (int i = returnLivingMinions(); i < minionsLivingCount; i++)
+            {
+                animator.SetTrigger("Summon");
+
+                Vector3 spawnPos = bossRoom.transform.position;
+                spawnPos.y = hit.point.y;
+
+                GameObject e = Instantiate(enemyTypes[Random.Range(0, enemyTypes.Count)], spawnPos, Quaternion.identity, bossRoom.transform) as GameObject;
+
+                spawnedMinions.Add(e.GetComponent<EnemyUnit>());
+
+                LeanTween.moveY(gameObject, -40f, 3f).setEaseOutSine().setDelay(5f).setOnComplete(() =>
+                {
+                    isSpawning = false;
+                    LeanTween.moveLocalY(gameObject, gameObject.transform.position.y - 1, 2.5f).setEaseInOutQuad().setLoopPingPong();
+                });
+            }
+        });
     }
 }

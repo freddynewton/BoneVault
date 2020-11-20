@@ -9,18 +9,18 @@ public class SummonMinions : ActionAI
 
     public override void use(UtilityAIHandler controller)
     {
-        RaycastHit hit;
-
-        Physics.Raycast(controller.gameObject.transform.position, Vector3.down, out hit);
-        LeanTween.moveY(controller.gameObject, hit.point.y, 0.7f).setEaseOutSine().setOnComplete(() =>
+        if (controller.bossUdokEnemyUnit.returnLivingMinions() < controller.bossUdokEnemyUnit.minionsLivingCount)
         {
-            LeanTween.moveY(controller.gameObject, -40f, 2f).setEaseOutSine().setDelay(6f);
-        });
+            RaycastHit hit;
 
-        for (int i = 0; i < controller.bossUdokEnemyUnit.minionsLivingCount; i++)
-        {
+            Physics.Raycast(controller.gameObject.transform.position, Vector3.down, out hit);
+            LeanTween.moveY(controller.gameObject, hit.point.y + Vector3.up.y, 1.5f).setEaseOutSine().setOnComplete(() =>
+            {
+                LeanTween.moveY(controller.gameObject, -40f, 3f).setEaseOutSine().setDelay(8f);
+            });
+
             controller.unit.animator.SetTrigger("Summon");
-            GameObject e = Instantiate(enemyTypes[Random.Range(0, enemyTypes.Count)], new Vector3(controller.transform.position.x + Random.Range(-1f, 1f), PlayerController.Instance.transform.position.y, controller.transform.position.z + Random.Range(-1f, 1f)), Quaternion.identity, controller.bossUdokEnemyUnit.bossRoom.transform) as GameObject;
+            GameObject e = Instantiate(enemyTypes[Random.Range(0, enemyTypes.Count)], new Vector3(controller.transform.position.x, hit.point.y, controller.transform.position.z), Quaternion.identity, controller.bossUdokEnemyUnit.bossRoom.transform) as GameObject;
 
             controller.bossUdokEnemyUnit.spawnedMinions.Add(e.GetComponent<EnemyUnit>());
         }

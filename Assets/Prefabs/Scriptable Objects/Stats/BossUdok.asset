@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a2523012511214f81549b0cd394798, type: 3}
   m_Name: BossUdok
   m_EditorClassIdentifier: 
-  health: 50
+  health: 10
   moveSpeed: 3
   maxRange: 10
   stoppingDistance: 1.5

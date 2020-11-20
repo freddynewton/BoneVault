@@ -71,7 +71,9 @@ MonoBehaviour:
   - {fileID: 8141828964146330630}
   EnemyTypes:
   - Enemy: {fileID: 3065674638620549660, guid: 66f84629eab951742955a69e0e86b7e1, type: 3}
-    spawnPercentage: 100
+    spawnPercentage: 50
+  - Enemy: {fileID: 3065674638620549660, guid: ac2a3673fcde7c84999c7982b90a994a, type: 3}
+    spawnPercentage: 50
   waves: 1
   spawnNewWaveUnder: 1
   minEnemies: 2

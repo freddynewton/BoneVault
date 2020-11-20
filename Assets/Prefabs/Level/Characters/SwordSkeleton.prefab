@@ -4828,7 +4828,7 @@ GameObject:
   - component: {fileID: 1285391051}
   - component: {fileID: 94241713}
   m_Layer: 11
-  m_Name: Skeleton
+  m_Name: SwordSkeleton
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4887,10 +4887,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 7fe646de7fff3ec409abfd7e175647c8, type: 2}
-  navAgent: {fileID: 3065674638620549732}
   rb: {fileID: 0}
   unit: {fileID: 0}
   bossUdokEnemyUnit: {fileID: 0}
+  navAgent: {fileID: 0}
 --- !u!136 &3065674638620549658
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4954,7 +4954,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 4, z: 4}
+  m_Size: {x: 5, y: 3, z: 5}
   m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &3518550471976835322
 GameObject:
@@ -5029,7 +5029,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9d488f41d316b1f4c8145ec1eb07043c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0789a5618c976a54689811b799e9f44d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5050,7 +5050,7 @@ Animator:
   m_GameObject: {fileID: 3518550471976835322}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 97008f92312a02741be2593e8e17e70d, type: 2}
+  m_Controller: {fileID: 9100000, guid: b40acf76174a10741a4d5f35ad20f0ce, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

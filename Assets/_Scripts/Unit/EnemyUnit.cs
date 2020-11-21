@@ -28,6 +28,7 @@ public class EnemyUnit : Unit
     public override void Update()
     {
         base.Update();
+        FaceTarget(PlayerController.Instance.transform.position);
         setWalkingAnimation();
     }
 
@@ -67,6 +68,14 @@ public class EnemyUnit : Unit
         }
 
         base.hit();
+    }
+
+    private void FaceTarget(Vector3 destination)
+    {
+        Vector3 lookPos = destination - transform.position;
+        lookPos.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(lookPos);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1);
     }
 
     public override void DoDamage(GameObject damageObj, DamageType damageType)

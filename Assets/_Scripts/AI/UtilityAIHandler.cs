@@ -17,8 +17,6 @@ public class UtilityAIHandler : MonoBehaviour
     [Header("Settings")]
     public SettingsAI settings;
 
-    public NavMeshAgent navAgent;
-
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public EnemyUnit unit;
     [HideInInspector] public BossUdokEnemyUnit bossUdokEnemyUnit;
@@ -33,11 +31,6 @@ public class UtilityAIHandler : MonoBehaviour
         bossUdokEnemyUnit = GetComponent<BossUdokEnemyUnit>();
         rb = GetComponent<Rigidbody2D>();
         // navAgent = GetComponent<NavMeshAgent>();
-    }
-
-    private void Awake()
-    {
-        StartCoroutine(setNavAgent());
     }
 
     private void calcUtility()
@@ -59,13 +52,6 @@ public class UtilityAIHandler : MonoBehaviour
         }
 
         chooseHighestScoreUtility();
-    }
-
-    private IEnumerator setNavAgent()
-    {
-        yield return new WaitForEndOfFrame();
-        navAgent.speed = unit.stats.moveSpeed;
-        navAgent.stoppingDistance = unit.stats.stoppingDistance;
     }
 
     private void chooseHighestScoreUtility()

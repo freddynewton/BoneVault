@@ -4823,12 +4823,13 @@ GameObject:
   - component: {fileID: 3065674638620549656}
   - component: {fileID: 3065674638620549657}
   - component: {fileID: 3065674638620549659}
+  - component: {fileID: 3740648278435014696}
   - component: {fileID: 3065674638620549658}
   - component: {fileID: 3065674638620549732}
   - component: {fileID: 1285391051}
   - component: {fileID: 94241713}
   m_Layer: 11
-  m_Name: SwordSkeleton
+  m_Name: SkeletonWarrior
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4873,6 +4874,7 @@ MonoBehaviour:
   isAttackingDuration: 3
   utilityAI: {fileID: 0}
   damageType: {fileID: 11400000, guid: 48b1bbf64f727664a8af64fa6023dddb, type: 2}
+  navAgent: {fileID: 0}
   triggerList: []
 --- !u!114 &3065674638620549659
 MonoBehaviour:
@@ -4887,10 +4889,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 7fe646de7fff3ec409abfd7e175647c8, type: 2}
-  navAgent: {fileID: 3065674638620549732}
   rb: {fileID: 0}
   unit: {fileID: 0}
   bossUdokEnemyUnit: {fileID: 0}
+--- !u!114 &3740648278435014696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3065674638620549660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b6a3c39f701dc642ab1d5a2f8784dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 3065674638620549732}
 --- !u!136 &3065674638620549658
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4915,7 +4929,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1
-  m_Speed: 3.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 0
@@ -5029,7 +5043,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0789a5618c976a54689811b799e9f44d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 829b96e16cbcbcf4ab0b686c5c6f8705, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5050,7 +5064,7 @@ Animator:
   m_GameObject: {fileID: 3518550471976835322}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b40acf76174a10741a4d5f35ad20f0ce, type: 2}
+  m_Controller: {fileID: 9100000, guid: 870f222aa3e4d7c4bb6cba91a7c0480b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

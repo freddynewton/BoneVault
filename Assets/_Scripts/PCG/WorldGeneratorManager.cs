@@ -130,11 +130,11 @@ public class WorldGeneratorManager : MonoBehaviour
             }
         }
 
-        // Bake Navmesh
-        bakeNavmesh();
-
         // Generate Minimap
         miniMapGenerator.generateMiniMap();
+
+        // Bake Navmesh
+        StartCoroutine(bakeNavmesh());
     }
 
     private bool controllWorldGen()
@@ -157,13 +157,17 @@ public class WorldGeneratorManager : MonoBehaviour
     /// <summary>
     /// Bake navmesh while runtime
     /// </summary>
-    public void bakeNavmesh()
+    public IEnumerator bakeNavmesh()
     {
+        yield return new WaitForEndOfFrame();
         navMeshSurfaces.Clear();
 
         navMeshSurfaces = gameObject.GetComponents<NavMeshSurface>().ToList();
 
-        foreach (NavMeshSurface n in navMeshSurfaces) n.BuildNavMesh();
+        foreach (NavMeshSurface n in navMeshSurfaces)
+        {
+            n.BuildNavMesh();
+        }
     }
 
     /// <summary>

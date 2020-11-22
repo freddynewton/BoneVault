@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 939506820057582767}
   - component: {fileID: 4226091606599123722}
   - component: {fileID: 2108494575064135616}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: HangingTorch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 450954614836467221}
-  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 4005415593926083158}
   - component: {fileID: 5720953451645516374}
   - component: {fileID: 8229035980892426306}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9952a3d9b070d12408bd3b6f25e3f6ee, type: 3}
       propertyPath: m_Layer
-      value: 14
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9952a3d9b070d12408bd3b6f25e3f6ee, type: 3}
@@ -385,7 +385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5408754180824331858, guid: e8653e05916e9044686c87543c031b97, type: 3}
       propertyPath: m_Layer
-      value: 14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6221276316926977979, guid: e8653e05916e9044686c87543c031b97, type: 3}
       propertyPath: m_LocalPosition.x

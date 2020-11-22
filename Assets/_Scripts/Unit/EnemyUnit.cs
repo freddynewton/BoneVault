@@ -15,10 +15,14 @@ public class EnemyUnit : Unit
     [Header("Damage")]
     public DamageType damageType;
 
+    [Header("Nav Agent")]
+    public NavAgentController navAgent;
+
     public List<GameObject> triggerList = new List<GameObject>();
 
     public override void Start()
     {
+        navAgent = GetComponent<NavAgentController>();
         base.Start();
         utilityAI = GetComponent<UtilityAIHandler>();
         vfx = GetComponentInChildren<ParticleSystem>();
@@ -98,7 +102,7 @@ public class EnemyUnit : Unit
 
     public virtual void setWalkingAnimation()
     {
-        if (utilityAI.navAgent.velocity != Vector3.zero) animator.SetBool("isWalking", true);
+        if (navAgent.agent.velocity != Vector3.zero) animator.SetBool("isWalking", true);
         else animator.SetBool("isWalking", false);
     }
 

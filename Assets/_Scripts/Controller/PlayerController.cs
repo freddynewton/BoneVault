@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public CharacterController controller;
     [HideInInspector] public Animator animator;
     [HideInInspector] public Vector3 move;
+    [HideInInspector] public bool isSprinting;
 
     private float walkSpeed;
     private float baseSpeed;
@@ -73,10 +74,12 @@ public class PlayerController : MonoBehaviour
             if (Input.GetButtonDown("Sprint"))
             {
                 walkSpeed = sprintSpeed * unit.upgradeHandler.sprintSpeedPercentageUpgrade;
+                isSprinting = true;
             }
             else if (Input.GetButtonUp("Sprint"))
             {
                 walkSpeed = baseSpeed * unit.upgradeHandler.baseSpeedPercentageUpgrade;
+                isSprinting = false;
             }
 
             if (Input.GetButton("Sprint"))

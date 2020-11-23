@@ -135,7 +135,8 @@ public class LongSword : Weapon
     public void idle()
     {
         if (!isAttacking && !isBlocking && PlayerController.Instance.move == Vector3.zero) changeAnimationState("Idle");
-        else if (!isAttacking && !isBlocking && PlayerController.Instance.move != Vector3.zero) changeAnimationState("Walk");
+        else if (!isAttacking && !isBlocking && !PlayerController.Instance.isSprinting && PlayerController.Instance.move != Vector3.zero) changeAnimationState("Walk");
+        else if (!isAttacking && !isBlocking && PlayerController.Instance.isSprinting && PlayerController.Instance.move != Vector3.zero) changeAnimationState("Sprint");
     }
 
     /// <summary>

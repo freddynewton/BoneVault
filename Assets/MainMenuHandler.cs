@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuHandler : MonoBehaviour
 {
@@ -12,9 +13,22 @@ public class MainMenuHandler : MonoBehaviour
     public List<Light> lights = new List<Light>();
     public List<SpriteRenderer> sprites = new List<SpriteRenderer>();
 
-    // [Header("UI")]
+    public void Quit()
+    {
+        Application.Quit();
+    }
 
-    // Start is called before the first frame update
+    public void Credits()
+    {
+        Application.OpenURL("https://twitter.com/playBoneVault");
+    }
+
+    public void Play()
+    {
+        // Load Loading Scene
+        LeanTween.cancelAll();
+        SceneManager.LoadScene(1);
+    }
 
     private IEnumerator lightDelay(Color color, int idx)
     {

@@ -4,23 +4,13 @@ using UnityEngine;
 
 public class EnemyRoom : Room
 {
-    [Serializable]
-    public struct enemyTypes
-    {
-        public GameObject Enemy;
-
-        [Tooltip("Needs to be <= 100")]
-        [Range(0, 100)] public float spawnPercentage;
-    }
-
     [Header("Enemy Room Settings")]
     public GameObject EnemyContainer;
 
     public GameObject[] EnemySpawnPositions;
 
-    [Header("all spawn percentages must add up to 100")]
-    [Tooltip("All spawnPercentage needs to fit into 100")]
-    public enemyTypes[] EnemyTypes;
+    [Header("Enemy Types")]
+    public List<GameObject> EnemyTypesPF = new List<GameObject>();
 
     [Header("Enemy Spawn Count")]
     public int waves = 1;
@@ -35,37 +25,10 @@ public class EnemyRoom : Room
 
     public Vector3 spawnOffset;
 
-    private List<float> enemyListSpawnPerc;
-
     public override void Awake()
     {
         base.Awake();
-        setEnemyList();
         EnemyContainer.transform.position = gameObject.transform.position;
-    }
-
-    public void setEnemyList()
-    {
-        enemyListSpawnPerc = new List<float>();
-
-        foreach (enemyTypes e in EnemyTypes)
-        {
-            enemyListSpawnPerc.Add(e.spawnPercentage);
-        }
-    }
-
-    public GameObject getRandomEnemy()
-    {
-        float randomValue = UnityEngine.Random.Range(0, 100);
-
-        foreach (enemyTypes e in EnemyTypes)
-        {
-            if (randomValue > e.spawnPercentage) continue;
-            else return e.Enemy;
-        }
-
-        // Won't happen if set correctly
-        return EnemyTypes[0].Enemy;
     }
 
     public bool checkIfRoomCleared()
@@ -97,8 +60,7 @@ public class EnemyRoom : Room
     public void spawnRandomEnemy()
     {
         // TODO Spawn VFX
-        Debug.Log("Spawn Enemy");
-        GameObject e = Instantiate(getRandomEnemy(), EnemySpawnPositions[UnityEngine.Random.Range(0, EnemySpawnPositions.Length - 1)].transform.position, Quaternion.identity, EnemyContainer.gameObject.transform) as GameObject;
+        GameObject e = Instantiate(EnemyTypesPF[UnityEngine.Random.Range(0, EnemyTypesPF.Count)], EnemySpawnPositions[UnityEngine.Random.Range(0, EnemySpawnPositions.Length - 1)].transform.position, Quaternion.identity, EnemyContainer.gameObject.transform) as GameObject;
     }
 
     private int returnLivingEnemyCount()
@@ -130,10 +92,5 @@ public class EnemyRoom : Room
             setLights(mainColor);
             InvokeRepeating("checkIfRoomCleared", 3, 1);
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        //Gizmos.DrawWireSphere(gameObject.transform.position + spawnOffset, spawnRange);
     }
 }

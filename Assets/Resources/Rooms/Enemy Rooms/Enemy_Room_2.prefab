@@ -161,11 +161,17 @@ MonoBehaviour:
   - {fileID: 6560356169846247346}
   - {fileID: 5924191251835407203}
   - {fileID: 902590878826776504}
-  EnemyTypes:
-  - Enemy: {fileID: 3065674638620549660, guid: 66f84629eab951742955a69e0e86b7e1, type: 3}
-    spawnPercentage: 50
-  - Enemy: {fileID: 3065674638620549660, guid: ac2a3673fcde7c84999c7982b90a994a, type: 3}
-    spawnPercentage: 50
+  EnemyTypesPF:
+  - {fileID: 3065674638620549660, guid: ac2a3673fcde7c84999c7982b90a994a, type: 3}
+  - {fileID: 3065674638620549660, guid: ac2a3673fcde7c84999c7982b90a994a, type: 3}
+  - {fileID: 3065674638620549660, guid: ac2a3673fcde7c84999c7982b90a994a, type: 3}
+  - {fileID: 3065674638620549660, guid: ee82b5a8c836da24ca6e27333666848f, type: 3}
+  - {fileID: 3065674638620549660, guid: 66f84629eab951742955a69e0e86b7e1, type: 3}
+  - {fileID: 3065674638620549660, guid: 66f84629eab951742955a69e0e86b7e1, type: 3}
+  - {fileID: 3065674638620549660, guid: a65d74db1c5edf34580ccef1a2c12855, type: 3}
+  - {fileID: 3065674638620549660, guid: a65d74db1c5edf34580ccef1a2c12855, type: 3}
+  - {fileID: 3065674638620549660, guid: a65d74db1c5edf34580ccef1a2c12855, type: 3}
+  - {fileID: 3065674638620549660, guid: a65d74db1c5edf34580ccef1a2c12855, type: 3}
   waves: 1
   spawnNewWaveUnder: 1
   minEnemies: 2

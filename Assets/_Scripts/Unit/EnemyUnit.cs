@@ -15,8 +15,7 @@ public class EnemyUnit : Unit
     [Header("Damage")]
     public DamageType damageType;
 
-    [Header("Nav Agent")]
-    public NavAgentController navAgent;
+    [HideInInspector] public NavAgentController navAgent;
 
     public List<GameObject> triggerList = new List<GameObject>();
 

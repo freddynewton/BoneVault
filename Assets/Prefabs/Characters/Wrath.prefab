@@ -4906,9 +4906,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 3065674638620549732}
   unit: {fileID: 0}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
+  layerMask: 0
 --- !u!136 &3065674638620549658
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4931,7 +4929,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3065674638620549660}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -334000983
   m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
@@ -4941,8 +4939,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 3
-  m_BaseOffset: 0.1
+  m_Height: 8
+  m_BaseOffset: 5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!54 &1285391051

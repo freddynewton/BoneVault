@@ -10,7 +10,12 @@ public class NavAgentController : MonoBehaviour
 
     [Header("Raycasting")]
     private const int MAX_ITERATIONS = 1000;
-    public LayerMask layerMask;
+    public int layerMask;
+
+    private void Start()
+    {
+        layerMask = LayerMask.GetMask("Player, Default, Enemy, Ground");
+    }
 
     public void MoveToLocation(Vector3 targetPos)
     {
@@ -30,7 +35,7 @@ public class NavAgentController : MonoBehaviour
         NavMeshPath path = new NavMeshPath();
 
         RaycastHit hit;
-        Physics.Raycast(gameObject.transform.position, targetPos - gameObject.transform.position, out hit, layerMask);
+        Physics.Raycast(gameObject.transform.position, targetPos - gameObject.transform.position, out hit);
 
         if (!hit.transform.CompareTag("Player"))
         {
@@ -41,7 +46,7 @@ public class NavAgentController : MonoBehaviour
                 Vector3 randomPoint = Random.onUnitSphere * unit.stats.maxRange;
 
                 RaycastHit _hit;
-                Physics.Raycast(randomPoint, targetPos - gameObject.transform.position, out _hit, layerMask);
+                Physics.Raycast(randomPoint, targetPos - gameObject.transform.position, out _hit);
 
                 if (_hit.transform.CompareTag("Player"))
                 {

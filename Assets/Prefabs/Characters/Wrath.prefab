@@ -4863,7 +4863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d942087681c73d4a8a72190b847363e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: aa1c67ef0b01c1b47aac91e5aa8abd51, type: 2}
+  stats: {fileID: 11400000, guid: 32338c7bf75258244bb54e8e53d60f97, type: 2}
   currentHealth: 0
   currentState: 
   animator: {fileID: 0}
@@ -4873,7 +4873,7 @@ MonoBehaviour:
   hitAnimationDuration: 0.8
   isAttackingDuration: 3
   utilityAI: {fileID: 0}
-  damageType: {fileID: 11400000, guid: 48b1bbf64f727664a8af64fa6023dddb, type: 2}
+  damageType: {fileID: 11400000, guid: c9599280e49518544ac11b5c414ba743, type: 2}
   navAgent: {fileID: 0}
   triggerList: []
 --- !u!114 &3065674638620549659
@@ -4888,7 +4888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3955da6dbf4d39f4aace5af9353b96f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: 7fe646de7fff3ec409abfd7e175647c8, type: 2}
+  settings: {fileID: 11400000, guid: 62ba8ca539ccf584c8becc5461553b76, type: 2}
   rb: {fileID: 0}
   unit: {fileID: 0}
   bossUdokEnemyUnit: {fileID: 0}
@@ -4906,6 +4906,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 3065674638620549732}
   unit: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!136 &3065674638620549658
 CapsuleCollider:
   m_ObjectHideFlags: 0

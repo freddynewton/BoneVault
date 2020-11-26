@@ -25,6 +25,10 @@ public class MainMenuHandler : MonoBehaviour
         Application.OpenURL("https://twitter.com/playBoneVault");
     }
 
+    public void Options() {
+        // open option menu
+    }
+
     public void Play()
     {
         // Load Loading Scene

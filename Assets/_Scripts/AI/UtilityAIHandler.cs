@@ -20,6 +20,7 @@ public class UtilityAIHandler : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public EnemyUnit unit;
     [HideInInspector] public BossUdokEnemyUnit bossUdokEnemyUnit;
+    [HideInInspector] public WrathEnemy wrathEnemyUnit;
 
     private List<float> utilitiesArr = new List<float>();
     private int currentAction;
@@ -29,6 +30,7 @@ public class UtilityAIHandler : MonoBehaviour
     {
         unit = GetComponent<EnemyUnit>();
         bossUdokEnemyUnit = GetComponent<BossUdokEnemyUnit>();
+        wrathEnemyUnit = GetComponent<WrathEnemy>();
         rb = GetComponent<Rigidbody2D>();
         // navAgent = GetComponent<NavMeshAgent>();
     }

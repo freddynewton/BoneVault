@@ -7,6 +7,6 @@ public class StayInSight : ActionAI
 {
     public override void use(UtilityAIHandler controller)
     {
-        controller.unit.navAgent.StayInSight(PlayerController.Instance.transform.position);
+        controller.unit.navAgent.StayInSight(PlayerController.Instance.transform.position, 5);
     }
 }

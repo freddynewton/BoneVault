@@ -50,7 +50,7 @@ public class MainMenuHandler : MonoBehaviour
 
     private void Awake()
     {
-        LeanTween.rotateY(camera.gameObject, 10, 5f).setLoopPingPong().setEaseInOutSine();
+        LeanTween.rotateY(camera.gameObject, 10, 15f).setLoopPingPong().setEaseInOutSine();
 
         foreach (Light l in lights) l.enabled = false;
         foreach (SpriteRenderer s in sprites) s.enabled = false;

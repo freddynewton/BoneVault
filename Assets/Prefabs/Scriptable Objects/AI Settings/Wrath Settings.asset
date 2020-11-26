@@ -15,6 +15,7 @@ MonoBehaviour:
   actionSettingList:
   - actionList:
     - {fileID: 11400000, guid: 82e6b8fd6e6d6fc48a4662ef660eb164, type: 2}
+    - {fileID: 11400000, guid: 4281f22743bed7a48a441a3a1bbee770, type: 2}
     settingList:
     - curve:
         serializedVersion: 2

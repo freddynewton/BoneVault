@@ -5,7 +5,7 @@ public class Projectile : MonoBehaviour
 {
     public Animator animator;
     [HideInInspector] public DamageType damageType;
-    [HideInInspector] public GameObject circleAroundObj;
+    [HideInInspector] public GameObject projectileSource;
     [HideInInspector] public BossUdokEnemyUnit bossUdok;
     [HideInInspector] public bool isCirclingAround = false;
     [HideInInspector] public Rigidbody rb;
@@ -39,7 +39,7 @@ public class Projectile : MonoBehaviour
     {
         if (isCirclingAround)
         {
-            gameObject.transform.RotateAround(circleAroundObj.transform.position, Vector3.up, 30 * Time.deltaTime);
+            gameObject.transform.RotateAround(projectileSource.transform.position, Vector3.up, 30 * Time.deltaTime);
         }
     }
 
@@ -62,6 +62,8 @@ public class Projectile : MonoBehaviour
 
     public void DestroyProj()
     {
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         stopAllTweens();
         animator.SetTrigger("Explode");
         Destroy(gameObject, 0.333f);
@@ -77,6 +79,9 @@ public class Projectile : MonoBehaviour
         {
             other.gameObject.GetComponent<Unit>().DoDamage(gameObject, damageType);
             DestroyProj();
+        } else
+        {
+           // DestroyProj();
         }
     }
 }

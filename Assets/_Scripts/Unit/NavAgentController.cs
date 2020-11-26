@@ -9,7 +9,8 @@ public class NavAgentController : MonoBehaviour
     [HideInInspector] public Unit unit;
 
     [Header("Raycasting")]
-    private const int MAX_ITERATIONS = 1000;
+    private const int MAX_ITERATIONS = 100;
+
     public int layerMask;
 
     private void Start()
@@ -30,39 +31,41 @@ public class NavAgentController : MonoBehaviour
         else stopAgent();
     }
 
-    public void StayInSight(Vector3 targetPos)
+    public void StayInSight(Vector3 targetPos, float yAxisOffset)
     {
-        NavMeshPath path = new NavMeshPath();
-
+        // Check if Player is in Sight
         RaycastHit hit;
-        Physics.Raycast(gameObject.transform.position, targetPos - gameObject.transform.position, out hit);
 
-        if (!hit.transform.CompareTag("Player"))
+        // Check if Player is in SIght and agent is not moving
+        if (Physics.Raycast(gameObject.transform.position, targetPos - gameObject.transform.position, out hit) && !hit.transform.CompareTag("Player") && agent.velocity == Vector3.zero) ;
         {
-            Vector3 target = hit.point;
-
+            // Find Random Point in Range
             for (int i = 0; i < MAX_ITERATIONS; i++)
             {
-                Vector3 randomPoint = Random.onUnitSphere * unit.stats.maxRange;
+                Vector3 _tmp = gameObject.transform.position + (Random.insideUnitSphere * 30);
 
-                RaycastHit _hit;
-                Physics.Raycast(randomPoint, targetPos - gameObject.transform.position, out _hit);
+                // Check distance to ground
+                RaycastHit _hitYaxis;
+                Physics.Raycast(_tmp, Vector3.down, out _hitYaxis);
 
-                if (_hit.transform.CompareTag("Player"))
+                // Change new y Axis Value
+                _tmp = new Vector3(_tmp.x, _hitYaxis.point.y + yAxisOffset, _tmp.z);
+
+                //Raycast again from new Random Point
+                Physics.Raycast(_tmp, targetPos - _tmp, out hit);
+
+                // Check if Player is in Sight from new Pos
+                if (hit.transform.CompareTag("Player") && Vector3.Distance(gameObject.transform.position, _tmp) >= 5 && agent.pathStatus == NavMeshPathStatus.PathComplete)
                 {
-                    target = _hit.point;
+                    Debug.Log(hit.transform.tag);
+
+                    //Move Agent
+                    MoveToLocation(_tmp);
+
+                    // End for Loop
                     break;
                 }
             }
-
-            agent.CalculatePath(target, path);
-
-            if (path.status == NavMeshPathStatus.PathComplete)
-            {
-                agent.isStopped = false;
-                agent.destination = targetPos;
-            }
-            else stopAgent();
         }
     }
 

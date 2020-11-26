@@ -111,7 +111,7 @@ public class PlayerUnit : Unit
         Projectile proj = damageObj.GetComponent<Projectile>();
         proj.isHittingEnemies = true;
 
-        proj.ShootToTarget(100, proj.circleAroundObj.transform.position - damageObj.transform.position);
+        proj.ShootToTarget(100, proj.projectileSource.transform.position - damageObj.transform.position);
     }
 
     public void setHealthPlayer(int amount)

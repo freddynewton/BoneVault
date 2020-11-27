@@ -9,7 +9,7 @@ public class DestroyableEntity : Interactable
     public override void interact()
     {
         vfx.Play();
-        LeanTween.scale(GFX, Vector3.zero, 0.3f).setEaseInBack().setOnComplete(() => { GFX.SetActive(false); });
+        GFX.SetActive(false);
     }
 
 

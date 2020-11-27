@@ -41,7 +41,7 @@ public class Unit : MonoBehaviour
             rb = GetComponent<Rigidbody>();
         }
 
-        animator = GetComponentInChildren<Animator>();
+        if (GetComponentInChildren<Animator>()) animator = GetComponentInChildren<Animator>();
         currentHealth = stats.health;
     }
 

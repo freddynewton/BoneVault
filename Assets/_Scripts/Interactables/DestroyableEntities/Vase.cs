@@ -9,6 +9,7 @@ public class Vase : DestroyableEntity
 
     public override void interact()
     {
+        Debug.Log("Interact: " + transform.name);
         base.interact();
 
         if (dropItems.Count != 0)

@@ -165,7 +165,9 @@ public class LongSword : Weapon
 
                 damageType.damage = d;
                 // End Trash Code
-            } else if (obj.GetComponent<DestroyableEntity>())
+            } 
+            
+            if (obj.GetComponent<DestroyableEntity>())
             {
                 obj.GetComponent<DestroyableEntity>().interact();
             }
@@ -210,10 +212,12 @@ public class LongSword : Weapon
     private void OnTriggerEnter(Collider other)
     {
         if (layermaskInclude(other.gameObject.layer) && !hitObjects.Contains(other.gameObject)) hitObjects.Add(other.gameObject);
+        if (other.CompareTag("Interactable") && !hitObjects.Contains(other.gameObject)) hitObjects.Add(other.gameObject);
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (layermaskInclude(other.gameObject.layer) && hitObjects.Contains(other.gameObject)) hitObjects.Remove(other.gameObject);
+        if (other.CompareTag("Interactable") && hitObjects.Contains(other.gameObject)) hitObjects.Remove(other.gameObject);
     }
 }

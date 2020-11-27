@@ -27,7 +27,7 @@ public class MeleeEnemyUnit : EnemyUnit
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Player") && triggerList.Contains(other.gameObject)) triggerList.Remove(other.gameObject);
-        if (other.gameObject.CompareTag("Interactable") && !triggerList.Contains(other.gameObject)) triggerList.Add(other.gameObject);
+        if (other.gameObject.CompareTag("Interactable") && triggerList.Contains(other.gameObject)) triggerList.Remove(other.gameObject);
     }
 
     public override void Start()

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// The world get a abstract view as a 2D Integer Array
@@ -27,6 +28,7 @@ public class WorldGeneratorManager : MonoBehaviour
 
     [Header("World Generation Settings")]
     public bool startOnAwake;
+    public bool printDebugMatrix;
 
     [Header("World Size Settings")]
     public int roomCount;
@@ -54,15 +56,23 @@ public class WorldGeneratorManager : MonoBehaviour
     private List<GameObject> resourcesHallwayList = new List<GameObject>();
     private List<GameObject> resourcesSpecialRooms = new List<GameObject>();
     private List<GameObject> resourcesBossRooms = new List<GameObject>();
-
     private List<NavMeshSurface> navMeshSurfaces = new List<NavMeshSurface>();
+
+    private IEnumerator currentMapGeneration;
+    private const int MAX_ITERATIONS = 20;
+    private int current_iteration;
 
     [Header("Minimap")]
     public MiniMapGenerator miniMapGenerator;
 
     private void LateUpdate()
     {
-        if (TestMode && Input.GetKeyDown(KeyCode.DownArrow)) StartCoroutine(generateMap());
+        if (TestMode && Input.GetKeyDown(KeyCode.DownArrow)) startGeneratingMap();
+    }
+
+    public void startGeneratingMap()
+    {
+        StartCoroutine(generateMap());
     }
 
     /// <summary>
@@ -71,70 +81,87 @@ public class WorldGeneratorManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator generateMap()
     {
-        // Stop all Tweens
-        LeanTween.cancelAll();
-
-        // Delete old map
-        foreach (Transform child in gameObject.transform) Destroy(child.gameObject);
-        rooms.Clear();
-
-        // Wait a Frame
-        yield return new WaitForFixedUpdate();
-
-        // Create a new Map
-        SetMap();
-
-        // Print Matrix
-        printMatrix();
-
-        // Load all resources rooms in a Array
-        resourcesEnemyRoomList.Clear();
-        resourcesHallwayList.Clear();
-        resourcesStartRoomList.Clear();
-        resourcesSpecialRooms.Clear();
-
-        resourcesEnemyRoomList = Resources.LoadAll<GameObject>("Rooms/Enemy Rooms").ToList();
-        resourcesStartRoomList = Resources.LoadAll<GameObject>("Rooms/Start Rooms").ToList();
-        resourcesHallwayList = Resources.LoadAll<GameObject>("Rooms/Hallways").ToList();
-        resourcesSpecialRooms = Resources.LoadAll<GameObject>("Rooms/Special Rooms").ToList();
-
-        if (resourcesBossRooms.Count == 0)
+        // Check if the generations stucks in a loop
+        if (current_iteration < MAX_ITERATIONS)
         {
-            resourcesBossRooms = Resources.LoadAll<GameObject>("Rooms/Boss Rooms").ToList();
-        }
+            // Stop all Tweens
+            LeanTween.cancelAll();
 
-        // Spawn Rooms
-        SpawnRooms();
+            // Increase Iteration
+            current_iteration += 1;
 
-        // Spawn Boss Room
-        SpawnSpecialRooms(1, 1);
+            // Delete old map
+            foreach (Transform child in gameObject.transform) Destroy(child.gameObject);
+            rooms.Clear();
 
-        // Spawn Special Rooms
-        SpawnSpecialRooms(specialRoomCount, 0);
+            // Wait a Frame
+            yield return new WaitForFixedUpdate();
 
-        // Controll that no room is on the same place as a other
-        if (controllWorldGen()) StartCoroutine(generateMap());
+            // Create a new Map
+            SetMap();
 
-        // Set Hallway
-        SpawnHallways();
+            // Print Matrix
+            if (printDebugMatrix) printMatrix();
 
-        // Set Playerpos
-        foreach (GameObject r in rooms)
-        {
-            StartRoom sr = r.GetComponent<StartRoom>();
+            // Load all resources rooms in a Array
+            resourcesEnemyRoomList.Clear();
+            resourcesHallwayList.Clear();
+            resourcesStartRoomList.Clear();
+            resourcesSpecialRooms.Clear();
 
-            if (sr != null)
+            resourcesEnemyRoomList = Resources.LoadAll<GameObject>("Rooms/Enemy Rooms").ToList();
+            resourcesStartRoomList = Resources.LoadAll<GameObject>("Rooms/Start Rooms").ToList();
+            resourcesHallwayList = Resources.LoadAll<GameObject>("Rooms/Hallways").ToList();
+            resourcesSpecialRooms = Resources.LoadAll<GameObject>("Rooms/Special Rooms").ToList();
+
+            if (resourcesBossRooms.Count == 0)
             {
-                PlayerController.Instance.transform.position = sr.PlayerSpawn.position;
-                PlayerController.Instance.unit.setHealthPlayer(0);
+                resourcesBossRooms = Resources.LoadAll<GameObject>("Rooms/Boss Rooms").ToList();
             }
+
+            // Spawn Rooms
+            SpawnRooms();
+
+            // Spawn Boss Room
+            SpawnSpecialRooms(1, 1);
+
+            // Spawn Special Rooms
+            SpawnSpecialRooms(specialRoomCount, 0);
+
+            // Controll that no room is on the same place as a other
+            if (controllWorldGen())
+            {
+                current_iteration += 1;
+                StartCoroutine(generateMap());
+            }
+
+            // Set Hallway
+            SpawnHallways();
+
+            // Set Playerpos
+            foreach (GameObject r in rooms)
+            {
+                StartRoom sr = r.GetComponent<StartRoom>();
+
+                if (sr != null)
+                {
+                    PlayerController.Instance.transform.position = sr.PlayerSpawn.position;
+                    PlayerController.Instance.unit.setHealthPlayer(0);
+                }
+            }
+
+            // Generate Minimap
+            miniMapGenerator.generateMiniMap();
+
+            // Bake Navmesh
+            StartCoroutine(bakeNavmesh());
+        } else
+        {
+            // Load loading Scene
+            SceneManager.LoadScene(1);
         }
 
-        // Generate Minimap
-        miniMapGenerator.generateMiniMap();
-
-        // Bake Navmesh
-        StartCoroutine(bakeNavmesh());
+        
     }
 
     private bool controllWorldGen()

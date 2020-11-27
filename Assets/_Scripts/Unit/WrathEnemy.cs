@@ -8,6 +8,7 @@ public class WrathEnemy : EnemyUnit
     public GameObject projectilePF;
     public GameObject projectileShootingPos;
     [HideInInspector] public GameObject currentProj;
+    public GameObject GFX;
 
     private void Awake()
     {

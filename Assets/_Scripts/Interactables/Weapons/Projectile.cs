@@ -71,6 +71,14 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Interactable"))
+        {
+            if (other.GetComponent<DestroyableEntity>())
+            {
+                other.GetComponent<DestroyableEntity>().interact();
+            }
+        }
+
         if (other.CompareTag("Player"))
         {
             other.gameObject.GetComponent<Unit>().DoDamage(gameObject, damageType);

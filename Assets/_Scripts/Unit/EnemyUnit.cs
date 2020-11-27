@@ -4,20 +4,12 @@ using UnityEngine.AI;
 
 public class EnemyUnit : Unit
 {
-    [Header("Animation Duration")]
-    public float hitAnimationDuration;
-
-    public float isAttackingDuration;
-
-    [HideInInspector] public UtilityAIHandler utilityAI;
-    private ParticleSystem vfx;
-
     [Header("Damage")]
     public DamageType damageType;
 
+    [HideInInspector] public UtilityAIHandler utilityAI;
+    [HideInInspector] public ParticleSystem vfx;
     [HideInInspector] public NavAgentController navAgent;
-
-    public List<GameObject> triggerList = new List<GameObject>();
 
     public override void Start()
     {
@@ -91,27 +83,9 @@ public class EnemyUnit : Unit
         base.knockback(otherPos, kb);
     }
 
-    public void CallTriggerDamage()
-    {
-        foreach (GameObject obj in triggerList)
-        {
-            obj.GetComponent<Unit>().DoDamage(gameObject, damageType);
-        }
-    }
-
     public virtual void setWalkingAnimation()
     {
         if (navAgent.agent.velocity != Vector3.zero) animator.SetBool("isWalking", true);
         else animator.SetBool("isWalking", false);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player") && !triggerList.Contains(other.gameObject)) triggerList.Add(other.gameObject);
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player") && triggerList.Contains(other.gameObject)) triggerList.Remove(other.gameObject);
     }
 }

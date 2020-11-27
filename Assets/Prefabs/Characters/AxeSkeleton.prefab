@@ -4821,7 +4821,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3065674638620549656}
-  - component: {fileID: 3065674638620549657}
+  - component: {fileID: -3103733122684960842}
   - component: {fileID: 3065674638620549659}
   - component: {fileID: -2504575575942547431}
   - component: {fileID: 3065674638620549658}
@@ -4851,7 +4851,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3065674638620549657
+--- !u!114 &-3103733122684960842
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4860,7 +4860,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3065674638620549660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d942087681c73d4a8a72190b847363e, type: 3}
+  m_Script: {fileID: 11500000, guid: 88eea2685ac4b0846a8d4ba1ed995cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: aa1c67ef0b01c1b47aac91e5aa8abd51, type: 2}
@@ -4870,10 +4870,9 @@ MonoBehaviour:
   spriteRend: {fileID: 0}
   rb: {fileID: 0}
   flashScript: {fileID: 0}
-  hitAnimationDuration: 0.8
-  isAttackingDuration: 3
-  utilityAI: {fileID: 0}
   damageType: {fileID: 11400000, guid: 48b1bbf64f727664a8af64fa6023dddb, type: 2}
+  utilityAI: {fileID: 0}
+  vfx: {fileID: 0}
   navAgent: {fileID: 0}
   triggerList: []
 --- !u!114 &3065674638620549659
@@ -4892,6 +4891,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   unit: {fileID: 0}
   bossUdokEnemyUnit: {fileID: 0}
+  wrathEnemyUnit: {fileID: 0}
 --- !u!114 &-2504575575942547431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4906,6 +4906,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 3065674638620549732}
   unit: {fileID: 0}
+  layerMask: 0
 --- !u!136 &3065674638620549658
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5087,7 +5088,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnOnly: 1
-  unit: {fileID: 3065674638620549657}
+  unit: {fileID: -3103733122684960842}
 --- !u!1001 &4624161356649792867
 PrefabInstance:
   m_ObjectHideFlags: 0

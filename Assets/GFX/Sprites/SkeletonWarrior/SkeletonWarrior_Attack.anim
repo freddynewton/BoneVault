@@ -86,8 +86,8 @@ AnimationClip:
   m_Events:
   - time: 0.5
     functionName: InvokeFunction
-    data: unit.CallTriggerDamage()
+    data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 1
-    intParameter: 1
+    floatParameter: 0
+    intParameter: 0
     messageOptions: 0

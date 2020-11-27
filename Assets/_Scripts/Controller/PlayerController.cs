@@ -4,20 +4,23 @@ public class PlayerController : MonoBehaviour
 {
     // Singleton Instance
     public static PlayerController Instance { get; private set; }
-
     public GameObject weaponPos;
+    public AudioClip [] walkSFX;
 
     [HideInInspector] public PlayerUnit unit;
     [HideInInspector] public CharacterController controller;
     [HideInInspector] public Animator animator;
     [HideInInspector] public Vector3 move;
     [HideInInspector] public bool isSprinting;
+    [HideInInspector] public AudioSource randomSound;
 
     private float walkSpeed;
     private float baseSpeed;
     private float sprintSpeed;
     private float fallSpeed;
     private Vector3 velocity;
+    private float stepTimer;
+    private float interval = 0.75f;
 
     private void Start()
     {
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour
         walkSpeed = unit.stats.moveSpeed;
         baseSpeed = unit.stats.moveSpeed;
         sprintSpeed = unit.stats.moveSpeed * 2f;
+        randomSound = GetComponentInChildren<AudioSource>();
     }
 
     private void Update()
@@ -71,25 +75,25 @@ public class PlayerController : MonoBehaviour
     {
         if (unit.currentStamina > 0)
         {
-            if (Input.GetButtonDown("Sprint"))
-            {
+            if (Input.GetButtonDown("Sprint")) {
                 walkSpeed = sprintSpeed * unit.upgradeHandler.sprintSpeedPercentageUpgrade;
                 isSprinting = true;
+                interval = 0.4f;
             }
-            else if (Input.GetButtonUp("Sprint"))
-            {
+            else if (Input.GetButtonUp("Sprint")) {
                 walkSpeed = baseSpeed * unit.upgradeHandler.baseSpeedPercentageUpgrade;
                 isSprinting = false;
+                interval = 0.75f;
             }
 
-            if (Input.GetButton("Sprint"))
-            {
+            if (Input.GetButton("Sprint")) {
                 unit.setStamina(-((unit.stats.sprintCostRate * unit.upgradeHandler.sprintSpeedPercentageCostsUpgrade) * Time.deltaTime));
             }
         }
-        else
-        {
+        else {
             walkSpeed = baseSpeed * unit.upgradeHandler.baseSpeedPercentageUpgrade;
+            isSprinting = false;
+            interval = 0.75f;
         }
     }
 
@@ -109,6 +113,24 @@ public class PlayerController : MonoBehaviour
         fallSpeed += unit.stats.gravity * Time.deltaTime;
         velocity.y = fallSpeed;
         controller.Move(velocity * Time.deltaTime);
+
+        // movement sounds
+        if (move != Vector3.zero) {
+            RandomWalkSFX();
+        }
+    }
+
+    void RandomWalkSFX() {
+        stepTimer += Time.deltaTime;
+
+        // play step sounds in intervalls from a list of sound files randomly
+        if (stepTimer >= interval) {
+            randomSound.clip = walkSFX [Random.Range(0, walkSFX.Length)];
+            randomSound.pitch = Random.Range(0.8f, 1.2f);
+
+            if (randomSound != null) randomSound.Play();
+            stepTimer = 0.0f;
+        }
     }
 
     private void Awake()

@@ -2,18 +2,20 @@
 
 public class PlayerUnit : Unit
 {
+    public PlayerUpgradeHandler upgradeHandler;
+    public AudioClip [] hitSFX;
+    public float timeToRegStaminaAfterHitZero = 2f;
+
+    private bool foolStamina;
     [HideInInspector] public float currentStamina;
     [HideInInspector] public bool isStaminaReg = true;
-
-    public PlayerUpgradeHandler upgradeHandler;
-
-    public float timeToRegStaminaAfterHitZero = 2f;
-    private bool foolStamina;
+    [HideInInspector] public AudioSource randomSound;
 
     public override void Start()
     {
         base.Start();
         currentStamina = stats.stamina;
+        randomSound = GetComponentInChildren<AudioSource>();
     }
 
     public void updateStamina()
@@ -63,6 +65,8 @@ public class PlayerUnit : Unit
 
         // Do Player hit effect
         UiManager.Instance.flashScreen.flashScreen(1);
+
+        playRandomSFX(hitSFX);
     }
 
     public override void DoDamage(GameObject damageObj, DamageType damageType)
@@ -120,5 +124,13 @@ public class PlayerUnit : Unit
         if (currentHealth > stats.health + upgradeHandler.maxHealthUpgrade) currentHealth = stats.health;
 
         UiManager.Instance.setHealth();
+    }
+
+    // SFX Handler
+    private void playRandomSFX (AudioClip [] sounds) {
+        randomSound.clip = sounds [Random.Range(0, sounds.Length)];
+        randomSound.pitch = Random.Range(0.8f, 1.2f);
+
+        if (randomSound != null) randomSound.Play();
     }
 }

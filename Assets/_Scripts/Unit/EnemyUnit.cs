@@ -6,10 +6,12 @@ public class EnemyUnit : Unit
 {
     [Header("Damage")]
     public DamageType damageType;
+    public AudioClip [] hitSFX;
 
     [HideInInspector] public UtilityAIHandler utilityAI;
     [HideInInspector] public ParticleSystem vfx;
     [HideInInspector] public NavAgentController navAgent;
+    [HideInInspector] public AudioSource randomSound;
 
     public override void Start()
     {
@@ -18,6 +20,7 @@ public class EnemyUnit : Unit
         utilityAI = GetComponent<UtilityAIHandler>();
         vfx = GetComponentInChildren<ParticleSystem>();
         vfx.Stop();
+        randomSound = GetComponentInChildren<AudioSource>();
     }
 
     public override void Update()
@@ -38,6 +41,8 @@ public class EnemyUnit : Unit
             vfx.Clear();
             vfx.Play();
         }
+
+        playRandomSFX(hitSFX);
 
         // Disable all component and leave a sprite
         GetComponent<UtilityAIHandler>().enabled = false;
@@ -61,6 +66,8 @@ public class EnemyUnit : Unit
             vfx.Clear();
             vfx.Play();
         }
+
+        playRandomSFX(hitSFX);
 
         base.hit();
     }
@@ -87,5 +94,13 @@ public class EnemyUnit : Unit
     {
         if (navAgent.agent.velocity != Vector3.zero) animator.SetBool("isWalking", true);
         else animator.SetBool("isWalking", false);
+    }
+
+    // SFX Handler
+    private void playRandomSFX (AudioClip [] sounds) {
+        randomSound.clip = sounds [Random.Range(0, sounds.Length)];
+        randomSound.pitch = Random.Range(0.8f, 1.2f);
+
+        if (randomSound != null) randomSound.Play();
     }
 }

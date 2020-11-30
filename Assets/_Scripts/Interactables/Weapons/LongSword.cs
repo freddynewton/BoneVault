@@ -19,9 +19,12 @@ public class LongSword : Weapon
     [HideInInspector] public float animationLength;
     [HideInInspector] public bool isAttacking;
     [HideInInspector] public bool isBlocking;
+    [HideInInspector] public AudioSource randomSound;
 
     public ParticleSystem sparks;
     public ParticleSystem sparksCharged;
+    public AudioClip [] swingSFX;
+    public AudioClip [] parrySFX;
 
     // INVOKE FUNCTIONS
     public void blockCharge() => perfectBlockActive = false;
@@ -33,6 +36,7 @@ public class LongSword : Weapon
         base.Start();
         sparks.Stop();
         sparksCharged.Stop();
+        randomSound = GetComponentInChildren<AudioSource>();
     }
 
     // Attack
@@ -42,6 +46,7 @@ public class LongSword : Weapon
         {
             isAttacking = active;
             int randomInt = Random.Range(0, 3);
+            playRandomSFX(swingSFX);
 
             switch (randomInt)
             {
@@ -104,6 +109,7 @@ public class LongSword : Weapon
 
             sparksCharged.Clear();
             sparksCharged.Play();
+            playRandomSFX(parrySFX);
 
             return callbackValue.SUCCESS;
         }
@@ -113,6 +119,7 @@ public class LongSword : Weapon
         {
             sparks.Clear();
             sparks.Play();
+            playRandomSFX(parrySFX);
 
             return callbackValue.NOTHING;
         }
@@ -206,6 +213,14 @@ public class LongSword : Weapon
         {
             UiManager.Instance.weaponUI.activateSwordUI(false);
         }
+    }
+
+    // SFX Handler
+    private void playRandomSFX(AudioClip[] sounds) {
+        randomSound.clip = sounds [Random.Range(0, sounds.Length)];
+        randomSound.pitch = Random.Range(0.8f, 1.2f);
+
+        if (randomSound != null) randomSound.Play();
     }
 
     // Trigger Handler

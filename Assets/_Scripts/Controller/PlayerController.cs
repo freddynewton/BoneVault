@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void RandomWalkSFX() {
+    private void RandomWalkSFX() {
         stepTimer += Time.deltaTime;
 
         // play step sounds in intervalls from a list of sound files randomly

@@ -131,10 +131,15 @@ MonoBehaviour:
   spriteRend: {fileID: 0}
   rb: {fileID: 0}
   flashScript: {fileID: 0}
+  upgradeHandler: {fileID: 594818234}
+  hitSFX:
+  - {fileID: 8300000, guid: 05af77c4efe36a44babdf3a01c4ea72b, type: 3}
+  - {fileID: 8300000, guid: 8849ebaee25c93840a1c7ce4693775cd, type: 3}
+  - {fileID: 8300000, guid: 9e2bac236df4b754e8adf4d3ee4e4af1, type: 3}
+  timeToRegStaminaAfterHitZero: 2
   currentStamina: 0
   isStaminaReg: 1
-  upgradeHandler: {fileID: 594818234}
-  timeToRegStaminaAfterHitZero: 2
+  randomSound: {fileID: 0}
 --- !u!95 &486285905
 Animator:
   serializedVersion: 3
@@ -5227,7 +5232,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 366053b6c9060a54f85465ef2f975463, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.9
   m_Pitch: 1
   Loop: 0
   Mute: 0

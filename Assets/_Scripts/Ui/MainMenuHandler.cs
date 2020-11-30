@@ -7,13 +7,11 @@ public class MainMenuHandler : MonoBehaviour
 {
     [Header("BackGround Settings")]
     public Color color;
-
     public Camera camera;
-
     public float lightWaitTime;
-
     public List<Light> lights = new List<Light>();
     public List<SpriteRenderer> sprites = new List<SpriteRenderer>();
+    public AudioSource titleMusic;
 
     public void Quit()
     {
@@ -59,5 +57,7 @@ public class MainMenuHandler : MonoBehaviour
         foreach (Light l in lights) l.enabled = false;
         foreach (SpriteRenderer s in sprites) s.enabled = false;
         StartCoroutine(lightDelay(color, 0));
+
+        titleMusic.Play();
     }
 }

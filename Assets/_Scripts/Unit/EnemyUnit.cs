@@ -7,6 +7,7 @@ public class EnemyUnit : Unit
     [Header("Damage")]
     public DamageType damageType;
     public AudioClip [] hitSFX;
+    public AudioClip [] attackSFX;
 
     [HideInInspector] public UtilityAIHandler utilityAI;
     [HideInInspector] public ParticleSystem vfx;

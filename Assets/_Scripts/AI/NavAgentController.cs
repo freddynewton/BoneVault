@@ -36,7 +36,7 @@ public class NavAgentController : MonoBehaviour
         // Check if Player is in Sight
         RaycastHit hit;
 
-        // Check if Player is in SIght and agent is not moving
+        // Check if Player is in Sight and agent is not moving
         if (Physics.Raycast(gameObject.transform.position, targetPos - gameObject.transform.position, out hit) && !hit.transform.CompareTag("Player") && agent.velocity == Vector3.zero) ;
         {
             // Find Random Point in Range

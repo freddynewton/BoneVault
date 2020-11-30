@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "AI/Actions/SkeletonAttack")]
+
 public class SkeletonAttack : ActionAI
 {
     public override void use(UtilityAIHandler controller)
@@ -8,6 +9,7 @@ public class SkeletonAttack : ActionAI
         if (controller.unit.waitTimer(controller.unit.stats.attackRate))
         {
             controller.unit.animator.SetTrigger("Attack");
+            
         }
     }
 }

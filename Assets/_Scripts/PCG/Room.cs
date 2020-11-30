@@ -36,8 +36,10 @@ public class Room : MonoBehaviour
     public float activateLightDelay = 0.2f;
     public Color mainColor = Color.HSVToRGB(189, 100, 70);
     public Color secColor;
+    public AudioClip [] torchSFX;
 
     [HideInInspector] public MiniMapPart miniMapPart;
+    [HideInInspector] public AudioSource randomSound;
 
     public virtual void Awake()
     {
@@ -92,10 +94,20 @@ public class Room : MonoBehaviour
             rend.color = color;
         }
 
+        if (!l.gameObject.activeSelf) playRandomSFX(torchSFX, l.transform.parent.GetComponent<AudioSource>());
+
         l.gameObject.SetActive(true);
         l.color = color;
 
         if (idx < lights.Count - 1) StartCoroutine(lightDelay(color, idx += 1));
+    }
+
+    // SFX Handler
+    private void playRandomSFX (AudioClip [] sounds, AudioSource source) {
+        source.clip = sounds [Random.Range(0, sounds.Length)];
+        source.pitch = Random.Range(0.8f, 1.2f);
+
+        if (source != null) source.Play();
     }
 
     public virtual void OnTriggerEnter(Collider other)

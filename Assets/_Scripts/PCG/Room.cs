@@ -37,6 +37,8 @@ public class Room : MonoBehaviour
     public Color mainColor = Color.HSVToRGB(189, 100, 70);
     public Color secColor;
     public AudioClip [] torchSFX;
+    public AudioClip [] doorOpenSFX;
+    public AudioClip [] doorShutSFX;
 
     [HideInInspector] public MiniMapPart miniMapPart;
     [HideInInspector] public AudioSource randomSound;
@@ -70,8 +72,16 @@ public class Room : MonoBehaviour
     {
         foreach (Door d in doors)
         {
-            if (isOpen) d.openDoor();
-            else d.closeDoor();
+            if (isOpen) {
+                d.openDoor();
+                if (!d.isOpen) playSFX(doorOpenSFX, d.GetComponent<AudioSource>(), false);
+                d.isOpen = true;
+            }
+            else {
+                d.closeDoor();
+                if (d.isOpen) playSFX(doorShutSFX, d.GetComponent<AudioSource>(), false);
+                d.isOpen = false;
+            }
         }
     }
 
@@ -94,7 +104,7 @@ public class Room : MonoBehaviour
             rend.color = color;
         }
 
-        if (!l.gameObject.activeSelf) playRandomSFX(torchSFX, l.transform.parent.GetComponent<AudioSource>());
+        if (!l.gameObject.activeSelf) playSFX(torchSFX, l.transform.parent.GetComponent<AudioSource>(), true);
 
         l.gameObject.SetActive(true);
         l.color = color;
@@ -103,8 +113,10 @@ public class Room : MonoBehaviour
     }
 
     // SFX Handler
-    private void playRandomSFX (AudioClip [] sounds, AudioSource source) {
-        source.clip = sounds [Random.Range(0, sounds.Length)];
+    private void playSFX (AudioClip [] sounds, AudioSource source, bool random) {
+        if (random) source.clip = sounds [Random.Range(0, sounds.Length)];
+        else source.clip = sounds [0];
+
         source.pitch = Random.Range(0.8f, 1.2f);
 
         if (source != null) source.Play();

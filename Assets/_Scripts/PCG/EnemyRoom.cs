@@ -14,7 +14,6 @@ public class EnemyRoom : Room
 
     [Header("Enemy Spawn Count")]
     public int waves = 1;
-
     public int spawnNewWaveUnder = 1;
     public int minEnemies = 2;
     public int maxEnemies = 10;

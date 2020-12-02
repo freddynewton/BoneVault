@@ -151,6 +151,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cf6b66e80ef23034b961bda4a7f619c4, type: 3}
   - {fileID: 8300000, guid: 3d4ca83f23f36b64f8efb559c673dce9, type: 3}
   - {fileID: 8300000, guid: b9cdda0181894934c9a33da8da9591a5, type: 3}
+  doorOpenSFX:
+  - {fileID: 8300000, guid: c4872a24e7b8a7547857382e6c75290f, type: 3}
+  doorShutSFX:
+  - {fileID: 8300000, guid: 5b34603b242bd6249a0009f5e1fe40c9, type: 3}
   miniMapPart: {fileID: 0}
   randomSound: {fileID: 0}
   PlayerSpawn: {fileID: 8686317276766585842}

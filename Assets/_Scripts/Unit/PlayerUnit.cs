@@ -56,6 +56,8 @@ public class PlayerUnit : Unit
     public override void death()
     {
         base.death();
+        UiManager.Instance.flashScreen.flashScreen(1);
+        playRandomSFX(hitSFX);
         // TODO Player Hit effect & "Game over" Scene
     }
 

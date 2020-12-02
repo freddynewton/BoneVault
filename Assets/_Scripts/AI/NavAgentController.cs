@@ -51,15 +51,15 @@ public class NavAgentController : MonoBehaviour
                 // Change new y Axis Value
                 _tmp = new Vector3(_tmp.x, _hitYaxis.point.y + yAxisOffset, _tmp.z);
 
-                //Raycast again from new Random Point
+                // Raycast again from new Random Point
                 Physics.Raycast(_tmp, targetPos - _tmp, out hit);
 
                 // Check if Player is in Sight from new Pos
                 if (hit.transform.CompareTag("Player") && Vector3.Distance(gameObject.transform.position, _tmp) >= 5 && agent.pathStatus == NavMeshPathStatus.PathComplete)
                 {
-                    Debug.Log(hit.transform.tag);
+                    // Debug.Log(hit.transform.tag);
 
-                    //Move Agent
+                    // Move Agent
                     MoveToLocation(_tmp);
 
                     // End for Loop

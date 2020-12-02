@@ -4876,6 +4876,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5ad3fa7f65287f043b8de2ada746e514, type: 3}
   - {fileID: 8300000, guid: c436444530f9e55449f8f3503e429ec3, type: 3}
   - {fileID: 8300000, guid: 5d4a3fa0fc2252d44980a7d5d62f7ef3, type: 3}
+  attackSFX: []
   utilityAI: {fileID: 0}
   vfx: {fileID: 0}
   navAgent: {fileID: 0}
@@ -5034,7 +5035,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

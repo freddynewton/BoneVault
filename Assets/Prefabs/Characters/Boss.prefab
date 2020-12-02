@@ -316,6 +316,7 @@ MonoBehaviour:
   flashScript: {fileID: 0}
   damageType: {fileID: 11400000, guid: 0e1f36deba2cd1a45aa13a0069a354d9, type: 2}
   hitSFX: []
+  attackSFX: []
   utilityAI: {fileID: 0}
   vfx: {fileID: 0}
   navAgent: {fileID: 0}
@@ -457,7 +458,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

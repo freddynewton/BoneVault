@@ -91,6 +91,7 @@ MonoBehaviour:
   damageType: {fileID: 11400000, guid: c9599280e49518544ac11b5c414ba743, type: 2}
   hitSFX:
   - {fileID: 8300000, guid: 069cff390d97cf446892419bade63e2d, type: 3}
+  attackSFX: []
   utilityAI: {fileID: 0}
   vfx: {fileID: 0}
   navAgent: {fileID: 0}
@@ -252,7 +253,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

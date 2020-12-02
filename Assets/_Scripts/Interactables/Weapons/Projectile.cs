@@ -4,6 +4,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public Animator animator;
+    public AudioClip explodeSFX;
     [HideInInspector] public DamageType damageType;
     [HideInInspector] public GameObject projectileSource;
     [HideInInspector] public BossUdokEnemyUnit bossUdok;
@@ -62,11 +63,17 @@ public class Projectile : MonoBehaviour
 
     public void DestroyProj()
     {
+        AudioSource sfx = GetComponent<AudioSource>();
+        sfx.clip = explodeSFX;
+        sfx.loop = false;
+        sfx.Play();
+
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         stopAllTweens();
         animator.SetTrigger("Explode");
-        Destroy(gameObject, 0.333f);
+        
+        Destroy(gameObject, 1f);
     }
 
     private void OnTriggerEnter(Collider other)

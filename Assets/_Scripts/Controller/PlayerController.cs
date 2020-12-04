@@ -4,6 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     // Singleton Instance
     public static PlayerController Instance { get; private set; }
+    public CameraHandler playerCameraHandler;
     public GameObject weaponPos;
     public AudioClip [] walkSFX;
 

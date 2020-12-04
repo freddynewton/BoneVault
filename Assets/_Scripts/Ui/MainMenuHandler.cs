@@ -29,9 +29,7 @@ public class MainMenuHandler : MonoBehaviour
 
     public void Play()
     {
-        // Load Loading Scene
-        LeanTween.cancelAll();
-        SceneManager.LoadScene(1);
+        SceneManagerHelper.Instance.loadLoadingScene();
     }
 
     private IEnumerator lightDelay(Color color, int idx)

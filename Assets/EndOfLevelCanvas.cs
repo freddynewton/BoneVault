@@ -50,7 +50,7 @@ public class EndOfLevelCanvas : MonoBehaviour
         surveyButton.SetActive(false);
         socialsButton.SetActive(false);
 
-        SceneManager.LoadScene(0);
+        if (SceneManagerHelper.Instance != null) SceneManagerHelper.Instance.loadMainMenu();
     }
 
     public void Survey()

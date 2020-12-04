@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class BossPortal : MonoBehaviour
 {
-
     private void Awake()
     {
         if (GameObject.FindGameObjectWithTag("EndLevelCanvas") != null)

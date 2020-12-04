@@ -7,18 +7,17 @@ using TMPro;
 public class LoadingScene : MonoBehaviour
 {
     public Slider loadSlider;
-    public int sceneIndex;
     public TextMeshProUGUI text;
 
     private void Awake()
     {
-        StartCoroutine(loadAsync(sceneIndex));
+        StartCoroutine(loadAsync());
     }
 
-    private IEnumerator loadAsync(int sceneIndex)
+    private IEnumerator loadAsync()
     {
         // Load Game Scene
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        AsyncOperation operation = SceneManagerHelper.Instance.loadGameScene();
 
         while (!operation.isDone)
         {

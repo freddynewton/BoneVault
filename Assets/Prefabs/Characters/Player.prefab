@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c30557a46c7a149b059034f6962538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCameraHandler: {fileID: 252462661427320612}
   weaponPos: {fileID: 2054990178}
   walkSFX:
   - {fileID: 8300000, guid: 4eff9590c02fa044ca43390ee6dbc922, type: 3}

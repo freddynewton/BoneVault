@@ -48,7 +48,6 @@ public class Inventory : MonoBehaviour
         }
 
         StartCoroutine(startWeapon());
-        setBones(100);
     }
 
     private IEnumerator startWeapon()

@@ -33,6 +33,9 @@ public class UiManager : MonoBehaviour
     [Header("Minimap Canvas")]
     public MiniMapManager miniMapManager;
 
+    [Header("End of Level Screen")]
+    public EndOfLevelCanvas EndOfLevelCanvas;
+
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))

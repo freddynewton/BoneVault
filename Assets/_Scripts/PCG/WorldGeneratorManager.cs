@@ -58,7 +58,6 @@ public class WorldGeneratorManager : MonoBehaviour
     private List<GameObject> resourcesBossRooms = new List<GameObject>();
     private List<NavMeshSurface> navMeshSurfaces = new List<NavMeshSurface>();
 
-    private IEnumerator currentMapGeneration;
     private const int MAX_ITERATIONS = 20;
     private int current_iteration;
 
@@ -91,8 +90,7 @@ public class WorldGeneratorManager : MonoBehaviour
             current_iteration += 1;
 
             // Delete old map
-            foreach (Transform child in gameObject.transform) Destroy(child.gameObject);
-            rooms.Clear();
+            clearWorld();
 
             // Wait a Frame
             yield return new WaitForFixedUpdate();
@@ -160,8 +158,12 @@ public class WorldGeneratorManager : MonoBehaviour
             // Load loading Scene
             SceneManager.LoadScene(1);
         }
+    }
 
-        
+    public void clearWorld()
+    {
+        foreach (Transform child in gameObject.transform) Destroy(child.gameObject);
+        rooms.Clear();
     }
 
     private bool controllWorldGen()

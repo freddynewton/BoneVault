@@ -5000,6 +5000,8 @@ GameObject:
   - component: {fileID: 4607923600350444813}
   - component: {fileID: 565169281754027905}
   - component: {fileID: 3453637598922888222}
+  - component: {fileID: 5095689935416410336}
+  - component: {fileID: 5873580047276614925}
   m_Layer: 14
   m_Name: LevelPortal
   m_TagString: Untagged
@@ -5182,6 +5184,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5095689935416410336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2662294138848369880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f27e3dba191e9743899a17f3564e8ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+--- !u!65 &5873580047276614925
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2662294138848369880}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8, y: 8.250001, z: 2.5000005}
+  m_Center: {x: 0, y: 4.1250005, z: -0.00000029802322}
 --- !u!1 &7055257858821987954
 GameObject:
   m_ObjectHideFlags: 0

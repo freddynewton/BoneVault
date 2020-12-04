@@ -12,8 +12,16 @@ public class MiniMapManager : MonoBehaviour
         mainCam = Camera.main;
     }
 
+    public void clearMinimap()
+    {
+
+    }
+
     public void openMinimap(bool active)
     {
+        if (active) Time.timeScale = 0.05f;
+        else Time.timeScale = 1;
+
         MiniMapGenerator.miniMapCamera.transform.position = new Vector3(MiniMapGenerator.playerMiniMap.transform.position.x, MiniMapGenerator.playerMiniMap.transform.position.y, -256f);
         MiniMapGenerator.minimapTextureCanvas.SetActive(active);
     }

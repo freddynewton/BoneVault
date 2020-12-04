@@ -12,11 +12,6 @@ public class MiniMapManager : MonoBehaviour
         mainCam = Camera.main;
     }
 
-    public void clearMinimap()
-    {
-
-    }
-
     public void openMinimap(bool active)
     {
         if (active) Time.timeScale = 0.05f;

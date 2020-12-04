@@ -42,7 +42,7 @@ public class Unit : MonoBehaviour
         }
 
         if (GetComponentInChildren<Animator>()) animator = GetComponentInChildren<Animator>();
-        currentHealth = stats.health;
+        currentHealth = stats.maxHealth;
     }
 
     public virtual void Update()

@@ -111,7 +111,7 @@ public class UiManager : MonoBehaviour
     {
         if (PlayerController.Instance != null)
         {
-            healthSlider.maxValue = PlayerController.Instance.unit.stats.health + PlayerController.Instance.unit.upgradeHandler.maxHealthUpgrade;
+            healthSlider.maxValue = PlayerController.Instance.unit.stats.maxHealth + PlayerController.Instance.unit.upgradeHandler.maxHealthUpgrade;
 
             LeanTween.value(healthSlider.value, PlayerController.Instance.unit.currentHealth, 1f).setEaseOutBounce().setOnUpdate((float value) =>
             {

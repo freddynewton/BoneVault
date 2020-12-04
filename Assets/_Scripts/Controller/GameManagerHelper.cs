@@ -4,11 +4,15 @@ public class GameManagerHelper : MonoBehaviour
 {
     public static GameManagerHelper Instance { get; private set; }
 
-    public Stats playerStatsBackUp;
-
-    public void ResetPlayerStats()
+    public void resetAll()
     {
-        PlayerController.Instance.unit.stats = playerStatsBackUp;
+        Inventory.Instance.setBones(0);
+
+        PlayerController.Instance.unit.upgradeHandler.resetUpgrades();
+        PlayerController.Instance.unit.setHealthPlayer(PlayerController.Instance.unit.stats.maxHealth);
+
+        WorldGeneratorManager.Instance.clearWorld();
+        WorldGeneratorManager.Instance.miniMapGenerator.clearMinimap();
     }
 
     private void Awake()

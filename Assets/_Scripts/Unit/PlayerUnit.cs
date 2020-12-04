@@ -123,7 +123,7 @@ public class PlayerUnit : Unit
     public void setHealthPlayer(int amount)
     {
         currentHealth += amount;
-        if (currentHealth > stats.health + upgradeHandler.maxHealthUpgrade) currentHealth = stats.health;
+        if (currentHealth > stats.maxHealth + upgradeHandler.maxHealthUpgrade) currentHealth = stats.maxHealth;
 
         UiManager.Instance.setHealth();
     }

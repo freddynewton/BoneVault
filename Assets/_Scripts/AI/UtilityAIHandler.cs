@@ -78,7 +78,7 @@ public class UtilityAIHandler : MonoBehaviour
         switch (input)
         {
             case InputAiEnum.Health:
-                return unit.currentHealth / unit.stats.health;
+                return unit.currentHealth / unit.stats.maxHealth;
 
             case InputAiEnum.RangeToTargetNormalized:
                 {
@@ -86,7 +86,7 @@ public class UtilityAIHandler : MonoBehaviour
                     return tmp > 1 ? 1 : tmp;
                 }
             case InputAiEnum.TargetHealth:
-                return PlayerController.Instance.unit.currentHealth / PlayerController.Instance.unit.stats.health;
+                return PlayerController.Instance.unit.currentHealth / PlayerController.Instance.unit.stats.maxHealth;
 
             case InputAiEnum.FireBallCount:
                 return bossUdokEnemyUnit.fireBalls.Count / bossUdokEnemyUnit.maxFireBalls;

@@ -29,11 +29,16 @@ public class MiniMapGenerator : MonoBehaviour
         miniMapPartsResources = Resources.LoadAll<GameObject>("UI/Minimap").ToList();
     }
 
+    public void clearMinimap()
+    {
+        foreach (Transform t in miniMapContainer.transform) Destroy(t.gameObject);
+        mmParts.Clear();
+    }
+
     public void generateMiniMap()
     {
         // Clear Minimap
-        foreach (Transform t in miniMapContainer.transform) Destroy(t.gameObject);
-        mmParts.Clear();
+        clearMinimap();
 
         // Get World Map
         miniMap = WorldGeneratorManager.Instance.map;

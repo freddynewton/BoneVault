@@ -4,7 +4,7 @@
 public class Stats : ScriptableObject
 {
     [Header("Stat Values")]
-    public int health = 10;
+    public int maxHealth = 10;
 
     [Header("MovementSettings")]
     public float moveSpeed = 7f;

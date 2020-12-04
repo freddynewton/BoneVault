@@ -124,7 +124,7 @@ public class Room : MonoBehaviour
 
     public virtual void OnTriggerEnter(Collider other)
     {
-        miniMapPart.gameObject.SetActive(true);
+        if (miniMapPart != null) miniMapPart.gameObject.SetActive(true);
     }
 
     public virtual void OnTriggerExit(Collider other)

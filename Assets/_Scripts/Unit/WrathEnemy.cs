@@ -13,7 +13,7 @@ public class WrathEnemy : EnemyUnit
     private void Awake()
     {
         // Flying Effect
-        LeanTween.moveLocalY(gameObject, 0.3f, 4f).setEaseInOutBack().setDelay(Random.Range(0f, 2f)).setLoopPingPong();
+        // LeanTween.moveLocalY(gameObject, 0.3f, 4f).setEaseInOutBack().setDelay(Random.Range(0f, 2f)).setLoopPingPong();
     }
 
     public override void Update()

@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 40a2523012511214f81549b0cd394798, type: 3}
-  m_Name: BossUdok
+  m_Name: Axe Skeleton
   m_EditorClassIdentifier: 
-  health: 40
-  moveSpeed: 2
-  maxRange: 10
-  stoppingDistance: 1.5
-  stopsAttackingWhenHit: 0
-  attackRate: 4
+  health: 3
+  moveSpeed: 2.5
+  maxRange: 4
+  stoppingDistance: 4
+  stopsAttackingWhenHit: 1
+  attackRate: 2
   stamina: 10
   staminaRate: 1
-  sprintCostRate: 2
+  sprintCostRate: 0.5
   mouseSensitivity: 500
   gravity: -9.81
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
     m_Bits: 0
-  jumpHeight: 1
+  jumpHeight: 2

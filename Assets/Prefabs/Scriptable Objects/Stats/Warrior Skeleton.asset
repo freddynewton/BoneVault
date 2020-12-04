@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 40a2523012511214f81549b0cd394798, type: 3}
-  m_Name: Skeleton
+  m_Name: Warrior Skeleton
   m_EditorClassIdentifier: 
-  health: 3
-  moveSpeed: 2.5
+  health: 9
+  moveSpeed: 1.8
   maxRange: 4
   stoppingDistance: 4
   stopsAttackingWhenHit: 1
-  attackRate: 1.5
+  attackRate: 2
   stamina: 10
   staminaRate: 1
   sprintCostRate: 0.5

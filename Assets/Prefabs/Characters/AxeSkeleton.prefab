@@ -4864,7 +4864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88eea2685ac4b0846a8d4ba1ed995cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: aa1c67ef0b01c1b47aac91e5aa8abd51, type: 2}
+  stats: {fileID: 11400000, guid: 5d232c3298ded0f458d6bb3b6091a6bb, type: 2}
   currentHealth: 0
   currentState: 
   animator: {fileID: 0}

@@ -31,36 +31,33 @@ public class NavAgentController : MonoBehaviour
         else stopAgent();
     }
 
-    public void StayInSight(Vector3 targetPos, float yAxisOffset)
+    public void StayInSight(Vector3 targetPos, float randomPointRange, float minDistanceToNewPoint, float navMeshSamplePositionRange)
     {
         // Check if Player is in Sight
         RaycastHit hit;
+        Physics.Raycast(gameObject.transform.position, targetPos - gameObject.transform.position, out hit);
 
         // Check if Player is in Sight and agent is not moving
-        if (Physics.Raycast(gameObject.transform.position, targetPos - gameObject.transform.position, out hit) && !hit.transform.CompareTag("Player") && agent.velocity == Vector3.zero) ;
+        if (!hit.transform.CompareTag("Player") && agent.velocity == Vector3.zero);
         {
             // Find Random Point in Range
             for (int i = 0; i < MAX_ITERATIONS; i++)
             {
-                Vector3 _tmp = gameObject.transform.position + (Random.insideUnitSphere * 30);
-
-                // Check distance to ground
-                RaycastHit _hitYaxis;
-                Physics.Raycast(_tmp, Vector3.down, out _hitYaxis);
-
-                // Change new y Axis Value
-                _tmp = new Vector3(_tmp.x, _hitYaxis.point.y + yAxisOffset, _tmp.z);
+                Vector3 _tmp = gameObject.transform.position + (Random.insideUnitSphere * randomPointRange);
 
                 // Raycast again from new Random Point
                 Physics.Raycast(_tmp, targetPos - _tmp, out hit);
 
                 // Check if Player is in Sight from new Pos
-                if (hit.transform.CompareTag("Player") && Vector3.Distance(gameObject.transform.position, _tmp) >= 5 && agent.pathStatus == NavMeshPathStatus.PathComplete)
+                if (hit.transform.CompareTag("Player") && Vector3.Distance(gameObject.transform.position, _tmp) >= minDistanceToNewPoint && agent.pathStatus == NavMeshPathStatus.PathComplete)
                 {
-                    // Debug.Log(hit.transform.tag);
-
-                    // Move Agent
-                    MoveToLocation(_tmp);
+                    // Get closest Navmeshpoint from new Point
+                    NavMeshHit navHit;
+                    if (NavMesh.SamplePosition(_tmp, out navHit, navMeshSamplePositionRange, NavMesh.AllAreas))
+                    {
+                        // Move Agent
+                        MoveToLocation(navHit.position);
+                    }
 
                     // End for Loop
                     break;

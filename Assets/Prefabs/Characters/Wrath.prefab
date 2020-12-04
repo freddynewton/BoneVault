@@ -45,7 +45,6 @@ GameObject:
   - component: {fileID: 3065674638620549658}
   - component: {fileID: 3065674638620549732}
   - component: {fileID: 1285391051}
-  - component: {fileID: 94241713}
   - component: {fileID: -2314582984412736818}
   m_Layer: 11
   m_Name: Wrath
@@ -184,19 +183,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &94241713
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3065674638620549660}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 3, z: 4}
-  m_Center: {x: 0, y: 2, z: 2}
 --- !u!82 &-2314582984412736818
 AudioSource:
   m_ObjectHideFlags: 0

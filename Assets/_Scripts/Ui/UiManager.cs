@@ -36,6 +36,11 @@ public class UiManager : MonoBehaviour
     [Header("End of Level Screen")]
     public EndOfLevelCanvas EndOfLevelCanvas;
 
+    [Header("Preparing Level Screen")]
+    public Canvas preparingLevelCanvas;
+
+    public void setActivePreparingLevel(bool active) => preparingLevelCanvas.gameObject.SetActive(active);
+
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -78,6 +83,7 @@ public class UiManager : MonoBehaviour
             });
         });
     }
+
 
     public void showErrorMessage(AltarUpgrade upgrade, float duration)
     {

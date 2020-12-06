@@ -50,6 +50,8 @@ public class SceneManagerHelper : MonoBehaviour
 
         if (operation.isDone)
         {
+            UiManager.Instance.setActivePreparingLevel(true);
+
             if (PlayerController.Instance != null)
             {
                 PlayerController.Instance.playerCameraHandler.GetComponent<Camera>().gameObject.SetActive(true);

@@ -17,6 +17,7 @@ public class StartRoom : Room
     {
         yield return new WaitForSecondsRealtime(0.1f);
         PlayerController.Instance.transform.position = PlayerSpawn.position;
+        UiManager.Instance.setActivePreparingLevel(false);
     }
 
     public override void OnTriggerExit(Collider other)

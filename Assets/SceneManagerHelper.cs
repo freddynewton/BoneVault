@@ -19,8 +19,12 @@ public class SceneManagerHelper : MonoBehaviour
 
         if (PlayerController.Instance != null)
         {
-            PlayerController.Instance.playerCameraHandler.GetComponent<Camera>().gameObject.SetActive(false);
+            PlayerController.Instance.playerCameraHandler.gameObject.SetActive(true);
         }
+
+        UiManager.Instance.setActiveMainMenuCanvas(true);
+        UiManager.Instance.setActiveHUD(false);
+        UiManager.Instance.setActiveMiniMap(false);
 
         SceneManager.LoadScene(0);
     }
@@ -28,6 +32,8 @@ public class SceneManagerHelper : MonoBehaviour
     public void loadLoadingScene()
     {
         Time.timeScale = 1;
+
+        UiManager.Instance.setActiveMainMenuCanvas(false);
 
         // Load Loading Scene
         LeanTween.cancelAll();
@@ -51,11 +57,16 @@ public class SceneManagerHelper : MonoBehaviour
         if (operation.isDone)
         {
             UiManager.Instance.setActivePreparingLevel(true);
+            UiManager.Instance.setActiveMainMenuCanvas(false);
+            UiManager.Instance.setActiveHUD(true);
+            UiManager.Instance.setActiveMiniMap(true);
 
             if (PlayerController.Instance != null)
             {
-                PlayerController.Instance.playerCameraHandler.GetComponent<Camera>().gameObject.SetActive(true);
+                PlayerController.Instance.playerCameraHandler.gameObject.SetActive(true);
             }
+
+            WorldGeneratorManager.Instance.startGeneratingMap();
         }
     }
 

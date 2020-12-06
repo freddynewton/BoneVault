@@ -5109,9 +5109,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 8
+  MaxDistance: 5
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -5196,7 +5196,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f27e3dba191e9743899a17f3564e8ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
 --- !u!65 &5873580047276614925
 BoxCollider:
   m_ObjectHideFlags: 0

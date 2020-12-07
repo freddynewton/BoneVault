@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class BossUdokEnemyUnit : EnemyUnit
 {
+    public AudioClip [] summonSFX;
+
     [Header("Boss Settings")]
     public BossRoom bossRoom;
 
@@ -94,6 +96,7 @@ public class BossUdokEnemyUnit : EnemyUnit
             for (int i = returnLivingMinions(); i < minionsLivingCount; i++)
             {
                 animator.SetTrigger("Summon");
+                playRandomSFX(summonSFX);
 
                 Vector3 spawnPos = bossRoom.transform.position;
                 spawnPos.y = hit.point.y;

@@ -328,6 +328,8 @@ MonoBehaviour:
   vfx: {fileID: 0}
   navAgent: {fileID: 0}
   randomSound: {fileID: 0}
+  summonSFX:
+  - {fileID: 8300000, guid: 7098eb35986c606489ad5a514e24cdca, type: 3}
   bossRoom: {fileID: 0}
   fireBalls: []
   maxFireBalls: 3
@@ -430,7 +432,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 10
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0

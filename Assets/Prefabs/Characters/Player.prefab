@@ -106,6 +106,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4eff9590c02fa044ca43390ee6dbc922, type: 3}
   - {fileID: 8300000, guid: 2b58891c805e95e419d0bd60709f8f91, type: 3}
   - {fileID: 8300000, guid: 1a4f2b24e38c251448ca96f6486e72d0, type: 3}
+  dropSFX:
+  - {fileID: 8300000, guid: e5470ac5e1025634998424a846f12932, type: 3}
   unit: {fileID: 0}
   controller: {fileID: 0}
   animator: {fileID: 0}

@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public CameraHandler playerCameraHandler;
     public GameObject weaponPos;
     public AudioClip [] walkSFX;
+    public AudioClip [] dropSFX;
 
     [HideInInspector] public PlayerUnit unit;
     [HideInInspector] public CharacterController controller;
@@ -21,7 +22,9 @@ public class PlayerController : MonoBehaviour
     private float fallSpeed;
     private Vector3 velocity;
     private float stepTimer;
+    private float fallTimer;
     private float interval = 0.75f;
+
 
     private void Start()
     {
@@ -105,9 +108,16 @@ public class PlayerController : MonoBehaviour
         controller.Move(move * walkSpeed * Time.deltaTime);
 
         // Gravity
-        if (controller.isGrounded)
-        {
-            fallSpeed = 0;
+        if (controller.isGrounded) {
+            fallSpeed = 0;         
+        }
+
+        if (fallSpeed > 0) {
+            fallTimer += Time.deltaTime;
+        }
+        else {
+            if (fallTimer > 0.1f) playRandomSFX(dropSFX);
+            fallTimer = 0;
         }
 
         // apply gravity acceleration to vertical speed:
@@ -116,7 +126,7 @@ public class PlayerController : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
 
         // movement sounds
-        if (move != Vector3.zero) {
+        if (move != Vector3.zero && fallSpeed < 1) {
             RandomWalkSFX();
         }
     }
@@ -126,12 +136,17 @@ public class PlayerController : MonoBehaviour
 
         // play step sounds in intervalls from a list of sound files randomly
         if (stepTimer >= interval) {
-            randomSound.clip = walkSFX [Random.Range(0, walkSFX.Length)];
-            randomSound.pitch = Random.Range(0.8f, 1.2f);
-
-            if (randomSound != null) randomSound.Play();
-            stepTimer = 0.0f;
+            playRandomSFX(walkSFX);
         }
+    }
+
+    // SFX Handler
+    private void playRandomSFX(AudioClip [] sounds) {
+        randomSound.clip = sounds [Random.Range(0, sounds.Length)];
+        randomSound.pitch = Random.Range(0.8f, 1.2f);
+
+        if (randomSound != null) randomSound.Play();
+        stepTimer = 0.0f;
     }
 
     private void Awake()

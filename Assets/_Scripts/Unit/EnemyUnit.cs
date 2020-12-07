@@ -44,7 +44,7 @@ public class EnemyUnit : Unit
             vfx.Play();
         }
 
-        playRandomSFX(dieSFX);
+        playRandomSFX(dieSFX, GetComponent<AudioSource>());
 
         // Disable all component and leave a sprite
         GetComponent<UtilityAIHandler>().enabled = false;
@@ -69,7 +69,7 @@ public class EnemyUnit : Unit
             vfx.Play();
         }
 
-        playRandomSFX(hitSFX);
+        playRandomSFX(hitSFX, GetComponent<AudioSource>());
 
         base.hit();
     }
@@ -99,9 +99,9 @@ public class EnemyUnit : Unit
     }
 
     // SFX Handler
-    public void playRandomSFX (AudioClip [] sounds) {
-        randomSound.clip = sounds [Random.Range(0, sounds.Length)];
-        randomSound.pitch = Random.Range(0.8f, 1.2f);
+    public void playRandomSFX (AudioClip [] sounds, AudioSource source) {
+        source.clip = sounds [Random.Range(0, sounds.Length)];
+        source.pitch = Random.Range(0.8f, 1.2f);
 
         if (randomSound != null) randomSound.Play();
     }

@@ -96,7 +96,7 @@ public class BossUdokEnemyUnit : EnemyUnit
             for (int i = returnLivingMinions(); i < minionsLivingCount; i++)
             {
                 animator.SetTrigger("Summon");
-                playRandomSFX(summonSFX);
+                playRandomSFX(summonSFX, GetComponent<AudioSource>());
 
                 Vector3 spawnPos = bossRoom.transform.position;
                 spawnPos.y = hit.point.y;

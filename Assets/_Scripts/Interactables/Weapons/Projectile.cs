@@ -4,6 +4,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public Animator animator;
+    public bool destoryInteractables = true;
     public AudioClip explodeSFX;
 
     [HideInInspector] public DamageType damageType;
@@ -82,7 +83,7 @@ public class Projectile : MonoBehaviour
             switch (other.tag)
             {
                 case "Interactable":
-                    if (other.GetComponent<DestroyableEntity>())
+                    if (other.GetComponent<DestroyableEntity>() && destoryInteractables)
                     {
                         other.GetComponent<DestroyableEntity>().interact();
                         DestroyProjectile();

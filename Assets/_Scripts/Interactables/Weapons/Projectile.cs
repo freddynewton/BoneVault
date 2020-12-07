@@ -63,6 +63,8 @@ public class Projectile : MonoBehaviour
 
     public void DestroyProj()
     {
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+
         AudioSource sfx = GetComponent<AudioSource>();
         sfx.clip = explodeSFX;
         sfx.loop = false;

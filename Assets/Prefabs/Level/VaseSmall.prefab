@@ -77,6 +77,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GFX: {fileID: 4043582203552105092}
+  destroySFX:
+  - {fileID: 8300000, guid: 9afd77bb3854c55449983d8c0048f4df, type: 3}
+  - {fileID: 8300000, guid: 86a6be33a0c7c05468f5e51a4552903b, type: 3}
+  - {fileID: 8300000, guid: 6ae939c01c01b814e918f95cfc73e002, type: 3}
   dropItems: []
   itemCounts: 0
 --- !u!54 &3966087758733056653
@@ -118,7 +122,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 10
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

@@ -4,6 +4,7 @@ public class BossRoom : Room
 {
     [Header("TrapDoor")]
     public GameObject[] TrapDoor;
+    public AudioClip [] trapDoorSFX;
 
     [Header("Portal Room")]
     public Door portalDoor;
@@ -16,6 +17,7 @@ public class BossRoom : Room
         foreach (GameObject trap in TrapDoor)
         {
             LeanTween.rotateX(trap, 90, 4).setEaseOutBounce();
+            playSFX(trapDoorSFX, GetComponent<AudioSource>(), false);
         }
     }
 

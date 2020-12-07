@@ -4876,7 +4876,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5d4a3fa0fc2252d44980a7d5d62f7ef3, type: 3}
   - {fileID: 8300000, guid: 1e953cc23b665734ba790eca1fcbf839, type: 3}
   - {fileID: 8300000, guid: d6485ef656ecbd44189b17d35d63b720, type: 3}
-  attackSFX: []
+  attackSFX:
+  - {fileID: 8300000, guid: 11aeeade2969f894791f87df4e394ee7, type: 3}
+  - {fileID: 8300000, guid: 92c7c28c0d130034a98e3290b1d10c24, type: 3}
+  - {fileID: 8300000, guid: d958c84f4b142a0428caaae63e513eb5, type: 3}
+  dieSFX:
+  - {fileID: 8300000, guid: d6485ef656ecbd44189b17d35d63b720, type: 3}
   utilityAI: {fileID: 0}
   vfx: {fileID: 0}
   navAgent: {fileID: 0}
@@ -4988,8 +4993,8 @@ AudioSource:
   m_GameObject: {fileID: 3065674638620549660}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 366053b6c9060a54f85465ef2f975463, type: 2}
+  m_audioClip: {fileID: 8300000, guid: c435dae150d4a6f4c8bdd5b2ef030db5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -5002,7 +5007,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 10
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

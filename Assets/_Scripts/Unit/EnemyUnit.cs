@@ -8,6 +8,7 @@ public class EnemyUnit : Unit
     public DamageType damageType;
     public AudioClip [] hitSFX;
     public AudioClip [] attackSFX;
+    public AudioClip [] dieSFX;
 
     [HideInInspector] public UtilityAIHandler utilityAI;
     [HideInInspector] public ParticleSystem vfx;
@@ -43,7 +44,7 @@ public class EnemyUnit : Unit
             vfx.Play();
         }
 
-        playRandomSFX(hitSFX);
+        playRandomSFX(dieSFX);
 
         // Disable all component and leave a sprite
         GetComponent<UtilityAIHandler>().enabled = false;

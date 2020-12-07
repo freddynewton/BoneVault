@@ -81,6 +81,8 @@ MonoBehaviour:
   TrapDoor:
   - {fileID: 2689473784974198526}
   - {fileID: 9100105078850125474}
+  trapDoorSFX:
+  - {fileID: 8300000, guid: 281a85b077f6a494ea689902ad2136a3, type: 3}
   portalDoor: {fileID: 3772162024798434044}
   Button: {fileID: 0}
 --- !u!1 &2795715297913410846

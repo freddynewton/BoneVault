@@ -13,6 +13,7 @@ public class AltarHandler : MonoBehaviour
     public GameObject hand;
     public SpriteRenderer spriteRend;
     public Light altarLight;
+    public AudioClip altarBuySFX;
 
     [HideInInspector] public SpecialRoom room;
     [HideInInspector] public SphereCollider col;
@@ -48,6 +49,7 @@ public class AltarHandler : MonoBehaviour
             upgrade.use();
             altarLight.color = room.mainColor;
             altarLight.intensity = 2;
+            playSFX(altarBuySFX, GetComponent<AudioSource>());
 
             // SWAP SPRITE TO "EMPTY SPRITE"
             spriteRend.sprite = null;
@@ -106,5 +108,12 @@ public class AltarHandler : MonoBehaviour
         outlines = gameObject.GetComponentsInChildren<Outline>().ToList();
         col = gameObject.GetComponent<SphereCollider>();
         col.radius = distance;
+    }
+
+    private void playSFX (AudioClip sound, AudioSource source) {
+        source.clip = sound;
+        source.pitch = Random.Range(0.8f, 1.2f);
+
+        if (source != null) source.Play();
     }
 }

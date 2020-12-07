@@ -113,7 +113,7 @@ public class Room : MonoBehaviour
     }
 
     // SFX Handler
-    private void playSFX (AudioClip [] sounds, AudioSource source, bool random) {
+    public void playSFX (AudioClip [] sounds, AudioSource source, bool random) {
         if (random) source.clip = sounds [Random.Range(0, sounds.Length)];
         else source.clip = sounds [0];
 

@@ -406,6 +406,7 @@ MonoBehaviour:
   hand: {fileID: 4416532359835211741}
   spriteRend: {fileID: 1941442583795095202}
   altarLight: {fileID: 1941442583795095203}
+  altarBuySFX: {fileID: 8300000, guid: 98250f2aff0cfd841ac062d7e9d45646, type: 3}
   room: {fileID: 0}
   col: {fileID: 0}
   upgrade: {fileID: 0}
@@ -432,7 +433,7 @@ AudioSource:
   m_GameObject: {fileID: 1941442582947370838}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 366053b6c9060a54f85465ef2f975463, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -444,9 +445,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 5
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

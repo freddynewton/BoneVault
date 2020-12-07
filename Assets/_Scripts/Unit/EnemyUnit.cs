@@ -99,7 +99,7 @@ public class EnemyUnit : Unit
     }
 
     // SFX Handler
-    private void playRandomSFX (AudioClip [] sounds) {
+    public void playRandomSFX (AudioClip [] sounds) {
         randomSound.clip = sounds [Random.Range(0, sounds.Length)];
         randomSound.pitch = Random.Range(0.8f, 1.2f);
 

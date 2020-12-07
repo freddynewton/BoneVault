@@ -17,6 +17,13 @@ public class PlayerUnit : Unit
         currentStamina = stats.stamina;
         randomSound = GetComponentInChildren<AudioSource>();
     }
+    public override void Update()
+    {
+        base.Update();
+        updateStamina();
+    }
+
+    #region Stamina
 
     public void updateStamina()
     {
@@ -24,6 +31,21 @@ public class PlayerUnit : Unit
         {
             setStamina(Time.deltaTime * stats.staminaRate * upgradeHandler.staminaRatePercentageUpgrade);
         }
+    }
+    private void changeFoolStamina()
+    {
+        foolStamina = false;
+    }
+
+    #endregion
+
+    #region Setter
+    public void setHealthPlayer(int amount)
+    {
+        currentHealth += amount;
+        if (currentHealth > stats.maxHealth + upgradeHandler.maxHealthUpgrade) currentHealth = stats.maxHealth;
+
+        UiManager.Instance.setHealth();
     }
 
     public void setStamina(float amount)
@@ -41,17 +63,9 @@ public class PlayerUnit : Unit
         // TODO CALL UI UPDATE FUNCTION
         UiManager.Instance.setStamina();
     }
+    #endregion
 
-    private void changeFoolStamina()
-    {
-        foolStamina = false;
-    }
-
-    public override void Update()
-    {
-        base.Update();
-        updateStamina();
-    }
+    #region Hit Controll
 
     public override void death()
     {
@@ -80,7 +94,7 @@ public class PlayerUnit : Unit
             case Weapon.callbackValue.FAILURE:
                 base.DoDamage(damageObj, damageType);
                 UiManager.Instance.setHealth();
-                stopPorjectile(damageObj, damageType);
+                stopProjectile(damageObj, damageType);
                 break;
 
             case Weapon.callbackValue.SUCCESS:
@@ -96,17 +110,20 @@ public class PlayerUnit : Unit
                 }
                 setStamina(-damageType.damage * 3);
 
-                stopPorjectile(damageObj, damageType);
+                stopProjectile(damageObj, damageType);
                 break;
         }
     }
 
-    public void stopPorjectile(GameObject damageObj, DamageType damage)
+    #endregion
+
+    #region Projectile Management
+    public void stopProjectile(GameObject damageObj, DamageType damage)
     {
         if (damageObj.GetComponent<Projectile>())
         {
             Projectile projectile = damageObj.GetComponent<Projectile>();
-            projectile.DestroyProj();
+            projectile.DestroyProjectile();
         }
     }
 
@@ -119,14 +136,7 @@ public class PlayerUnit : Unit
 
         proj.ShootToTarget(100, proj.projectileSource.transform.position - damageObj.transform.position);
     }
-
-    public void setHealthPlayer(int amount)
-    {
-        currentHealth += amount;
-        if (currentHealth > stats.maxHealth + upgradeHandler.maxHealthUpgrade) currentHealth = stats.maxHealth;
-
-        UiManager.Instance.setHealth();
-    }
+    #endregion
 
     // SFX Handler
     private void playRandomSFX (AudioClip [] sounds) {

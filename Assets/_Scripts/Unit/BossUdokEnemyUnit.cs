@@ -63,7 +63,7 @@ public class BossUdokEnemyUnit : EnemyUnit
     {
         foreach (GameObject fireball in fireBalls)
         {
-            fireball.GetComponent<Projectile>().DestroyProj();
+            fireball.GetComponent<Projectile>().DestroyProjectile();
         }
 
         Inventory.Instance.setBones(Random.Range(0, 10));

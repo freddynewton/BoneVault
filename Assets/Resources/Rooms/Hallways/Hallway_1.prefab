@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7720454891280687594}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Lights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 3531142587057605176}
   - component: {fileID: 8219479859212357325}
   - component: {fileID: 3298004208218099757}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Hallway_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7201887757908772275}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: DungeonParts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,6 +156,10 @@ PrefabInstance:
     - target: {fileID: 1495180576844755772, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
       propertyPath: m_Name
       value: Pedestal.Stone (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495180576844755772, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2302503227869194630, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -201,6 +205,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3899545641082955697, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222406250827643732, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
 --- !u!4 &3383611818511445665 stripped
@@ -218,6 +230,10 @@ PrefabInstance:
     - target: {fileID: 1495180576844755772, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
       propertyPath: m_Name
       value: Pedestal.Stone (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495180576844755772, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2302503227869194630, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -263,6 +279,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3899545641082955697, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222406250827643732, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
 --- !u!4 &3383611818816573734 stripped
@@ -280,6 +304,10 @@ PrefabInstance:
     - target: {fileID: 1495180576844755772, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
       propertyPath: m_Name
       value: Pedestal.Stone (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495180576844755772, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2302503227869194630, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -325,6 +353,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3899545641082955697, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222406250827643732, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
 --- !u!4 &3383611819150715647 stripped
@@ -342,6 +378,10 @@ PrefabInstance:
     - target: {fileID: 1495180576844755772, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
       propertyPath: m_Name
       value: Pedestal.Stone (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495180576844755772, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2302503227869194630, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -387,6 +427,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3899545641082955697, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222406250827643732, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
 --- !u!4 &3383611819138344172 stripped
@@ -404,6 +452,10 @@ PrefabInstance:
     - target: {fileID: 5131606507316848009, guid: 6f030b2f3d67b3143973b77fdc2b31ba, type: 3}
       propertyPath: m_Name
       value: Wall.12x2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5131606507316848009, guid: 6f030b2f3d67b3143973b77fdc2b31ba, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5511544212551925555, guid: 6f030b2f3d67b3143973b77fdc2b31ba, type: 3}
       propertyPath: m_LocalPosition.x
@@ -467,6 +519,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pedestal.Stone (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1495180576844755772, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 2302503227869194630, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -20
@@ -511,6 +567,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3899545641082955697, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222406250827643732, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
 --- !u!4 &3383611819849685130 stripped
@@ -528,6 +592,10 @@ PrefabInstance:
     - target: {fileID: 1495180576844755772, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
       propertyPath: m_Name
       value: Pedestal.Stone
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495180576844755772, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2302503227869194630, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -572,6 +640,14 @@ PrefabInstance:
     - target: {fileID: 2302503227869194630, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3899545641082955697, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222406250827643732, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 164f9e755cdd68d4c9c283e897826e5c, type: 3}
@@ -639,6 +715,10 @@ PrefabInstance:
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4255688542678418258, guid: 9d26c327a6b91da4da4099fe0b3eed69, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d26c327a6b91da4da4099fe0b3eed69, type: 3}
 --- !u!4 &91705847316994704 stripped
@@ -701,6 +781,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall.6x12
       objectReference: {fileID: 0}
+    - target: {fileID: 4255688542678418258, guid: 9d26c327a6b91da4da4099fe0b3eed69, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d26c327a6b91da4da4099fe0b3eed69, type: 3}
 --- !u!4 &6991663478733431619 stripped
@@ -718,6 +802,10 @@ PrefabInstance:
     - target: {fileID: 5131606507316848009, guid: 6f030b2f3d67b3143973b77fdc2b31ba, type: 3}
       propertyPath: m_Name
       value: Wall.12x2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5131606507316848009, guid: 6f030b2f3d67b3143973b77fdc2b31ba, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5511544212551925555, guid: 6f030b2f3d67b3143973b77fdc2b31ba, type: 3}
       propertyPath: m_LocalPosition.x

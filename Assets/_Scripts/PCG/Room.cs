@@ -45,6 +45,8 @@ public class Room : MonoBehaviour
 
     public virtual void Awake()
     {
+
+
         getAllLights();
         getAllDoors();
         setDoors(true);

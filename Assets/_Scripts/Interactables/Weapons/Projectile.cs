@@ -5,6 +5,7 @@ public class Projectile : MonoBehaviour
 {
     public Animator animator;
     public AudioClip explodeSFX;
+
     [HideInInspector] public DamageType damageType;
     [HideInInspector] public GameObject projectileSource;
     [HideInInspector] public BossUdokEnemyUnit bossUdok;
@@ -14,15 +15,24 @@ public class Projectile : MonoBehaviour
 
     private List<int> ltIds = new List<int>();
 
+    #region monobehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        // Physics.IgnoreLayerCollision(14, 15);
     }
-
     private void Awake()
     {
         Invoke("DestroyProj", 20);
     }
+    private void Update()
+    {
+        if (isCirclingAround)
+        {
+            gameObject.transform.RotateAround(projectileSource.transform.position, Vector3.up, 30 * Time.deltaTime);
+        }
+    }
+    #endregion
 
     public void ShootToTarget(float strength, Vector3 dir)
     {
@@ -36,11 +46,66 @@ public class Projectile : MonoBehaviour
         rb.AddForce(dir * Time.deltaTime * strength, ForceMode.Impulse);
     }
 
-    private void Update()
+
+    public void startCircleAround()
     {
-        if (isCirclingAround)
+        isCirclingAround = true;
+
+        ltIds.Add(LeanTween.moveLocalY(gameObject, 2.5f, 1.3f).setEaseInOutQuad().setLoopPingPong().id);
+    }
+
+    public void DestroyProjectile()
+    {
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+
+        AudioSource sfx = GetComponent<AudioSource>();
+        sfx.clip = explodeSFX;
+        sfx.loop = false;
+        sfx.Play();
+
+        rb.isKinematic = true;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        
+        stopAllTweens();
+        animator.SetTrigger("Explode");
+        
+        Destroy(gameObject, 1f);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject != gameObject && other.GetComponent<Room>() == null)
         {
-            gameObject.transform.RotateAround(projectileSource.transform.position, Vector3.up, 30 * Time.deltaTime);
+            Debug.Log("Name: " + other.name + "\nTag: " + other.tag);
+
+            switch (other.tag)
+            {
+                case "Interactable":
+                    if (other.GetComponent<DestroyableEntity>())
+                    {
+                        other.GetComponent<DestroyableEntity>().interact();
+                        DestroyProjectile();
+                    }
+                    break;
+                case "Player":
+                    other.gameObject.GetComponent<Unit>().DoDamage(gameObject, damageType);
+                    break;
+                case "Enemy":
+                    if (isHittingEnemies)
+                    {
+                        other.gameObject.GetComponent<Unit>().DoDamage(gameObject, damageType);
+                        DestroyProjectile();
+                    }
+                    break;
+                case "Weapon":
+                    break;
+                case "Projectile":
+                    break;
+                default:
+                    DestroyProjectile();
+                    break;
+            }
         }
     }
 
@@ -52,53 +117,5 @@ public class Projectile : MonoBehaviour
         }
 
         ltIds.Clear();
-    }
-
-    public void startCircleAround()
-    {
-        isCirclingAround = true;
-
-        ltIds.Add(LeanTween.moveLocalY(gameObject, 2.5f, 1.3f).setEaseInOutQuad().setLoopPingPong().id);
-    }
-
-    public void DestroyProj()
-    {
-        gameObject.GetComponent<CapsuleCollider>().enabled = false;
-
-        AudioSource sfx = GetComponent<AudioSource>();
-        sfx.clip = explodeSFX;
-        sfx.loop = false;
-        sfx.Play();
-
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-        stopAllTweens();
-        animator.SetTrigger("Explode");
-        
-        Destroy(gameObject, 1f);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Interactable"))
-        {
-            if (other.GetComponent<DestroyableEntity>())
-            {
-                other.GetComponent<DestroyableEntity>().interact();
-            }
-        }
-
-        if (other.CompareTag("Player"))
-        {
-            other.gameObject.GetComponent<Unit>().DoDamage(gameObject, damageType);
-        }
-        else if (other.CompareTag("Enemy") && isHittingEnemies)
-        {
-            other.gameObject.GetComponent<Unit>().DoDamage(gameObject, damageType);
-            DestroyProj();
-        } else
-        {
-           // DestroyProj();
-        }
     }
 }

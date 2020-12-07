@@ -9,20 +9,14 @@ public class UiManager : MonoBehaviour
 
     [Header("HUD")]
     public GameObject HUDCanvas;
-
     public Slider healthSlider;
     public Slider staminaSlider;
-
     public WeaponUI weaponUI;
-
-    [Header("Bones")]
     public TextMeshProUGUI BonesCount;
-
     public Image BonesLogo;
 
     [Header("Dialog box")]
     public GameObject dialogBox;
-
     public GameObject dialogBackground;
     public TextMeshProUGUI uiboxText;
     public TextMeshProUGUI costsText;
@@ -39,7 +33,13 @@ public class UiManager : MonoBehaviour
     [Header("Preparing Level Screen")]
     public Canvas preparingLevelCanvas;
 
+    [Header("Main Menu Canvas")]
+    public Canvas mainMenuCanvas;
+
     public void setActivePreparingLevel(bool active) => preparingLevelCanvas.gameObject.SetActive(active);
+    public void setActiveMainMenuCanvas(bool active) => mainMenuCanvas.gameObject.SetActive(active);
+    public void setActiveMiniMap(bool active) => miniMapManager.gameObject.SetActive(active);
+    public void setActiveHUD(bool active) => HUDCanvas.gameObject.SetActive(active);
 
     public void Update()
     {

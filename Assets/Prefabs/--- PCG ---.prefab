@@ -47,13 +47,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69c19645abc1424d82f80c94de947f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startOnAwake: 1
+  startOnAwake: 0
   printDebugMatrix: 0
   roomCount: 6
   specialRoomCount: 1
   worldWidth: 5
   worldLength: 5
-  TestMode: 1
+  TestMode: 0
   mapSetPos: []
   rooms: []
   hallWays: []

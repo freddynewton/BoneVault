@@ -9,7 +9,7 @@ public class MiniMapManager : MonoBehaviour
 
     private void Awake()
     {
-        mainCam = Camera.main;
+        mainCam = PlayerController.Instance.playerCameraHandler.GetComponent<Camera>();
     }
 
     public void openMinimap(bool active)

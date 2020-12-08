@@ -4,26 +4,32 @@ public class PlayerController : MonoBehaviour
 {
     // Singleton Instance
     public static PlayerController Instance { get; private set; }
-    public CameraHandler playerCameraHandler;
-    public GameObject weaponPos;
-    public AudioClip [] walkSFX;
-    public AudioClip [] dropSFX;
 
-    [HideInInspector] public PlayerUnit unit;
+    [Header("Scrips")]
+    public CameraHandler playerCameraHandler;
     [HideInInspector] public CharacterController controller;
     [HideInInspector] public Animator animator;
-    [HideInInspector] public Vector3 move;
-    [HideInInspector] public bool isSprinting;
-    [HideInInspector] public AudioSource randomSound;
+    [HideInInspector] public PlayerUnit unit;
 
-    private float walkSpeed;
-    private float baseSpeed;
-    private float sprintSpeed;
-    private float fallSpeed;
-    private Vector3 velocity;
+    [Header("Sound")]
+    public AudioClip[] walkSFX;
+    public AudioClip[] dropSFX;
+    [HideInInspector] public AudioSource randomSound;
     private float stepTimer;
     private float fallTimer;
     private float interval = 0.75f;
+
+    [Header("Game Objests")]
+    public GameObject weaponPos;
+
+    // Movement
+    [HideInInspector] public Vector3 move;
+    [HideInInspector] public bool isSprinting;
+    [HideInInspector] bool isGrounded;
+    private float walkSpeed;
+    private float baseSpeed;
+    private float sprintSpeed;
+    private Vector3 velocity;
 
 
     private void Start()
@@ -39,13 +45,30 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Movement();
+        checkIsGrounded();
+        isGrounded = checkIsGrounded();
 
-        if (Cursor.lockState == CursorLockMode.Locked) InputButtons();
+        if (Cursor.lockState == CursorLockMode.Locked)
+        {
+            InputButtons();
+            Movement();
+        }
+    }
+
+    private bool checkIsGrounded()
+    {
+        bool tmp = Physics.Raycast(transform.position, -Vector3.up, 0.2f);
+
+        if (tmp && !isGrounded) playRandomSFX(dropSFX);
+
+        return tmp;
     }
 
     private void InputButtons()
     {
+        // Sprint
+        Sprint();
+
         // Left Click Attack
         if (Input.GetButtonDown("Fire1"))
         {
@@ -72,29 +95,32 @@ public class PlayerController : MonoBehaviour
             walkSpeed = baseSpeed * unit.upgradeHandler.baseSpeedPercentageUpgrade;
         }
 
-        Sprint();
     }
 
     private void Sprint()
     {
         if (unit.currentStamina > 0)
         {
-            if (Input.GetButtonDown("Sprint")) {
+            if (Input.GetButtonDown("Sprint"))
+            {
                 walkSpeed = sprintSpeed * unit.upgradeHandler.sprintSpeedPercentageUpgrade;
                 isSprinting = true;
                 interval = 0.4f;
             }
-            else if (Input.GetButtonUp("Sprint")) {
+            else if (Input.GetButtonUp("Sprint"))
+            {
                 walkSpeed = baseSpeed * unit.upgradeHandler.baseSpeedPercentageUpgrade;
                 isSprinting = false;
                 interval = 0.75f;
             }
 
-            if (Input.GetButton("Sprint")) {
+            if (Input.GetButton("Sprint"))
+            {
                 unit.setStamina(-((unit.stats.sprintCostRate * unit.upgradeHandler.sprintSpeedPercentageCostsUpgrade) * Time.deltaTime));
             }
         }
-        else {
+        else
+        {
             walkSpeed = baseSpeed * unit.upgradeHandler.baseSpeedPercentageUpgrade;
             isSprinting = false;
             interval = 0.75f;
@@ -105,44 +131,74 @@ public class PlayerController : MonoBehaviour
     {
         // Move Input
         move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
+
         controller.Move(move * walkSpeed * Time.deltaTime);
 
         // Gravity
-        if (controller.isGrounded) {
-            fallSpeed = 0;         
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2;
         }
 
-        if (fallSpeed > 0) {
-            fallTimer += Time.deltaTime;
-        }
-        else {
-            if (fallTimer > 0.1f) playRandomSFX(dropSFX);
-            fallTimer = 0;
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(unit.stats.jumpHeight * -2f * unit.stats.gravity);
         }
 
         // apply gravity acceleration to vertical speed:
-        fallSpeed += unit.stats.gravity * Time.deltaTime;
-        velocity.y = fallSpeed;
+        velocity.y += unit.stats.gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
         // movement sounds
-        if (move != Vector3.zero && fallSpeed < 1) {
+        if (move != Vector3.zero && isGrounded)
+        {
             RandomWalkSFX();
         }
     }
 
-    private void RandomWalkSFX() {
+    /*
+     * private void movement()
+    {
+        Vector3 move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
+        Vector3 groundVec = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - gameObject.transform.localScale.y, gameObject.transform.position.z);
+
+        bool isGrounded = Physics.CheckSphere(groundVec, unit.stats.groundDistance, unit.stats.groundMask);
+
+        controller.Move(move * unit.stats.movementSpeed * Time.deltaTime);
+
+        Debug.Log(isGrounded);
+
+
+        // Ground Check
+        if (isGrounded && velocity.y < 0){
+            velocity.y = -2f;
+        }
+
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(unit.stats.jumpHeight * -2f * unit.stats.gravity);
+        }
+
+        velocity.y += unit.stats.gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+    }
+     */
+
+    private void RandomWalkSFX()
+    {
         stepTimer += Time.deltaTime;
 
         // play step sounds in intervalls from a list of sound files randomly
-        if (stepTimer >= interval) {
+        if (stepTimer >= interval)
+        {
             playRandomSFX(walkSFX);
         }
     }
 
     // SFX Handler
-    private void playRandomSFX(AudioClip [] sounds) {
-        randomSound.clip = sounds [Random.Range(0, sounds.Length)];
+    private void playRandomSFX(AudioClip[] sounds)
+    {
+        randomSound.clip = sounds[Random.Range(0, sounds.Length)];
         randomSound.pitch = Random.Range(0.8f, 1.2f);
 
         if (randomSound != null) randomSound.Play();

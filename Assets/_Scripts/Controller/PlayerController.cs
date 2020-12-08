@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     [Header("Sound")]
     public AudioClip[] walkSFX;
     public AudioClip[] dropSFX;
-    [HideInInspector] public AudioSource randomSound;
+    [HideInInspector] public AudioSource audioSource;
     private float stepTimer;
     private float fallTimer;
     private float interval = 0.75f;
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         walkSpeed = unit.stats.moveSpeed;
         baseSpeed = unit.stats.moveSpeed;
         sprintSpeed = unit.stats.moveSpeed * 2f;
-        randomSound = GetComponentInChildren<AudioSource>();
+        audioSource = GetComponentInChildren<AudioSource>();
     }
 
     private void Update()
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
     {
         bool tmp = Physics.Raycast(transform.position, -Vector3.up, 0.2f);
 
-        if (tmp && !isGrounded) playRandomSFX(dropSFX);
+        if (tmp && !isGrounded) SoundManager.Instance.playRandomSFX(dropSFX, audioSource, 0.8f, 1.2f);
 
         return tmp;
     }
@@ -152,57 +152,20 @@ public class PlayerController : MonoBehaviour
         // movement sounds
         if (move != Vector3.zero && isGrounded)
         {
-            RandomWalkSFX();
+            walkSounds();
         }
     }
 
-    /*
-     * private void movement()
-    {
-        Vector3 move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
-        Vector3 groundVec = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - gameObject.transform.localScale.y, gameObject.transform.position.z);
-
-        bool isGrounded = Physics.CheckSphere(groundVec, unit.stats.groundDistance, unit.stats.groundMask);
-
-        controller.Move(move * unit.stats.movementSpeed * Time.deltaTime);
-
-        Debug.Log(isGrounded);
-
-
-        // Ground Check
-        if (isGrounded && velocity.y < 0){
-            velocity.y = -2f;
-        }
-
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(unit.stats.jumpHeight * -2f * unit.stats.gravity);
-        }
-
-        velocity.y += unit.stats.gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
-    }
-     */
-
-    private void RandomWalkSFX()
+    private void walkSounds()
     {
         stepTimer += Time.deltaTime;
 
         // play step sounds in intervalls from a list of sound files randomly
         if (stepTimer >= interval)
         {
-            playRandomSFX(walkSFX);
+            SoundManager.Instance.playRandomSFX(walkSFX, audioSource, 0.8f, 1.2f);
+            stepTimer = 0.0f;
         }
-    }
-
-    // SFX Handler
-    private void playRandomSFX(AudioClip[] sounds)
-    {
-        randomSound.clip = sounds[Random.Range(0, sounds.Length)];
-        randomSound.pitch = Random.Range(0.8f, 1.2f);
-
-        if (randomSound != null) randomSound.Play();
-        stepTimer = 0.0f;
     }
 
     private void Awake()

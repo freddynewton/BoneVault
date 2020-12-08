@@ -64,7 +64,6 @@ public class Projectile : MonoBehaviour
         sfx.loop = false;
         sfx.Play();
 
-        rb.isKinematic = true;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         
@@ -78,7 +77,7 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject != gameObject && other.GetComponent<Room>() == null)
         {
-            Debug.Log("Name: " + other.name + "\nTag: " + other.tag);
+            // Debug.Log("Name: " + other.name + "\nTag: " + other.tag);
 
             switch (other.tag)
             {

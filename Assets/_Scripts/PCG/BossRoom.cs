@@ -2,6 +2,12 @@
 
 public class BossRoom : Room
 {
+    [Header("Boss Spawn Settings")]
+    public GameObject bossPF;
+    public Transform spawnPos;
+    public Transform enemyContainer;
+    private bool bossSpawned = false;
+
     [Header("TrapDoor")]
     public GameObject[] TrapDoor;
     public AudioClip [] trapDoorSFX;
@@ -18,6 +24,16 @@ public class BossRoom : Room
         {
             LeanTween.rotateX(trap, 90, 4).setEaseOutBounce();
             playSFX(trapDoorSFX, GetComponent<AudioSource>(), false);
+        }
+    }
+
+    public void spawnBoss()
+    {
+        if (!bossSpawned)
+        {
+            bossSpawned = true;
+
+            Instantiate(bossPF, spawnPos.position, Quaternion.identity, enemyContainer);
         }
     }
 
@@ -41,6 +57,7 @@ public class BossRoom : Room
         base.OnTriggerEnter(other);
         setLights(mainColor);
         openTrapDoor();
+        spawnBoss();
     }
 
     public override void OnTriggerExit(Collider other)

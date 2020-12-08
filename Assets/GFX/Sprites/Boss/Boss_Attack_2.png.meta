@@ -1,7 +1,19 @@
 fileFormatVersion: 2
 guid: 3c79c8904198c8e4eab491ff801a7627
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -6008364318538452900
+    second: Boss_Attack_2_0
+  - first:
+      213: 6755656544358320220
+    second: Boss_Attack_2_1
+  - first:
+      213: 7738185224244256453
+    second: Boss_Attack_2_2
+  - first:
+      213: -1800860254742033751
+    second: Boss_Attack_2_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -75,6 +87,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1

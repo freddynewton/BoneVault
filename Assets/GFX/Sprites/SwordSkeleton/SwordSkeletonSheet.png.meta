@@ -1,0 +1,889 @@
+fileFormatVersion: 2
+guid: 6839665af96e5bd48887def23384e101
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1551954341607996948
+    second: SwordSkeletonSheet_0
+  - first:
+      213: -2389513388736694855
+    second: SwordSkeletonSheet_1
+  - first:
+      213: -603555887929712662
+    second: SwordSkeletonSheet_2
+  - first:
+      213: 6878880431782300677
+    second: SwordSkeletonSheet_3
+  - first:
+      213: -7002732857707858648
+    second: SwordSkeletonSheet_4
+  - first:
+      213: -1429253618268227934
+    second: SwordSkeletonSheet_5
+  - first:
+      213: -5966251231189067648
+    second: SwordSkeletonSheet_6
+  - first:
+      213: -3463365708077515742
+    second: SwordSkeletonSheet_7
+  - first:
+      213: 233993368359707923
+    second: SwordSkeletonSheet_8
+  - first:
+      213: -7488589839667707276
+    second: SwordSkeletonSheet_9
+  - first:
+      213: 8183593065593686583
+    second: SwordSkeletonSheet_10
+  - first:
+      213: -5374762501428570225
+    second: SwordSkeletonSheet_11
+  - first:
+      213: -8928771121553111121
+    second: SwordSkeletonSheet_12
+  - first:
+      213: 8104029289697033635
+    second: SwordSkeletonSheet_13
+  - first:
+      213: -9078753747833700325
+    second: SwordSkeletonSheet_14
+  - first:
+      213: 2375168497997724797
+    second: SwordSkeletonSheet_15
+  - first:
+      213: -5672074393498627266
+    second: SwordSkeletonSheet_16
+  - first:
+      213: 5567702736678338962
+    second: SwordSkeletonSheet_17
+  - first:
+      213: -6014712699140312040
+    second: SwordSkeletonSheet_18
+  - first:
+      213: 479401779286189125
+    second: SwordSkeletonSheet_19
+  - first:
+      213: -6493512979093363916
+    second: SwordSkeletonSheet_20
+  - first:
+      213: 1742724356561813219
+    second: SwordSkeletonSheet_21
+  - first:
+      213: -7878891675334439568
+    second: SwordSkeletonSheet_22
+  - first:
+      213: 5823702852160031258
+    second: SwordSkeletonSheet_23
+  - first:
+      213: -3855317465584452293
+    second: SwordSkeletonSheet_24
+  - first:
+      213: 3010665448949894813
+    second: SwordSkeletonSheet_25
+  - first:
+      213: -9080844803453461703
+    second: SwordSkeletonSheet_26
+  - first:
+      213: -1519032084036698916
+    second: SwordSkeletonSheet_27
+  - first:
+      213: -4737421956618575514
+    second: SwordSkeletonSheet_0
+  - first:
+      213: -5682752307794343028
+    second: SwordSkeletonSheet_1
+  - first:
+      213: -4281739670195423267
+    second: SwordSkeletonSheet_2
+  - first:
+      213: 970057553233807159
+    second: SwordSkeletonSheet_3
+  - first:
+      213: 287710647914207461
+    second: SwordSkeletonSheet_4
+  - first:
+      213: -3665764789194437209
+    second: SwordSkeletonSheet_5
+  - first:
+      213: -5158800400239651936
+    second: SwordSkeletonSheet_6
+  - first:
+      213: -7796028300266946982
+    second: SwordSkeletonSheet_7
+  - first:
+      213: 5405371031371445466
+    second: SwordSkeletonSheet_8
+  - first:
+      213: 1355445960640646867
+    second: SwordSkeletonSheet_9
+  - first:
+      213: 813771700150387049
+    second: SwordSkeletonSheet_10
+  - first:
+      213: 6253801857774401932
+    second: SwordSkeletonSheet_11
+  - first:
+      213: -6676681529988183196
+    second: SwordSkeletonSheet_12
+  - first:
+      213: -6961353578713807384
+    second: SwordSkeletonSheet_13
+  - first:
+      213: 5057978615182616388
+    second: SwordSkeletonSheet_14
+  - first:
+      213: 2198569948366147871
+    second: SwordSkeletonSheet_15
+  - first:
+      213: -7864690195504988730
+    second: SwordSkeletonSheet_16
+  - first:
+      213: 2190101387257916484
+    second: SwordSkeletonSheet_17
+  - first:
+      213: 552375569804598886
+    second: SwordSkeletonSheet_18
+  - first:
+      213: -4647473079544087906
+    second: SwordSkeletonSheet_19
+  - first:
+      213: -4465216248378455738
+    second: SwordSkeletonSheet_20
+  - first:
+      213: 995054430134187244
+    second: SwordSkeletonSheet_21
+  - first:
+      213: -1306837208111926779
+    second: SwordSkeletonSheet_22
+  - first:
+      213: -5473320630013857448
+    second: SwordSkeletonSheet_23
+  - first:
+      213: 5492795617618721896
+    second: SwordSkeletonSheet_24
+  - first:
+      213: -6103076642496107310
+    second: SwordSkeletonSheet_25
+  - first:
+      213: -2024253129018302579
+    second: SwordSkeletonSheet_26
+  - first:
+      213: -640719386124395931
+    second: SwordSkeletonSheet_27
+  - first:
+      213: -5130987811516815053
+    second: SwordSkeletonSheet_28
+  - first:
+      213: 1469066269220395415
+    second: SwordSkeletonSheet_29
+  - first:
+      213: -1413460176666820378
+    second: SwordSkeletonSheet_30
+  - first:
+      213: -1220109798021989878
+    second: SwordSkeletonSheet_31
+  - first:
+      213: 2226364519371936577
+    second: SwordSkeletonSheet_32
+  - first:
+      213: 3401863986970065869
+    second: SwordSkeletonSheet_33
+  - first:
+      213: 6184680782488457215
+    second: SwordSkeletonSheet_34
+  - first:
+      213: 7687986406261774574
+    second: SwordSkeletonSheet_35
+  - first:
+      213: 7212745199235963979
+    second: SwordSkeletonSheet_36
+  - first:
+      213: 6106485851904779027
+    second: SwordSkeletonSheet_37
+  - first:
+      213: -5273849736997472738
+    second: SwordSkeletonSheet_38
+  - first:
+      213: -69508365890420794
+    second: SwordSkeletonSheet_39
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 0
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 4
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 128
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 128
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 128
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_12
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 55
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46b84a6e589a753a0800000000000000
+      internalID: -6676681529988183196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_13
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 55
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e58ed09dcd446f90800000000000000
+      internalID: -6961353578713807384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_14
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 55
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4476b7f80cc813640800000000000000
+      internalID: 5057978615182616388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_15
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 37
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f11963238b3e28e10800000000000000
+      internalID: 2198569948366147871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_16
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 37
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cd7d64afe10bd290800000000000000
+      internalID: -7864690195504988730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_17
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 37
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44c2999ab9dc46e10800000000000000
+      internalID: 2190101387257916484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_18
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 37
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66e9ec477ae6aa700800000000000000
+      internalID: 552375569804598886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_19
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 37
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9a75968bdbd08fb0800000000000000
+      internalID: -4647473079544087906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_20
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 37
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6498916da7d5802c0800000000000000
+      internalID: -4465216248378455738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_21
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 19
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce4b3507bb42fcd00800000000000000
+      internalID: 995054430134187244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_22
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 19
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 502b93fab7e2ddde0800000000000000
+      internalID: -1306837208111926779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_23
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 19
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 851f43ac2ebda04b0800000000000000
+      internalID: -5473320630013857448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_24
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 19
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86c7cfb13845a3c40800000000000000
+      internalID: 5492795617618721896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_25
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 19
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dc290f01248d4ba0800000000000000
+      internalID: -6103076642496107310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_26
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 19
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8f146d018868e3e0800000000000000
+      internalID: -2024253129018302579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 91
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6612d9494db414eb0800000000000000
+      internalID: -4737421956618575514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_1
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 91
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8b036372eec221b0800000000000000
+      internalID: -5682752307794343028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_2
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 91
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd7bd41a4743494c0800000000000000
+      internalID: -4281739670195423267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_3
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 91
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7378f208436567d00800000000000000
+      internalID: 970057553233807159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_4
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 91
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e816075f472ef300800000000000000
+      internalID: 287710647914207461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_5
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 91
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ad4ee5a856902dc0800000000000000
+      internalID: -3665764789194437209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_6
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 73
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a392945e524868b0800000000000000
+      internalID: -5158800400239651936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_7
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 73
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5e32b7e091fec390800000000000000
+      internalID: -7796028300266946982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_8
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 73
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad4f41c605cb30b40800000000000000
+      internalID: 5405371031371445466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_9
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 73
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3de49347be28fc210800000000000000
+      internalID: 1355445960640646867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_10
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 73
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 961cabbbc091b4b00800000000000000
+      internalID: 813771700150387049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordSkeletonSheet_11
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 73
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c893254d7a7f9c650800000000000000
+      internalID: 6253801857774401932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: b5dc266bb49d4dd45acc20b0fb0ae62a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

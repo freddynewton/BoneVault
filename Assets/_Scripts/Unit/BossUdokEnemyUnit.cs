@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BossUdokEnemyUnit : EnemyUnit
@@ -86,31 +87,43 @@ public class BossUdokEnemyUnit : EnemyUnit
 
     public void spawnMinions()
     {
+        // Cancel LeanTween
         LeanTween.cancel(gameObject);
-        isSpawning = true;
-        RaycastHit hit;
+        StartCoroutine(setSpawning(true, 0));
 
+        // Find Ground pos
+        RaycastHit hit;
         Physics.Raycast(transform.position, Vector3.down, out hit);
-        LeanTween.moveY(gameObject, -45, 1.5f).setEaseOutSine().setOnComplete(() =>
-        {
+
+        // Move To Ground
+        LeanTween.moveY(gameObject, hit.point.y, 1.5f).setEaseOutSine().setOnComplete(() => {
+
+            // Play SFX and Anim
+            animator.SetTrigger("Summon");
+            playRandomSFX(summonSFX, GetComponent<AudioSource>());
+
+            // Fill Missing Adds
             for (int i = returnLivingMinions(); i < minionsLivingCount; i++)
             {
-                animator.SetTrigger("Summon");
-                playRandomSFX(summonSFX, GetComponent<AudioSource>());
-
+                // Spawn Random Minion
                 Vector3 spawnPos = bossRoom.transform.position;
                 spawnPos.y = hit.point.y;
-
-                GameObject e = Instantiate(enemyTypes[Random.Range(0, enemyTypes.Count)], spawnPos, Quaternion.identity, bossRoom.transform) as GameObject;
-
+                GameObject e = Instantiate(enemyTypes[Random.Range(0, enemyTypes.Count)], spawnPos, Quaternion.identity, bossRoom.transform);
                 spawnedMinions.Add(e.GetComponent<EnemyUnit>());
-
-                LeanTween.moveY(gameObject, -40f, 3f).setEaseOutSine().setDelay(5f).setOnComplete(() =>
-                {
-                    isSpawning = false;
-                    LeanTween.moveLocalY(gameObject, gameObject.transform.position.y - 1, 2.5f).setEaseInOutQuad().setLoopPingPong();
-                });
             }
+
+            // Move up
+            LeanTween.moveY(gameObject, gameObject.transform.position.y + hit.distance, 4f).setEaseOutSine().setDelay(4f).setOnComplete(() =>
+            {
+                StartCoroutine(setSpawning(false, 5));
+                LeanTween.moveLocalY(gameObject, gameObject.transform.position.y - 1, 2.5f).setEaseInOutQuad().setLoopPingPong();
+            });
         });
+    }
+
+    private IEnumerator setSpawning(bool active, float t)
+    {
+        yield return new WaitForSecondsRealtime(t);
+        isSpawning = active;
     }
 }

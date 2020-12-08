@@ -3029,29 +3029,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9194310969825354412, guid: 14af446bff1a3fe468aae205cc391f92, type: 3}
-      propertyPath: sounds.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9194310969825354412, guid: 14af446bff1a3fe468aae205cc391f92, type: 3}
-      propertyPath: sounds.Array.data[0].name
-      value: TitleMusic
-      objectReference: {fileID: 0}
-    - target: {fileID: 9194310969825354412, guid: 14af446bff1a3fe468aae205cc391f92, type: 3}
-      propertyPath: sounds.Array.data[0].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: f2942f6454a7faa4386f6c43e447a6f7, type: 3}
-    - target: {fileID: 9194310969825354412, guid: 14af446bff1a3fe468aae205cc391f92, type: 3}
-      propertyPath: sounds.Array.data[0].loop
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9194310969825354413, guid: 14af446bff1a3fe468aae205cc391f92, type: 3}
       propertyPath: m_Name
       value: SoundManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 9194310969825354413, guid: 14af446bff1a3fe468aae205cc391f92, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14af446bff1a3fe468aae205cc391f92, type: 3}

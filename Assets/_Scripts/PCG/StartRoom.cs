@@ -16,7 +16,7 @@ public class StartRoom : Room
     public IEnumerator setSpawnPos()
     {
         yield return new WaitForSecondsRealtime(0.1f);
-        PlayerController.Instance.transform.position = PlayerSpawn.position;
+        PlayerController.Instance.transform.position = PlayerSpawn.position + Vector3.up;
         UiManager.Instance.setActivePreparingLevel(false);
     }
 

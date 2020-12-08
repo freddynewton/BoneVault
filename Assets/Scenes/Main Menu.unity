@@ -798,6 +798,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 34623565}
+    - target: {fileID: 2700794677562972885, guid: 7fc936495022ee8478414dfa30246077, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3837541195162542013, guid: 7fc936495022ee8478414dfa30246077, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4658749344493487141, guid: 7fc936495022ee8478414dfa30246077, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -855,6 +863,10 @@ PrefabInstance:
       value: --- UI ---
       objectReference: {fileID: 0}
     - target: {fileID: 4658749345828808091, guid: 7fc936495022ee8478414dfa30246077, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7263497090621674569, guid: 7fc936495022ee8478414dfa30246077, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

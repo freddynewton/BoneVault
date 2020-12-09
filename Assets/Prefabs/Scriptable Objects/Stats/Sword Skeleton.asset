@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a2523012511214f81549b0cd394798, type: 3}
   m_Name: Sword Skeleton
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 2
   moveSpeed: 3
   maxRange: 4
   stoppingDistance: 4

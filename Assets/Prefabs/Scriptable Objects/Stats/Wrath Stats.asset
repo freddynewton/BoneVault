@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a2523012511214f81549b0cd394798, type: 3}
   m_Name: Wrath Stats
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 2
   moveSpeed: 8
   maxRange: 3
   stoppingDistance: 1.5
   stopsAttackingWhenHit: 0
-  attackRate: 2.2
+  attackRate: 2.5
   stamina: 10
   staminaRate: 1
   sprintCostRate: 2

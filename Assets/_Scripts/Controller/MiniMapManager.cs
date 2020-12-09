@@ -9,7 +9,6 @@ public class MiniMapManager : MonoBehaviour
 
     private void Awake()
     {
-        mainCam = PlayerController.Instance.playerCameraHandler.GetComponent<Camera>();
     }
 
     public void openMinimap(bool active)
@@ -23,7 +22,7 @@ public class MiniMapManager : MonoBehaviour
 
     private void Update()
     {
-        // TODO: FIX
+        /* TODO: FIX*/
         // if (MiniMapGenerator.minimapTextureCanvas.activeSelf) moveMinimap();
     }
 

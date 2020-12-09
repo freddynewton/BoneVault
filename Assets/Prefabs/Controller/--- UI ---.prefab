@@ -1720,7 +1720,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3376013133650377671
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1983,6 +1983,10 @@ PrefabInstance:
       value: Minimap
       objectReference: {fileID: 0}
     - target: {fileID: 6739966818638260893, guid: 4b6cd3159ea507d4889baffab44b70b1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6739966819755461411, guid: 4b6cd3159ea507d4889baffab44b70b1, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

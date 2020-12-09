@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sword Skeleton
   m_EditorClassIdentifier: 
   maxHealth: 2
-  moveSpeed: 3
+  moveSpeed: 5
   maxRange: 4
   stoppingDistance: 4
   stopsAttackingWhenHit: 1

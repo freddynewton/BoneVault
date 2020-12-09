@@ -798,22 +798,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 34623565}
-    - target: {fileID: 2700794677562972885, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_CullTransparentMesh
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3837541195162542013, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_CullTransparentMesh
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658749344493487141, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4658749344916663636, guid: 7fc936495022ee8478414dfa30246077, type: 3}
       propertyPath: MiniMapGenerator
       value: 
       objectReference: {fileID: 762852240}
+    - target: {fileID: 4658749344916663636, guid: 7fc936495022ee8478414dfa30246077, type: 3}
+      propertyPath: mainCam
+      value: 
+      objectReference: {fileID: 771319275}
     - target: {fileID: 4658749344916663638, guid: 7fc936495022ee8478414dfa30246077, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -861,14 +853,6 @@ PrefabInstance:
     - target: {fileID: 4658749344916663639, guid: 7fc936495022ee8478414dfa30246077, type: 3}
       propertyPath: m_Name
       value: --- UI ---
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658749345828808091, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7263497090621674569, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fc936495022ee8478414dfa30246077, type: 3}
@@ -1419,6 +1403,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce9968a6cc802844cac1baf84e1681fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!20 &771319275 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 252462661427320610, guid: 080454e15c9a6b74ba7de97815822b6c, type: 3}
+  m_PrefabInstance: {fileID: 1311225173}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &828706608
 PrefabInstance:
   m_ObjectHideFlags: 0

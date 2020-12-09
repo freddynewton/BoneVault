@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Axe Skeleton
   m_EditorClassIdentifier: 
   maxHealth: 3
-  moveSpeed: 5
+  moveSpeed: 3
   maxRange: 4
   stoppingDistance: 4
   stopsAttackingWhenHit: 1

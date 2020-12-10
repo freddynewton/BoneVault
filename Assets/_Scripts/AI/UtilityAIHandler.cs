@@ -78,15 +78,15 @@ public class UtilityAIHandler : MonoBehaviour
         switch (input)
         {
             case InputAiEnum.Health:
-                return unit.currentHealth / unit.stats.maxHealth;
+                return unit.currentHealth / unit.baseStats.maxHealth;
 
             case InputAiEnum.RangeToTargetNormalized:
                 {
-                    float tmp = Vector2.Distance(gameObject.transform.position, PlayerController.Instance.transform.position) / (unit.stats.moveSpeed * unit.stats.maxRange);
+                    float tmp = Vector2.Distance(gameObject.transform.position, PlayerController.Instance.transform.position) / (unit.baseStats.moveSpeed * unit.enemyStats.maxRange);
                     return tmp > 1 ? 1 : tmp;
                 }
             case InputAiEnum.TargetHealth:
-                return PlayerController.Instance.unit.currentHealth / PlayerController.Instance.unit.stats.maxHealth;
+                return PlayerController.Instance.unit.currentHealth / PlayerController.Instance.unit.baseStats.maxHealth;
 
             case InputAiEnum.FireBallCount:
                 return bossUdokEnemyUnit.fireBalls.Count / bossUdokEnemyUnit.maxFireBalls;

@@ -2,8 +2,16 @@
 
 public class PlayerUnit : Unit
 {
+    [Header("PlayerStats")]
+    public PlayerStats playerStats;
+
+    [Header("Upgrade Handler")]
     public PlayerUpgradeHandler upgradeHandler;
+
+    [Header("SFX")]
     public AudioClip [] hitSFX;
+
+    [Header("Stamina Settings")]
     public float timeToRegStaminaAfterHitZero = 2f;
 
     private bool foolStamina;
@@ -11,10 +19,12 @@ public class PlayerUnit : Unit
     [HideInInspector] public bool isStaminaReg = true;
     [HideInInspector] public AudioSource randomSound;
 
+    private void changeFoolStamina() => foolStamina = false;
+
     public override void Start()
     {
         base.Start();
-        currentStamina = stats.stamina;
+        currentStamina = playerStats.stamina;
         randomSound = GetComponentInChildren<AudioSource>();
     }
     public override void Update()
@@ -27,15 +37,12 @@ public class PlayerUnit : Unit
 
     public void updateStamina()
     {
-        if (!foolStamina && isStaminaReg && currentStamina <= stats.stamina + upgradeHandler.maxStaminaUpgrade)
+        if (!foolStamina && isStaminaReg && currentStamina <= playerStats.stamina + upgradeHandler.maxStaminaUpgrade)
         {
-            setStamina(Time.deltaTime * stats.staminaRate * upgradeHandler.staminaRatePercentageUpgrade);
+            setStamina(Time.deltaTime * playerStats.staminaRate * upgradeHandler.staminaRatePercentageUpgrade);
         }
     }
-    private void changeFoolStamina()
-    {
-        foolStamina = false;
-    }
+
 
     #endregion
 
@@ -43,7 +50,7 @@ public class PlayerUnit : Unit
     public void setHealthPlayer(int amount)
     {
         currentHealth += amount;
-        if (currentHealth > stats.maxHealth + upgradeHandler.maxHealthUpgrade) currentHealth = stats.maxHealth;
+        if (currentHealth > baseStats.maxHealth + upgradeHandler.maxHealthUpgrade) currentHealth = baseStats.maxHealth;
 
         UiManager.Instance.setHealth();
     }
@@ -52,7 +59,7 @@ public class PlayerUnit : Unit
     {
         currentStamina += amount;
 
-        if (currentStamina > stats.stamina + upgradeHandler.maxStaminaUpgrade) currentStamina = stats.stamina + upgradeHandler.maxStaminaUpgrade;
+        if (currentStamina > playerStats.stamina + upgradeHandler.maxStaminaUpgrade) currentStamina = playerStats.stamina + upgradeHandler.maxStaminaUpgrade;
         else if (currentStamina < 0)
         {
             foolStamina = true;
@@ -71,7 +78,7 @@ public class PlayerUnit : Unit
     {
         base.death();
         UiManager.Instance.flashScreen.flashScreen(1);
-        playRandomSFX(hitSFX);
+        SoundManager.Instance.playRandomSFX(hitSFX, randomSound, 0.8f, 1.2f);
         // TODO Player Hit effect & "Game over" Scene
     }
 
@@ -82,7 +89,7 @@ public class PlayerUnit : Unit
         // Do Player hit effect
         UiManager.Instance.flashScreen.flashScreen(1);
 
-        playRandomSFX(hitSFX);
+        SoundManager.Instance.playRandomSFX(hitSFX, randomSound, 0.8f, 1.2f);
     }
 
     public override void DoDamage(GameObject damageObj, DamageType damageType)
@@ -137,12 +144,4 @@ public class PlayerUnit : Unit
         proj.ShootToTarget(100, proj.projectileSource.transform.position - damageObj.transform.position);
     }
     #endregion
-
-    // SFX Handler
-    private void playRandomSFX (AudioClip [] sounds) {
-        randomSound.clip = sounds [Random.Range(0, sounds.Length)];
-        randomSound.pitch = Random.Range(0.8f, 1.2f);
-
-        if (randomSound != null) randomSound.Play();
-    }
 }

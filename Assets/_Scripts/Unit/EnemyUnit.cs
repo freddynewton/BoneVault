@@ -4,6 +4,9 @@ using UnityEngine.AI;
 
 public class EnemyUnit : Unit
 {
+    [Header("Enemy Stats")]
+    public EnemyStats enemyStats;
+
     [Header("Damage")]
     public DamageType damageType;
     public AudioClip [] hitSFX;

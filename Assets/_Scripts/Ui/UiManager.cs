@@ -108,7 +108,7 @@ public class UiManager : MonoBehaviour
     {
         if (PlayerController.Instance != null)
         {
-            staminaSlider.maxValue = PlayerController.Instance.unit.stats.stamina + PlayerController.Instance.unit.upgradeHandler.maxStaminaUpgrade;
+            staminaSlider.maxValue = PlayerController.Instance.unit.playerStats.stamina + PlayerController.Instance.unit.upgradeHandler.maxStaminaUpgrade;
             staminaSlider.value = PlayerController.Instance.unit.currentStamina;
         }
     }
@@ -117,7 +117,7 @@ public class UiManager : MonoBehaviour
     {
         if (PlayerController.Instance != null)
         {
-            healthSlider.maxValue = PlayerController.Instance.unit.stats.maxHealth + PlayerController.Instance.unit.upgradeHandler.maxHealthUpgrade;
+            healthSlider.maxValue = PlayerController.Instance.unit.baseStats.maxHealth + PlayerController.Instance.unit.upgradeHandler.maxHealthUpgrade;
 
             LeanTween.value(healthSlider.value, PlayerController.Instance.unit.currentHealth, 1f).setEaseOutBounce().setOnUpdate((float value) =>
             {

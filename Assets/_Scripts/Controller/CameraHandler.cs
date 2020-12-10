@@ -21,8 +21,8 @@ public class CameraHandler : MonoBehaviour
 
     private void lookAtMouse()
     {
-        float mouseX = Input.GetAxis("Mouse X") * player.unit.stats.mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * player.unit.stats.mouseSensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * player.unit.playerStats.mouseSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * player.unit.playerStats.mouseSensitivity * Time.deltaTime;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);

@@ -4,7 +4,7 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
     [Header("Stats")]
-    public Stats stats;
+    public Stats baseStats;
 
     [HideInInspector] public int currentHealth;
     [HideInInspector] public string currentState;
@@ -42,7 +42,7 @@ public class Unit : MonoBehaviour
         }
 
         if (GetComponentInChildren<Animator>()) animator = GetComponentInChildren<Animator>();
-        currentHealth = stats.maxHealth;
+        currentHealth = baseStats.maxHealth;
     }
 
     public virtual void Update()

@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class NavAgentController : MonoBehaviour
 {
     public NavMeshAgent agent;
-    [HideInInspector] public Unit unit;
+    [HideInInspector] public EnemyUnit unit;
 
     [Header("Raycasting")]
     private const int MAX_ITERATIONS = 100;
@@ -73,8 +73,8 @@ public class NavAgentController : MonoBehaviour
 
     private void Awake()
     {
-        unit = GetComponent<Unit>();
-        agent.speed = unit.stats.moveSpeed;
-        agent.stoppingDistance = unit.stats.stoppingDistance;
+        unit = GetComponent<EnemyUnit>();
+        agent.speed = unit.baseStats.moveSpeed;
+        agent.stoppingDistance = unit.enemyStats.stoppingDistance;
     }
 }

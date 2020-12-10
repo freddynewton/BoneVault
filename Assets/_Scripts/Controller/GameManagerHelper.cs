@@ -9,7 +9,7 @@ public class GameManagerHelper : MonoBehaviour
         Inventory.Instance.setBones(0);
 
         PlayerController.Instance.unit.upgradeHandler.resetUpgrades();
-        PlayerController.Instance.unit.setHealthPlayer(PlayerController.Instance.unit.stats.maxHealth);
+        PlayerController.Instance.unit.setHealthPlayer(PlayerController.Instance.unit.baseStats.maxHealth);
 
         WorldGeneratorManager.Instance.clearWorld();
         WorldGeneratorManager.Instance.miniMapGenerator.clearMinimap();

@@ -7,7 +7,7 @@ public class WrathShootingAction : ActionAI
 {
     public override void use(UtilityAIHandler controller)
     {
-        if (controller.wrathEnemyUnit.waitTimer(controller.unit.stats.attackRate) && controller.wrathEnemyUnit.currentProj == null)
+        if (controller.wrathEnemyUnit.waitTimer(controller.unit.enemyStats.attackRateMin) && controller.wrathEnemyUnit.currentProj == null)
         {
             controller.wrathEnemyUnit.currentProj = Instantiate(controller.wrathEnemyUnit.projectilePF, controller.wrathEnemyUnit.projectileShootingPos.transform.position, Quaternion.identity, controller.gameObject.transform);
             controller.wrathEnemyUnit.currentProj.transform.localScale = Vector3.zero;

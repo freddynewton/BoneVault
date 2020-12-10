@@ -37,16 +37,16 @@ public class PlayerController : MonoBehaviour
         unit = GetComponent<PlayerUnit>();
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        walkSpeed = unit.stats.moveSpeed;
-        baseSpeed = unit.stats.moveSpeed;
-        sprintSpeed = unit.stats.moveSpeed * 2f;
+        walkSpeed = unit.baseStats.moveSpeed;
+        baseSpeed = unit.baseStats.moveSpeed;
+        sprintSpeed = unit.baseStats.moveSpeed * 2f;
         audioSource = GetComponentInChildren<AudioSource>();
     }
 
     private void Update()
     {
-        checkIsGrounded();
         isGrounded = checkIsGrounded();
+        Debug.Log(isGrounded);
 
         if (Cursor.lockState == CursorLockMode.Locked)
         {
@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
             if (Inventory.Instance.currWeapon != null)
             {
                 Inventory.Instance.currWeaponScript.attackRightClick(true);
-                walkSpeed = unit.stats.moveSpeed / 2;
+                walkSpeed = unit.baseStats.moveSpeed / 2;
             }
         }
 
@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButton("Sprint"))
             {
-                unit.setStamina(-((unit.stats.sprintCostRate * unit.upgradeHandler.sprintSpeedPercentageCostsUpgrade) * Time.deltaTime));
+                unit.setStamina(-((unit.playerStats.sprintCostRate * unit.upgradeHandler.sprintSpeedPercentageCostsUpgrade) * Time.deltaTime));
             }
         }
         else
@@ -135,18 +135,18 @@ public class PlayerController : MonoBehaviour
         controller.Move(move * walkSpeed * Time.deltaTime);
 
         // Gravity
-        if (isGrounded && velocity.y < 0)
+        if (isGrounded && velocity.y > 0)
         {
-            velocity.y = -2;
+            velocity.y -= 2 * Time.deltaTime;
         }
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            velocity.y = Mathf.Sqrt(unit.stats.jumpHeight * -2f * unit.stats.gravity);
+            velocity.y = Mathf.Sqrt(unit.playerStats.jumpHeight * -2f * unit.playerStats.gravity);
         }
 
         // apply gravity acceleration to vertical speed:
-        velocity.y += unit.stats.gravity * Time.deltaTime;
+        velocity.y += unit.playerStats.gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
         // movement sounds
@@ -154,6 +154,11 @@ public class PlayerController : MonoBehaviour
         {
             walkSounds();
         }
+    }
+
+    private void Jump()
+    {
+
     }
 
     private void walkSounds()

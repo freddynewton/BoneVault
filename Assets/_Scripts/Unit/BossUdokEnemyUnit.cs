@@ -29,7 +29,7 @@ public class BossUdokEnemyUnit : EnemyUnit
         rb = GetComponent<Rigidbody>();
 
         animator = GetComponentInChildren<Animator>();
-        currentHealth = stats.maxHealth;
+        currentHealth = baseStats.maxHealth;
         utilityAI = GetComponent<UtilityAIHandler>();
 
         LeanTween.moveLocalY(gameObject, gameObject.transform.position.y - 1, 2.5f).setEaseInOutQuad().setLoopPingPong();

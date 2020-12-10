@@ -54,6 +54,6 @@ public class Inventory : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
 
-        if (currWeapon == null) equipWeapon(Resources.Load<GameObject>("Items/Weapons/LongSword"));
+        if (currWeapon == null) equipWeapon(Resources.Load<GameObject>("Items/Weapons/OneHandSword"));
     }
 }

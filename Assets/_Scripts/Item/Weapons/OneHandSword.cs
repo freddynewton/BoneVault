@@ -3,15 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LongSword : Weapon
+public class OneHandSword : MeleeWeapon
 {
-    [Header("LongSwordStats")]
-    public float doDamageAfterSec = 0.3f;
-
+    [Header("One Hand Sword Settings")]
     public int maxCharges = 3;
     private int currentCharges;
-
-    [Header("Block Stats")]
     public float perfectBlockDuration = 5;
 
     public bool knockbackOnPerfectBlock = true;
@@ -19,7 +15,7 @@ public class LongSword : Weapon
     [HideInInspector] public float animationLength;
     [HideInInspector] public bool isAttacking;
     [HideInInspector] public bool isBlocking;
-    [HideInInspector] public AudioSource randomSound;
+    [HideInInspector] public AudioSource audioSource;
 
     public ParticleSystem sparks;
     public ParticleSystem sparksCharged;
@@ -36,17 +32,17 @@ public class LongSword : Weapon
         base.Start();
         sparks.Stop();
         sparksCharged.Stop();
-        randomSound = GetComponentInChildren<AudioSource>();
+        audioSource = GetComponentInChildren<AudioSource>();
     }
 
     // Attack
-    public override void attackLeftClick(bool active)
+    public override void ability1(bool active)
     {
         if (!isBlocking && !isAttacking && PlayerController.Instance.unit.currentStamina > 0)
         {
             isAttacking = active;
             int randomInt = Random.Range(0, 3);
-            playRandomSFX(swingSFX);
+            SoundManager.Instance.playRandomSFX(swingSFX, audioSource, 0.8f, 1.2f);
 
             switch (randomInt)
             {
@@ -71,7 +67,7 @@ public class LongSword : Weapon
     }
 
     // Block
-    public override void attackRightClick(bool active)
+    public override void ability2(bool active)
     {
         if (!isAttacking)
         {
@@ -105,11 +101,11 @@ public class LongSword : Weapon
             if (currentCharges < maxCharges) setCharges(currentCharges + 1);
 
             // Camera Shake
-            CameraEffects.ShakeOnce(ShakeLenght, ShakeStrength);
+            CameraEffects.ShakeOnce(ShakeLength, ShakeStrength);
 
             sparksCharged.Clear();
             sparksCharged.Play();
-            playRandomSFX(parrySFX);
+            SoundManager.Instance.playRandomSFX(parrySFX, audioSource, 0.8f, 1.2f);
 
             return callbackValue.SUCCESS;
         }
@@ -119,7 +115,7 @@ public class LongSword : Weapon
         {
             sparks.Clear();
             sparks.Play();
-            playRandomSFX(parrySFX);
+            SoundManager.Instance.playRandomSFX(parrySFX, audioSource, 0.8f, 1.2f);
 
             return callbackValue.NOTHING;
         }
@@ -210,26 +206,5 @@ public class LongSword : Weapon
         {
             UiManager.Instance.weaponUI.activateSwordUI(false);
         }
-    }
-
-    // SFX Handler
-    private void playRandomSFX(AudioClip[] sounds) {
-        randomSound.clip = sounds [Random.Range(0, sounds.Length)];
-        randomSound.pitch = Random.Range(0.8f, 1.2f);
-
-        if (randomSound != null) randomSound.Play();
-    }
-
-    // Trigger Handler
-    private void OnTriggerEnter(Collider other)
-    {
-        if (layermaskInclude(other.gameObject.layer) && !hitObjects.Contains(other.gameObject)) hitObjects.Add(other.gameObject);
-        if (other.CompareTag("Interactable") && !hitObjects.Contains(other.gameObject)) hitObjects.Add(other.gameObject);
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (layermaskInclude(other.gameObject.layer) && hitObjects.Contains(other.gameObject)) hitObjects.Remove(other.gameObject);
-        if (other.CompareTag("Interactable") && hitObjects.Contains(other.gameObject)) hitObjects.Remove(other.gameObject);
     }
 }

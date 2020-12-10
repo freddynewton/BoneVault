@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour
+public abstract class Weapon : Item
 {
     public enum callbackValue
     {
@@ -11,16 +11,12 @@ public abstract class Weapon : MonoBehaviour
     }
 
     [Header("Weapon Default Stats")]
-    public LayerMask DoDamageOn;
-
     public DamageType damageType;
 
     [Header("Screenshake Settings")]
-    public float ShakeLenght = 1;
-
+    public float ShakeLength = 1;
     public float ShakeStrength = 2;
 
-    [SerializeField] public List<GameObject> hitObjects;
     [HideInInspector] public Animator animator;
     [HideInInspector] public string currentState;
 
@@ -29,13 +25,19 @@ public abstract class Weapon : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    /* TODO: Implement Interact for item grabbing*/
+    public override void interact()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public abstract void callOnEquip(bool isSpawned);
 
     public abstract callbackValue callbackDamageFnc();
 
-    public abstract void attackLeftClick(bool active);
+    public abstract void ability1(bool active);
 
-    public abstract void attackRightClick(bool active);
+    public abstract void ability2(bool active);
 
     // manages animation states
     public void changeAnimationState(string newState)
@@ -48,10 +50,5 @@ public abstract class Weapon : MonoBehaviour
 
         // set string to current animation as a monitor
         currentState = newState;
-    }
-
-    public bool layermaskInclude(int layer)
-    {
-        return DoDamageOn == (DoDamageOn | (1 << layer));
     }
 }

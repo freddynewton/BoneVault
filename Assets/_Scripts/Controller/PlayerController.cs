@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Inventory.Instance.currWeapon != null)
             {
-                Inventory.Instance.currWeaponScript.attackLeftClick(true);
+                Inventory.Instance.currWeaponScript.ability1(true);
             }
         }
 
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Inventory.Instance.currWeapon != null)
             {
-                Inventory.Instance.currWeaponScript.attackRightClick(true);
+                Inventory.Instance.currWeaponScript.ability2(true);
                 walkSpeed = unit.baseStats.moveSpeed / 2;
             }
         }
@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
         // End Block
         if (Input.GetButtonUp("Fire2"))
         {
-            Inventory.Instance.currWeaponScript.attackRightClick(false);
+            Inventory.Instance.currWeaponScript.ability2(false);
             walkSpeed = baseSpeed * unit.upgradeHandler.baseSpeedPercentageUpgrade;
         }
 

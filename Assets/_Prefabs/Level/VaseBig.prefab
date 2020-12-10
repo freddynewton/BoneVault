@@ -4970,13 +4970,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e437c33d94b4c54187f3ec13b25ff47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Vase
+  icon: {fileID: 21300000, guid: b4762c730d1ee774da5b3666dead1c3a, type: 3}
   GFX: {fileID: 7919579325959217744}
-  destroySFX:
-  - {fileID: 8300000, guid: 9afd77bb3854c55449983d8c0048f4df, type: 3}
-  - {fileID: 8300000, guid: 86a6be33a0c7c05468f5e51a4552903b, type: 3}
-  - {fileID: 8300000, guid: 6ae939c01c01b814e918f95cfc73e002, type: 3}
+  useSFX: []
+  isDestroyable: 1
   dropItems: []
   itemCounts: 0
+  dropChance: 0.1
 --- !u!54 &2281645703365761759
 Rigidbody:
   m_ObjectHideFlags: 0

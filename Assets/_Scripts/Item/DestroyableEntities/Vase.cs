@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class Vase : WorldItem
 {
+    [Header("Vase Settings")]
     public List<GameObject> dropItems = new List<GameObject>();
     public int itemCounts;
     public float dropChance = 0.1f;

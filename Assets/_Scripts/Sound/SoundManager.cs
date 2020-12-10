@@ -48,7 +48,7 @@ public class SoundManager : MonoBehaviour
 
     public void playRandomSFX(AudioClip[] sounds, AudioSource source, float minPitch, float maxPitch)
     {
-        if (source == null) return;
+        if (source == null || sounds.Length == 0) return;
 
         source.clip = sounds[UnityEngine.Random.Range(0, sounds.Length)];
         source.pitch = UnityEngine.Random.Range(minPitch, maxPitch);
@@ -57,7 +57,7 @@ public class SoundManager : MonoBehaviour
 
     public void playSFX(AudioClip sound, AudioSource source, float minPitch, float maxPitch)
     {
-        if (source == null) return;
+        if (source == null || sound == null) return;
 
         source.clip = sound;
         source.pitch = UnityEngine.Random.Range(minPitch, maxPitch);

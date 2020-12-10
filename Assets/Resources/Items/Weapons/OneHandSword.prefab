@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8419775150344606401}
   - component: {fileID: 8134752773625840818}
   m_Layer: 12
-  m_Name: LongSword
+  m_Name: OneHandSword
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,7 +104,7 @@ SpriteRenderer:
   m_Size: {x: 32, y: 18}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &-3658924847489240888
@@ -119,9 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aa7e2f7cb378da468ea339f1d246a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DoDamageOn:
-    serializedVersion: 2
-    m_Bits: 2048
+  name: One Hand Sword
+  icon: {fileID: -6417234444036227135, guid: f204d13e14395f4499e242d6f624ea51, type: 3}
   damageType: {fileID: 11400000, guid: 40172974392c8c940b3d18b599938690, type: 2}
   ShakeLenght: 1
   ShakeStrength: 3
@@ -129,6 +128,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   currentState: 
   doDamageAfterSec: 0.3
+  hitObjects: []
   maxCharges: 3
   perfectBlockDuration: 0.5
   knockbackOnPerfectBlock: 1
@@ -136,7 +136,7 @@ MonoBehaviour:
   animationLength: 0
   isAttacking: 0
   isBlocking: 0
-  randomSound: {fileID: 0}
+  audioSource: {fileID: 0}
   sparks: {fileID: 9215289669473843882}
   sparksCharged: {fileID: 749710194028840396}
   swingSFX:

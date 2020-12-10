@@ -11,7 +11,6 @@ public class DamageType : ScriptableObject
 
     [Header("Bools")]
     public bool isBlockable;
-
     public bool isShootingBackWhenHit;
 
     [Header("Knockback")]

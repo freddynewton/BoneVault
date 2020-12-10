@@ -16,8 +16,6 @@ public class PlayerController : MonoBehaviour
     public AudioClip[] dropSFX;
     [HideInInspector] public AudioSource audioSource;
     private float stepTimer;
-    private float fallTimer;
-    private float interval = 0.75f;
 
     [Header("Game Objests")]
     public GameObject weaponPos;
@@ -25,7 +23,7 @@ public class PlayerController : MonoBehaviour
     // Movement
     [HideInInspector] public Vector3 move;
     [HideInInspector] public bool isSprinting;
-    [HideInInspector] bool isGrounded;
+    [HideInInspector] public bool isGrounded;
     private float walkSpeed;
     private float baseSpeed;
     private float sprintSpeed;
@@ -46,11 +44,13 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         isGrounded = checkIsGrounded();
-        Debug.Log(isGrounded);
+        isSprinting = Input.GetButton("Sprint");
 
         if (Cursor.lockState == CursorLockMode.Locked)
         {
             InputButtons();
+            Jump();
+            Sprint();
             Movement();
         }
     }
@@ -66,8 +66,7 @@ public class PlayerController : MonoBehaviour
 
     private void InputButtons()
     {
-        // Sprint
-        Sprint();
+
 
         // Left Click Attack
         if (Input.GetButtonDown("Fire1"))
@@ -101,29 +100,29 @@ public class PlayerController : MonoBehaviour
     {
         if (unit.currentStamina > 0)
         {
-            if (Input.GetButtonDown("Sprint"))
+            if (isSprinting)
             {
                 walkSpeed = sprintSpeed * unit.upgradeHandler.sprintSpeedPercentageUpgrade;
-                isSprinting = true;
-                interval = 0.4f;
+
+                unit.setStamina(-((unit.playerStats.sprintCostRate * unit.upgradeHandler.sprintSpeedPercentageCostsUpgrade) * Time.deltaTime));
             }
-            else if (Input.GetButtonUp("Sprint"))
+            else
             {
                 walkSpeed = baseSpeed * unit.upgradeHandler.baseSpeedPercentageUpgrade;
-                isSprinting = false;
-                interval = 0.75f;
-            }
-
-            if (Input.GetButton("Sprint"))
-            {
-                unit.setStamina(-((unit.playerStats.sprintCostRate * unit.upgradeHandler.sprintSpeedPercentageCostsUpgrade) * Time.deltaTime));
             }
         }
         else
         {
-            walkSpeed = baseSpeed * unit.upgradeHandler.baseSpeedPercentageUpgrade;
             isSprinting = false;
-            interval = 0.75f;
+            walkSpeed = baseSpeed * unit.upgradeHandler.baseSpeedPercentageUpgrade;
+        }
+    }
+
+    public void Jump()
+    {
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(unit.playerStats.jumpHeight * -3f * unit.playerStats.gravity);
         }
     }
 
@@ -132,18 +131,8 @@ public class PlayerController : MonoBehaviour
         // Move Input
         move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
 
+        // Move Character Controller
         controller.Move(move * walkSpeed * Time.deltaTime);
-
-        // Gravity
-        if (isGrounded && velocity.y > 0)
-        {
-            velocity.y -= 2 * Time.deltaTime;
-        }
-
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(unit.playerStats.jumpHeight * -2f * unit.playerStats.gravity);
-        }
 
         // apply gravity acceleration to vertical speed:
         velocity.y += unit.playerStats.gravity * Time.deltaTime;
@@ -156,17 +145,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Jump()
-    {
-
-    }
-
     private void walkSounds()
     {
         stepTimer += Time.deltaTime;
 
         // play step sounds in intervalls from a list of sound files randomly
-        if (stepTimer >= interval)
+        if (stepTimer >= (isSprinting ? 0.4 : 0.75))
         {
             SoundManager.Instance.playRandomSFX(walkSFX, audioSource, 0.8f, 1.2f);
             stepTimer = 0.0f;

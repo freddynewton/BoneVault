@@ -7,7 +7,7 @@ public abstract class MeleeWeapon : Weapon
     [Header("Melee Weapon Settings")]
     public float doDamageAfterSec = 0.3f;
 
-    [HideInInspector] public List<GameObject> hitObjects;
+    [SerializeField, HideInInspector] public List<GameObject> hitObjects;
 
     public override void interact() { base.interact(); }
 

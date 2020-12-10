@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyUnit : Unit
 {
-    [Header("Enemy Stats")]
+    [Header("Enemy Settings")]
     public EnemyStats enemyStats;
-
-    [Header("Damage")]
     public DamageType damageType;
     public AudioClip [] hitSFX;
     public AudioClip [] attackSFX;
@@ -16,21 +15,28 @@ public class EnemyUnit : Unit
     [HideInInspector] public UtilityAIHandler utilityAI;
     [HideInInspector] public ParticleSystem vfx;
     [HideInInspector] public NavAgentController navAgent;
-    [HideInInspector] public AudioSource randomSound;
+    [HideInInspector] public AudioSource audioSource;
+
+    protected float waitTicker;
+    protected float waitTime;
+
 
     public override void Start()
     {
+        spriteRend = GetComponentInChildren<SpriteRenderer>();
+        baseMat = spriteRend.material;
+        rb = GetComponent<Rigidbody>();
+
         navAgent = GetComponent<NavAgentController>();
         base.Start();
         utilityAI = GetComponent<UtilityAIHandler>();
         vfx = GetComponentInChildren<ParticleSystem>();
         vfx.Stop();
-        randomSound = GetComponentInChildren<AudioSource>();
+        audioSource = GetComponentInChildren<AudioSource>();
     }
 
-    public override void Update()
+    public void Update()
     {
-        base.Update();
         FaceTarget(PlayerController.Instance.transform.position);
         setWalkingAnimation();
     }
@@ -47,15 +53,13 @@ public class EnemyUnit : Unit
             vfx.Play();
         }
 
-        playRandomSFX(dieSFX, GetComponent<AudioSource>());
+        SoundManager.Instance.playRandomSFX(dieSFX, audioSource, 0.8f, 1.2f);
 
         // Disable all component and leave a sprite
         GetComponent<UtilityAIHandler>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
         GetComponent<CapsuleCollider>().enabled = false;
-
-        base.death();
 
         Inventory.Instance.setBones(Random.Range(0, 2));
     }
@@ -72,9 +76,7 @@ public class EnemyUnit : Unit
             vfx.Play();
         }
 
-        playRandomSFX(hitSFX, GetComponent<AudioSource>());
-
-        base.hit();
+        SoundManager.Instance.playRandomSFX(hitSFX, audioSource, 0.8f, 1.2f);
     }
 
     private void FaceTarget(Vector3 destination)
@@ -87,12 +89,8 @@ public class EnemyUnit : Unit
 
     public override void DoDamage(GameObject damageObj, DamageType damageType)
     {
+        StartCoroutine(flashWhite(0.1f));
         base.DoDamage(damageObj, damageType);
-    }
-
-    public override void knockback(Vector3 otherPos, float kb)
-    {
-        base.knockback(otherPos, kb);
     }
 
     public virtual void setWalkingAnimation()
@@ -101,11 +99,25 @@ public class EnemyUnit : Unit
         else animator.SetBool("isWalking", false);
     }
 
-    // SFX Handler
-    public void playRandomSFX (AudioClip [] sounds, AudioSource source) {
-        source.clip = sounds [Random.Range(0, sounds.Length)];
-        source.pitch = Random.Range(0.8f, 1.2f);
+    public bool waitTimer(float time)
+    {
+        waitTime = time;
 
-        if (randomSound != null) randomSound.Play();
+        if (waitTicker > waitTime)
+        {
+            waitTicker = 0;
+            return true;
+        }
+        else waitTicker += Time.deltaTime;
+
+        return false;
+    }
+
+    public IEnumerator flashWhite(float time)
+    {
+        //spriteRend.material = Resources.Load("Material/White Shader Material") as Material;
+        yield return new WaitForSeconds(time);
+        StartCoroutine(freezeGame(0.035f));
+        //spriteRend.material = baseMat;
     }
 }

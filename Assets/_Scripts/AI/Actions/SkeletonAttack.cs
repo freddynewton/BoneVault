@@ -9,7 +9,7 @@ public class SkeletonAttack : ActionAI
         if (controller.unit.waitTimer(controller.unit.enemyStats.attackRateMin))
         {
             controller.unit.animator.SetTrigger("Attack");
-            controller.unit.playRandomSFX(controller.unit.attackSFX, controller.unit.GetComponent<AudioSource>());
+            SoundManager.Instance.playRandomSFX(controller.unit.attackSFX, controller.unit.audioSource, 0.8f, 1.2f);
         }
     }
 }

@@ -33,7 +33,9 @@ public class BossRoom : Room
         {
             bossSpawned = true;
 
-            Instantiate(bossPF, spawnPos.position, Quaternion.identity, enemyContainer);
+            GameObject boss;
+            boss = Instantiate(bossPF, spawnPos.position, Quaternion.identity, enemyContainer);
+            boss.GetComponent<BossUnit>().bossRoom = this;
         }
     }
 

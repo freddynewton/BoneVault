@@ -26,16 +26,18 @@ public class EnemyUnit : Unit
         spriteRend = GetComponentInChildren<SpriteRenderer>();
         baseMat = spriteRend.material;
         rb = GetComponent<Rigidbody>();
-
         navAgent = GetComponent<NavAgentController>();
+
         base.Start();
+
         utilityAI = GetComponent<UtilityAIHandler>();
         vfx = GetComponentInChildren<ParticleSystem>();
-        vfx.Stop();
+        if (vfx != null) vfx.Stop();
+        
         audioSource = GetComponentInChildren<AudioSource>();
     }
 
-    public void Update()
+    public virtual void Update()
     {
         FaceTarget(PlayerController.Instance.transform.position);
         setWalkingAnimation();

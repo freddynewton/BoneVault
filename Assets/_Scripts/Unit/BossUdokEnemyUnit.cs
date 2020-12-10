@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossUdokEnemyUnit : EnemyUnit
+public class BossUdokEnemyUnit : BossUnit
 {
+    [Header("Boss Udok Settings")]
     public AudioClip [] summonSFX;
-
-    [Header("Boss Settings")]
-    public BossRoom bossRoom;
 
     [Header("Fire Balls")]
     public List<GameObject> fireBalls = new List<GameObject>();
@@ -25,29 +23,8 @@ public class BossUdokEnemyUnit : EnemyUnit
 
     public override void Start()
     {
-        spriteRend = GetComponentInChildren<SpriteRenderer>();
-        rb = GetComponent<Rigidbody>();
-
-        animator = GetComponentInChildren<Animator>();
-        currentHealth = baseStats.maxHealth;
-        utilityAI = GetComponent<UtilityAIHandler>();
-
+        base.Start();
         LeanTween.moveLocalY(gameObject, gameObject.transform.position.y - 1, 2.5f).setEaseInOutQuad().setLoopPingPong();
-    }
-
-    public override void Update()
-    {
-        base.Update();
-    }
-
-    public override void knockback(Vector3 otherPos, float kb)
-    {
-        base.knockback(otherPos, kb);
-    }
-
-    public override void hit()
-    {
-        base.hit();
     }
 
     public override void setWalkingAnimation()
@@ -55,21 +32,20 @@ public class BossUdokEnemyUnit : EnemyUnit
         // Nothing
     }
 
-    public override void DoDamage(GameObject damageObj, DamageType damageType)
-    {
-        base.DoDamage(damageObj, damageType);
-    }
-
     public override void death()
     {
+        Debug.Log("Boss Died");
+
+        bossRoom.portalDoor.openDoor();
+
         foreach (GameObject fireball in fireBalls)
         {
             fireball.GetComponent<Projectile>().DestroyProjectile();
         }
 
         Inventory.Instance.setBones(Random.Range(0, 10));
+        
         base.death();
-        bossRoom.portalDoor.openDoor();
     }
 
     public int returnLivingMinions()
@@ -100,7 +76,8 @@ public class BossUdokEnemyUnit : EnemyUnit
 
             // Play SFX and Anim
             animator.SetTrigger("Summon");
-            playRandomSFX(summonSFX, GetComponent<AudioSource>());
+            SoundManager.Instance.playRandomSFX(summonSFX, audioSource, 0.8f, 1.2f);
+            
 
             // Fill Missing Adds
             for (int i = returnLivingMinions(); i < minionsLivingCount; i++)

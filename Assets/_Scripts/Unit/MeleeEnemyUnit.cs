@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class MeleeEnemyUnit : EnemyUnit
 {
+    [Header("Melee Unit Settings")]
     public List<GameObject> triggerList = new List<GameObject>();
 
     public void CallTriggerDamage()
@@ -42,10 +43,7 @@ public class MeleeEnemyUnit : EnemyUnit
     {
         base.setWalkingAnimation();
     }
-    public override void knockback(Vector3 otherPos, float kb)
-    {
-        base.knockback(otherPos, kb);
-    }
+    
     public override void hit()
     {
         base.hit();

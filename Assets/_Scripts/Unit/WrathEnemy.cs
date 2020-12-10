@@ -31,10 +31,6 @@ public class WrathEnemy : EnemyUnit
         base.setWalkingAnimation();
     }
 
-    public override void knockback(Vector3 otherPos, float kb)
-    {
-        base.knockback(otherPos, kb);
-    }
     public override void DoDamage(GameObject damageObj, DamageType damageType)
     {
         base.DoDamage(damageObj, damageType);

@@ -66,10 +66,10 @@ public class Projectile : MonoBehaviour
 
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        
+
         stopAllTweens();
         animator.SetTrigger("Explode");
-        
+
         Destroy(gameObject, 1f);
     }
 
@@ -77,14 +77,13 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject != gameObject && other.GetComponent<Room>() == null)
         {
-            // Debug.Log("Name: " + other.name + "\nTag: " + other.tag);
-
             switch (other.tag)
             {
                 case "Interactable":
-                    if (other.GetComponent<DestroyableEntity>() && destoryInteractables)
+                    WorldItem wi = other.GetComponent<WorldItem>();
+                    if (wi != null && wi.isDestroyable && destoryInteractables)
                     {
-                        other.GetComponent<DestroyableEntity>().interact();
+                        wi.interact();
                         DestroyProjectile();
                     }
                     break;

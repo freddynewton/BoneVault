@@ -158,10 +158,9 @@ public class LongSword : Weapon
 
         foreach (GameObject obj in hitObjects)
         {
-            if (obj.GetComponent<Unit>())
+            Unit objU = obj.GetComponent<Unit>();
+            if (objU != null)
             {
-                Unit objU = obj.GetComponent<Unit>();
-
                 if (objU.currentHealth - damageType.damage <= 0) remList.Add(obj);
 
                 // TODO Clean trash code
@@ -172,13 +171,11 @@ public class LongSword : Weapon
 
                 damageType.damage = d;
                 // End Trash Code
-            } 
-            
-            if (obj.GetComponent<DestroyableEntity>())
-            {
-                obj.GetComponent<DestroyableEntity>().interact();
             }
 
+            // Interact with Destroyable Item
+            WorldItem wi = obj.GetComponent<WorldItem>();
+            if (wi != null && wi.isDestroyable) wi.interact();
         }
 
         foreach (GameObject obj in remList) hitObjects.Remove(obj);

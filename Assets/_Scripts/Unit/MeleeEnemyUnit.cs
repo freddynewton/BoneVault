@@ -11,10 +11,10 @@ public class MeleeEnemyUnit : EnemyUnit
     {
         foreach (GameObject obj in triggerList)
         {
-            if (obj.GetComponent<Unit>())
-                obj.GetComponent<Unit>().DoDamage(gameObject, damageType);
-            else if (obj.GetComponent<DestroyableEntity>())
-                obj.GetComponent<DestroyableEntity>().interact();
+            WorldItem wi = obj.GetComponent<WorldItem>();
+
+            if (obj.GetComponent<Unit>()) obj.GetComponent<Unit>().DoDamage(gameObject, damageType);
+            else if (wi != null && wi.isDestroyable) wi.interact();
         }
     }
 

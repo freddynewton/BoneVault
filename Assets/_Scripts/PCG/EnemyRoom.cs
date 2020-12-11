@@ -21,8 +21,8 @@ public class EnemyRoom : Room
 
     [Header("Enemy Spawn Settings")]
     public float spawnRange;
-
     public Vector3 spawnOffset;
+
 
     public override void Awake()
     {
@@ -37,6 +37,7 @@ public class EnemyRoom : Room
             setDoors(true);
             isCleared = true;
             setLights(secColor);
+            StartCoroutine(fadeMusic(GetComponent<AudioSource>(), 3f, true));           
             return true;
         }
 
@@ -86,10 +87,11 @@ public class EnemyRoom : Room
 
         if (other.gameObject.CompareTag("Player") && !isCleared)
         {
+            if (!GetComponent<AudioSource>().isPlaying) StartCoroutine(fadeMusic(GetComponent<AudioSource>(), 3f, false));
             setDoors(false);
             InvokeRepeating("startWave", 1, 1);
             setLights(mainColor);
-            InvokeRepeating("checkIfRoomCleared", 3, 1);
+            InvokeRepeating("checkIfRoomCleared", 3, 1);           
         }
     }
 }

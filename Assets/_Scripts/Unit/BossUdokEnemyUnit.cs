@@ -34,8 +34,6 @@ public class BossUdokEnemyUnit : BossUnit
 
     public override void death()
     {
-        Debug.Log("Boss Died");
-
         bossRoom.portalDoor.openDoor();
 
         foreach (GameObject fireball in fireBalls)

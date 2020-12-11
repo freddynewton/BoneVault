@@ -23,7 +23,7 @@ public class BossRoom : Room
         foreach (GameObject trap in TrapDoor)
         {
             LeanTween.rotateX(trap, 90, 4).setEaseOutBounce();
-            playSFX(trapDoorSFX, GetComponent<AudioSource>(), false);
+            // playSFX(trapDoorSFX, GetComponent<AudioSource>(), false);
         }
     }
 
@@ -60,6 +60,7 @@ public class BossRoom : Room
         setLights(mainColor);
         openTrapDoor();
         spawnBoss();
+        if (!GetComponent<AudioSource>().isPlaying) StartCoroutine(fadeMusic(GetComponent<AudioSource>(), 3f, false));
     }
 
     public override void OnTriggerExit(Collider other)

@@ -21,4 +21,4 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 0
-  jumpHeight: 3
+  jumpHeight: 2

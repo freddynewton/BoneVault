@@ -45,8 +45,6 @@ public class Room : MonoBehaviour
 
     public virtual void Awake()
     {
-
-
         getAllLights();
         getAllDoors();
         setDoors(true);
@@ -115,13 +113,36 @@ public class Room : MonoBehaviour
     }
 
     // SFX Handler
-    public void playSFX (AudioClip [] sounds, AudioSource source, bool random) {
-        if (random) source.clip = sounds [Random.Range(0, sounds.Length)];
-        else source.clip = sounds [0];
+    public void playSFX (AudioClip [] sounds, AudioSource audioSource, bool random) {
+        if (random) audioSource.clip = sounds [Random.Range(0, sounds.Length)];
+        else audioSource.clip = sounds [0];
 
-        source.pitch = Random.Range(0.8f, 1.2f);
+        audioSource.pitch = Random.Range(0.8f, 1.2f);
 
-        if (source != null) source.Play();
+        if (audioSource != null) audioSource.Play();
+    }
+
+    public static IEnumerator fadeMusic (AudioSource audioSource, float fadeTime, bool fade) {
+        float startVolume = audioSource.volume;
+
+        Debug.Log("Music fading");
+
+        if (fade) {
+            while (audioSource.volume > 0) {
+                audioSource.volume -= startVolume * Time.deltaTime / fadeTime;
+
+                yield return null;
+            }
+        }
+        else {
+            audioSource.volume = 0;
+            audioSource.Play();
+            while (audioSource.volume < startVolume) {
+                audioSource.volume += startVolume * Time.deltaTime / fadeTime;
+
+                yield return null;
+            }
+        }      
     }
 
     public virtual void OnTriggerEnter(Collider other)

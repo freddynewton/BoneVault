@@ -4886,7 +4886,7 @@ MonoBehaviour:
   utilityAI: {fileID: 0}
   vfx: {fileID: 0}
   navAgent: {fileID: 0}
-  randomSound: {fileID: 0}
+  audioSource: {fileID: 0}
   triggerList: []
 --- !u!114 &3065674638620549659
 MonoBehaviour:
@@ -5263,7 +5263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6107800924613412382, guid: be78105227f33e944bdfc1872dd2057f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6107800924613412382, guid: be78105227f33e944bdfc1872dd2057f, type: 3}
       propertyPath: m_LocalRotation.y
@@ -5275,7 +5275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6107800924613412382, guid: be78105227f33e944bdfc1872dd2057f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6107800924613412382, guid: be78105227f33e944bdfc1872dd2057f, type: 3}
       propertyPath: m_RootOrder
@@ -5283,7 +5283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6107800924613412382, guid: be78105227f33e944bdfc1872dd2057f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6107800924613412382, guid: be78105227f33e944bdfc1872dd2057f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y

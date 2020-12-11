@@ -4973,7 +4973,10 @@ MonoBehaviour:
   name: Vase
   icon: {fileID: 21300000, guid: b4762c730d1ee774da5b3666dead1c3a, type: 3}
   GFX: {fileID: 7919579325959217744}
-  useSFX: []
+  useSFX:
+  - {fileID: 8300000, guid: 9afd77bb3854c55449983d8c0048f4df, type: 3}
+  - {fileID: 8300000, guid: 86a6be33a0c7c05468f5e51a4552903b, type: 3}
+  - {fileID: 8300000, guid: 6ae939c01c01b814e918f95cfc73e002, type: 3}
   isDestroyable: 1
   dropItems: []
   itemCounts: 0

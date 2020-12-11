@@ -9,6 +9,7 @@ public class Vase : WorldItem
     public int itemCounts;
     public float dropChance = 0.1f;
 
+
     public override void interact()
     {
         base.interact();

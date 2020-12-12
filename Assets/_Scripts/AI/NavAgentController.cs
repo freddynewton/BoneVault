@@ -5,12 +5,14 @@ using UnityEngine.AI;
 
 public class NavAgentController : MonoBehaviour
 {
+    [Header("Agent Settings")]
     public NavMeshAgent agent;
     [HideInInspector] public EnemyUnit unit;
 
-    [Header("Raycasting")]
+    private NavMeshPath navMeshPath;
     private const int MAX_ITERATIONS = 100;
-
+    private Vector3 oldTargetPos;
+    public Color GizmoColor;
     public int layerMask;
 
     private void Start()
@@ -18,16 +20,30 @@ public class NavAgentController : MonoBehaviour
         layerMask = LayerMask.GetMask("Player, Default, Enemy, Ground");
     }
 
+    public void getPath(Vector3 targetPos)
+    {
+        NavMeshHit navMeshHit;
+        NavMesh.SamplePosition(targetPos, out navMeshHit, 20, -1);
+
+        NavMeshPath tmp = navMeshPath == null ? new NavMeshPath() : navMeshPath;
+        NavMesh.CalculatePath(transform.position, navMeshHit.position, -1, tmp);
+
+        if (tmp.status == NavMeshPathStatus.PathComplete && navMeshHit.position != null) oldTargetPos = navMeshHit.position;
+        else NavMesh.CalculatePath(transform.position, oldTargetPos, -1, tmp);
+
+        navMeshPath = tmp;
+    }
+
     public void MoveToLocation(Vector3 targetPos)
     {
-        NavMeshPath path = new NavMeshPath();
-        agent.CalculatePath(targetPos, path);
+        getPath(targetPos);
 
-        if (path.status == NavMeshPathStatus.PathComplete)
+        if (navMeshPath.status == NavMeshPathStatus.PathComplete)
         {
             agent.isStopped = false;
-            agent.destination = targetPos;
+            agent.destination = oldTargetPos;
         }
+
         else stopAgent();
     }
 
@@ -76,5 +92,18 @@ public class NavAgentController : MonoBehaviour
         unit = GetComponent<EnemyUnit>();
         agent.speed = unit.baseStats.moveSpeed;
         agent.stoppingDistance = unit.enemyStats.stoppingDistance;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (navMeshPath != null)
+        {
+            foreach (Vector3 p in navMeshPath.corners)
+            {
+                // Gizmos.color = GizmoColor;
+                Gizmos.DrawWireSphere(p, 1);
+            }
+        }
+        
     }
 }

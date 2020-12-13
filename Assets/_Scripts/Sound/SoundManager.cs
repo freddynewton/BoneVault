@@ -9,7 +9,7 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
 
-    public Sound[] sounds;
+    public Sound[] music;
 
     private void Awake()
     {
@@ -28,20 +28,23 @@ public class SoundManager : MonoBehaviour
 
     public void addSounds()
     {
-        foreach (Sound s in sounds)
+        foreach (Sound s in music)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
-     
             s.source.loop = s.loop;
         }
     }
 
-    public void play(string name)
+    public void playMusic(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-
+        Sound s = Array.Find(music, sound => sound.name == name);
         if (s == null) return;
+
+        foreach (Sound _s in music)
+        {
+            if (_s.source.isPlaying) _s.source.Stop();
+        }
 
         s.source.Play();
     }

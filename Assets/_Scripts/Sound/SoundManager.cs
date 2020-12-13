@@ -43,25 +43,24 @@ public class SoundManager : MonoBehaviour
         source.Play();
     }
 
-    public static IEnumerator fadeMusic (int clipNumber, float fadeTime, bool fadeIn) {
-        AudioSource audioSource = SoundManager.Instance.musicSource;
-        float startVolume = audioSource.volume;
-
+    public static IEnumerator fadeMusic (AudioSource audioSource, int clipNumber, float fadeTime, bool fadeIn) {
         audioSource.clip = SoundManager.Instance.musicClip [clipNumber];
 
         if (!fadeIn) {
+            Debug.Log("Fade out music");
             while (audioSource.volume > 0) {
-                audioSource.volume -= startVolume * Time.deltaTime / fadeTime;
+                audioSource.volume -= 0.1f * Time.deltaTime / fadeTime;
 
                 yield return null;
             }           
         }
         else {
+            Debug.Log("Fade in music");
             audioSource.volume = 0;
             audioSource.Play();
 
-            while (audioSource.volume < startVolume) {
-                audioSource.volume += startVolume * Time.deltaTime / fadeTime;
+            while (audioSource.volume < 100) {
+                audioSource.volume += 0.1f * Time.deltaTime / fadeTime;
 
                 yield return null;
             }

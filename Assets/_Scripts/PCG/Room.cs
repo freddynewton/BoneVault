@@ -42,12 +42,14 @@ public class Room : MonoBehaviour
 
     [HideInInspector] public MiniMapPart miniMapPart;
     [HideInInspector] public AudioSource randomSound;
+    [HideInInspector] public AudioSource musicSource;
 
     public virtual void Awake()
     {
         getAllLights();
         getAllDoors();
         setDoors(true);
+        musicSource = GameObject.Find("SoundManager").GetComponent<AudioSource>();
 
         foreach (Light l in lights)
         {

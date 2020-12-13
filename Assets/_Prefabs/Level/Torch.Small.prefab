@@ -84,7 +84,7 @@ SpriteRenderer:
   m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1611163362087847075
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 6344138356014962587}
   m_Layer: 14
   m_Name: Torch.Small
-  m_TagString: Untagged
+  m_TagString: DynamicLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967287

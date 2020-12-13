@@ -9,7 +9,9 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
 
-    public Sound[] music;
+    public AudioClip [] musicClip;
+
+    private AudioSource audioSource;
 
     private void Awake()
     {
@@ -23,30 +25,7 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // addSounds();
-    }
-
-    public void addSounds()
-    {
-        foreach (Sound s in music)
-        {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
-            s.source.loop = s.loop;
-        }
-    }
-
-    public void playMusic(string name)
-    {
-        Sound s = Array.Find(music, sound => sound.name == name);
-        if (s == null) return;
-
-        foreach (Sound _s in music)
-        {
-            if (_s.source.isPlaying) _s.source.Stop();
-        }
-
-        s.source.Play();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void playRandomSFX(AudioClip[] sounds, AudioSource source, float minPitch, float maxPitch)
@@ -65,5 +44,30 @@ public class SoundManager : MonoBehaviour
         source.clip = sound;
         source.pitch = UnityEngine.Random.Range(minPitch, maxPitch);
         source.Play();
+    }
+
+    public static IEnumerator fadeMusic (int clipNumber, float fadeTime, bool fadeIn) {
+        AudioSource audioSource = SoundManager.Instance.audioSource;
+        float startVolume = audioSource.volume;
+
+        audioSource.clip = SoundManager.Instance.musicClip [clipNumber];
+
+        if (!fadeIn) {
+            while (audioSource.volume > 0) {
+                audioSource.volume -= startVolume * Time.deltaTime / fadeTime;
+
+                yield return null;
+            }
+        }
+        else {
+            audioSource.volume = 0;
+            audioSource.Play();
+
+            while (audioSource.volume < startVolume) {
+                audioSource.volume += startVolume * Time.deltaTime / fadeTime;
+
+                yield return null;
+            }
+        }
     }
 }

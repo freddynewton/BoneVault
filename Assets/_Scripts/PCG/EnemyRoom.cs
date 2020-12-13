@@ -37,7 +37,7 @@ public class EnemyRoom : Room
             setDoors(true);
             isCleared = true;
             setLights(secColor);
-            StartCoroutine(fadeMusic(GetComponent<AudioSource>(), 3f, true));           
+            StartCoroutine(SoundManager.fadeMusic(0, 3f, false));
             return true;
         }
 
@@ -87,7 +87,7 @@ public class EnemyRoom : Room
 
         if (other.gameObject.CompareTag("Player") && !isCleared)
         {
-            if (!GetComponent<AudioSource>().isPlaying) StartCoroutine(fadeMusic(GetComponent<AudioSource>(), 3f, false));
+            StartCoroutine(SoundManager.fadeMusic(0, 3f, true));
             setDoors(false);
             InvokeRepeating("startWave", 1, 1);
             setLights(mainColor);

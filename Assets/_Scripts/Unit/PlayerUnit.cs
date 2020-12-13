@@ -132,7 +132,6 @@ public class PlayerUnit : Unit
 
     public void projectileThrowback(GameObject damageObj, DamageType damageType)
     {
-        Debug.Log("Projectile Throwback");
         LeanTween.cancel(gameObject, false);
         Projectile proj = damageObj.GetComponent<Projectile>();
         proj.isHittingEnemies = true;

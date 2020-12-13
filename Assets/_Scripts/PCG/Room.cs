@@ -104,7 +104,7 @@ public class Room : MonoBehaviour
             rend.color = color;
         }
 
-        if (!l.gameObject.activeSelf) playSFX(torchSFX, l.transform.parent.GetComponent<AudioSource>(), true);
+        if (!l.gameObject.activeSelf && l.transform.parent.tag == "DynamicLight") playSFX(torchSFX, l.transform.parent.GetComponent<AudioSource>(), true);
 
         l.gameObject.SetActive(true);
         l.color = color;
@@ -120,29 +120,6 @@ public class Room : MonoBehaviour
         audioSource.pitch = Random.Range(0.8f, 1.2f);
 
         if (audioSource != null) audioSource.Play();
-    }
-
-    public static IEnumerator fadeMusic (AudioSource audioSource, float fadeTime, bool fade) {
-        float startVolume = audioSource.volume;
-
-        Debug.Log("Music fading");
-
-        if (fade) {
-            while (audioSource.volume > 0) {
-                audioSource.volume -= startVolume * Time.deltaTime / fadeTime;
-
-                yield return null;
-            }
-        }
-        else {
-            audioSource.volume = 0;
-            audioSource.Play();
-            while (audioSource.volume < startVolume) {
-                audioSource.volume += startVolume * Time.deltaTime / fadeTime;
-
-                yield return null;
-            }
-        }      
     }
 
     public virtual void OnTriggerEnter(Collider other)

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -5506868183041440470}
   m_Layer: 14
   m_Name: Pedestal.Stone
-  m_TagString: Untagged
+  m_TagString: DynamicLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -375,7 +375,7 @@ SpriteRenderer:
   m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &5809389394569971648

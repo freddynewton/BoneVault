@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -3752324416476634895}
   m_Layer: 0
   m_Name: HangingTorch
-  m_TagString: Untagged
+  m_TagString: DynamicLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -277,7 +277,7 @@ SpriteRenderer:
   m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &8177807657333574917

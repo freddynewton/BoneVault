@@ -78,7 +78,10 @@ public class EnemyRoom : Room
     public override void OnTriggerExit(Collider other)
     {
         base.OnTriggerExit(other);
-        if (checkIfRoomCleared()) CancelInvoke();
+        if (checkIfRoomCleared()) {
+            CancelInvoke();
+            SoundManager.Instance.musicSource.Stop();
+        }
     }
 
     public override void OnTriggerEnter(Collider other)
@@ -87,7 +90,7 @@ public class EnemyRoom : Room
 
         if (other.gameObject.CompareTag("Player") && !isCleared)
         {
-            StartCoroutine(SoundManager.fadeMusic(0, 3f, true));
+            if (!SoundManager.Instance.musicSource.isPlaying) StartCoroutine(SoundManager.fadeMusic(0, 3f, true));
             setDoors(false);
             InvokeRepeating("startWave", 1, 1);
             setLights(mainColor);

@@ -10,8 +10,7 @@ public class SoundManager : MonoBehaviour
     public static SoundManager Instance { get; private set; }
 
     public AudioClip [] musicClip;
-
-    private AudioSource audioSource;
+    public AudioSource musicSource;
 
     private void Awake()
     {
@@ -24,8 +23,6 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        audioSource = GetComponent<AudioSource>();
     }
 
     public void playRandomSFX(AudioClip[] sounds, AudioSource source, float minPitch, float maxPitch)
@@ -47,7 +44,7 @@ public class SoundManager : MonoBehaviour
     }
 
     public static IEnumerator fadeMusic (int clipNumber, float fadeTime, bool fadeIn) {
-        AudioSource audioSource = SoundManager.Instance.audioSource;
+        AudioSource audioSource = SoundManager.Instance.musicSource;
         float startVolume = audioSource.volume;
 
         audioSource.clip = SoundManager.Instance.musicClip [clipNumber];
@@ -57,7 +54,7 @@ public class SoundManager : MonoBehaviour
                 audioSource.volume -= startVolume * Time.deltaTime / fadeTime;
 
                 yield return null;
-            }
+            }           
         }
         else {
             audioSource.volume = 0;

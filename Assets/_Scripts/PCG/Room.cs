@@ -129,5 +129,6 @@ public class Room : MonoBehaviour
 
     public virtual void OnTriggerExit(Collider other)
     {
+        
     }
 }

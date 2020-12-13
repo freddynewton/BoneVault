@@ -60,7 +60,7 @@ public class BossRoom : Room
         setLights(mainColor);
         openTrapDoor();
         spawnBoss();
-        StartCoroutine(SoundManager.fadeMusic(0, 3f, true));
+        if (!SoundManager.Instance.musicSource.isPlaying) StartCoroutine(SoundManager.fadeMusic(0, 3f, true));
     }
 
     public override void OnTriggerExit(Collider other)

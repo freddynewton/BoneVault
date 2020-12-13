@@ -2452,6 +2452,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5660886550320320050, guid: 9ab0cf8520190344baa4a37ae787c8ff, type: 3}
   m_PrefabInstance: {fileID: 1137657098}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1141014533 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 373607481, guid: 14af446bff1a3fe468aae205cc391f92, type: 3}
+  m_PrefabInstance: {fileID: 9194310971388358867}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1162265771
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3428,6 +3433,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9194310969825354412, guid: 14af446bff1a3fe468aae205cc391f92, type: 3}
+      propertyPath: musicSource
+      value: 
+      objectReference: {fileID: 1141014533}
     - target: {fileID: 9194310969825354413, guid: 14af446bff1a3fe468aae205cc391f92, type: 3}
       propertyPath: m_Name
       value: SoundManager

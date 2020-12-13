@@ -83,6 +83,114 @@ TextureImporter:
   - first:
       213: -6554036741262231227
     second: WrathSheet_26
+  - first:
+      213: -8675214079516110738
+    second: WrathSheet_0
+  - first:
+      213: -2785031521808779275
+    second: WrathSheet_1
+  - first:
+      213: -8154013514701288490
+    second: WrathSheet_2
+  - first:
+      213: 2218302141447940988
+    second: WrathSheet_3
+  - first:
+      213: -263887458072056695
+    second: WrathSheet_4
+  - first:
+      213: -974606260809265417
+    second: WrathSheet_5
+  - first:
+      213: -518369680048124175
+    second: WrathSheet_6
+  - first:
+      213: -1206707443438977396
+    second: WrathSheet_7
+  - first:
+      213: -4585874819195849545
+    second: WrathSheet_8
+  - first:
+      213: 3754209274482569218
+    second: WrathSheet_9
+  - first:
+      213: -6334415136950597770
+    second: WrathSheet_10
+  - first:
+      213: -5993563191413545563
+    second: WrathSheet_11
+  - first:
+      213: 5505806505864927313
+    second: WrathSheet_12
+  - first:
+      213: -8513713465557650917
+    second: WrathSheet_13
+  - first:
+      213: 6775462951722414667
+    second: WrathSheet_14
+  - first:
+      213: -6644386325027761592
+    second: WrathSheet_15
+  - first:
+      213: -3661803231038117841
+    second: WrathSheet_16
+  - first:
+      213: -274945321794314483
+    second: WrathSheet_17
+  - first:
+      213: -55354732286979800
+    second: WrathSheet_18
+  - first:
+      213: -2568304789558739050
+    second: WrathSheet_19
+  - first:
+      213: -7615703762844768984
+    second: WrathSheet_20
+  - first:
+      213: 7690419634430935985
+    second: WrathSheet_21
+  - first:
+      213: -3212432125958280363
+    second: WrathSheet_22
+  - first:
+      213: -7226509850392097393
+    second: WrathSheet_23
+  - first:
+      213: 5493849511754037783
+    second: WrathSheet_24
+  - first:
+      213: 9116107183400824550
+    second: WrathSheet_25
+  - first:
+      213: -459360314148380307
+    second: WrathSheet_26
+  - first:
+      213: 3384637992661717319
+    second: WrathSheet_27
+  - first:
+      213: 6830710565765737036
+    second: WrathSheet_28
+  - first:
+      213: 8557772247677970375
+    second: WrathSheet_29
+  - first:
+      213: -6930292129082059694
+    second: WrathSheet_30
+  - first:
+      213: 6812696336039668104
+    second: WrathSheet_31
+  - first:
+      213: 7238919536652748651
+    second: WrathSheet_32
+  - first:
+      213: 2592715949833560653
+    second: WrathSheet_33
+  - first:
+      213: -5947956518660019102
+    second: WrathSheet_34
+  - first:
+      213: -2479360868308886140
+    second: WrathSheet_35
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -196,8 +304,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17fc891684f6caa30800000000000000
-      internalID: 4227876506859786097
+      spriteID: e6099f702c27b9780800000000000000
+      internalID: -8675214079516110738
       vertices: []
       indices: 
       edges: []
@@ -217,8 +325,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db091f5022955e490800000000000000
-      internalID: -7717664383765999427
+      spriteID: 5f7725e26949959d0800000000000000
+      internalID: -2785031521808779275
       vertices: []
       indices: 
       edges: []
@@ -238,8 +346,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6efa5a5c0ca474030800000000000000
-      internalID: 3478831428977143782
+      spriteID: 6dbce7209ef17de80800000000000000
+      internalID: -8154013514701288490
       vertices: []
       indices: 
       edges: []
@@ -259,8 +367,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32413a1ba66f24a40800000000000000
-      internalID: 5351110245376791587
+      spriteID: c7b2e796b0ef8ce10800000000000000
+      internalID: 2218302141447940988
       vertices: []
       indices: 
       edges: []
@@ -269,8 +377,8 @@ TextureImporter:
       name: WrathSheet_4
       rect:
         serializedVersion: 2
-        x: 1
-        y: 73
+        x: 73
+        y: 91
         width: 16
         height: 16
       alignment: 7
@@ -280,8 +388,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e91f970b5d123d670800000000000000
-      internalID: 8562224518233977246
+      spriteID: 98c2fe841cb765cf0800000000000000
+      internalID: -263887458072056695
       vertices: []
       indices: 
       edges: []
@@ -290,8 +398,8 @@ TextureImporter:
       name: WrathSheet_5
       rect:
         serializedVersion: 2
-        x: 19
-        y: 73
+        x: 91
+        y: 91
         width: 16
         height: 16
       alignment: 7
@@ -301,8 +409,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b21a6683db6174640800000000000000
-      internalID: 5064041307952292139
+      spriteID: 7fe879cf4c08972f0800000000000000
+      internalID: -974606260809265417
       vertices: []
       indices: 
       edges: []
@@ -311,7 +419,7 @@ TextureImporter:
       name: WrathSheet_6
       rect:
         serializedVersion: 2
-        x: 37
+        x: 1
         y: 73
         width: 16
         height: 16
@@ -322,8 +430,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81e4113717b79a4e0800000000000000
-      internalID: -1969907634805846504
+      spriteID: 1fe066eb5816ec8f0800000000000000
+      internalID: -518369680048124175
       vertices: []
       indices: 
       edges: []
@@ -332,6 +440,48 @@ TextureImporter:
       name: WrathSheet_7
       rect:
         serializedVersion: 2
+        x: 19
+        y: 73
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8efffd39f9e04fe0800000000000000
+      internalID: -1206707443438977396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WrathSheet_8
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 73
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b43c612623bb50c0800000000000000
+      internalID: -4585874819195849545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WrathSheet_9
+      rect:
+        serializedVersion: 2
         x: 55
         y: 73
         width: 16
@@ -343,50 +493,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 07084e8494757adc0800000000000000
-      internalID: -3627835002556481424
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WrathSheet_8
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 55
-        width: 16
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b65ee7442aeabb6b0800000000000000
-      internalID: -5279434126204672661
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WrathSheet_9
-      rect:
-        serializedVersion: 2
-        x: 19
-        y: 55
-        width: 16
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ef0d1a8ea1a9aa590800000000000000
-      internalID: -7662142375654731522
+      spriteID: 200b20ac171a91430800000000000000
+      internalID: 3754209274482569218
       vertices: []
       indices: 
       edges: []
@@ -395,8 +503,8 @@ TextureImporter:
       name: WrathSheet_10
       rect:
         serializedVersion: 2
-        x: 37
-        y: 55
+        x: 73
+        y: 73
         width: 16
         height: 16
       alignment: 7
@@ -406,8 +514,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e0404833e4be7860800000000000000
-      internalID: 7529654515004358881
+      spriteID: 677c33e7ef2a718a0800000000000000
+      internalID: -6334415136950597770
       vertices: []
       indices: 
       edges: []
@@ -416,8 +524,8 @@ TextureImporter:
       name: WrathSheet_11
       rect:
         serializedVersion: 2
-        x: 55
-        y: 55
+        x: 91
+        y: 73
         width: 16
         height: 16
       alignment: 7
@@ -427,8 +535,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48864057b5deb6960800000000000000
-      internalID: 7596426173551503492
+      spriteID: 5a560fc580692dca0800000000000000
+      internalID: -5993563191413545563
       vertices: []
       indices: 
       edges: []
@@ -437,6 +545,90 @@ TextureImporter:
       name: WrathSheet_12
       rect:
         serializedVersion: 2
+        x: 1
+        y: 55
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1581d1898dd886c40800000000000000
+      internalID: 5505806505864927313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WrathSheet_13
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 55
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b12f9fde5b639d980800000000000000
+      internalID: -8513713465557650917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WrathSheet_14
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 55
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b42fb3a18a7470e50800000000000000
+      internalID: 6775462951722414667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WrathSheet_15
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 55
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 842d14247d56ac3a0800000000000000
+      internalID: -6644386325027761592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WrathSheet_16
+      rect:
+        serializedVersion: 2
         x: 73
         y: 55
         width: 16
@@ -448,92 +640,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b9ea0d9cf32cd3a0800000000000000
-      internalID: -6639392182777484871
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WrathSheet_13
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 37
-        width: 16
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 24b0ee9043a9d2640800000000000000
-      internalID: 5056867504902507330
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WrathSheet_14
-      rect:
-        serializedVersion: 2
-        x: 19
-        y: 37
-        width: 16
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 12bfa632079c223d0800000000000000
-      internalID: -3232800099030861023
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WrathSheet_15
-      rect:
-        serializedVersion: 2
-        x: 37
-        y: 37
-        width: 16
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1b0dcea54be827ba0800000000000000
-      internalID: -6092650440608132943
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WrathSheet_16
-      rect:
-        serializedVersion: 2
-        x: 55
-        y: 37
-        width: 16
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c5812f29a5b43a970800000000000000
-      internalID: 8764932152177596508
+      spriteID: f286898cc59ae2dc0800000000000000
+      internalID: -3661803231038117841
       vertices: []
       indices: 
       edges: []
@@ -542,6 +650,153 @@ TextureImporter:
       name: WrathSheet_17
       rect:
         serializedVersion: 2
+        x: 91
+        y: 55
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0f5bc1cfa23f2cf0800000000000000
+      internalID: -274945321794314483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WrathSheet_18
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 37
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 821d56d0a275b3ff0800000000000000
+      internalID: -55354732286979800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WrathSheet_19
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 37
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69fba6fb66c8b5cd0800000000000000
+      internalID: -2568304789558739050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WrathSheet_20
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 37
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 825280507c59f4690800000000000000
+      internalID: -7615703762844768984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WrathSheet_21
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 37
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b302f379ebd9ba60800000000000000
+      internalID: 7690419634430935985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WrathSheet_22
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 37
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55b243b60062b63d0800000000000000
+      internalID: -3212432125958280363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WrathSheet_23
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 37
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8d8489249746bb90800000000000000
+      internalID: -7226509850392097393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WrathSheet_24
+      rect:
+        serializedVersion: 2
         x: 1
         y: 19
         width: 16
@@ -553,14 +808,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 175cfa64b5ebfc260800000000000000
-      internalID: 7120118835133269361
+      spriteID: 71a7d85f5031e3c40800000000000000
+      internalID: 5493849511754037783
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WrathSheet_18
+      name: WrathSheet_25
       rect:
         serializedVersion: 2
         x: 19
@@ -574,14 +829,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 673397476af7fba80800000000000000
-      internalID: -8448894023028362378
+      spriteID: 6ee2ef02f2be28e70800000000000000
+      internalID: 9116107183400824550
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WrathSheet_19
+      name: WrathSheet_26
       rect:
         serializedVersion: 2
         x: 37
@@ -595,14 +850,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76f0e5f285a92fea0800000000000000
-      internalID: -5840436063203618969
+      spriteID: d6126436a3600a9f0800000000000000
+      internalID: -459360314148380307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WrathSheet_20
+      name: WrathSheet_27
       rect:
         serializedVersion: 2
         x: 55
@@ -616,14 +871,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e90a6b0ebe94fded0800000000000000
-      internalID: -2387108000046866274
+      spriteID: 74194ed5256a8fe20800000000000000
+      internalID: 3384637992661717319
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WrathSheet_21
+      name: WrathSheet_28
       rect:
         serializedVersion: 2
         x: 73
@@ -637,14 +892,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 382fc0835e8a55f10800000000000000
-      internalID: 2257896490637521539
+      spriteID: c4a69f3a11f8bce50800000000000000
+      internalID: 6830710565765737036
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WrathSheet_22
+      name: WrathSheet_29
       rect:
         serializedVersion: 2
         x: 91
@@ -658,14 +913,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 700d69a8e82de9f50800000000000000
-      internalID: 6890175989575766023
+      spriteID: 7c7aa8ba48053c670800000000000000
+      internalID: 8557772247677970375
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WrathSheet_23
+      name: WrathSheet_30
       rect:
         serializedVersion: 2
         x: 1
@@ -679,14 +934,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fbc118f81a0c72d0800000000000000
-      internalID: -3279735326275154959
+      spriteID: 254d060e608a2df90800000000000000
+      internalID: -6930292129082059694
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WrathSheet_24
+      name: WrathSheet_31
       rect:
         serializedVersion: 2
         x: 19
@@ -700,14 +955,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c021fe581b4de2d0800000000000000
-      internalID: -3247857188220100415
+      spriteID: 889ef30f83f8b8e50800000000000000
+      internalID: 6812696336039668104
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WrathSheet_25
+      name: WrathSheet_32
       rect:
         serializedVersion: 2
         x: 37
@@ -721,14 +976,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6ebae143371d0d90800000000000000
-      internalID: -7130017126140952977
+      spriteID: b6782d317fec57460800000000000000
+      internalID: 7238919536652748651
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WrathSheet_26
+      name: WrathSheet_33
       rect:
         serializedVersion: 2
         x: 55
@@ -742,8 +997,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 549b4300f426b05a0800000000000000
-      internalID: -6554036741262231227
+      spriteID: d42a1596b6d2bf320800000000000000
+      internalID: 2592715949833560653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WrathSheet_34
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 1
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26cecc55f0d947da0800000000000000
+      internalID: -5947956518660019102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WrathSheet_35
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 1
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48dd17e2d6a879dd0800000000000000
+      internalID: -2479360868308886140
       vertices: []
       indices: 
       edges: []

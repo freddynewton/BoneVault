@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40a2523012511214f81549b0cd394798, type: 3}
-  m_Name: Boss Udok Base Stats
+  m_Script: {fileID: 11500000, guid: 645ce9000e601f343947cdd405adb1dd, type: 3}
+  m_Name: Avoid Obstalce
   m_EditorClassIdentifier: 
-  maxHealth: 30
-  moveSpeed: 1
+  filter: {fileID: 11400000, guid: 5ac79be8a13a91e4db36224753a6d0a8, type: 2}

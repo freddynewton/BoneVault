@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ca8733b48625049b7c52328e920050, type: 3}
+  m_Name: Composite Move Behavior
+  m_EditorClassIdentifier: 
+  behaviors:
+  - behavior: {fileID: 11400000, guid: cd6c9715d5bbe834cb53d8c19f643b0d, type: 2}
+    Weight: 1
+  - behavior: {fileID: 11400000, guid: c666ebe709f989f4ab8613e1889b98af, type: 2}
+    Weight: 1
+  - behavior: {fileID: 11400000, guid: 00886537ff9d7bc43b2cb53793ead489, type: 2}
+    Weight: 1

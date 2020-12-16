@@ -35,10 +35,10 @@ public class EnemyRoom : Room
         if (waves == 0 && returnLivingEnemyCount() == 0)
         {
             setDoors(true);
+            if (!isCleared) Inventory.Instance.setBones(UnityEngine.Random.Range(2, 10));
             isCleared = true;
             setLights(secColor);
             StartCoroutine(SoundManager.fadeMusic(musicSource, 0, 3f, false));
-            Inventory.Instance.setBones(UnityEngine.Random.Range(2, 10));
             return true;
         }
 

@@ -4821,8 +4821,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3065674638620549656}
+  - component: {fileID: 7193743039218462051}
   - component: {fileID: -3103733122684960842}
-  - component: {fileID: 3065674638620549659}
   - component: {fileID: -2504575575942547431}
   - component: {fileID: 3065674638620549658}
   - component: {fileID: 3065674638620549732}
@@ -4852,6 +4852,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7193743039218462051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3065674638620549660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90fce2cad3bff764bb2baaed19e57a63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  States:
+  - {fileID: 11400000, guid: ee920da47ad759c4cb1c4659dc522f00, type: 2}
+  - {fileID: 11400000, guid: fea06f6c9cabb014c8d5aaf0d830f577, type: 2}
+  eUnit: {fileID: -3103733122684960842}
+  wrathUnit: {fileID: 0}
+  meleeUnit: {fileID: -3103733122684960842}
+  udokUnit: {fileID: 0}
+  bossUnit: {fileID: 0}
 --- !u!114 &-3103733122684960842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4871,6 +4891,7 @@ MonoBehaviour:
   spriteRend: {fileID: 0}
   rb: {fileID: 0}
   flashScript: {fileID: 0}
+  sm: {fileID: 7193743039218462051}
   enemyStats: {fileID: 11400000, guid: facdb925b830ccc4fabf7cce2d330ba1, type: 2}
   damageType: {fileID: 11400000, guid: 48b1bbf64f727664a8af64fa6023dddb, type: 2}
   hitSFX:
@@ -4888,23 +4909,6 @@ MonoBehaviour:
   navAgent: {fileID: 0}
   audioSource: {fileID: 0}
   triggerList: []
---- !u!114 &3065674638620549659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3065674638620549660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3955da6dbf4d39f4aace5af9353b96f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: 7fe646de7fff3ec409abfd7e175647c8, type: 2}
-  rb: {fileID: 0}
-  unit: {fileID: 0}
-  bossUdokEnemyUnit: {fileID: 0}
-  wrathEnemyUnit: {fileID: 0}
 --- !u!114 &-2504575575942547431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4920,6 +4924,11 @@ MonoBehaviour:
   agent: {fileID: 3065674638620549732}
   unit: {fileID: 0}
   layerMask: 0
+  moveBehavior: {fileID: 0}
+  neighbourRadius: 10
+  avoidanceRadiusMultiplier: 0.5
+  stoppingDistance: 2
+  driveFactor: 3
 --- !u!136 &3065674638620549658
 CapsuleCollider:
   m_ObjectHideFlags: 0

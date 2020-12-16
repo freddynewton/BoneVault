@@ -39,8 +39,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3065674638620549656}
+  - component: {fileID: 3578775786511822936}
   - component: {fileID: 1297130516331228145}
-  - component: {fileID: 3065674638620549659}
   - component: {fileID: 2622695093506317366}
   - component: {fileID: 3065674638620549658}
   - component: {fileID: 3065674638620549732}
@@ -68,6 +68,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3578775786511822936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3065674638620549660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90fce2cad3bff764bb2baaed19e57a63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  States:
+  - {fileID: 11400000, guid: 98c9a2876c23bb24784e8026bbccb88a, type: 2}
+  eUnit: {fileID: 1297130516331228145}
+  wrathUnit: {fileID: 1297130516331228145}
+  meleeUnit: {fileID: 0}
+  udokUnit: {fileID: 0}
+  bossUnit: {fileID: 0}
 --- !u!114 &1297130516331228145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,6 +106,7 @@ MonoBehaviour:
   spriteRend: {fileID: 0}
   rb: {fileID: 0}
   flashScript: {fileID: 0}
+  sm: {fileID: 3578775786511822936}
   enemyStats: {fileID: 11400000, guid: 871b6ab1f9ee2314a936f14b2c1025e2, type: 2}
   damageType: {fileID: 11400000, guid: c9599280e49518544ac11b5c414ba743, type: 2}
   hitSFX:
@@ -98,28 +118,11 @@ MonoBehaviour:
   utilityAI: {fileID: 0}
   vfx: {fileID: 0}
   navAgent: {fileID: 0}
-  randomSound: {fileID: 0}
+  audioSource: {fileID: 0}
   projectilePF: {fileID: 2675099585983753324, guid: d192cc3767f9e4b46b0d2224f35a4662, type: 3}
   projectileShootingPos: {fileID: 1907763534986336398}
   currentProj: {fileID: 0}
   GFX: {fileID: 3065674638620549660}
---- !u!114 &3065674638620549659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3065674638620549660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3955da6dbf4d39f4aace5af9353b96f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: 62ba8ca539ccf584c8becc5461553b76, type: 2}
-  rb: {fileID: 0}
-  unit: {fileID: 0}
-  bossUdokEnemyUnit: {fileID: 0}
-  wrathEnemyUnit: {fileID: 0}
 --- !u!114 &2622695093506317366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +138,11 @@ MonoBehaviour:
   agent: {fileID: 3065674638620549732}
   unit: {fileID: 0}
   layerMask: 0
+  moveBehavior: {fileID: 0}
+  neighbourRadius: 10
+  avoidanceRadiusMultiplier: 0.5
+  stoppingDistance: 2
+  driveFactor: 3
 --- !u!136 &3065674638620549658
 CapsuleCollider:
   m_ObjectHideFlags: 0

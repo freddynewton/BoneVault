@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class EnemyUnit : Unit
 {
+    [Header("State Machine")]
+    public StateMachine sm;
+
     [Header("Enemy Settings")]
     public EnemyStats enemyStats;
     public DamageType damageType;
@@ -12,6 +15,7 @@ public class EnemyUnit : Unit
     public AudioClip [] attackSFX;
     public AudioClip [] dieSFX;
 
+    
     [HideInInspector] public UtilityAIHandler utilityAI;
     [HideInInspector] public ParticleSystem vfx;
     [HideInInspector] public NavAgentController navAgent;
@@ -23,6 +27,7 @@ public class EnemyUnit : Unit
 
     public override void Start()
     {
+
         spriteRend = GetComponentInChildren<SpriteRenderer>();
         baseMat = spriteRend.material;
         rb = GetComponent<Rigidbody>();
@@ -45,6 +50,9 @@ public class EnemyUnit : Unit
 
     public override void death()
     {
+        // remove from State Machine Controller
+        StateMachineController.Instance.enemyUnits.Remove(this);
+
         // Play Death Animation
         animator.SetTrigger("isDead");
 
@@ -58,7 +66,7 @@ public class EnemyUnit : Unit
         SoundManager.Instance.playRandomSFX(dieSFX, audioSource, 0.8f, 1.2f);
 
         // Disable all component and leave a sprite
-        GetComponent<UtilityAIHandler>().enabled = false;
+        // GetComponent<UtilityAIHandler>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
         GetComponent<CapsuleCollider>().enabled = false;

@@ -66,7 +66,7 @@ public class NavAgentController : MonoBehaviour
 
     private void Update()
     {
-        updateMovement();
+        //updateMovement();
     }
 
     private void updateMovement()

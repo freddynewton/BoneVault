@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Axe Skeleton Stats
   m_EditorClassIdentifier: 
   maxRange: 3
-  stoppingDistance: 1.5
+  stoppingDistance: 2.5
   stopsAttackingWhenHit: 1
   attackRateMin: 2.5
   attackRateMax: 3.5

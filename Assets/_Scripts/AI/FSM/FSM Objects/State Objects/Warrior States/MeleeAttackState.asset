@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7790e4a1953ae82499d7c46cdc78447f, type: 3}
+  m_Name: MeleeAttackState
+  m_EditorClassIdentifier: 
+  Transitions:
+  - toState: {fileID: 11400000, guid: ee920da47ad759c4cb1c4659dc522f00, type: 2}
+    isFalseTrue: 0
+    transition: {fileID: 11400000, guid: 96f214a4c5fc2f74382ec3b94a7b5a51, type: 2}
+  Actions:
+  - {fileID: 11400000, guid: d434a1e74f0ff1b44bc8439bd8a6bf3d, type: 2}

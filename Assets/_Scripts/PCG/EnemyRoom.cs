@@ -38,6 +38,7 @@ public class EnemyRoom : Room
             isCleared = true;
             setLights(secColor);
             StartCoroutine(SoundManager.fadeMusic(musicSource, 0, 3f, false));
+            Inventory.Instance.setBones(UnityEngine.Random.Range(2, 10));
             return true;
         }
 
@@ -61,6 +62,7 @@ public class EnemyRoom : Room
     {
         // TODO Spawn VFX
         GameObject e = Instantiate(EnemyTypesPF[UnityEngine.Random.Range(0, EnemyTypesPF.Count)], EnemySpawnPositions[UnityEngine.Random.Range(0, EnemySpawnPositions.Length - 1)].transform.position, Quaternion.identity, EnemyContainer.gameObject.transform) as GameObject;
+        StateMachineController.Instance.enemyUnits.Add(e.GetComponent<EnemyUnit>());
     }
 
     private int returnLivingEnemyCount()

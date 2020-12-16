@@ -9,11 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 053882bdfbc37b34e8d8a887e60f0d3b, type: 3}
-  m_Name: Sword Skeleton Stats
+  m_Script: {fileID: 11500000, guid: 5fb2583ef235fc249b187eb6b4cb8c08, type: 3}
+  m_Name: Stay In Sight Action
   m_EditorClassIdentifier: 
-  maxRange: 3
-  stoppingDistance: 2.4
-  stopsAttackingWhenHit: 1
-  attackRateMin: 1.7
-  attackRateMax: 2.5

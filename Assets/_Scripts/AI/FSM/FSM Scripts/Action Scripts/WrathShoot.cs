@@ -9,7 +9,7 @@ public class WrathShoot : StateAction
     {
         if (sm.eUnit.waitTimer(sm.eUnit.enemyStats.attackRateMin) && sm.wrathUnit.currentProj == null)
         {
-            sm.wrathUnit.currentProj = Instantiate(sm.wrathUnit.projectilePF, sm.wrathUnit.transform.forward, Quaternion.identity, null);
+            sm.wrathUnit.currentProj = Instantiate(sm.wrathUnit.projectilePF, sm.wrathUnit.transform.position + Vector3.up + sm.wrathUnit.GFX.transform.forward, Quaternion.identity, null);
             Debug.DrawLine(sm.wrathUnit.transform.forward, PlayerController.Instance.transform.position - sm.wrathUnit.transform.forward);
             sm.wrathUnit.currentProj.transform.localScale = Vector3.zero;
             Projectile proj = sm.wrathUnit.currentProj.GetComponent<Projectile>();

@@ -64,75 +64,67 @@ public class NavAgentController : MonoBehaviour
         navMeshPath = tmp;
     }
 
-    private void Update()
+    public void MoveToLocation(Vector3 targetPos)
     {
-        //updateMovement();
-    }
+        getPath(targetPos);
 
-    private void updateMovement()
-    {
-        rays.Clear();
-        rays = GetRayHitObjects();
-
-        Vector3 move = moveBehavior.CalculateMove(this);
-
-        move *= driveFactor;
-
-        if (move.sqrMagnitude > squareMaxSpeed) move = move.normalized * (unit == null ? 3 : unit.baseStats.moveSpeed);
-
-        Move(move);
-    }
-
-    private void Move(Vector3 velocity)
-    {
-
-        transform.forward = new Vector3(velocity.x, 0, velocity.z);
-        transform.position += new Vector3(velocity.x, 0, velocity.z) * Time.deltaTime;
-    }
-
-    private List<rayDot> GetRayHitObjects()
-    {
-        List<rayDot> rd = new List<rayDot>();
-
-        float angle = 0;
-
-        // Vector3 nextCornerDirection = (navMeshPath.corners[1] - transform.position).normalized;
-
-        for (int i = 0; i < rayAmount; i++)
+        if (navMeshPath.status == NavMeshPathStatus.PathComplete)
         {
-            // Create rayDot
-            rayDot r = new rayDot();
-
-            // Rotate Vector
-            angle = 360 / rayAmount * i;
-            Vector3 avoidanceDirection = (Quaternion.AngleAxis(angle, Vector3.up) * transform.forward).normalized;
-
-            // Init ray + yAxis Offset
-            Ray ray = new Ray(transform.position + new Vector3(0, 0.3f, 0), avoidanceDirection);
-
-            // Store ray in Array
-            r.ray = ray;
-
-            // FYI: Dot Product Vectors need to be normalized
-            // r.dotValue = Vector3.Dot(nextCornerDirection, avoidanceDirection);
-
-            // Raycast
-            Physics.Raycast(ray, out r.hitInfo, neighbourRadius, -1, QueryTriggerInteraction.UseGlobal);
-
-            // Substract normalized distance to dot product
-            r.dotValue -= r.hitInfo.distance / neighbourRadius;
-
-            // Debug ray
-            Debug.DrawRay(r.ray.origin, r.ray.direction * r.dotValue, Color.green);
-
-            // add r to list
-            rd.Add(r);
+            agent.isStopped = false;
+            agent.destination = oldTargetPos;
         }
-
-        return rd;
+        else stopAgent();
     }
 
-    #region steering behavior try
+    public void StayInSight(Vector3 targetPos, float randomPointRange, float minDistanceToNewPoint, float navMeshSamplePositionRange)
+    {
+        // Check if Player is in Sight
+        RaycastHit hit;
+        Physics.Raycast(gameObject.transform.position, targetPos - gameObject.transform.position, out hit);
+
+        // Check if Player is in Sight and agent is not moving
+        if (!hit.transform.CompareTag("Player") && agent.velocity == Vector3.zero) ;
+        {
+            // Find Random Point in Range
+            for (int i = 0; i < MAX_ITERATIONS; i++)
+            {
+                Vector3 _tmp = gameObject.transform.position + (Random.insideUnitSphere * randomPointRange);
+
+                // Raycast again from new Random Point
+                Physics.Raycast(_tmp, targetPos - _tmp, out hit);
+
+                // Check if Player is in Sight from new Pos
+                if (hit.transform.CompareTag("Player") && Vector3.Distance(gameObject.transform.position, _tmp) >= minDistanceToNewPoint && agent.pathStatus == NavMeshPathStatus.PathComplete)
+                {
+                    // Get closest Navmeshpoint from new Point
+                    NavMeshHit navHit;
+                    if (NavMesh.SamplePosition(_tmp, out navHit, navMeshSamplePositionRange, NavMesh.AllAreas))
+                    {
+                        // Move Agent
+                        MoveToLocation(navHit.position);
+                    }
+
+                    // End for Loop
+                    break;
+                }
+            }
+        }
+    }
+
+    public void stopAgent()
+    {
+        agent.isStopped = true;
+    }
+
+    private void Awake()
+    {
+        unit = GetComponent<EnemyUnit>();
+        agent.speed = unit == null ? 3 : unit.baseStats.moveSpeed;
+        agent.stoppingDistance = unit == null ? 3 : unit.enemyStats.stoppingDistance;
+    }
+
+    #region old steering behavior
+
     public void moveSteeringTarget(Vector3 targetPos)
     {
         // Resets move velocity from rigidbody
@@ -214,68 +206,70 @@ public class NavAgentController : MonoBehaviour
         return rd;
     }
 
+    private void updateMovement()
+    {
+        rays.Clear();
+        rays = GetRayHitObjects();
+
+        Vector3 move = moveBehavior.CalculateMove(this);
+
+        move *= driveFactor;
+
+        if (move.sqrMagnitude > squareMaxSpeed) move = move.normalized * (unit == null ? 3 : unit.baseStats.moveSpeed);
+
+        Move(move);
+    }
+
+    private void Move(Vector3 velocity)
+    {
+
+        transform.forward = new Vector3(velocity.x, 0, velocity.z);
+        transform.position += new Vector3(velocity.x, 0, velocity.z) * Time.deltaTime;
+    }
+
+    private List<rayDot> GetRayHitObjects()
+    {
+        List<rayDot> rd = new List<rayDot>();
+
+        float angle = 0;
+
+        // Vector3 nextCornerDirection = (navMeshPath.corners[1] - transform.position).normalized;
+
+        for (int i = 0; i < rayAmount; i++)
+        {
+            // Create rayDot
+            rayDot r = new rayDot();
+
+            // Rotate Vector
+            angle = 360 / rayAmount * i;
+            Vector3 avoidanceDirection = (Quaternion.AngleAxis(angle, Vector3.up) * transform.forward).normalized;
+
+            // Init ray + yAxis Offset
+            Ray ray = new Ray(transform.position + new Vector3(0, 0.3f, 0), avoidanceDirection);
+
+            // Store ray in Array
+            r.ray = ray;
+
+            // FYI: Dot Product Vectors need to be normalized
+            // r.dotValue = Vector3.Dot(nextCornerDirection, avoidanceDirection);
+
+            // Raycast
+            Physics.Raycast(ray, out r.hitInfo, neighbourRadius, -1, QueryTriggerInteraction.UseGlobal);
+
+            // Substract normalized distance to dot product
+            r.dotValue -= r.hitInfo.distance / neighbourRadius;
+
+            // Debug ray
+            Debug.DrawRay(r.ray.origin, r.ray.direction * r.dotValue, Color.green);
+
+            // add r to list
+            rd.Add(r);
+        }
+
+        return rd;
+    }
+
     #endregion
-
-    public void MoveToLocation(Vector3 targetPos)
-    {
-        getPath(targetPos);
-
-        if (navMeshPath.status == NavMeshPathStatus.PathComplete)
-        {
-            agent.isStopped = false;
-            agent.destination = oldTargetPos;
-
-            // moveSteeringTarget(targetPos);
-        }
-        else stopAgent();
-    }
-
-    public void StayInSight(Vector3 targetPos, float randomPointRange, float minDistanceToNewPoint, float navMeshSamplePositionRange)
-    {
-        // Check if Player is in Sight
-        RaycastHit hit;
-        Physics.Raycast(gameObject.transform.position, targetPos - gameObject.transform.position, out hit);
-
-        // Check if Player is in Sight and agent is not moving
-        if (!hit.transform.CompareTag("Player") && agent.velocity == Vector3.zero) ;
-        {
-            // Find Random Point in Range
-            for (int i = 0; i < MAX_ITERATIONS; i++)
-            {
-                Vector3 _tmp = gameObject.transform.position + (Random.insideUnitSphere * randomPointRange);
-
-                // Raycast again from new Random Point
-                Physics.Raycast(_tmp, targetPos - _tmp, out hit);
-
-                // Check if Player is in Sight from new Pos
-                if (hit.transform.CompareTag("Player") && Vector3.Distance(gameObject.transform.position, _tmp) >= minDistanceToNewPoint && agent.pathStatus == NavMeshPathStatus.PathComplete)
-                {
-                    // Get closest Navmeshpoint from new Point
-                    NavMeshHit navHit;
-                    if (NavMesh.SamplePosition(_tmp, out navHit, navMeshSamplePositionRange, NavMesh.AllAreas))
-                    {
-                        // Move Agent
-                        MoveToLocation(navHit.position);
-                    }
-
-                    // End for Loop
-                    break;
-                }
-            }
-        }
-    }
-
-    public void stopAgent()
-    {
-        agent.isStopped = true;
-    }
-
-    private void Awake()
-    {
-        unit = GetComponent<EnemyUnit>();
-        agent.speed = unit == null ? 3 : unit.baseStats.moveSpeed;
-        agent.stoppingDistance = unit == null ? 3 : unit.enemyStats.stoppingDistance;
-    }
 
     private void OnDrawGizmos()
     {

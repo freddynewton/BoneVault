@@ -51,8 +51,8 @@ MonoBehaviour:
   printDebugMatrix: 0
   roomCount: 6
   specialRoomCount: 1
-  worldWidth: 5
-  worldLength: 5
+  worldWidth: 16
+  worldLength: 16
   TestMode: 0
   mapSetPos: []
   rooms: []

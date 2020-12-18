@@ -21,11 +21,11 @@ public class Collectable : MonoBehaviour
         if (other.CompareTag("Player")) {
             if (stat == Stat.HEALTH) {
                 Debug.Log("Add Health");
-                GameObject.Find("Player").GetComponent<PlayerUnit>().setHealthPlayer(50);
+                GameObject.Find("Player").GetComponent<PlayerUnit>().setHealthPlayer(10);
             }
             else if (stat == Stat.STAMINA) {
                 Debug.Log("Add Schtamina");
-                GameObject.Find("Player").GetComponent<PlayerUnit>().setStamina(50);
+                GameObject.Find("Player").GetComponent<PlayerUnit>().setStamina(10);
             }
             else {
                 Debug.Log("Add Skulls");

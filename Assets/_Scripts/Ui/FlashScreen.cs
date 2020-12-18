@@ -10,13 +10,13 @@ public class FlashScreen : MonoBehaviour
         flashImage = gameObject.GetComponent<Image>();
     }
 
-    public void flashScreen(float time)
+    public void flashScreen(float time, Color color)
     {
-        flashImage.color = new Color(1f, 0f, 0f, 0.5f);
+        flashImage.color = color;
 
         LeanTween.value(flashImage.color.a, 0, time).setEaseOutQuint().setOnUpdate((float val) =>
         {
-            flashImage.color = new Color(1f, 0f, 0f, val);
+            flashImage.color = new Color(color.r, color.g, color.b, val);
         });
     }
 }

@@ -75,7 +75,7 @@ public class PlayerUnit : Unit
 
     public override void death()
     {
-        UiManager.Instance.flashScreen.flashScreen(1);
+        UiManager.Instance.flashScreen.flashScreen(1, new Color(1f, 0f, 0f, 0.5f));
         SoundManager.Instance.playRandomSFX(hitSFX, randomSound, 0.8f, 1.2f);
         // TODO Player Hit effect & "Game over" Scene
     }
@@ -83,7 +83,7 @@ public class PlayerUnit : Unit
     public override void hit()
     {
         // Do Player hit effect
-        UiManager.Instance.flashScreen.flashScreen(1);
+        UiManager.Instance.flashScreen.flashScreen(1, new Color(1f, 0f, 0f, 0.5f));
 
         SoundManager.Instance.playRandomSFX(hitSFX, randomSound, 0.8f, 1.2f);
     }

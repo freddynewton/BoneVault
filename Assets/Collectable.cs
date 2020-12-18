@@ -28,7 +28,7 @@ public class Collectable : MonoBehaviour
                 Debug.Log("Add Skulls");
             }
 
-            // flash screen white
+            UiManager.Instance.flashScreen.flashScreen(1, new Color(1f, 1f, 1f, 0.5f));
             // play collect SFX
 
             Destroy(gameObject);

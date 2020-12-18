@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
+
 public class Collectable : MonoBehaviour
 {
     public int statBonus;
@@ -20,12 +21,15 @@ public class Collectable : MonoBehaviour
         if (other.CompareTag("Player")) {
             if (stat == Stat.HEALTH) {
                 Debug.Log("Add Health");
+                GameObject.Find("Player").GetComponent<PlayerUnit>().setHealthPlayer(50);
             }
             else if (stat == Stat.STAMINA) {
                 Debug.Log("Add Schtamina");
+                GameObject.Find("Player").GetComponent<PlayerUnit>().setStamina(50);
             }
             else {
                 Debug.Log("Add Skulls");
+                Inventory.Instance.setBones(1);
             }
 
             UiManager.Instance.flashScreen.flashScreen(1, new Color(1f, 1f, 1f, 0.5f));

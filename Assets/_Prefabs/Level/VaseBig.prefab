@@ -4978,9 +4978,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 86a6be33a0c7c05468f5e51a4552903b, type: 3}
   - {fileID: 8300000, guid: 6ae939c01c01b814e918f95cfc73e002, type: 3}
   isDestroyable: 1
-  dropItems: []
-  itemCounts: 0
-  dropChance: 0.1
+  dropItems:
+  - {fileID: 9146971607443808063, guid: 5fc8f36331ab83e4c823a983e08b2ac9, type: 3}
+  - {fileID: 9146971607443808063, guid: 718b8b6d06c7dd5409f09b3513347884, type: 3}
+  - {fileID: 9146971607443808063, guid: ffdce9696c9bda84ba6b9053722981e9, type: 3}
+  itemCounts: 1
+  dropChance: 1
 --- !u!54 &2281645703365761759
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -29,9 +29,9 @@ public class Collectable : MonoBehaviour
             }
 
             UiManager.Instance.flashScreen.flashScreen(1, new Color(1f, 1f, 1f, 0.5f));
-            // play collect SFX
+            SoundManager.Instance.playSFX(GetComponent<AudioSource>().clip, GetComponent<AudioSource>(), 0.8f, 1.2f);
 
-            Destroy(gameObject);
+            Destroy(gameObject, 0.1f);
         }
     }
 }

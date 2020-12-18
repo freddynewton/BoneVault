@@ -245,8 +245,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 270926624414936043}
-  - component: {fileID: 8141095861660333876}
   - component: {fileID: 1010693395267296081}
+  - component: {fileID: 5158519770136119325}
   - component: {fileID: -4190054066401320770}
   - component: {fileID: 1128569394610793412}
   - component: {fileID: 554263566041780037}
@@ -278,23 +278,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8141095861660333876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8170622236074527741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3955da6dbf4d39f4aace5af9353b96f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: 6b26556fa11f53345a6d1df30c98d92a, type: 2}
-  rb: {fileID: 0}
-  unit: {fileID: 0}
-  bossUdokEnemyUnit: {fileID: 0}
-  wrathEnemyUnit: {fileID: 0}
 --- !u!114 &1010693395267296081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,6 +297,7 @@ MonoBehaviour:
   spriteRend: {fileID: 0}
   rb: {fileID: 0}
   flashScript: {fileID: 0}
+  sm: {fileID: 5158519770136119325}
   enemyStats: {fileID: 11400000, guid: 12914a06489869c4ab3128f046d84855, type: 2}
   damageType: {fileID: 11400000, guid: 0e1f36deba2cd1a45aa13a0069a354d9, type: 2}
   hitSFX:
@@ -328,10 +312,13 @@ MonoBehaviour:
   utilityAI: {fileID: 0}
   vfx: {fileID: 0}
   navAgent: {fileID: 0}
-  randomSound: {fileID: 0}
+  audioSource: {fileID: 0}
+  bossRoom: {fileID: 0}
+  phase: 0
   summonSFX:
   - {fileID: 8300000, guid: 7098eb35986c606489ad5a514e24cdca, type: 3}
-  bossRoom: {fileID: 0}
+  phase2: 0.6
+  phase3: 0.1
   fireBalls: []
   maxFireBalls: 3
   fireBallPF: {fileID: 2675099585983753324, guid: d192cc3767f9e4b46b0d2224f35a4662, type: 3}
@@ -354,6 +341,27 @@ MonoBehaviour:
   minionsLivingCount: 2
   spawnedMinions: []
   isSpawning: 0
+--- !u!114 &5158519770136119325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8170622236074527741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90fce2cad3bff764bb2baaed19e57a63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  States:
+  - {fileID: 11400000, guid: 283df696b70b923418a1147fedfebf99, type: 2}
+  - {fileID: 11400000, guid: f3d1ded2dc3323f43a497f3370e78696, type: 2}
+  - {fileID: 11400000, guid: ed5143e35313cf14a846a63c34d7ea7f, type: 2}
+  eUnit: {fileID: 1010693395267296081}
+  wrathUnit: {fileID: 0}
+  meleeUnit: {fileID: 0}
+  udokUnit: {fileID: 1010693395267296081}
+  bossUnit: {fileID: 0}
 --- !u!114 &-4190054066401320770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,6 +377,11 @@ MonoBehaviour:
   agent: {fileID: 1128569394610793412}
   unit: {fileID: 0}
   layerMask: 0
+  moveBehavior: {fileID: 0}
+  neighbourRadius: 10
+  avoidanceRadiusMultiplier: 0.5
+  stoppingDistance: 2
+  driveFactor: 3
 --- !u!195 &1128569394610793412
 NavMeshAgent:
   m_ObjectHideFlags: 0

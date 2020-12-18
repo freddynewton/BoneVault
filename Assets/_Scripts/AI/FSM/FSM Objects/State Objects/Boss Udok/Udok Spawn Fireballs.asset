@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7790e4a1953ae82499d7c46cdc78447f, type: 3}
-  m_Name: Udok Shoot State
+  m_Name: Udok Spawn Fireballs
   m_EditorClassIdentifier: 
   Transitions:
-  - toState: {fileID: 11400000, guid: ed5143e35313cf14a846a63c34d7ea7f, type: 2}
+  - toState: {fileID: 11400000, guid: f3d1ded2dc3323f43a497f3370e78696, type: 2}
     isFalseTrue: 0
-    transition: {fileID: 11400000, guid: b10273720e078204b9a62010806daa2a, type: 2}
+    transition: {fileID: 11400000, guid: 2df20fea23d096a439c939152ae255ca, type: 2}
   Actions:
-  - {fileID: 11400000, guid: 8585f67ed3449554db5b177034b1a334, type: 2}
+  - {fileID: 11400000, guid: b7d6791b48f9df3459260a208d0b702c, type: 2}
+  - {fileID: 11400000, guid: 4e905200cb441e645bb0d06261bd83e8, type: 2}

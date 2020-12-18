@@ -7,6 +7,10 @@ public class BossUdokEnemyUnit : BossUnit
     [Header("Boss Udok Settings")]
     public AudioClip [] summonSFX;
 
+    [Header("Phase Settings")]
+    [Range(0f, 1f)] public float phase2 = 0.6f;
+    [Range(0f, 1f)] public float phase3 = 0.1f;
+
     [Header("Fire Balls")]
     public List<GameObject> fireBalls = new List<GameObject>();
 
@@ -30,6 +34,21 @@ public class BossUdokEnemyUnit : BossUnit
     public override void setWalkingAnimation()
     {
         // Nothing
+    }
+
+    public override void hit()
+    {
+        base.hit();
+
+        switch (phase)
+        {
+            case 1:
+                if (currentHealth / baseStats.maxHealth < phase2) phase++;
+                break;
+            case 2:
+                if (currentHealth / baseStats.maxHealth < phase3) phase++;
+                break;
+        }
     }
 
     public override void death()

@@ -17,6 +17,21 @@ public class StateMachine : MonoBehaviour
     public BossUnit bossUnit;
 
     private float timeTicker;
+    private float transitionTicker;
+
+    public bool isTransitionTimerDone(float time)
+    {
+        if (transitionTicker <= 0)
+        {
+            transitionTicker = time;
+            return true;
+        }
+        else
+        {
+            transitionTicker -= Time.deltaTime - StateMachineController.Instance.checkTransitionRate;
+            return false;
+        }
+    }
 
     public bool isTimerDone(float time)
     {

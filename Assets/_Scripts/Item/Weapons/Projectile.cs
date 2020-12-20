@@ -38,6 +38,7 @@ public class Projectile : MonoBehaviour
     public void ShootToTarget(float strength, Vector3 dir)
     {
         // Stop Tweens and Movement
+        gameObject.transform.parent = null;
         isCirclingAround = false;
         stopAllTweens();
         rb.velocity = Vector3.zero;

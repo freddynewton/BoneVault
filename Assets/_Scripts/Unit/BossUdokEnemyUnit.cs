@@ -29,7 +29,7 @@ public class BossUdokEnemyUnit : BossUnit
     public override void Start()
     {
         base.Start();
-        // LeanTween.moveLocalY(gameObject, gameObject.transform.position.y - 1, 2.5f).setEaseInOutQuad().setLoopPingPong();
+        LeanTween.moveLocalY(gameObject, gameObject.transform.position.y - 1, 2.5f).setEaseInOutQuad().setLoopPingPong();
     }
 
     public override void setWalkingAnimation()

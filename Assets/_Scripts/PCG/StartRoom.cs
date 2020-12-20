@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class StartRoom : Room
 {
@@ -16,7 +17,13 @@ public class StartRoom : Room
     public IEnumerator setSpawnPos()
     {
         yield return new WaitForSecondsRealtime(3);
-        PlayerController.Instance.transform.position = PlayerSpawn.transform.position + new Vector3(0, 2, 0);
+
+        NavMeshHit navMeshHit;
+        NavMesh.SamplePosition(PlayerSpawn.transform.position + new Vector3(0, 2, 0), out navMeshHit, 20f, NavMesh.AllAreas);
+
+        if (navMeshHit.position == null) { StartCoroutine(setSpawnPos()); Debug.Log("Didn't find player spawn pos"); yield break; }
+
+        PlayerController.Instance.transform.position = navMeshHit.position;
         UiManager.Instance.setActivePreparingLevel(false);
     }
 

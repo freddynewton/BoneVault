@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 7401829841887060736}
   - component: {fileID: -1384700792354018123}
   - component: {fileID: 1319773961129876639}
+  - component: {fileID: 5083114808933499627}
   m_Layer: 15
   m_Name: Boss_Entrance_1
   m_TagString: Untagged
@@ -110,6 +111,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5b34603b242bd6249a0009f5e1fe40c9, type: 3}
   miniMapPart: {fileID: 0}
   randomSound: {fileID: 0}
+  musicSource: {fileID: 0}
   bossPF: {fileID: 8170622236074527741, guid: 865e87883b694dd48bf2bcc2895f3997, type: 3}
   spawnPos: {fileID: 1087050834038568366}
   enemyContainer: {fileID: 7401829841683129691}
@@ -216,6 +218,35 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5083114808933499627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2795715297161401036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: -1372625422
+  m_CollectObjects: 2
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.6666667
+  m_BuildHeightMesh: 0
+  m_NavMeshData: {fileID: 0}
 --- !u!1 &2795715297913410846
 GameObject:
   m_ObjectHideFlags: 0
@@ -3745,11 +3776,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2e06c8d2ae1a5e4e96cb77d824655ce, type: 3}
---- !u!4 &605286762921238511 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9089625015135382788, guid: d2e06c8d2ae1a5e4e96cb77d824655ce, type: 3}
-  m_PrefabInstance: {fileID: 8521581047610913515}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3525499691901795746 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5093478382365216585, guid: d2e06c8d2ae1a5e4e96cb77d824655ce, type: 3}
@@ -3761,6 +3787,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86bb601805f5f6e4999a1a59ed68c78d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &605286762921238511 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9089625015135382788, guid: d2e06c8d2ae1a5e4e96cb77d824655ce, type: 3}
+  m_PrefabInstance: {fileID: 8521581047610913515}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8675340004387476180
 PrefabInstance:
   m_ObjectHideFlags: 0

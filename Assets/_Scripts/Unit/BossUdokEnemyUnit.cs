@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BossUdokEnemyUnit : BossUnit
 {
@@ -28,7 +29,7 @@ public class BossUdokEnemyUnit : BossUnit
     public override void Start()
     {
         base.Start();
-        LeanTween.moveLocalY(gameObject, gameObject.transform.position.y - 1, 2.5f).setEaseInOutQuad().setLoopPingPong();
+        // LeanTween.moveLocalY(gameObject, gameObject.transform.position.y - 1, 2.5f).setEaseInOutQuad().setLoopPingPong();
     }
 
     public override void setWalkingAnimation()
@@ -102,13 +103,22 @@ public class BossUdokEnemyUnit : BossUnit
             {
                 // Spawn Random Minion
                 Vector3 spawnPos = bossRoom.transform.position;
+
                 spawnPos.y = hit.point.y;
+
+                spawnPos += Random.insideUnitSphere * 10;
+
+                NavMeshHit navMeshHit;
+                NavMesh.SamplePosition(spawnPos, out navMeshHit, 20f, NavMesh.AllAreas);
+                spawnPos = navMeshHit.position;
+
                 GameObject e = Instantiate(enemyTypes[Random.Range(0, enemyTypes.Count)], spawnPos, Quaternion.identity, bossRoom.transform);
+                StateMachineController.Instance.enemyUnits.Add(e.GetComponent<EnemyUnit>());
                 spawnedMinions.Add(e.GetComponent<EnemyUnit>());
             }
 
             // Move up
-            LeanTween.moveY(gameObject, gameObject.transform.position.y + hit.distance, 4f).setEaseOutSine().setDelay(4f).setOnComplete(() =>
+            LeanTween.moveY(gameObject, gameObject.transform.position.y + hit.distance, 4f).setEaseOutSine().setDelay(2f).setOnComplete(() =>
             {
                 StartCoroutine(setSpawning(false, 5));
                 LeanTween.moveLocalY(gameObject, gameObject.transform.position.y - 1, 2.5f).setEaseInOutQuad().setLoopPingPong();

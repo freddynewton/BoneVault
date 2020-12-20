@@ -190,7 +190,7 @@ public class WorldGeneratorManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         navMeshSurfaces.Clear();
 
-        navMeshSurfaces = gameObject.GetComponents<NavMeshSurface>().ToList();
+        navMeshSurfaces = gameObject.GetComponentsInChildren<NavMeshSurface>().ToList();
 
         foreach (NavMeshSurface n in navMeshSurfaces)
         {

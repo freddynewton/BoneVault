@@ -51,15 +51,15 @@ public class NavAgentController : MonoBehaviour
     public void getPath(Vector3 targetPos)
     {
         NavMeshHit navMeshHit;
-        NavMesh.SamplePosition(targetPos, out navMeshHit, 20, -1);
+        NavMesh.SamplePosition(targetPos, out navMeshHit, 20, agent.areaMask);
 
-        // Debug.DrawLine(targetPos, navMeshHit.position, Color.green);
+        Debug.DrawLine(targetPos, navMeshHit.position, Color.green);
 
         NavMeshPath tmp = navMeshPath == null ? new NavMeshPath() : navMeshPath;
-        NavMesh.CalculatePath(transform.position, navMeshHit.position, -1, tmp);
+        NavMesh.CalculatePath(transform.position, navMeshHit.position, agent.areaMask, tmp);
 
         if (tmp.status == NavMeshPathStatus.PathComplete && navMeshHit.position != null) oldTargetPos = navMeshHit.position;
-        else NavMesh.CalculatePath(transform.position, oldTargetPos, -1, tmp);
+        else NavMesh.CalculatePath(transform.position, oldTargetPos, agent.areaMask, tmp);
 
         navMeshPath = tmp;
     }
@@ -67,6 +67,8 @@ public class NavAgentController : MonoBehaviour
     public void MoveToLocation(Vector3 targetPos)
     {
         getPath(targetPos);
+
+        if (oldTargetPos == Vector3.zero) agent.destination = targetPos;
 
         if (navMeshPath.status == NavMeshPathStatus.PathComplete)
         {
@@ -98,7 +100,7 @@ public class NavAgentController : MonoBehaviour
                 {
                     // Get closest Navmeshpoint from new Point
                     NavMeshHit navHit;
-                    if (NavMesh.SamplePosition(_tmp, out navHit, navMeshSamplePositionRange, NavMesh.AllAreas))
+                    if (NavMesh.SamplePosition(_tmp, out navHit, navMeshSamplePositionRange, agent.areaMask))
                     {
                         // Move Agent
                         MoveToLocation(navHit.position);

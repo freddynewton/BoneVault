@@ -12,17 +12,13 @@ public class SceneManagerHelper : MonoBehaviour
         LeanTween.cancelAll();
         Time.timeScale = 1;
 
-        if (GameManagerHelper.Instance != null)
-        {
-            GameManagerHelper.Instance.resetAll();
-        }
+        StateMachineController.Instance.enemyUnits.Clear();
 
-        if (PlayerController.Instance != null)
-        {
-            PlayerController.Instance.playerCameraHandler.gameObject.SetActive(true);
-        }
+        GameManagerHelper.Instance.resetAll();
+        PlayerController.Instance.playerCameraHandler.gameObject.SetActive(false);
 
         UiManager.Instance.setActiveMainMenuCanvas(true);
+        UiManager.Instance.setActiveDeathCanvas(false);
         UiManager.Instance.setActiveHUD(false);
         UiManager.Instance.setActiveMiniMap(false);
 

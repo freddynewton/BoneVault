@@ -15,13 +15,17 @@ public class StateMachineController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Iterate();
-
-        if (_transitionRate <= 0)
+        if (enemyUnits.Count > 0)
         {
-            CheckTransitions();
-            _transitionRate = checkTransitionRate;
-        } else _transitionRate -= Time.deltaTime;
+            Iterate();
+
+            if (_transitionRate <= 0)
+            {
+                CheckTransitions();
+                _transitionRate = checkTransitionRate;
+            }
+            else _transitionRate -= Time.deltaTime;
+        }
     }
 
     private void Iterate()

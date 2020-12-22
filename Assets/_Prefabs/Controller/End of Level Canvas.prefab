@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6644482411473831385
 RectTransform:
   m_ObjectHideFlags: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6644482412383978511}
+      - m_Target: {fileID: 6644482412383978511, guid: 075df29ba6b59974eaadceed32492307, type: 3}
         m_TargetAssemblyTypeName: EndOfLevelCanvas, Assembly-CSharp
         m_MethodName: Survey
         m_Mode: 1
@@ -149,7 +149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6644482411575285304
 RectTransform:
   m_ObjectHideFlags: 0
@@ -299,7 +299,7 @@ RectTransform:
   m_GameObject: {fileID: 6644482411641546849}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 6644482412701621929}
   m_Father: {fileID: 6644482412383978507}
@@ -307,7 +307,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: -100}
+  m_AnchoredPosition: {x: 0, y: -100}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6644482411641546853
@@ -391,9 +391,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6644482412383978511}
-        m_TargetAssemblyTypeName: EndOfLevelCanvas, Assembly-CSharp
-        m_MethodName: MainMenu
+      - m_Target: {fileID: 1411331085}
+        m_TargetAssemblyTypeName: DeathCanvas, Assembly-CSharp
+        m_MethodName: MainMenuButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 6644482412162033321}
   - component: {fileID: 6644482412162033320}
   m_Layer: 0
-  m_Name: You won text
+  m_Name: You Died Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -571,8 +571,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 200}
-  m_SizeDelta: {x: 300, y: 50}
+  m_AnchoredPosition: {x: 0, y: 1000}
+  m_SizeDelta: {x: 1000, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6644482412162033321
 CanvasRenderer:
@@ -602,7 +602,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You won!
+  m_text: YOU DIED!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2f817cfd0abc67841bcb4b12e5c1bb55, type: 2}
   m_sharedMaterial: {fileID: 2443888268244191170, guid: 2f817cfd0abc67841bcb4b12e5c1bb55, type: 2}
@@ -629,15 +629,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 36
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -683,7 +683,7 @@ GameObject:
   - component: {fileID: 6644482412383978510}
   - component: {fileID: 6644482412383978509}
   - component: {fileID: 6644482412383978508}
-  - component: {fileID: 6644482412383978511}
+  - component: {fileID: 1411331085}
   m_Layer: 0
   m_Name: End of Level Canvas
   m_TagString: EndLevelCanvas
@@ -749,12 +749,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -776,7 +776,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6644482412383978511
+--- !u!114 &1411331085
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -785,14 +785,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6644482412383978506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 008d5a857defaf648b29996509d7bc64, type: 3}
+  m_Script: {fileID: 11500000, guid: a2644d130322a7a4ab533b82d36d82db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: {fileID: 6644482412162033318}
-  infoText: {fileID: 6644482411575285303}
+  titleText: {fileID: 6644482412162033318}
   mainMenuButton: {fileID: 6644482411641546849}
-  surveyButton: {fileID: 6644482411473831384}
-  socialsButton: {fileID: 6644482413141493543}
 --- !u!1 &6644482412389479478
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,7 +1085,7 @@ RectTransform:
   m_GameObject: {fileID: 6644482412877399049}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1}
   m_Children: []
   m_Father: {fileID: 6644482412383978507}
   m_RootOrder: 0
@@ -1154,7 +1151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6644482413141493544
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1256,7 +1253,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6644482412383978511}
+      - m_Target: {fileID: 6644482412383978511, guid: 075df29ba6b59974eaadceed32492307, type: 3}
         m_TargetAssemblyTypeName: EndOfLevelCanvas, Assembly-CSharp
         m_MethodName: socials
         m_Mode: 1

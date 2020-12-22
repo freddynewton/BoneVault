@@ -54,16 +54,11 @@ public class BossUdokEnemyUnit : BossUnit
 
     public override void death()
     {
-        bossRoom.portalDoor.openDoor();
-        StartCoroutine(SoundManager.fadeMusic(GameObject.Find("SoundManager").GetComponent<AudioSource>(), 0, 3f, false));
-
         foreach (GameObject fireball in fireBalls)
         {
             fireball.GetComponent<Projectile>().DestroyProjectile();
         }
 
-        Inventory.Instance.setBones(Random.Range(0, 10));
-        
         base.death();
     }
 

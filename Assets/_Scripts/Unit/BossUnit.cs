@@ -10,11 +10,16 @@ public class BossUnit : EnemyUnit
 
     public override void death()
     {
+        bossRoom.portalDoor.openDoor();
+        StartCoroutine(SoundManager.fadeMusic(SoundManager.Instance.GetComponent<AudioSource>(), 0, 3f, false));
+
+        Inventory.Instance.setBones(Random.Range(0, 10));
+
+        base.death();
+
         foreach (EnemyUnit e in StateMachineController.Instance.enemyUnits)
         {
             e.death();
         }
-
-        base.death();
     }
 }

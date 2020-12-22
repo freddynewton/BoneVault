@@ -26,6 +26,7 @@ public class UiManager : MonoBehaviour
 
     [Header("Minimap Canvas")]
     public MiniMapManager miniMapManager;
+    public GameObject miniMapCanvas;
 
     [Header("End of Level Screen")]
     public EndOfLevelCanvas EndOfLevelCanvas;
@@ -36,10 +37,22 @@ public class UiManager : MonoBehaviour
     [Header("Main Menu Canvas")]
     public Canvas mainMenuCanvas;
 
+    [Header("Death Canvas")]
+    public DeathCanvas DeathCanvas;
+
     public void setActivePreparingLevel(bool active) => preparingLevelCanvas.gameObject.SetActive(active);
     public void setActiveMainMenuCanvas(bool active) => mainMenuCanvas.gameObject.SetActive(active);
-    public void setActiveMiniMap(bool active) => miniMapManager.gameObject.SetActive(active);
+    public void setActiveMiniMap(bool active) => miniMapCanvas.gameObject.SetActive(active);
     public void setActiveHUD(bool active) => HUDCanvas.gameObject.SetActive(active);
+    public void setActiveDeathCanvas(bool active) => DeathCanvas.gameObject.SetActive(active);
+
+
+    public void Death()
+    {
+        UiManager.Instance.setActiveDeathCanvas(true);
+        DeathCanvas.Init();
+        Time.timeScale = 0;
+    }
 
     public void Update()
     {

@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UiManager : MonoBehaviour
 {
@@ -40,11 +41,15 @@ public class UiManager : MonoBehaviour
     [Header("Death Canvas")]
     public DeathCanvas DeathCanvas;
 
+    [Header("Options Menu")]
+    public OptionsMenuHandler optionsMenu;
+
     public void setActivePreparingLevel(bool active) => preparingLevelCanvas.gameObject.SetActive(active);
     public void setActiveMainMenuCanvas(bool active) => mainMenuCanvas.gameObject.SetActive(active);
     public void setActiveMiniMap(bool active) => miniMapCanvas.gameObject.SetActive(active);
     public void setActiveHUD(bool active) => HUDCanvas.gameObject.SetActive(active);
     public void setActiveDeathCanvas(bool active) => DeathCanvas.gameObject.SetActive(active);
+    public void setActiveOptionsMenu() => optionsMenu.gameObject.SetActive(!optionsMenu.gameObject.activeSelf);
 
 
     public void Death()
@@ -58,10 +63,31 @@ public class UiManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
+            setActiveOptionsMenu();
+
+            if (optionsMenu.gameObject.activeSelf) Cursor.lockState = CursorLockMode.Confined;
+            else Cursor.lockState = CursorLockMode.Locked;
+
+            if (SceneManager.GetActiveScene().buildIndex == 0)
+            {
+                if (optionsMenu.gameObject.activeSelf) setActiveMainMenuCanvas(false);
+                else setActiveMainMenuCanvas(true);
+
+                if (mainMenuCanvas.gameObject.activeSelf) Cursor.lockState = CursorLockMode.Confined;
+                else Cursor.lockState = CursorLockMode.Locked;
+            }
+
+            /*
             if (!miniMapManager.MiniMapGenerator.minimapTextureCanvas.activeSelf) Cursor.lockState = CursorLockMode.Confined;
             else Cursor.lockState = CursorLockMode.Locked;
 
             miniMapManager.openMinimap(!miniMapManager.MiniMapGenerator.minimapTextureCanvas.activeSelf);
+            */
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+
         }
     }
 

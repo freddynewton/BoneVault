@@ -24,7 +24,8 @@ public class MainMenuHandler : MonoBehaviour
     }
 
     public void Options() {
-        // open option menu
+        UiManager.Instance.setActiveOptionsMenu();
+        UiManager.Instance.setActiveMainMenuCanvas(false);
     }
 
     public void Play()

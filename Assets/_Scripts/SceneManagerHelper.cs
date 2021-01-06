@@ -23,6 +23,7 @@ public class SceneManagerHelper : MonoBehaviour
         UiManager.Instance.setActiveDeathCanvas(false);
         UiManager.Instance.setActiveHUD(false);
         UiManager.Instance.setActiveMiniMap(false);
+        UiManager.Instance.setActivePreparingLevel(false);
 
         Cursor.lockState = CursorLockMode.Confined;
 

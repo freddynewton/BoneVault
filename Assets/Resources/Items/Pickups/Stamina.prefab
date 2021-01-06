@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cfc78ef9cbf0384eac33a6c2f53c4f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statBonus: 50
+  statBonus: 1
   stat: 1
 --- !u!136 &7289501144188586517
 CapsuleCollider:

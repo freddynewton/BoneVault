@@ -55,7 +55,7 @@ public class EndOfLevelCanvas : MonoBehaviour
 
     public void Survey()
     {
-
+        Application.OpenURL("https://forms.gle/JtoqBv7kVYoBWhht8");
     }
 
     public void socials()

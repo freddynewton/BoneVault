@@ -11,6 +11,14 @@ public class OptionsMenuHandler : MonoBehaviour
 
     public TabGroup[] Tabs;
 
+    public void setHeaderText()
+    {
+        foreach (TabGroup t in Tabs)
+        {
+            if (t.gameObject.activeSelf) HeaderText.text = t.m_name;
+        }
+    }
+
     public void closeAllTabs()
     {
         foreach (TabGroup t in Tabs) t.gameObject.SetActive(false);

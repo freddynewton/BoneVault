@@ -18,7 +18,7 @@ public class TabGroupOptions : TabGroup
         // TODO Add Options Save
 
         MouseSensitivitySlider.maxValue = 1500;
-        MouseSensitivitySlider.value = PlayerController.Instance.unit.playerStats.mouseSensitivity;
+        MouseSensitivitySlider.value = 500;
     }
 
     public override void interact()

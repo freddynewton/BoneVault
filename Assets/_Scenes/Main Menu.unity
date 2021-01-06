@@ -782,78 +782,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1299388, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 553824010}
-    - target: {fileID: 1299388, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Credits
-      objectReference: {fileID: 0}
-    - target: {fileID: 1299388, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ButtonHandler, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 19205989, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 553824010}
-    - target: {fileID: 19205989, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Play
-      objectReference: {fileID: 0}
-    - target: {fileID: 19205989, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ButtonHandler, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 68385030, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 553824010}
-    - target: {fileID: 68385030, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Options
-      objectReference: {fileID: 0}
-    - target: {fileID: 68385030, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ButtonHandler, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1655194206, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 553824010}
-    - target: {fileID: 1655194206, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Quit
-      objectReference: {fileID: 0}
-    - target: {fileID: 1655194206, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ButtonHandler, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2278374137634321133, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 553824010}
-    - target: {fileID: 2278374137634321133, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Credits
-      objectReference: {fileID: 0}
-    - target: {fileID: 2278374137634321133, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ButtonHandler, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2438969576286975529, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 553824010}
-    - target: {fileID: 2438969576286975529, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Quit
-      objectReference: {fileID: 0}
-    - target: {fileID: 2438969576286975529, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ButtonHandler, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 4658749344916663636, guid: 7fc936495022ee8478414dfa30246077, type: 3}
       propertyPath: MiniMapGenerator
       value: 
@@ -910,18 +838,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: --- UI ---
       objectReference: {fileID: 0}
-    - target: {fileID: 7991793439804327571, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 553824010}
-    - target: {fileID: 7991793439804327571, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MainMenuButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 7991793439804327571, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ButtonHandler, Assembly-CSharp
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fc936495022ee8478414dfa30246077, type: 3}
 --- !u!1 &553824005 stripped
@@ -949,17 +865,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4658749346576712009, guid: 7fc936495022ee8478414dfa30246077, type: 3}
   m_PrefabInstance: {fileID: 553824004}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &553824010 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 444568692513947677, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-  m_PrefabInstance: {fileID: 553824004}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c977348a41116db4c9b3c022c80136e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!108 &565619863 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 2666413721800898254, guid: e7895844417630842a6cc6383e0d823b, type: 3}
@@ -2261,7 +2166,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 252462659820718105, guid: 080454e15c9a6b74ba7de97815822b6c, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Wrath
       objectReference: {fileID: 0}
     - target: {fileID: 252462659820718109, guid: 080454e15c9a6b74ba7de97815822b6c, type: 3}
       propertyPath: m_LocalPosition.x

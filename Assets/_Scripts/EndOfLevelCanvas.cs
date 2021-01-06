@@ -24,7 +24,7 @@ public class EndOfLevelCanvas : MonoBehaviour
         infoText.transform.localScale = Vector3.zero;
 
         title.SetActive(true);
-        LeanTween.moveLocalY(title, 100, 2).setEaseOutBack().setIgnoreTimeScale(true).setOnComplete(() => {
+        LeanTween.moveLocalY(title, 200, 2).setEaseOutBack().setIgnoreTimeScale(true).setOnComplete(() => {
 
             infoText.SetActive(true);
             LeanTween.scale(infoText, Vector3.one, 3f).setEaseOutBounce().setIgnoreTimeScale(true).setOnComplete(() => {
@@ -44,7 +44,7 @@ public class EndOfLevelCanvas : MonoBehaviour
     {
         // Load Main Menu
         title.SetActive(false);
-        title.transform.position = new Vector3(0, 200, 0);
+        title.transform.position = new Vector3(0, 600, 0);
         infoText.SetActive(false);
         mainMenuButton.SetActive(false);
         surveyButton.SetActive(false);
@@ -60,6 +60,6 @@ public class EndOfLevelCanvas : MonoBehaviour
 
     public void socials()
     {
-        Application.OpenURL("https://twitter.com/playBoneVault");
+        Application.OpenURL("https://linktr.ee/bonevault");
     }
 }

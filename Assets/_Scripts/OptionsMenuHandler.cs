@@ -10,5 +10,10 @@ public class OptionsMenuHandler : MonoBehaviour
     public TextMeshProUGUI HeaderText;
 
     public TabGroup[] Tabs;
+
+    public void closeAllTabs()
+    {
+        foreach (TabGroup t in Tabs) t.gameObject.SetActive(false);
+    }
     
 }

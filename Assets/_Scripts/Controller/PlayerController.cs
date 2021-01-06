@@ -53,6 +53,8 @@ public class PlayerController : MonoBehaviour
             Sprint();
             Movement();
         }
+
+            
     }
 
     private bool checkIsGrounded()

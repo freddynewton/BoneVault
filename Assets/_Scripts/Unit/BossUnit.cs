@@ -15,11 +15,8 @@ public class BossUnit : EnemyUnit
 
         Inventory.Instance.setBones(Random.Range(0, 10));
 
-        base.death();
+        StateMachineController.Instance.ClearEnemies();
 
-        foreach (EnemyUnit e in StateMachineController.Instance.enemyUnits)
-        {
-            e.death();
-        }
+        base.death();
     }
 }

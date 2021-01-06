@@ -44,6 +44,13 @@ public class StateMachineController : MonoBehaviour
         }
     }
 
+    public void ClearEnemies()
+    {
+        foreach (EnemyUnit e in enemyUnits) e.death();
+
+
+    }
+
     private void Awake()
     {
         if (Instance == null)

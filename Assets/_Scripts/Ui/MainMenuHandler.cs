@@ -13,26 +13,6 @@ public class MainMenuHandler : MonoBehaviour
     public List<SpriteRenderer> sprites = new List<SpriteRenderer>();
     public AudioSource titleMusic;
 
-    public void Quit()
-    {
-        Application.Quit();
-    }
-
-    public void Credits()
-    {
-        Application.OpenURL("https://twitter.com/playBoneVault");
-    }
-
-    public void Options() {
-        UiManager.Instance.setActiveOptionsMenu();
-        UiManager.Instance.setActiveMainMenuCanvas(false);
-    }
-
-    public void Play()
-    {
-        SceneManagerHelper.Instance.loadLoadingScene();
-    }
-
     private IEnumerator lightDelay(Color color, int idx)
     {
         yield return new WaitForSecondsRealtime(lightWaitTime);

@@ -49,7 +49,7 @@ public class UiManager : MonoBehaviour
     public void setActiveMiniMap(bool active) => miniMapCanvas.gameObject.SetActive(active);
     public void setActiveHUD(bool active) => HUDCanvas.gameObject.SetActive(active);
     public void setActiveDeathCanvas(bool active) => DeathCanvas.gameObject.SetActive(active);
-    public void setActiveOptionsMenu() => optionsMenu.gameObject.SetActive(!optionsMenu.gameObject.activeSelf);
+    public void setActiveOptionsMenu(bool active) => optionsMenu.gameObject.SetActive(active);
 
 
     public void Death()
@@ -63,7 +63,13 @@ public class UiManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            setActiveOptionsMenu();
+            if (optionsMenu.gameObject.activeSelf)
+            {
+                optionsMenu.closeAllTabs();
+            }
+
+            setActiveOptionsMenu(!optionsMenu.gameObject.activeSelf);
+
 
             if (optionsMenu.gameObject.activeSelf) Cursor.lockState = CursorLockMode.Confined;
             else Cursor.lockState = CursorLockMode.Locked;
@@ -76,18 +82,6 @@ public class UiManager : MonoBehaviour
                 if (mainMenuCanvas.gameObject.activeSelf) Cursor.lockState = CursorLockMode.Confined;
                 else Cursor.lockState = CursorLockMode.Locked;
             }
-
-            /*
-            if (!miniMapManager.MiniMapGenerator.minimapTextureCanvas.activeSelf) Cursor.lockState = CursorLockMode.Confined;
-            else Cursor.lockState = CursorLockMode.Locked;
-
-            miniMapManager.openMinimap(!miniMapManager.MiniMapGenerator.minimapTextureCanvas.activeSelf);
-            */
-        }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-
         }
     }
 
@@ -122,7 +116,6 @@ public class UiManager : MonoBehaviour
             });
         });
     }
-
 
     public void showErrorMessage(AltarUpgrade upgrade, float duration)
     {

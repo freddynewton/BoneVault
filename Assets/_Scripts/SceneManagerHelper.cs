@@ -12,15 +12,19 @@ public class SceneManagerHelper : MonoBehaviour
         LeanTween.cancelAll();
         Time.timeScale = 1;
 
+        StateMachineController.Instance.ClearEnemies();
         StateMachineController.Instance.enemyUnits.Clear();
 
         GameManagerHelper.Instance.resetAll();
         PlayerController.Instance.playerCameraHandler.gameObject.SetActive(false);
 
         UiManager.Instance.setActiveMainMenuCanvas(true);
+        UiManager.Instance.setActiveOptionsMenu(false);
         UiManager.Instance.setActiveDeathCanvas(false);
         UiManager.Instance.setActiveHUD(false);
         UiManager.Instance.setActiveMiniMap(false);
+
+        Cursor.lockState = CursorLockMode.Confined;
 
         SceneManager.LoadScene(0);
     }
@@ -39,6 +43,7 @@ public class SceneManagerHelper : MonoBehaviour
     public AsyncOperation loadGameScene()
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(2);
+        Cursor.lockState = CursorLockMode.Locked;
         StartCoroutine(loadGameSceneEnum(operation));
         return operation;
     }

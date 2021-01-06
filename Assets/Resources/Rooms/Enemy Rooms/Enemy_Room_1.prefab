@@ -187,6 +187,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5b34603b242bd6249a0009f5e1fe40c9, type: 3}
   miniMapPart: {fileID: 0}
   randomSound: {fileID: 0}
+  musicSource: {fileID: 0}
   EnemyContainer: {fileID: 2033133657}
   EnemySpawnPositions:
   - {fileID: 727204615}
@@ -203,10 +204,10 @@ MonoBehaviour:
   - {fileID: 3065674638620549660, guid: a65d74db1c5edf34580ccef1a2c12855, type: 3}
   - {fileID: 3065674638620549660, guid: a65d74db1c5edf34580ccef1a2c12855, type: 3}
   - {fileID: 3065674638620549660, guid: a65d74db1c5edf34580ccef1a2c12855, type: 3}
-  waves: 1
+  waves: 2
   spawnNewWaveUnder: 1
   minEnemies: 2
-  maxEnemies: 4
+  maxEnemies: 5
   spawnRange: 10
   spawnOffset: {x: 0, y: 3, z: 0}
 --- !u!65 &1977085441

@@ -53,6 +53,12 @@ public class PlayerController : MonoBehaviour
             Sprint();
             Movement();
         }
+
+        if (transform.position.y < -150)
+        {
+            transform.position += new Vector3(0, 150, 0);
+            SceneManagerHelper.Instance.loadMainMenu();
+        }
     }
 
     private bool checkIsGrounded()

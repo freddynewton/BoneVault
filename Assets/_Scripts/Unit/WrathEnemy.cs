@@ -37,6 +37,7 @@ public class WrathEnemy : EnemyUnit
     }
     public override void death()
     {
+        currentProj.GetComponent<Projectile>().DestroyProjectile();
         base.death();
     }
 

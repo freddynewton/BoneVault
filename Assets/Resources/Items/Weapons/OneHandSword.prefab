@@ -122,9 +122,8 @@ MonoBehaviour:
   name: One Hand Sword
   icon: {fileID: -6417234444036227135, guid: f204d13e14395f4499e242d6f624ea51, type: 3}
   damageType: {fileID: 11400000, guid: 40172974392c8c940b3d18b599938690, type: 2}
-  ShakeLenght: 1
+  ShakeLength: 1
   ShakeStrength: 3
-  hitObjects: []
   animator: {fileID: 0}
   currentState: 
   doDamageAfterSec: 0.3
@@ -147,6 +146,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4402f2ec80c7c7746a33dd1d17ed5509, type: 3}
   - {fileID: 8300000, guid: d55120cb41c5e4447a63c84ebbc25cac, type: 3}
   - {fileID: 8300000, guid: 99d0e429c9ff5f24ead47b2d28f9a4de, type: 3}
+  chargeSFX: {fileID: 8300000, guid: 18cf82e5d26f18a4bb037045a5de186e, type: 3}
 --- !u!65 &8419775150344606401
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a2523012511214f81549b0cd394798, type: 3}
   m_Name: Boss Udok Base Stats
   m_EditorClassIdentifier: 
-  maxHealth: 30
+  maxHealth: 10
   moveSpeed: 1

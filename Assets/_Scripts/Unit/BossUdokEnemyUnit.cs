@@ -54,12 +54,12 @@ public class BossUdokEnemyUnit : BossUnit
 
     public override void death()
     {
+        base.death();
+
         foreach (GameObject fireball in fireBalls)
         {
-            fireball.GetComponent<Projectile>().DestroyProjectile();
+            if (fireball != null) fireball.GetComponent<Projectile>().DestroyProjectile();
         }
-
-        base.death();
     }
 
     public int returnLivingMinions()

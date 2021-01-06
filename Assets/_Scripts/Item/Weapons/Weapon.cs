@@ -25,7 +25,6 @@ public abstract class Weapon : Item
         animator = GetComponent<Animator>();
     }
 
-    /* TODO: Implement Interact for item grabbing*/
     public override void interact()
     {
         throw new System.NotImplementedException();

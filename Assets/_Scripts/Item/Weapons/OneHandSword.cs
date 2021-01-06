@@ -21,6 +21,7 @@ public class OneHandSword : MeleeWeapon
     public ParticleSystem sparksCharged;
     public AudioClip [] swingSFX;
     public AudioClip [] parrySFX;
+    public AudioClip chargeSFX;
 
     // INVOKE FUNCTIONS
     public void blockCharge() => perfectBlockActive = false;
@@ -106,6 +107,7 @@ public class OneHandSword : MeleeWeapon
             sparksCharged.Clear();
             sparksCharged.Play();
             SoundManager.Instance.playRandomSFX(parrySFX, audioSource, 0.8f, 1.2f);
+            SoundManager.Instance.playSFX(chargeSFX, audioSource, 0.8f, 1.2f);
 
             return callbackValue.SUCCESS;
         }

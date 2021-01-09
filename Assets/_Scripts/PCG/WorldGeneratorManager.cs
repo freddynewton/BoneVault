@@ -540,6 +540,47 @@ public class WorldGeneratorManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Function to get different types of rooms
+    /// </summary>
+    /// <param name="neighbourRoomCount"></param>
+    /// <param name="roomList"></param>
+    /// <param name="twoRoomSetting">
+    /// 1 = Linearroom
+    /// 2 = Curvedroom
+    /// </param>
+    /// <returns></returns>
+    public GameObject returnRandomRoomList(int neighbourRoomCount, List<GameObject> roomList, byte twoRoomSetting)
+    {
+        List<GameObject> l = new List<GameObject>();
+
+        switch (neighbourRoomCount)
+        {
+            case 1:
+                foreach (GameObject r in roomList) if (r.GetComponent<Room>().roomDirection == Room.RoomDirection.OneDoor) l.Add(r);
+                break;
+            case 2:
+                if (twoRoomSetting == 1)
+                {
+                    foreach (GameObject r in roomList) if (r.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorLinear) l.Add(r);
+                } else if (twoRoomSetting == 2)
+                {
+                    foreach (GameObject r in roomList) if (r.GetComponent<Room>().roomDirection == Room.RoomDirection.TwoDoorCurve) l.Add(r);
+                }
+                break;
+            case 3:
+                foreach (GameObject r in roomList) if (r.GetComponent<Room>().roomDirection == Room.RoomDirection.ThreeDoor) l.Add(r);
+                break;
+            case 4:
+                foreach (GameObject r in roomList) if (r.GetComponent<Room>().roomDirection == Room.RoomDirection.FourDoor) l.Add(r);
+                break;
+            default:
+                break;
+        }
+
+        return l[UnityEngine.Random.Range(0, l.Count)];
+    }
+
+    /// <summary>
     /// returns a Random room
     /// </summary>
     /// <param name="neighbourRoomCount">Room Count</param>
@@ -641,7 +682,7 @@ public class WorldGeneratorManager : MonoBehaviour
         if (rList.Count == 0)
             Debug.Log("rList Count " + rList.Count + "Door Count: " + neighbourRoomCount);
 
-        return rList[UnityEngine.Random.Range(0, rList.Count - 1 == 0 ? 1 : rList.Count - 1)];
+        return rList[UnityEngine.Random.Range(0, rList.Count)];
     }
 
     /// <summary>

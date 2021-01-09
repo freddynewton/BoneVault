@@ -12,6 +12,7 @@ public class UiManager : MonoBehaviour
     public GameObject HUDCanvas;
     public Slider healthSlider;
     public Slider staminaSlider;
+    public Slider bossHealthSlider;
     public WeaponUI weaponUI;
     public TextMeshProUGUI BonesCount;
     public Image BonesLogo;
@@ -51,6 +52,18 @@ public class UiManager : MonoBehaviour
     public void setActiveDeathCanvas(bool active) => DeathCanvas.gameObject.SetActive(active);
     public void setActiveOptionsMenu(bool active) => optionsMenu.gameObject.SetActive(active);
 
+    public void setBossHealth(float currenthealth, float maxHealth)
+    {
+        bossHealthSlider.maxValue = maxHealth;
+
+        LeanTween.value(bossHealthSlider.value, currenthealth, 1f).setEaseOutBounce().setOnUpdate((float value) =>
+        {
+            bossHealthSlider.value = value;
+        });
+
+        if (currenthealth <= 0) bossHealthSlider.gameObject.SetActive(false);
+        else bossHealthSlider.gameObject.SetActive(true);
+    }
 
     public void Death()
     {

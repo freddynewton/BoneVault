@@ -32,10 +32,11 @@ public class BossRoom : Room
         if (!bossSpawned)
         {
             bossSpawned = true;
-
+            
             GameObject boss;
             boss = Instantiate(bossPF, spawnPos.position, Quaternion.identity, enemyContainer);
             boss.GetComponent<BossUnit>().bossRoom = this;
+            UiManager.Instance.setBossHealth(boss.GetComponent<BossUnit>().currentHealth, boss.GetComponent<BossUnit>().baseStats.maxHealth);
             StateMachineController.Instance.enemyUnits.Add(boss.GetComponent<EnemyUnit>());
         }
     }

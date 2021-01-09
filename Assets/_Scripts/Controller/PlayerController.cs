@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
         controller.Move(move * walkSpeed * Time.deltaTime);
 
         // apply gravity acceleration to vertical speed:
-        velocity.y += unit.playerStats.gravity * Time.deltaTime;
+        if (!isGrounded) velocity.y += unit.playerStats.gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
         // movement sounds

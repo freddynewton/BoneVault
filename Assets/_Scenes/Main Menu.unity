@@ -782,10 +782,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2044584561, guid: 7fc936495022ee8478414dfa30246077, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4658749344916663636, guid: 7fc936495022ee8478414dfa30246077, type: 3}
       propertyPath: MiniMapGenerator
       value: 
@@ -2170,7 +2166,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 252462659820718105, guid: 080454e15c9a6b74ba7de97815822b6c, type: 3}
       propertyPath: m_Name
-      value: Wrath
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 252462659820718109, guid: 080454e15c9a6b74ba7de97815822b6c, type: 3}
       propertyPath: m_LocalPosition.x

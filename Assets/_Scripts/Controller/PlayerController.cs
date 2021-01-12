@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
     private void Sprint()
     {
-        if (unit.currentStamina > 0)
+        if (unit.currentStamina > 0 && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0))
         {
             if (isSprinting)
             {

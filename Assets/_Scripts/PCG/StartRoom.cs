@@ -19,6 +19,7 @@ public class StartRoom : Room
         yield return new WaitForSecondsRealtime(3);
 
         NavMeshHit navMeshHit;
+        PlayerSpawn.transform.parent = WorldGeneratorManager.Instance.transform;
         NavMesh.SamplePosition(PlayerSpawn.transform.position + new Vector3(0, 2, 0), out navMeshHit, 20f, NavMesh.AllAreas);
 
         if (navMeshHit.position == null) { StartCoroutine(setSpawnPos()); Debug.Log("Didn't find player spawn pos"); yield break; }

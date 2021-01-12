@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40a2523012511214f81549b0cd394798, type: 3}
-  m_Name: Boss Udok Base Stats
+  m_Script: {fileID: 11500000, guid: df3a25766175bf2438b898d9125cdd08, type: 3}
+  m_Name: Flee
   m_EditorClassIdentifier: 
-  maxHealth: 40
-  moveSpeed: 1.8
+  fleeRange: 15

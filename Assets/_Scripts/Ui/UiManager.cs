@@ -95,6 +95,20 @@ public class UiManager : MonoBehaviour
                 if (mainMenuCanvas.gameObject.activeSelf) Cursor.lockState = CursorLockMode.Confined;
                 else Cursor.lockState = CursorLockMode.Locked;
             }
+        } if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (optionsMenu.gameObject.activeSelf)
+            {
+                optionsMenu.closeAllTabs();
+                setActiveOptionsMenu(!optionsMenu.gameObject.activeSelf);
+                Cursor.lockState = CursorLockMode.Locked;
+
+                if (SceneManager.GetActiveScene().buildIndex == 0)
+                {
+                    setActiveMainMenuCanvas(true);
+                    Cursor.lockState = CursorLockMode.Confined;
+                }
+            }
         }
     }
 

@@ -53,6 +53,8 @@ public class EnemyUnit : Unit
         // remove from State Machine Controller
         StateMachineController.Instance.enemyUnits.Remove(this);
 
+        Destroy(gameObject, 10);
+
         // Play Death Animation
         animator.SetTrigger("isDead");
 

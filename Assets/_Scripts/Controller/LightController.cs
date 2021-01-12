@@ -5,10 +5,10 @@ public class LightController : MonoBehaviour
 {
     [HideInInspector] public Animator animator;
 
-    [SerializeField] private float amplitude;
-    [SerializeField] private float baseRange;
-    [SerializeField] private float baseIntensity;
-    [SerializeField] private float tweenDuration;
+    public float amplitude;
+    public float baseRange;
+    public float baseIntensity;
+    public float tweenDuration;
     private Light torchLight;
 
     private void Awake()

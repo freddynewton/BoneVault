@@ -782,6 +782,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 377635023, guid: 7fc936495022ee8478414dfa30246077, type: 3}
+      propertyPath: m_text
+      value: 'Techdemo Version: 0.011'
+      objectReference: {fileID: 0}
+    - target: {fileID: 377635023, guid: 7fc936495022ee8478414dfa30246077, type: 3}
+      propertyPath: m_fontSize
+      value: 30.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4658749344916663636, guid: 7fc936495022ee8478414dfa30246077, type: 3}
       propertyPath: MiniMapGenerator
       value: 
@@ -2164,6 +2172,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2056330222, guid: 080454e15c9a6b74ba7de97815822b6c, type: 3}
+      propertyPath: m_Dithering
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 252462659820718105, guid: 080454e15c9a6b74ba7de97815822b6c, type: 3}
       propertyPath: m_Name
       value: Player

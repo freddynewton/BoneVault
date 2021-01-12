@@ -62,7 +62,9 @@ public class EnemyRoom : Room
     {
         // TODO Spawn VFX
         GameObject e = Instantiate(EnemyTypesPF[UnityEngine.Random.Range(0, EnemyTypesPF.Count)], EnemySpawnPositions[UnityEngine.Random.Range(0, EnemySpawnPositions.Length - 1)].transform.position, Quaternion.identity, EnemyContainer.gameObject.transform) as GameObject;
-        StateMachineController.Instance.enemyUnits.Add(e.GetComponent<EnemyUnit>());
+        EnemyUnit eUnit = e.GetComponent<EnemyUnit>();
+        StateMachineController.Instance.enemyUnits.Add(eUnit);
+        eUnit.room = this;
     }
 
     private int returnLivingEnemyCount()

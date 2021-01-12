@@ -51,7 +51,7 @@ public class NavAgentController : MonoBehaviour
     public void getPath(Vector3 targetPos)
     {
         NavMeshHit navMeshHit;
-        NavMesh.SamplePosition(targetPos, out navMeshHit, 20, agent.areaMask);
+        NavMesh.SamplePosition(targetPos, out navMeshHit, 30, agent.areaMask);
 
         Debug.DrawLine(targetPos, navMeshHit.position, Color.green);
 
@@ -78,6 +78,21 @@ public class NavAgentController : MonoBehaviour
         else stopAgent();
     }
 
+    public void wanderAround(float distanceToDestination, float radius)
+    {
+        if (Vector3.Distance(gameObject.transform.position, agent.destination) < distanceToDestination)
+        {
+            Vector3 pos = gameObject.transform.position;
+
+            while (Vector3.Distance(pos, gameObject.transform.position) < distanceToDestination)
+            {
+                pos = gameObject.transform.position + Random.insideUnitSphere * radius;
+            }
+
+            MoveToLocation(pos);
+        }
+    }
+
     public void StayInSight(Vector3 targetPos, float randomPointRange, float minDistanceToNewPoint, float navMeshSamplePositionRange)
     {
         // Check if Player is in Sight
@@ -85,7 +100,7 @@ public class NavAgentController : MonoBehaviour
         Physics.Raycast(gameObject.transform.position, targetPos - gameObject.transform.position, out hit);
 
         // Check if Player is in Sight and agent is not moving
-        if (!hit.transform.CompareTag("Player") && agent.velocity == Vector3.zero) ;
+        if (!hit.transform.CompareTag("Player") && agent.velocity == Vector3.zero);
         {
             // Find Random Point in Range
             for (int i = 0; i < MAX_ITERATIONS; i++)

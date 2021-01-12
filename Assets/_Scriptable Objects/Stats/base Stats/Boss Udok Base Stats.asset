@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Boss Udok Base Stats
   m_EditorClassIdentifier: 
   maxHealth: 40
-  moveSpeed: 1.8
+  moveSpeed: 1.3

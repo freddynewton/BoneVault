@@ -20,6 +20,7 @@ public class EnemyUnit : Unit
     [HideInInspector] public ParticleSystem vfx;
     [HideInInspector] public NavAgentController navAgent;
     [HideInInspector] public AudioSource audioSource;
+    [HideInInspector] public Room room;
 
     protected float waitTicker;
     protected float waitTime;

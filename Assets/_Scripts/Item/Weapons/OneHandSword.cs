@@ -170,11 +170,13 @@ public class OneHandSword : MeleeWeapon
                 damageType.damage = d;
                 // End Trash Code
             }
+            else remList.Add(obj);
 
             // Interact with Destroyable Item
             WorldItem wi = obj.GetComponent<WorldItem>();
             if (wi != null && wi.isDestroyable) wi.interact();
         }
+        
 
         foreach (GameObject obj in remList) hitObjects.Remove(obj);
 

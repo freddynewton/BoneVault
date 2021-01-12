@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7790e4a1953ae82499d7c46cdc78447f, type: 3}
-  m_Name: Wrath State
+  m_Script: {fileID: 11500000, guid: eba35b2d80a415a4081ecfa04b643d2a, type: 3}
+  m_Name: Wander Around Action
   m_EditorClassIdentifier: 
-  Transitions: []
-  Actions:
-  - {fileID: 11400000, guid: 1814bc59d6a97d84a89f723bad6672cd, type: 2}
-  - {fileID: 11400000, guid: 29ec6b63df8a2c247b6bff0afa7c8a01, type: 2}

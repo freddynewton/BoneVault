@@ -108,6 +108,7 @@ public class BossUdokEnemyUnit : BossUnit
                 spawnPos = navMeshHit.position;
 
                 GameObject e = Instantiate(enemyTypes[Random.Range(0, enemyTypes.Count)], spawnPos, Quaternion.identity, bossRoom.transform);
+                e.GetComponent<EnemyUnit>().room = room;
                 StateMachineController.Instance.enemyUnits.Add(e.GetComponent<EnemyUnit>());
                 spawnedMinions.Add(e.GetComponent<EnemyUnit>());
             }

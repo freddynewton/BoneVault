@@ -19,8 +19,8 @@ public class OneHandSword : MeleeWeapon
 
     public ParticleSystem sparks;
     public ParticleSystem sparksCharged;
-    public AudioClip [] swingSFX;
-    public AudioClip [] parrySFX;
+    public AudioClip[] swingSFX;
+    public AudioClip[] parrySFX;
     public AudioClip chargeSFX;
 
     // INVOKE FUNCTIONS
@@ -152,11 +152,14 @@ public class OneHandSword : MeleeWeapon
     {
         yield return new WaitForSecondsRealtime(doDamageAfterSec);
 
+        removeNullObjectFromHitList();
+
         List<GameObject> remList = new List<GameObject>();
 
         foreach (GameObject obj in hitObjects)
         {
             Unit objU = obj.GetComponent<Unit>();
+
             if (objU != null)
             {
                 if (objU.currentHealth - damageType.damage <= 0) remList.Add(obj);
@@ -170,18 +173,18 @@ public class OneHandSword : MeleeWeapon
                 damageType.damage = d;
                 // End Trash Code
             }
-            else remList.Add(obj);
 
             // Interact with Destroyable Item
             WorldItem wi = obj.GetComponent<WorldItem>();
             if (wi != null && wi.isDestroyable) wi.interact();
         }
-        
 
         foreach (GameObject obj in remList) hitObjects.Remove(obj);
 
         setCharges(0);
     }
+
+
 
     /// <summary>
     /// Set Charges and Updates the UI

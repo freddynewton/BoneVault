@@ -1,18 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+
 
 public abstract class MeleeWeapon : Weapon
 {
     [Header("Melee Weapon Settings")]
     public float doDamageAfterSec = 0.3f;
 
-    [SerializeField, HideInInspector] public List<GameObject> hitObjects;
+    public List<GameObject> hitObjects;
 
     public override void interact() { base.interact(); }
 
     #region Trigger handling
-    
+
+    public void removeNullObjectFromHitList()
+    {
+        hitObjects = hitObjects.Where(item => item != null).ToList();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         // Layer 11 is Enemy Layer

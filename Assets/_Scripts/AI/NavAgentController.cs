@@ -33,6 +33,8 @@ public class NavAgentController : MonoBehaviour
     [Range(0f, 10f)] public float stoppingDistance = 2f;
     [Range(0f, 10f)] public float driveFactor = 3f;
 
+    private float wanderAroundTimer;
+
     float squareMaxSpeed;
     float squareNeighbourRadius;
     float squareAvoidanceRadius;
@@ -78,18 +80,25 @@ public class NavAgentController : MonoBehaviour
         else stopAgent();
     }
 
-    public void wanderAround(float distanceToDestination, float radius)
+    public void wanderAround(float distanceToDestination, float radius, float waitTimeOnDestination)
     {
         if (Vector3.Distance(gameObject.transform.position, agent.destination) < distanceToDestination)
         {
-            Vector3 pos = gameObject.transform.position;
-
-            while (Vector3.Distance(pos, gameObject.transform.position) < distanceToDestination)
+            if (wanderAroundTimer < 0)
             {
-                pos = gameObject.transform.position + Random.insideUnitSphere * radius;
-            }
+                Vector3 pos = gameObject.transform.position;
 
-            MoveToLocation(pos);
+                while (Vector3.Distance(pos, gameObject.transform.position) < distanceToDestination)
+                {
+                    pos = gameObject.transform.position + (Random.insideUnitSphere * radius);
+                }
+
+                MoveToLocation(pos);
+                wanderAroundTimer = waitTimeOnDestination;
+            } else
+            {
+                wanderAroundTimer -= Time.deltaTime;
+            }
         }
     }
 

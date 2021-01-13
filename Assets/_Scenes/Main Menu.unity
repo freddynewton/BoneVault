@@ -172,42 +172,28 @@ MonoBehaviour:
   camera: {fileID: 923410928}
   lightWaitTime: 0.1
   lights:
-  - {fileID: 639157179}
   - {fileID: 1966412254}
   - {fileID: 515911389}
-  - {fileID: 0}
-  - {fileID: 1408479325}
-  - {fileID: 0}
-  - {fileID: 1376851520}
   - {fileID: 649950974}
   - {fileID: 1965545087}
-  - {fileID: 0}
+  - {fileID: 639157179}
+  - {fileID: 1408479325}
+  - {fileID: 1376851520}
   - {fileID: 565619863}
-  - {fileID: 0}
   - {fileID: 261612998}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 661760142}
-  - {fileID: 0}
   - {fileID: 1696068925}
   sprites:
-  - {fileID: 639157182}
   - {fileID: 1966412257}
   - {fileID: 515911392}
-  - {fileID: 0}
-  - {fileID: 1408479328}
-  - {fileID: 0}
-  - {fileID: 1376851523}
   - {fileID: 649950977}
   - {fileID: 1965545090}
-  - {fileID: 0}
+  - {fileID: 639157182}
+  - {fileID: 1408479328}
+  - {fileID: 1376851523}
   - {fileID: 565619866}
-  - {fileID: 0}
   - {fileID: 261613001}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 661760145}
-  - {fileID: 0}
   - {fileID: 1696068928}
   titleMusic: {fileID: 34623566}
 --- !u!82 &34623566
@@ -1523,8 +1509,8 @@ Transform:
   - {fileID: 1559676289}
   - {fileID: 423789493}
   - {fileID: 1048454816}
-  - {fileID: 175963610}
   - {fileID: 2045648752}
+  - {fileID: 175963610}
   - {fileID: 280119587}
   - {fileID: 694500923}
   - {fileID: 586008588}
@@ -2183,7 +2169,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1112061626}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &2045648753
 Light:
